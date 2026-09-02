@@ -1,0 +1,14 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "theme.schema.json",
+  "title": "Theme",
+  "type": "object",
+  "required": ["cssVars"],
+  "additionalProperties": false,
+  "properties": {
+    "cssVars": {
+      "type": "object",
+      "additionalProperties": { "type": "string" }
+    }
+  }
+}

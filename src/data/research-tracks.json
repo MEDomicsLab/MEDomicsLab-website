@@ -1,0 +1,14 @@
+{
+  "General": {
+    "description": "Cross-cutting research initiatives and collaborative efforts."
+  },
+  "Doctorate": {
+    "description": "PhD-level projects and training pathways."
+  },
+  "Master's": {
+    "description": "Master's-level research projects and applied studies."
+  },
+  "Completed": {
+    "description": "Completed and archived research projects."
+  }
+}

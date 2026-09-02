@@ -1,0 +1,38 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "courses.schema.json",
+  "title": "Courses",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "required": ["title", "summary", "slug", "authors", "institution"],
+    "additionalProperties": false,
+    "properties": {
+      "title": { "type": "string", "minLength": 1 },
+      "summary": { "type": "string", "minLength": 1 },
+      "slug": { "type": "string", "pattern": "^[a-z0-9-]+$" },
+      "markdown": { "type": "string" },
+      "authors": {
+        "type": "array",
+        "items": { "type": "string", "minLength": 1 }
+      },
+      "sessions": {
+        "type": "array",
+        "items": { "type": "string" }
+      },
+      "links": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "required": ["label", "url"],
+          "additionalProperties": false,
+          "properties": {
+            "label": { "type": "string" },
+            "url": { "type": "string" }
+          }
+        }
+      },
+      "institution": { "type": "string", "minLength": 1 }
+    }
+  }
+}

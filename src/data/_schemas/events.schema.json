@@ -1,0 +1,51 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "events.schema.json",
+  "title": "Events",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "required": ["year", "months"],
+    "additionalProperties": false,
+    "properties": {
+      "year": { "type": "string", "pattern": "^[0-9]{4}$" },
+      "months": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "required": ["month", "items"],
+          "additionalProperties": false,
+          "properties": {
+            "month": { "type": "string", "minLength": 1 },
+            "items": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": ["title", "slug", "contributors"],
+                "additionalProperties": false,
+                "properties": {
+                  "title": { "type": "string", "minLength": 1 },
+                  "slug": { "type": "string", "pattern": "^[a-z0-9-]+$" },
+                  "contributors": {
+                    "type": "array",
+                    "items": { "type": "string", "minLength": 1 }
+                  },
+                  "markdown": { "type": "string" },
+                  "coverImage": {
+                    "type": "object",
+                    "required": ["url"],
+                    "additionalProperties": false,
+                    "properties": {
+                      "url": { "type": "string" },
+                      "alt": { "type": "string" }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

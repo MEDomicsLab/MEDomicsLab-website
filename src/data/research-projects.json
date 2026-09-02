@@ -1,0 +1,232 @@
+[
+  {
+    "title": "Development of the MEDomics platform",
+    "slug": "medomics-platform",
+    "summary": "Open-source platform for integrative multi-omics modeling that supports precision medicine workflows across research teams.",
+    "status": "Active",
+    "track": "General",
+    "coverImage": {
+      "url": "/images/albums/research-medomics_platform/MEDomicsLab-Principles-1.png",
+      "alt": "MEDomics platform"
+    },
+    "researchers": [
+      "andreanne-allaire",
+      "brahim-fakri",
+      "cedrik-lampron",
+      "charles-levesque-matte",
+      "charles-olivier-ipperciel",
+      "clarisse-cheng",
+      "corentin-gauthier",
+      "guillaume-blain",
+      "hithem-lamri",
+      "jonathan-perron",
+      "kayla-davio-roy",
+      "ludmila-amriou",
+      "lyna-hiba-chikouche",
+      "mahdi-ait-lhaj-loutfi",
+      "mamadou-mountagha-bah",
+      "mariem-kallel",
+      "mohammed-benabbassi",
+      "nicolas-longchamps",
+      "ouael-nedjem-eddine-sahbi",
+      "robin-mailhot",
+      "sarah-denis",
+      "martin-vallieres"
+    ],
+    "markdown": "community/research/project-active/medomics_platform/index.md"
+  },
+  {
+    "title": "Development of the MEDimage package",
+    "slug": "medimage",
+    "summary": "Open-source Python software for medical image processing and IBSI-compliant radiomics extraction.",
+    "status": "Active",
+    "track": "General",
+    "coverImage": {
+      "url": "/images/albums/research-medimage/medimage-overview.png",
+      "alt": "Schematic diagram of the MEDimage package"
+    },
+    "researchers": [
+      "clarisse-cheng",
+      "corentin-gauthier",
+      "mahdi-ait-lhaj-loutfi",
+      "martin-vallieres",
+      "mohammed-benabbassi"
+    ],
+    "markdown": "community/research/project-active/medimage/index.md"
+  },
+  {
+    "title": "Predictive Performance Precision Analysis in Medicine (MED3pa)",
+    "slug": "med3pa",
+    "summary": "Methodology to identify low-confidence predictions and patient profiles where clinical models are unreliable.",
+    "status": "Active",
+    "track": "Doctorate",
+    "coverImage": {
+      "url": "/images/albums/research-MED3pa/res_meto.svg",
+      "alt": "Method overview"
+    },
+    "researchers": [
+      "olivier-lefebvre",
+      "ludmila-amriou",
+      "lyna-hiba-chikouche",
+      "martin-vallieres"
+    ],
+    "markdown": "community/research/project-active/MED3pa/index.md"
+  },
+  {
+    "title": "Predictive modeling based on multi-level graphical representations of multimodal healthcare data",
+    "slug": "multilevel-graphs",
+    "summary": "Multi-level graph neural networks and reinforcement learning to model multimodal patient data and federated training.",
+    "status": "Active",
+    "track": "Doctorate",
+    "coverImage": {
+      "url": "/images/albums/research-multilevel-graphs/Project.svg",
+      "alt": "Project presentation"
+    },
+    "researchers": ["hakima-laribi", "martin-vallieres"],
+    "markdown": "community/research/project-active/multilevel-graphs/index.md"
+  },
+  {
+    "title": "Optimizing MEDomics platform: Enhancing Usability for Clinical AI Adoption",
+    "slug": "medomicslab-optimization",
+    "summary": "Master's project focused on improving MEDomics platform usability, workflows, and clinical validation.",
+    "status": "Active",
+    "track": "Master's",
+    "coverImage": {
+      "url": "/images/albums/research-medomicslab-optimization/project.png",
+      "alt": "Project illustration"
+    },
+    "researchers": ["mariem-kallel", "martin-vallieres"],
+    "markdown": "community/research/project-active/medomicslab-optimization/index.md"
+  },
+  {
+    "title": "Development of a methodological review on statistical inference and distributed learning in health",
+    "slug": "distributed-learning-inference",
+    "summary": "Methodological review detailing statistical inference and distributed learning approaches in health research.",
+    "status": "Completed",
+    "track": "General",
+    "coverImage": {
+      "url": "/images/albums/research-distributed-learning-inference/distributed_main.jpg",
+      "alt": "Distributed learning and inference methods"
+    },
+    "researchers": [
+      "fabio-provencher-flores",
+      "francois-marcoux",
+      "julien-corriveau-trudel",
+      "nicolas-raymond",
+      "olivier-lefebvre",
+      "martin-vallieres"
+    ],
+    "markdown": "community/research/project-completed/distributed-learning-inference/index.md"
+  },
+  {
+    "title": "Random forests in a distributed learning context",
+    "slug": "distributed-random-forests",
+    "summary": "Bachelor's capstone implementing and evaluating federated random forests in a distributed setting.",
+    "status": "Completed",
+    "track": "General",
+    "coverImage": {
+      "url": "/images/albums/research-distributed-random-forests/fig_1.png",
+      "alt": "Class diagram"
+    },
+    "researchers": ["olivier-lefebvre", "martin-vallieres"],
+    "markdown": "community/research/project-completed/distributed-random-forests/index.md"
+  },
+  {
+    "title": "Development of artificial intelligence techniques for the automated identification of electrical energy assets",
+    "slug": "energai",
+    "summary": "AI-assisted detection of electrical fuses and symbols to automate interpretation of engineering drawings and photos.",
+    "status": "Completed",
+    "track": "Master's",
+    "coverImage": {
+      "url": "/images/albums/research-energAI/fuses.png",
+      "alt": "Examples of fuse detection"
+    },
+    "researchers": [
+      "simon-giard-leroux",
+      "guillaume-cleroux",
+      "alex-chorel-campanozzi",
+      "achille-lanctot-saumure",
+      "shreyas-sunil-kulkarni",
+      "martin-vallieres"
+    ],
+    "markdown": "community/research/project-completed/energAI/index.md"
+  },
+  {
+    "title": "Radiomics for the management of small renal masses",
+    "slug": "kidney-small-tumors",
+    "summary": "Radiomics and clinical data integration to classify benign versus malignant small renal masses.",
+    "status": "Completed",
+    "track": "Master's",
+    "coverImage": {
+      "url": "/images/albums/research-kidney-small-tumors/tumor.png",
+      "alt": "Example of a small renal mass"
+    },
+    "researchers": ["teodora-boblea-podasca", "martin-vallieres"],
+    "markdown": "community/research/project-completed/kidney-small-tumors/index.md"
+  },
+  {
+    "title": "Multi-task learning for image classification of renal tumors",
+    "slug": "multitask-classification",
+    "summary": "Multi-task learning framework for renal tumor malignancy, subtype, and grade classification with MRI data.",
+    "status": "Completed",
+    "track": "Master's",
+    "coverImage": {
+      "url": "/images/albums/research-multitask-classification/hard_sharing_en.png",
+      "alt": "Hard-sharing architecture example"
+    },
+    "researchers": ["alexandre-ayotte", "martin-vallieres"],
+    "markdown": "community/research/project-completed/multitask-classification/index.md"
+  },
+  {
+    "title": "Graph neural networks for predicting patient mortality within one year of hospital admission",
+    "slug": "patient-mortality-prediction",
+    "summary": "Graph neural network approach to predict one-year mortality and support end-of-life care discussions.",
+    "status": "Completed",
+    "track": "General",
+    "coverImage": {
+      "url": "/images/albums/research-patient-mortality-prediction/project.svg",
+      "alt": "Project presentation"
+    },
+    "researchers": ["hakima-laribi", "martin-vallieres"],
+    "markdown": "community/research/project-completed/patient-mortality-prediction/index.md"
+  },
+  {
+    "title": "Resilient predictive models based on quantitative imaging to guide prostate cancer treatment",
+    "slug": "prostate-models",
+    "summary": "Robust imaging-based models for prostate cancer treatment guidance using CT and PET modalities.",
+    "status": "Completed",
+    "track": "Master's",
+    "coverImage": {
+      "url": "/images/albums/research-prostate-models/scans.png",
+      "alt": "Examples of scans"
+    },
+    "researchers": ["maxence-larose", "martin-vallieres"],
+    "markdown": "community/research/project-completed/prostate-models/index.md"
+  },
+  {
+    "title": "Exploration of the complexity levels of radiomic characteristics",
+    "slug": "radiomics-complexity",
+    "summary": "Systematic study of radiomic feature complexity across imaging modalities for precision oncology tasks.",
+    "status": "Completed",
+    "track": "Master's",
+    "coverImage": {
+      "url": "/images/albums/research-radiomics-complexity/summary.svg",
+      "alt": "Résumé du projet"
+    },
+    "researchers": ["mahdi-ait-lhaj-loutfi", "martin-vallieres"],
+    "markdown": "community/research/project-completed/radiomics-complexity/index.md"
+  },
+  {
+    "title": "Machine learning strategies for the diagnostic and the prediction of late adverse effects related to childhood lymphoblastic leukaemia treatment.",
+    "slug": "vo2max-obesity",
+    "summary": "Machine learning models for late adverse effects in childhood ALL survivors, focusing on VO2max and obesity prediction.",
+    "status": "Completed",
+    "track": "Master's",
+    "coverImage": {
+      "url": "/images/albums/research-vo2max-obesity/introduction_figure.svg",
+      "alt": "Project presentation"
+    },
+    "researchers": ["nicolas-raymond", "hakima-laribi", "mehdi-mitiche", "martin-vallieres"],
+    "markdown": "community/research/project-completed/vo2max-obesity/index.md"
+  }
+]

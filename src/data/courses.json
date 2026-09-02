@@ -1,0 +1,70 @@
+[
+  {
+    "title": "IMN 714 : Extraction de caractéristiques d’images médicales",
+    "summary": "Extraction de caractéristiques d'images médicales",
+    "slug": "imn-714-extraction-caracteristiques-images-medicales",
+    "markdown": "community/courses/imn-714-extraction-caracteristiques-images-medicales.md",
+    "authors": ["Martin Vallières"],
+    "sessions": ["À venir (ceci est un nouveau cours)"],
+    "links": [
+      {
+        "label": "Fiche du cours",
+        "url": "https://www.usherbrooke.ca/admission/fiches-cours/IMN714/"
+      }
+    ],
+    "institution": "Sherbrooke"
+  },
+  {
+    "title": "IMN 259 : Analyse d’images",
+    "summary": "Analyse d'images",
+    "slug": "imn-259-analyse-images",
+    "markdown": "community/courses/imn-259-analyse-images.md",
+    "authors": ["Martin Vallières"],
+    "sessions": ["Hiver 2022", "Hiver 2021"],
+    "links": [
+      {
+        "label": "Fiche du cours",
+        "url": "https://www.usherbrooke.ca/admission/fiches-cours/IMN259/"
+      }
+    ],
+    "institution": "Sherbrooke"
+  },
+  {
+    "title": "IFT 603 / IFT 712 : Techniques d’apprentissage",
+    "summary": "Techniques d'apprentissage",
+    "slug": "ift-603-ift-712-techniques-apprentissage",
+    "markdown": "community/courses/ift-603-ift-712-techniques-apprentissage.md",
+    "authors": ["Martin Vallières"],
+    "sessions": ["Automne 2022", "Hiver 2022", "Automne 2020"],
+    "links": [
+      {
+        "label": "Fiche du cours IFT 603",
+        "url": "https://www.usherbrooke.ca/admission/fiches-cours/IFT603/"
+      },
+      {
+        "label": "Fiche du cours IFT 712",
+        "url": "https://www.usherbrooke.ca/admission/fiches-cours/IFT712/"
+      },
+      {
+        "label": "Contenu du cours (par Pierre-Marc Jodoin)",
+        "url": "https://info.usherbrooke.ca/pmjodoin/cours/ift603/index.html"
+      }
+    ],
+    "institution": "Sherbrooke"
+  },
+  {
+    "title": "IFT 211 : Programmation scientifique en Python",
+    "summary": "Programmation scientifique en Python",
+    "slug": "ift-211-programmation-scientifique-python",
+    "markdown": "community/courses/ift-211-programmation-scientifique-python.md",
+    "authors": ["Martin Vallières"],
+    "sessions": ["Hiver 2021"],
+    "links": [
+      {
+        "label": "Fiche du cours",
+        "url": "https://www.usherbrooke.ca/admission/fiches-cours/IFT211/"
+      }
+    ],
+    "institution": "Sherbrooke"
+  }
+]

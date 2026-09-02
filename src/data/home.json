@@ -1,0 +1,58 @@
+{
+  "hero": {
+    "label": "Medical Physics Unit | McGill University",
+    "title": "MEDomicsLab",
+    "subtitle": "Martin Vallières' Research Laboratory focusing on the development of predictive models with heterogeneous medical data",
+    "scrollLabel": "Scroll Down",
+    "videoUrl": "https://player.mux.com/Wg70001lz7aRoJDKcM8NiI2PpcgFlCMK4DW02m00jKVJ2bs?metadata-video-title=final_medomics_homepage_video&video-title=final_medomics_homepage_video",
+    "imageUrl": "images/homepage.jpg",
+    "githubLabel": "Visit GitHub Organization",
+    "githubUrl": "https://github.com/MEDomicsLab",
+    "visionsLabel": "Visit our lab's visions",
+    "visionsUrl": "/visions"
+  },
+  "brand": {
+    "logoUrl": "/images/logo/medomicslab.png"
+  },
+  "mission": {
+    "label": "Mission",
+    "text": "We advance precision medicine by building open-source, clinically grounded AI tools and methods spanning medical imaging, multimodal predictive modeling, and privacy-aware collaboration.",
+    "linkTextPrimary": "Explore MEDomicsLab's Visions",
+    "linkTextSecondary": "Explore MEDomicsLab's Research Projects",
+    "linkTextTertiary": "Explore Martin Vallières' Profile"
+  },
+  "sections": {
+    "focusAreas": {
+      "title": "FEATURED RESEARCH",
+      "viewAll": "View all research"
+    },
+    "recentOutput": {
+      "title": "Featured Papers",
+      "viewAll": "View publications"
+    },
+    "openSource": {
+      "title": "Featured Open-Source",
+      "viewAll": "View all open-source projects",
+      "repositories": [
+        {
+          "name": "MEDomics",
+          "description": "MEDomics is an open-source platform designed to advance medical AI by bridging clinical and computational research.",
+          "status": "Active",
+          "url": "https://github.com/MEDomicsLab/MEDomics"
+        },
+        {
+          "name": "MED3pa",
+          "description": "The MED3pa package is specifically designed to address critical challenges in deploying machine learning models, with a particular focus on the robustness and reliability of models under real-world conditions.",
+          "status": "Active",
+          "url": "https://github.com/MEDomicsLab/MED3pa"
+        },
+        {
+          "name": "MEDfl",
+          "description": "MEDfl is an open-source Federated Learning (FL) framework designed for both simulation and real-world distributed training in the medical and healthcare domains.",
+          "status": "Active",
+          "url": "https://github.com/MEDomicsLab/MEDfl"
+        }
+      ]
+    }
+  }
+}

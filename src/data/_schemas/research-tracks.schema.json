@@ -1,0 +1,14 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "research-tracks.schema.json",
+  "title": "Research Tracks",
+  "type": "object",
+  "additionalProperties": {
+    "type": "object",
+    "required": ["description"],
+    "additionalProperties": false,
+    "properties": {
+      "description": { "type": "string", "minLength": 1 }
+    }
+  }
+}

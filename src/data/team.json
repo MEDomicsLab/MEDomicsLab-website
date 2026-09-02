@@ -1,0 +1,1373 @@
+[
+  {
+    "year": "Lab Principal Investigator",
+    "members": [
+      {
+        "name": "Martin Vallières",
+        "position": "Associate Professor, Department of Oncology",
+        "slug": "martin-vallieres",
+        "email": "martin.vallieres@mcgill.ca",
+        "image": "/images/team/martin-vallieres/avatar.jpg",
+        "expertise": [
+          "Precision medicine via medical image analysis",
+          "Machine learning",
+          "Graph neural networks",
+          "Natural language processing",
+          "Distributed and federated learning"
+        ],
+        "education": [
+          {
+            "course": "Postdoctoral researcher",
+            "institution": "McGill University, Montreal, Canada",
+            "year": "2018-2020"
+          },
+          {
+            "course": "Postdoctoral researcher",
+            "institution": "University of California San Francisco, San Francisco, USA",
+            "year": "2018-2019"
+          },
+          {
+            "course": "Postdoctoral researcher",
+            "institution": "INSERM UMR 1101, Brest, France",
+            "year": "2017-2018"
+          },
+          {
+            "course": "Ph. D. Medical physics",
+            "institution": "McGill University, Montreal, Canada",
+            "year": "2017"
+          },
+          {
+            "course": "M. Sc. Medical physics",
+            "institution": "McGill University, Montreal, Canada",
+            "year": "2012"
+          }
+        ],
+        "bio": "Martin Vallières is devoting much of his work on the development of integrative modeling solutions for heterogeneous medical data. He was Assistant Professor, Department of Computer Science, Université de Sherbrooke between 2020 - 2025. He leads the development of MEDomics (https://medomics.app/), an open-source platform for end-to-end predictive modeling in medicine.",
+        "note": "Director",
+        "socials": {
+          "linkedin": "https://www.linkedin.com/in/martvallieres/",
+          "orcid": "",
+          "scholar": "https://scholar.google.ca/citations?user=fRkjFK4AAAAJ",
+          "researchgate": "",
+          "github": "https://github.com/mvallieres",
+          "stackoverflow": "",
+          "cv": "https://www.dropbox.com/s/fpfv1ycalxgb0tm/CCV-MartinVallieres-Full_CV.pdf?dl=0"
+        }
+      }
+    ]
+  },
+  {
+    "year": "Current",
+    "members": [
+      {
+        "name": "Hakima Laribi",
+        "position": "Ph. D. Computer science",
+        "slug": "hakima-laribi",
+        "email": "Hakima.Laribi@USherbrooke.ca",
+        "image": "/images/team/hakima-laribi/avatar.jpeg",
+        "expertise": ["Knowledge graphs", "Graph neural networks", "Health informatics"],
+        "education": [
+          {
+            "course": "Ph. D. Computer science",
+            "institution": "Université de Sherbrooke, Sherbrooke, Canada",
+            "year": "2022-"
+          },
+          {
+            "course": "Engineering Diploma, M. Sc. Computer science",
+            "institution": "École nationale Supérieure d'Informatique, Alger, Algeria",
+            "year": "2017-2022"
+          }
+        ],
+        "bio": "Hakima Laribi is a PhD student in the MEDomicsLab since 2022. She dedicates her research to the use of graph structures to perform learning tasks on healthcare data.",
+        "note": "PhD Student",
+        "socials": {
+          "linkedin": "https://www.linkedin.com/in/hakima-laribi-4631381b8/",
+          "orcid": "",
+          "scholar": "",
+          "researchgate": "",
+          "github": "https://github.com/LaribiHakima",
+          "stackoverflow": "",
+          "cv": ""
+        }
+      },
+      {
+        "name": "Juan Duran",
+        "position": "Ph. D. Biomedical Engineering",
+        "slug": "juan-duran",
+        "email": "juan.duran@mail.mcgill.ca",
+        "image": "/images/team/juan-duran/avatar.jpg",
+        "expertise": [
+          "Multimodal fusion for survival prediction",
+          "Interpretable AI methods for uncovering pathological features",
+          "Computational pathology",
+          "Computer vision",
+          "NLP",
+          "Transfer learning"
+        ],
+        "education": [
+          {
+            "course": "Ph. D.  Biomedical Engineering",
+            "institution": "McGill University, Montreal, Canada",
+            "year": "2023-"
+          },
+          {
+            "course": "Master of Science; Artificial Intelligence",
+            "institution": "Université de Montréal, Montreal, Canada",
+            "year": "2021-2023"
+          }
+        ],
+        "bio": "Juan is a PhD student in biomedical engineering at McGill, merging physics, computer science and machine learning to build AI-powered survival models in oncology. He specializes in integrating whole-slide histopathology images with clinical data, designing c pipelines for embedding refinement, and enforcing rigorous benchmarking to ensure both performance and interpretability with the goal of translating technology into tangible patient benefit.",
+        "note": "PhD Student",
+        "socials": {
+          "linkedin": "http://linkedin.com/in/juan-duran-6aa742205",
+          "orcid": "",
+          "scholar": "",
+          "researchgate": "",
+          "github": "https://www.github.com/juanduranmcgill",
+          "stackoverflow": "",
+          "cv": ""
+        }
+      },
+      {
+        "name": "Olivier Lefebvre",
+        "position": "Ph. D. Computer science",
+        "slug": "olivier-lefebvre",
+        "email": "Olivier.Lefebvre3@USherbrooke.ca",
+        "image": "/images/team/olivier-lefebvre/avatar.jpeg",
+        "expertise": [
+          "Machine learning",
+          "Federated learning",
+          "Differential privacy",
+          "Uncertainty and interpretability of machine learning models"
+        ],
+        "education": [
+          {
+            "course": "Ph. D. Computer science",
+            "institution": "Université de Sherbrooke, Sherbrooke, Canada",
+            "year": "2021-"
+          },
+          {
+            "course": "B. Sc. Mathematics",
+            "institution": "Université de Sherbrooke, Sherbrooke, Canada",
+            "year": "2017-2020"
+          }
+        ],
+        "bio": "Olivier Lefebvre is a PhD student in computer science since 2021. His research focuses on predictive model errors and predictive confidence. The goal of his project is to identify potential predictive errors, explain underlying causes, and improve these models to improve predictive confidence for all patients.",
+        "note": "PhD Student",
+        "socials": {
+          "linkedin": "https://www.linkedin.com/in/olivier-lefebvre-bb8837162/",
+          "orcid": "",
+          "scholar": "",
+          "researchgate": "",
+          "github": "https://github.com/Olivier998",
+          "stackoverflow": "",
+          "cv": ""
+        }
+      },
+      {
+        "name": "Elodie Gillard",
+        "position": "M. Sc. Radiation sciences and medical imaging",
+        "slug": "elodie-gillard",
+        "email": "elodie.gillard@usherbrooke.ca",
+        "image": "/images/team/elodie-gillard/avatar.jpg",
+        "expertise": [
+          "Medical imaging",
+          "Neurosciences & ophthalmology",
+          "Artificial Intelligence"
+        ],
+        "education": [
+          {
+            "course": "M. Sc. Radiation sciences and medical imaging",
+            "institution": "Université de Sherbrooke, Sherbrooke, Canada",
+            "year": "2024-2026"
+          },
+          {
+            "course": "BMBS (Bachelor of Medicine, Bachelor of Surgery)",
+            "institution": "University of Limerick, Limerick, Ireland",
+            "year": "2019-2023"
+          },
+          {
+            "course": "B.Sc. Biomedical sciences",
+            "institution": "Université Laval, Quebec City, Canada",
+            "year": "2016-2019"
+          }
+        ],
+        "bio": "Elodie Gillard is a M.Sc. student in radiation sciences and medical imaging at the MEDomicsLab under the supervision of Pr Martin Vallières in co-direction with Pr David Mathieu, Pr David Fortin and Pr Martin Lepage. Her project aims to predict adverse radiation effects following stereotactic radiotherapy treatment to brain tumours using artificial intelligence, specifically radiomics and machine learning.",
+        "note": "MSc Student",
+        "socials": {
+          "linkedin": "",
+          "orcid": "",
+          "scholar": "",
+          "researchgate": "",
+          "github": "",
+          "stackoverflow": "",
+          "cv": ""
+        }
+      },
+      {
+        "name": "Mariem Kallel",
+        "position": "M. Sc. Software Engineering",
+        "slug": "mariem-kallel",
+        "email": "mariem.kallel@usherbrooke.ca",
+        "image": "/images/team/mariem-kallel/avatar.jpg",
+        "expertise": ["Human-Computer Interfaces", "Health Informatics", "Artificial Intelligence"],
+        "education": [
+          {
+            "course": "M. Sc. Software Engineering",
+            "institution": "Université de Sherbrooke, Sherbrooke, Canada",
+            "year": "2024-2026"
+          },
+          {
+            "course": "Engineering Diploma, M. Sc. Computer science",
+            "institution": "National School of Computer Science, University of Manouba, Tunis, Tunisia",
+            "year": "2018-2023"
+          }
+        ],
+        "bio": "Mariem Kallel is a M.Sc. student in Software Engineering at the MEDomicsLab since Winter 2024. Her research project mainly focuses on optimizing the MEDomics platform interface to encourage widespread understanding and adoption among different users, especially physicians.",
+        "note": "MSc Student",
+        "socials": {
+          "linkedin": "https://ca.linkedin.com/in/mariem-kallel-4a80201b5",
+          "orcid": "",
+          "scholar": "",
+          "researchgate": "",
+          "github": "https://github.com/mariemkallel16",
+          "stackoverflow": "",
+          "cv": ""
+        }
+      },
+      {
+        "name": "Ouael Nedjem Eddine SAHBI",
+        "position": "M. Sc. Software Engineering",
+        "slug": "ouael-nedjem-eddine-sahbi",
+        "email": "ouael2019esi@gmail.com",
+        "image": "/images/team/ouael-nedjem-eddine-sahbi/avatar.jpg",
+        "expertise": [
+          "Machine Learning",
+          "Federated Learning",
+          "Differential Privacy",
+          "Transfer learning",
+          "Software engineering"
+        ],
+        "education": [
+          {
+            "course": "M. Sc. Software Engineering",
+            "institution": "Université de Sherbrooke, Sherbrooke, Canada",
+            "year": "2025-2027"
+          },
+          {
+            "course": "Engineering Degree, M. Sc. Computer science",
+            "institution": "Higher National School of Computer Science, Algiers, Algeria",
+            "year": "2019-2024"
+          }
+        ],
+        "bio": "Ouael is a master student in the MEDomicsLab since 2025. He previously did a research intern at the laboratory between October 2023 and August 2024. He is working on the integration of federated learning and transfer learning with differential privacy to ensure the confidentiality of medical data. He is developing a federated learning simulation package that will be integrated into the MEDomics platform.",
+        "note": "MSc Student",
+        "socials": {
+          "linkedin": "https://www.linkedin.com/in/ouael-nedjem-eddine-sahbi-4674231b3?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app",
+          "orcid": "",
+          "scholar": "",
+          "researchgate": "",
+          "github": "https://github.com/ouaelesi",
+          "stackoverflow": "",
+          "cv": ""
+        }
+      },
+      {
+        "name": "Anthonin Falk",
+        "position": "Intern in AI / Imaging",
+        "slug": "anthonin-falk",
+        "email": "anthonin.falk@gmail.com",
+        "image": "/images/team/anthonin-falk/avatar.jpg",
+        "expertise": [
+          "Medical imaging",
+          "Artificial intelligence",
+          "Machine Learning",
+          "Computer science for healthcare"
+        ],
+        "education": [
+          {
+            "course": "General Engineering Diploma",
+            "institution": "École Centrale de Nantes, Nantes, France",
+            "year": "2022-2025"
+          }
+        ],
+        "bio": "Anthonin Falk is completing an internship in artificial intelligence applied to medical imaging from April to September 2025. He is working on reducing the complexity and improving the interpretability of a predictive model designed to determine which patients are most likely to suffer side effects during radiotherapy treatment.",
+        "note": "Research Assistant / Intern",
+        "socials": {
+          "linkedin": "http://www.linkedin.com/in/anthonin-falk",
+          "orcid": "",
+          "scholar": "",
+          "researchgate": "",
+          "github": "https://github.com/S3vy",
+          "stackoverflow": "",
+          "cv": ""
+        }
+      },
+      {
+        "name": "Mahdi Ait Lhaj Loutfi",
+        "position": "ML / Imaging",
+        "slug": "mahdi-ait-lhaj-loutfi",
+        "email": "Mahdi.Ait.Lhaj.Loutfi@USherbrooke.ca",
+        "image": "/images/team/mahdi-ait-lhaj-loutfi/avatar.jpg",
+        "expertise": ["Python", "Medical imaging", "Radiomics", "Artificial intelligence"],
+        "education": [
+          {
+            "course": "M. Sc. Computer science",
+            "institution": "Université de Sherbrooke, Sherbrooke, Canada",
+            "year": "2021-2024"
+          },
+          {
+            "course": "B. Sc. Computer science",
+            "institution": "",
+            "year": ""
+          }
+        ],
+        "bio": "Mahdi Ait Lhaj Loutfi is a research professional in the MEDomicsLab, where he works on the development of the MEDomics platform. He completed his master’s degree in 2024, with a research project focused on exploring the complexity of radiomic features. He is also the main architect and maintainer of the MEDimage package, a vital component of MEDomicsLab.",
+        "note": "Research Assistant / Intern",
+        "socials": {
+          "linkedin": "https://www.linkedin.com/in/mahdi-ait-lhaj-loutfi-332014253/",
+          "orcid": "",
+          "scholar": "",
+          "researchgate": "",
+          "github": "https://github.com/MahdiAll99",
+          "stackoverflow": "",
+          "cv": ""
+        }
+      },
+      {
+        "name": "Marc-Alexandre Parent",
+        "position": "Research professional",
+        "slug": "marc-alexandre-parent",
+        "email": "",
+        "image": "/images/team/marc-alexandre-parent/avatar.jpg",
+        "expertise": ["Python"],
+        "education": [],
+        "bio": "",
+        "note": "Research Assistant / Intern",
+        "socials": {
+          "linkedin": "",
+          "orcid": "",
+          "scholar": "",
+          "researchgate": "",
+          "github": "https://github.com/m-alexparent",
+          "stackoverflow": "",
+          "cv": ""
+        }
+      },
+      {
+        "name": "Nicolas Longchamps",
+        "position": "Research assistant",
+        "slug": "nicolas-longchamps",
+        "email": "Nicolas.Longchamps@USherbrooke.ca",
+        "image": "/images/team/nicolas-longchamps/avatar.jpg",
+        "expertise": ["Robotics"],
+        "education": [
+          {
+            "course": "B. Eng. Robotic engineering",
+            "institution": "Université de Sherbrooke, Sherbrooke, Canada",
+            "year": ""
+          }
+        ],
+        "bio": "Nicolas Longchamps completed an internship in the MEDomicsLab in the summer of 2022. He maintained his connection with the lab by being a part-time research assistant since the fall of 2022.",
+        "note": "Research Assistant / Intern",
+        "socials": {
+          "linkedin": "",
+          "orcid": "",
+          "scholar": "",
+          "researchgate": "",
+          "github": "https://github.com/NicoLongfield",
+          "stackoverflow": "",
+          "cv": ""
+        }
+      }
+    ]
+  },
+  {
+    "year": "2025",
+    "members": [
+      {
+        "name": "Brahim Fakri",
+        "position": "Research professional",
+        "slug": "brahim-fakri",
+        "email": "brahim.fakri@yahoo.fr",
+        "image": "/images/team/brahim-fakri/avatar.jpg",
+        "expertise": ["Big Data"],
+        "education": [
+          {
+            "course": "ACS in Big Data",
+            "institution": "Collège de Rosemont, Montréal, Canada",
+            "year": "2022"
+          },
+          {
+            "course": "M. Sc. in Management",
+            "institution": "Sprott School of Business, Carleton University, Ottawa, Canada",
+            "year": "2014"
+          }
+        ],
+        "bio": "In 2022, Brahim joined MEDomics UdeS for his research project, where he applied machine learning models to medical data processing. Subsequently, in 2023, he served as a research assistant for the MEDomicsLab project, facilitating the integration of MIMIC data into the platform and assuming project coordination responsibilities. Brahim Fakri then became the coordinator of the \"Integrated Project: Digital Health Data\" for MEDomicsLab and the SSA Québec Support Unit. He also contributed to the application of machine learning models for medical data analysis on the MEDomicsLab platform.",
+        "note": "Former Member",
+        "socials": {
+          "linkedin": "http://www.linkedin.com/in/brahim-fakri",
+          "orcid": "",
+          "scholar": "",
+          "researchgate": "",
+          "github": "",
+          "stackoverflow": "",
+          "cv": ""
+        }
+      },
+      {
+        "name": "Cedrik Lampron",
+        "position": "Research assistant",
+        "slug": "cedrik-lampron",
+        "email": "cedrik.lampron@usherbrooke.ca",
+        "image": "/images/team/cedrik-lampron/avatar.jpg",
+        "expertise": ["Game Jams", "Cybersecurity", "Data Governance"],
+        "education": [
+          {
+            "course": "B. Sc. Computer science",
+            "institution": "Université de Sherbrooke",
+            "year": "2021-2025"
+          },
+          {
+            "course": "M.A. History",
+            "institution": "Université de Sherbrooke",
+            "year": "2014-2018"
+          }
+        ],
+        "bio": "Cédrik completed his Bachelor's degree in Computer Science in 2025. This marked his final academic endeavor following his Master's degree in History. As a full-stack developer, he has a keen interest in the role of technology in public services and the challenges it poses for democratic processes. He completed several internships, some in the municipal sector and others in healthcare. Cédrik worked on improving the MEDomics platform that enables healthcare professionals to interact more easily with a machine learning platform.",
+        "note": "Former Member",
+        "socials": {
+          "linkedin": "https://www.linkedin.com/in/c%C3%A9drik-lampron-541002187/",
+          "orcid": "",
+          "scholar": "",
+          "researchgate": "",
+          "github": "https://github.com/Pyropingouin",
+          "stackoverflow": "",
+          "cv": ""
+        }
+      },
+      {
+        "name": "Charles-Olivier Ipperciel",
+        "position": "Research assistant",
+        "slug": "charles-olivier-ipperciel",
+        "email": "ippc2001@usherbrooke.ca",
+        "image": "/images/team/charles-olivier-ipperciel/avatar.jpg",
+        "expertise": ["Web development", "Full stack"],
+        "education": [
+          {
+            "course": "B. Sc. Computer science",
+            "institution": "Université de Sherbrooke",
+            "year": "2022-2025"
+          }
+        ],
+        "bio": "Charles-Olivier Ipperciel worked on improving data management within the MEDomics platform.",
+        "note": "Former Member",
+        "socials": {
+          "linkedin": "https://www.linkedin.com/in/coipp/",
+          "orcid": "",
+          "scholar": "",
+          "researchgate": "",
+          "github": "https://github.com/CharlesOIpperciel",
+          "stackoverflow": "",
+          "cv": ""
+        }
+      },
+      {
+        "name": "Guillaume Blain",
+        "position": "Research assistant",
+        "slug": "guillaume-blain",
+        "email": "Guillaume.Blain2@USherbrooke.ca",
+        "image": "/images/team/guillaume-blain/avatar.jpg",
+        "expertise": ["Python", "Robotics", "Full Stack Web Development"],
+        "education": [
+          {
+            "course": "B. Eng. Robotic engineering",
+            "institution": "Université de Sherbrooke, Sherbrooke, Canada",
+            "year": "2020-2024"
+          }
+        ],
+        "bio": "Guillaume Blain completed his internship in the MEDomics UdeS laboratory in the summer of 2022. During his internship, he worked on the MEDomics platform developing UI/UX modules. He then continued his work as a part-time research assistant.",
+        "note": "Former Member",
+        "socials": {
+          "linkedin": "https://www.linkedin.com/in/guillaume-blain-a7b9871a2/",
+          "orcid": "",
+          "scholar": "",
+          "researchgate": "",
+          "github": "",
+          "stackoverflow": "",
+          "cv": ""
+        }
+      }
+    ]
+  },
+  {
+    "year": "2024",
+    "members": [
+      {
+        "name": "Maxence Larose",
+        "position": "M. Sc. Physics",
+        "slug": "maxence-larose",
+        "email": "Maxence.Larose@USherbrooke.ca",
+        "image": "/images/team/maxence-larose/avatar.jpg",
+        "expertise": ["Physics"],
+        "education": [
+          {
+            "course": "M. Sc. Physics",
+            "institution": "Université Laval, Quebec City, Canada",
+            "year": "2021-2023"
+          },
+          {
+            "course": "B. Eng. Physics engineering",
+            "institution": "Université Laval, Quebec City, Canada",
+            "year": "2017-2021"
+          }
+        ],
+        "bio": "Maxence Larose was a master's student in physics in the MEDomics UdeS laboratory. His research project consisted in developing predictive resilient models based on quantitative imaging to guide the treatment of prostate cancer.",
+        "note": "Former Member",
+        "socials": {
+          "linkedin": "https://www.linkedin.com/in/maxence-larose/",
+          "orcid": "",
+          "scholar": "",
+          "researchgate": "",
+          "github": "https://github.com/MaxenceLarose",
+          "stackoverflow": "",
+          "cv": ""
+        }
+      },
+      {
+        "name": "Teodora Boblea Podasca",
+        "position": "M. Sc. Health sciences",
+        "slug": "teodora-boblea-podasca",
+        "email": "Teodora.Boblea.Podasca@USherbrooke.ca",
+        "image": "/images/team/teodora-boblea-podasca/avatar.png",
+        "expertise": ["Kidney cancer", "Radiomics", "Urology"],
+        "education": [
+          {
+            "course": "M. Sc. Health sciences, research type",
+            "institution": "Université de Sherbrooke, Sherbrooke, Canada",
+            "year": "2022-2024"
+          },
+          {
+            "course": "Medicinæ Doctor",
+            "institution": "Université de Sherbrooke, Sherbrooke, Canada",
+            "year": "2018-2022"
+          }
+        ],
+        "bio": "Teodora Boblea was a M. Sc. student in Health Sciences between fall 2022 and fall 2024. Her project involved using radiomics to predict the histology (benign vs. malignant) of a small renal mass on CT scans.",
+        "note": "Former Member",
+        "socials": {
+          "linkedin": "",
+          "orcid": "",
+          "scholar": "",
+          "researchgate": "",
+          "github": "",
+          "stackoverflow": "",
+          "cv": ""
+        }
+      },
+      {
+        "name": "Andréanne Allaire",
+        "position": "Research assistant",
+        "slug": "andreanne-allaire",
+        "email": "Andreanne.Allaire@USherbrooke.ca",
+        "image": "/images/team/andreanne-allaire/avatar.jpg",
+        "expertise": ["Magnetic resonance imaging", "Medical physics", "Radiomics"],
+        "education": [
+          {
+            "course": "B. Sc. Physics",
+            "institution": "Université de Sherbrooke, Sherbrooke, Canada",
+            "year": "2017-2021"
+          }
+        ],
+        "bio": "Andréanne Allaire was a research assistant in the MEDomics UdeS laboratory between 2022 and 2024. Andréanne was dedicated to the optimization of radiomic features in magnetic resonance imaging (MRI) to improve precision medicine.",
+        "note": "Former Member",
+        "socials": {
+          "linkedin": "https://www.linkedin.com/in/andr%C3%A9anne-a-001236170/",
+          "orcid": "",
+          "scholar": "",
+          "researchgate": "",
+          "github": "https://github.com/AndreanneAllaire",
+          "stackoverflow": "",
+          "cv": ""
+        }
+      },
+      {
+        "name": "Ihssene Brahimi",
+        "position": "Intern",
+        "slug": "ihssene-brahimi",
+        "email": "ihssene.brahimi@usherbrooke.ca",
+        "image": "/images/team/ihssene-brahimi/avatar.jpg",
+        "expertise": ["Artificial Intelligence", "Medical Imaging"],
+        "education": [
+          {
+            "course": "Engineering Degree, M. Sc. Computer science",
+            "institution": "Higher National School of Computer Science, Algiers, Algeria",
+            "year": "2019-2024"
+          }
+        ],
+        "bio": "Ihssene Brahimi did a research internship at MEDomics Lab between October 2023 and August 2024. Her research project involved developing a pipeline for detecting and classifying small renal masses using deep learning and semi-supervised methods.",
+        "note": "Former Member",
+        "socials": {
+          "linkedin": "https://www.linkedin.com/in/%D8%A5%D8%AD%D8%B3%D8%A7%D9%86-%D8%A7%D8%A8%D8%B1%D8%A7%D9%87%D9%8A%D9%85%D9%8A-%F0%9F%87%B5%F0%9F%87%B8%F0%9F%87%A9%F0%9F%87%BF-89724519a/",
+          "orcid": "",
+          "scholar": "",
+          "researchgate": "",
+          "github": "https://github.com/Ihssene-Brahimi",
+          "stackoverflow": "",
+          "cv": ""
+        }
+      },
+      {
+        "name": "Ludmila Amriou",
+        "position": "Intern",
+        "slug": "ludmila-amriou",
+        "email": "jl_amriou@esi.dz",
+        "image": "/images/team/ludmila-amriou/avatar.jpg",
+        "expertise": [
+          "Software Engineering",
+          "Artificial Intelligence: Machine Learning, Deep Learning"
+        ],
+        "education": [
+          {
+            "course": "Engineering Degree, M. Sc. Computer science",
+            "institution": "Higher National School of Computer Science, Algiers, Algeria",
+            "year": "2019-2024"
+          }
+        ],
+        "bio": "Amriou Ludmila was an intern at the MEDomicsLab in 2024. She was working on the evaluation layer of the MedomicsLab platform. Her work involved evaluating the performance of AI models deployed in the medical field, employing both traditional evaluation techniques and innovative methods like MED3pa and Detectron. These methods help us identify patient profiles that cause performance issues in the models and detect whether the dataset or these patients are affected by Covariate Shift.",
+        "note": "Former Member",
+        "socials": {
+          "linkedin": "https://www.linkedin.com/in/ludmila-amriou-875b58238/",
+          "orcid": "",
+          "scholar": "",
+          "researchgate": "",
+          "github": "https://github.com/LudmilaAmriou",
+          "stackoverflow": "",
+          "cv": ""
+        }
+      },
+      {
+        "name": "Lyna Hiba Chikouche",
+        "position": "Intern",
+        "slug": "lyna-hiba-chikouche",
+        "email": "jl_chikouche@esi.dz",
+        "image": "/images/team/lyna-hiba-chikouche/avatar.jpg",
+        "expertise": [
+          "Software Engineering",
+          "Machine Learning",
+          "IoTandRobotics",
+          "Health Informatics",
+          "Userexperience"
+        ],
+        "education": [
+          {
+            "course": "Engineering Degree, M. Sc. Computer science",
+            "institution": "Higher National School of Computer Science, Algiers, Algeria",
+            "year": "2019-2024"
+          }
+        ],
+        "bio": "Lyna Hiba Chikouche, a final-year engineering student, completed her final internship at the MedomicsUdes laboratory. The project she worked on aimed to integrate an evaluation layer into the MedomicsLab platform. To achieve this, a package was developed based on two methods: Detectron and Med3pa. This package evaluates an AI model by identifying problematic data profiles where it does not perform well. Additionally, this package tests the robustness of the model against covariate shift, evaluating how changes in the distribution of input data affect its performance.",
+        "note": "Former Member",
+        "socials": {
+          "linkedin": "http://www.linkedin.com/in/lynahiba-chikouche-62a5181bb",
+          "orcid": "",
+          "scholar": "",
+          "researchgate": "",
+          "github": "https://github.com/lyna1404",
+          "stackoverflow": "",
+          "cv": ""
+        }
+      },
+      {
+        "name": "Moustafa Amine Bezzahi",
+        "position": "Intern",
+        "slug": "moustafa-amine-bezzahi",
+        "email": "hm_bezzahi@esi.dz",
+        "image": "/images/team/moustafa-amine-bezzahi/avatar.jpg",
+        "expertise": [
+          "Artificiel Intelligence",
+          "Computer vision",
+          "Digital Health",
+          "Medical Imaging"
+        ],
+        "education": [
+          {
+            "course": "Engineering Degree, M. Sc. Computer science",
+            "institution": "Higher National School of Computer Science, Algiers, Algeria",
+            "year": "2019-2024"
+          }
+        ],
+        "bio": "Moustafa did an internship at MEDomicsLab UdeS from November 2023 till August 2024. He Worked on automatic detection of small renal masses using CHUS Medical Imaging dataset. He was supervised by Dr Patrick Richard and Pr Martin Vallières.",
+        "note": "Former Member",
+        "socials": {
+          "linkedin": "",
+          "orcid": "",
+          "scholar": "",
+          "researchgate": "",
+          "github": "https://github.com/mus-bz",
+          "stackoverflow": "",
+          "cv": ""
+        }
+      },
+      {
+        "name": "Sarah Denis",
+        "position": "Research professional",
+        "slug": "sarah-denis",
+        "email": "sarah.denis@usherbrooke.ca",
+        "image": "/images/team/sarah-denis/avatar.jpg",
+        "expertise": ["Machine Learning", "Healthcare Informatics"],
+        "education": [
+          {
+            "course": "M. Sc. Computer Science, concentration in AI and data science",
+            "institution": "Université de Sherbrooke, Sherbrooke, Canada",
+            "year": ""
+          },
+          {
+            "course": "Engineering Diploma, M. Sc. Computer science",
+            "institution": "École Polytechnique de l'Université de Tours, Tours, France",
+            "year": "2018-2023"
+          }
+        ],
+        "bio": "Sarah Denis was a research professional in the MEDomics UdeS laboratory from January 2023 to August 2024. She was deeply committed to the development of the MEDomicsLab platform, particularly in advancing data visualization through MEDProfiles. Her contributions significantly propelled the lab and the project forward, playing a crucial role in their progress and impact.",
+        "note": "Former Member",
+        "socials": {
+          "linkedin": "https://www.linkedin.com/in/sarah-denis-b384b722b/",
+          "orcid": "",
+          "scholar": "",
+          "researchgate": "",
+          "github": "https://github.com/Sari27",
+          "stackoverflow": "",
+          "cv": ""
+        }
+      }
+    ]
+  },
+  {
+    "year": "2023",
+    "members": [
+      {
+        "name": "Alexandre Ayotte",
+        "position": "M. Sc. Computer science, imaging",
+        "slug": "alexandre-ayotte",
+        "email": "Alexandre.Ayotte2@USherbrooke.ca",
+        "image": "/images/team/alexandre-ayotte/avatar.jpg",
+        "expertise": ["Classification of renal tumors", "Multi-task learning"],
+        "education": [
+          {
+            "course": "M. Sc. Computer science (imaging and digital media)",
+            "institution": "Université de Sherbrooke, Sherbrooke, Canada",
+            "year": "2020-2022"
+          },
+          {
+            "course": "B. Sc. Mathematics (statistics)",
+            "institution": "Université de Sherbrooke, Sherbrooke, Canada",
+            "year": "2016-2019"
+          }
+        ],
+        "bio": "Alexandre Ayotte was a master's student in computer science between winter 2020 and spring 2023 and focused on multi-task learning and image classification of kidney tumors.",
+        "note": "Former Member",
+        "socials": {
+          "linkedin": "https://www.linkedin.com/in/alexandre-ayotte-a4770b176/",
+          "orcid": "",
+          "scholar": "",
+          "researchgate": "",
+          "github": "https://github.com/AleAyotte",
+          "stackoverflow": "",
+          "cv": ""
+        }
+      },
+      {
+        "name": "Arthur Baudot",
+        "position": "Intern",
+        "slug": "arthur-baudot",
+        "email": "arthur.baudot@usherbrooke.ca",
+        "image": "/images/team/arthur-baudot/avatar.jpg",
+        "expertise": ["Machine Learning", "Bioinformatics", "Data science"],
+        "education": [
+          {
+            "course": "M. Sc. Computer Science, concentration in AI and data science",
+            "institution": "Université de Sherbrooke, Sherbrooke, Canada",
+            "year": "2022-2023"
+          },
+          {
+            "course": "Engineering Diploma, M. Sc. Computer science",
+            "institution": "TELECOM Nancy, Nancy, France",
+            "year": "2020-2023"
+          }
+        ],
+        "bio": "Arthur Baudot completed his internship in the MEDomics UdeS laboratory in the summer of 2023. The project he was working on aims to better understand the determinants of immunotherapy efficacy in gastrointestinal cancers. More specifically, Arthur was analyzing sequencing data from colorectal cancer patients who have received a particular immunotherapy treatment (immune checkpoint inhibitor), and then developing predictive models to better interpret the mutational signatures that best predict the outcome of immunotherapy treatments.",
+        "note": "Former Member",
+        "socials": {
+          "linkedin": "https://www.linkedin.com/in/arthur-baudot-980b88208/",
+          "orcid": "",
+          "scholar": "",
+          "researchgate": "",
+          "github": "",
+          "stackoverflow": "",
+          "cv": ""
+        }
+      },
+      {
+        "name": "Hithem Lamri",
+        "position": "Intern",
+        "slug": "hithem-lamri",
+        "email": "hithem.lamri@usherbrooke.ca",
+        "image": "/images/team/hithem-lamri/avatar.jpg",
+        "expertise": ["Federated Learning", "Computer science"],
+        "education": [
+          {
+            "course": "Engineering Diploma, M. Sc. Computer science",
+            "institution": "",
+            "year": ""
+          }
+        ],
+        "bio": "Hithem Lamri completed an internship in the MEDomics UdeS laboratory from January to August 2023. He worked on the federated learning aspect of the MEDomicsLab platform.",
+        "note": "Former Member",
+        "socials": {
+          "linkedin": "",
+          "orcid": "",
+          "scholar": "",
+          "researchgate": "",
+          "github": "",
+          "stackoverflow": "",
+          "cv": ""
+        }
+      }
+    ]
+  },
+  {
+    "year": "2022",
+    "members": [
+      {
+        "name": "Nicolas Raymond",
+        "position": "M. Sc. Computer science",
+        "slug": "nicolas-raymond",
+        "email": "Nicolas.Raymond2@USherbrooke.ca",
+        "image": "/images/team/nicolas-raymond/avatar.jpg",
+        "expertise": [
+          "Machine learning",
+          "Multiomics data",
+          "Graph neural networks",
+          "Tree-structured models (e.g., Random forest, XGBoost)",
+          "Hyperparameter optimization"
+        ],
+        "education": [
+          {
+            "course": "M. Sc. Computer science",
+            "institution": "Université de Sherbrooke, Sherbrooke, Canada",
+            "year": "2020-2022"
+          },
+          {
+            "course": "B. Sc. Mathematics",
+            "institution": "Université de Sherbrooke, Sherbrooke, Canada",
+            "year": "2016-2019"
+          }
+        ],
+        "bio": "Nicolas Raymond started his master's degree in computer science during the summer of 2020. His research project focused on the development of machine learning models for the diagnostic and the prediction of late adverse effects associated to childhood acute lymphoblastic leukaemia treatment. He is mostly dedicated to the application and the design of new graph neural network architectures.",
+        "note": "Former Member",
+        "socials": {
+          "linkedin": "https://www.linkedin.com/in/nicolas-raymond-002950b6/",
+          "orcid": "",
+          "scholar": "",
+          "researchgate": "",
+          "github": "https://github.com/Rayn2402",
+          "stackoverflow": "",
+          "cv": ""
+        }
+      },
+      {
+        "name": "Simon Giard-Leroux",
+        "position": "(M. Sc. Computer science), electrical engineer",
+        "slug": "simon-giard-leroux",
+        "email": "sgiardleroux@gmail.com",
+        "image": "/images/team/simon-giard-leroux/avatar.png",
+        "expertise": ["Electrical energy", "Object detection"],
+        "education": [
+          {
+            "course": "M. Sc. Computer science",
+            "institution": "Université de Sherbrooke, Sherbrooke, Canada",
+            "year": "2020-2022"
+          },
+          {
+            "course": "B. Eng. Electrical engineering",
+            "institution": "Université de Sherbrooke, Sherbrooke, Canada",
+            "year": "2012-2016"
+          }
+        ],
+        "bio": "Simon Giard-Leroux was a master's student in computer science in the MEDomics UdeS laboratory between August 2020 and September 2022 and focused his research on developing object detection methods in an industrial context in electrical energy.",
+        "note": "Former Member",
+        "socials": {
+          "linkedin": "https://www.linkedin.com/in/simon-giard-leroux",
+          "orcid": "",
+          "scholar": "",
+          "researchgate": "",
+          "github": "https://github.com/sgiardl",
+          "stackoverflow": "",
+          "cv": ""
+        }
+      },
+      {
+        "name": "Clarisse Cheng",
+        "position": "Intern",
+        "slug": "clarisse-cheng",
+        "email": "Clarisse.Cheng@USherbrooke.ca",
+        "image": "/images/team/clarisse-cheng/avatar.jpeg",
+        "expertise": ["Embedded systems"],
+        "education": [
+          {
+            "course": "B. Eng. Electronics engineering",
+            "institution": "ENSEA, Cergy, France",
+            "year": "2020-2023"
+          }
+        ],
+        "bio": "Clarisse Cheng completed her internship in the MEDomics UdeS lab in the summer of 2022. She worked on the class architecture and documentation of the MEDomicsLab project.",
+        "note": "Former Member",
+        "socials": {
+          "linkedin": "https://www.linkedin.com/in/clarisse-cheng-2b58601b9/",
+          "orcid": "",
+          "scholar": "",
+          "researchgate": "",
+          "github": "https://github.com/Lilihe15",
+          "stackoverflow": "",
+          "cv": ""
+        }
+      },
+      {
+        "name": "Corentin Gauthier",
+        "position": "Intern",
+        "slug": "corentin-gauthier",
+        "email": "Corentin.Gauthier@USherbrooke.ca",
+        "image": "/images/team/corentin-gauthier/avatar.jpeg",
+        "expertise": ["Python", "JavaScript", "Machine learning"],
+        "education": [
+          {
+            "course": "B. Eng. Embedded systems, information technology",
+            "institution": "École centrale de Nantes, Nantes, France",
+            "year": "2021-2024"
+          }
+        ],
+        "bio": "Corentin Gauthier completed an internship in the MEDomics UdeS lab in the summer session of 2022. He worked on improving the UI/UX features of the MEDomicsLab platform. Here is a video that presents Corentin's internship in the Medomics team.",
+        "note": "Former Member",
+        "socials": {
+          "linkedin": "https://www.linkedin.com/in/corentin-gauthier/",
+          "orcid": "",
+          "scholar": "",
+          "researchgate": "",
+          "github": "",
+          "stackoverflow": "",
+          "cv": ""
+        }
+      },
+      {
+        "name": "Guillaume Cléroux",
+        "position": "Intern",
+        "slug": "guillaume-cleroux",
+        "email": "Guillaume.Cleroux@USherbrooke.ca",
+        "image": "/images/team/guillaume-cleroux/avatar.jpg",
+        "expertise": ["Julia"],
+        "education": [
+          {
+            "course": "B. Sc. Computer science",
+            "institution": "Université de Sherbrooke, Sherbrooke, Canada",
+            "year": "2020-2023"
+          }
+        ],
+        "bio": "Guillaume completed his internships in the MEDomics UdeS lab in the summer of 2021 and winter of 2022 as part of the EnergAI project. He was in charge of developing a framework for object detection and active learning.",
+        "note": "Former Member",
+        "socials": {
+          "linkedin": "",
+          "orcid": "",
+          "scholar": "",
+          "researchgate": "",
+          "github": "https://github.com/gcleroux",
+          "stackoverflow": "",
+          "cv": ""
+        }
+      },
+      {
+        "name": "Mohammed Benabbassi",
+        "position": "Research assistant",
+        "slug": "mohammed-benabbassi",
+        "email": "Mohammed.Benabbassi@USherbrooke.ca",
+        "image": "/images/team/mohammed-benabbassi/avatar.jpg",
+        "expertise": ["Python", "Reinforcement learning", "Federated learning", "Data Science"],
+        "education": [
+          {
+            "course": "B. Sc. Computer science",
+            "institution": "Université de Sherbrooke, Sherbrooke, Canada",
+            "year": "2021-2024"
+          }
+        ],
+        "bio": "Mohammed Benabbassi was a research assistant in the MEDomics UdeS laboratory in 2022.",
+        "note": "Former Member",
+        "socials": {
+          "linkedin": "https://www.linkedin.com/in/mohammed-benabbassi-5257a5213",
+          "orcid": "",
+          "scholar": "",
+          "researchgate": "",
+          "github": "",
+          "stackoverflow": "",
+          "cv": ""
+        }
+      }
+    ]
+  },
+  {
+    "year": "2021",
+    "members": [
+      {
+        "name": "Achille Lanctôt-Saumure",
+        "position": "Intern",
+        "slug": "achille-lanctot-saumure",
+        "email": "Achille.Lanctot-Saumure@USherbrooke.ca",
+        "image": "/images/team/achille-lanctot-saumure/avatar.jpeg",
+        "expertise": ["Text Detection"],
+        "education": [
+          {
+            "course": "B. Sc. Multimedia and video game sciences",
+            "institution": "Université de Sherbrooke, Sherbrooke, Canada",
+            "year": "2019-2022"
+          }
+        ],
+        "bio": "Achille Lanctôt-Saumure completed his internship in the MEDomics UdeS lab in the fall of 2021 as part of the EnergAI project. He was in charge of developing a framework to detect text on electrical drawings with Tesseract OCR.",
+        "note": "Former Member",
+        "socials": {
+          "linkedin": "",
+          "orcid": "",
+          "scholar": "",
+          "researchgate": "",
+          "github": "https://github.com/Troy-Boy",
+          "stackoverflow": "",
+          "cv": ""
+        }
+      },
+      {
+        "name": "Alex Chorel-Campanozzi",
+        "position": "Intern",
+        "slug": "alex-chorel-campanozzi",
+        "email": "Alex.Chorel-Campanozzi@USherbrooke.ca",
+        "image": "/images/team/alex-chorel-campanozzi/avatar.png",
+        "expertise": ["Line Detection"],
+        "education": [
+          {
+            "course": "M. Eng. Robotic engineering",
+            "institution": "Université de Sherbrooke, Sherbrooke, Canada",
+            "year": "2022-2024"
+          },
+          {
+            "course": "B. Eng. Robotic engineering",
+            "institution": "Université de Sherbrooke, Sherbrooke, Canada",
+            "year": "2017-2021"
+          }
+        ],
+        "bio": "Alex Chorel-Campanozzi completed his internship in the MEDomics UdeS lab in the summer of 2021 as part of the EnergAI project. He was in charge of developing a framework to detect lines on electrical drawings with OpenCV.",
+        "note": "Former Member",
+        "socials": {
+          "linkedin": "https://www.linkedin.com/in/alex-chorel-campanozzi-605787176/",
+          "orcid": "",
+          "scholar": "",
+          "researchgate": "",
+          "github": "https://github.com/AlexCampanozzi",
+          "stackoverflow": "",
+          "cv": ""
+        }
+      },
+      {
+        "name": "Jonathan Perron",
+        "position": "Research professional",
+        "slug": "jonathan-perron",
+        "email": "Jonathan.Andre.Perron@USherbrooke.ca",
+        "image": "/images/team/jonathan-perron/avatar.jpg",
+        "expertise": ["Python"],
+        "education": [
+          {
+            "course": "Master 2, Cryptology and computer security",
+            "institution": "Université de Bordeaux, Bordeaux, France",
+            "year": "2011-2013"
+          },
+          {
+            "course": "Licence, Mathematics",
+            "institution": "Université de Strasbourg, Strasbourg, France",
+            "year": "2008-2011"
+          },
+          {
+            "course": "Free Auditor, Mathematics and physics",
+            "institution": "Université de Montréal, Montreal, Canada",
+            "year": "2007-2008"
+          }
+        ],
+        "bio": "Former analyst-programmer in the MEDomics UdeS laboratory, Jonathan Perron has a university education in mathematics and computer science in France. After using his data security skills in a medical research laboratory in Montreal, he wanted to pursue his career in the field of health informatics. At the MEDomics UdeS laboratory, he worked on the MEDomicsLab platform.",
+        "note": "Former Member",
+        "socials": {
+          "linkedin": "https://www.linkedin.com/in/jonathan-perron-a347ab7b/",
+          "orcid": "",
+          "scholar": "",
+          "researchgate": "",
+          "github": "",
+          "stackoverflow": "",
+          "cv": ""
+        }
+      },
+      {
+        "name": "Kayla Davio-Roy",
+        "position": "Intern",
+        "slug": "kayla-davio-roy",
+        "email": "Kayla.Davio-Roy@USherbrooke.ca",
+        "image": "/images/team/kayla-davio-roy/avatar.jpg",
+        "expertise": ["Medicine"],
+        "education": [
+          {
+            "course": "F. Sc. Pre Medical",
+            "institution": "Bishop's University, Lennoxville, Canada",
+            "year": "2020-2022"
+          }
+        ],
+        "bio": "Kayla Davio-Roy completed her internship in the MEDomics UdeS lab in the summer of 2021. She worked on medical data accessibility for the MEDomicsLab platform.",
+        "note": "Former Member",
+        "socials": {
+          "linkedin": "",
+          "orcid": "",
+          "scholar": "",
+          "researchgate": "",
+          "github": "",
+          "stackoverflow": "",
+          "cv": ""
+        }
+      },
+      {
+        "name": "Mamadou Mountagha Bah",
+        "position": "Research professional",
+        "slug": "mamadou-mountagha-bah",
+        "email": "Mamadou.Mountagha.Bah@USherbrooke.ca",
+        "image": "/images/team/mamadou-mountagha-bah/avatar.jpeg",
+        "expertise": ["Machine learning"],
+        "education": [
+          {
+            "course": "M. Sc. Computer science",
+            "institution": "Université de Sherbrooke, Sherbrooke, Canada",
+            "year": "2019-2020"
+          },
+          {
+            "course": "B. Eng. Computer engineering",
+            "institution": "Ecole Nationale des Sciences Appliquées, Kénitra, Morocco",
+            "year": "2015-2018"
+          },
+          {
+            "course": "Licence Mathematics",
+            "institution": "Université Abdelmalek Essaâdi, Tétouan, Morocco",
+            "year": "2013-2015"
+          }
+        ],
+        "bio": "Mamadou Mountagha Bah worked at the MEDomics UdeS laboratory on the MEDomicsLab project between August 2020 and May 2021.",
+        "note": "Former Member",
+        "socials": {
+          "linkedin": "https://www.linkedin.com/in/mamadou-mountagha-bah-b40701141/",
+          "orcid": "",
+          "scholar": "",
+          "researchgate": "",
+          "github": "",
+          "stackoverflow": "",
+          "cv": ""
+        }
+      },
+      {
+        "name": "Mehdi Mitiche",
+        "position": "Intern",
+        "slug": "mehdi-mitiche",
+        "email": "Mehdi.Mitiche@USherbrooke.ca",
+        "image": "/images/team/mehdi-mitiche/avatar.jpeg",
+        "expertise": ["Machine Learning"],
+        "education": [
+          {
+            "course": "Programming / computer science developer, general",
+            "institution": "École nationale Supérieure d'Informatique, Algier, Algeria",
+            "year": "2016-2021"
+          }
+        ],
+        "bio": "Mehdi Mitiche completed an internship at the MEDomics UdeS lab from November 2020 to July 2021.",
+        "note": "Former Member",
+        "socials": {
+          "linkedin": "https://www.linkedin.com/in/mehdi-mitiche-aa691b147/",
+          "orcid": "",
+          "scholar": "",
+          "researchgate": "",
+          "github": "",
+          "stackoverflow": "",
+          "cv": ""
+        }
+      },
+      {
+        "name": "Shreyas Sunil Kulkarni",
+        "position": "Research assistant",
+        "slug": "shreyas-sunil-kulkarni",
+        "email": "Shreyas.Sunil.Kulkarni@USherbrooke.ca",
+        "image": "/images/team/shreyas-sunil-kulkarni/avatar.jpeg",
+        "expertise": ["Machine learning"],
+        "education": [
+          {
+            "course": "M. Sc. Mathematics",
+            "institution": "Birla Institute of Technology and Science, Pilani, Inde",
+            "year": "2016-2021"
+          },
+          {
+            "course": "B. Eng. Computer science",
+            "institution": "Birla Institute of Technology and Science, Pilani, Inde",
+            "year": "2016-2021"
+          }
+        ],
+        "bio": "Shreyas Sunil Kulkarni was a research assistant in the MEDomics UdeS lab between June 2020 and July 2021. He worked on fuse and symbol detection on electrical schematics in the EnergAI project.",
+        "note": "Former Member",
+        "socials": {
+          "linkedin": "https://www.linkedin.com/in/shreyasklkarni/",
+          "orcid": "",
+          "scholar": "",
+          "researchgate": "",
+          "github": "https://github.com/Kuyas",
+          "stackoverflow": "",
+          "cv": ""
+        }
+      }
+    ]
+  },
+  {
+    "year": "2020",
+    "members": [
+      {
+        "name": "Charles Lévesque-Matte",
+        "position": "Intern",
+        "slug": "charles-levesque-matte",
+        "email": "Charles.Levesque-Matte@USherbrooke.ca",
+        "image": "/images/team/charles-levesque-matte/avatar.jpeg",
+        "expertise": ["Machine learning", "Python"],
+        "education": [
+          {
+            "course": "B. Eng. Computer engineering",
+            "institution": "Université de Sherbrooke, Sherbrooke, Canada",
+            "year": "2019-2023"
+          }
+        ],
+        "bio": "Charles Lévesque-Matte completed his internship in the MEDomics UdeS lab in the summer of 2020. He worked on the MEDomicsLab platform developing machine learning modules, translating from Matlab to Python and adding a JSON module. He maintained his connection to the lab by being a part-time research assistant during Fall 2020.",
+        "note": "Former Member",
+        "socials": {
+          "linkedin": "https://www.linkedin.com/in/charles-l%C3%A9vesque-matte-5120a112b/",
+          "orcid": "",
+          "scholar": "",
+          "researchgate": "",
+          "github": "",
+          "stackoverflow": "",
+          "cv": ""
+        }
+      },
+      {
+        "name": "Fabio Provencher-Flores",
+        "position": "Intern",
+        "slug": "fabio-provencher-flores",
+        "email": "Fabio.Provencher-Flores@USherbrooke.ca",
+        "image": "/images/team/fabio-provencher-flores/avatar.jpeg",
+        "expertise": ["Federated learning"],
+        "education": [
+          {
+            "course": "B. Sc. Image and video game science",
+            "institution": "Université de Sherbrooke, Sherbrooke, Canada",
+            "year": "2019-2022"
+          }
+        ],
+        "bio": "Fabio Provencher-Flores completed his internship in the MEDomics UdeS lab in summer 2020. He worked on a literature review on distributed/federated machine learning. He maintained his connection with the lab by being a part-time research assistant during Fall 2020.",
+        "note": "Former Member",
+        "socials": {
+          "linkedin": "https://www.linkedin.com/in/fabio-provencher-flores-86a3511a9/",
+          "orcid": "",
+          "scholar": "",
+          "researchgate": "",
+          "github": "",
+          "stackoverflow": "",
+          "cv": ""
+        }
+      },
+      {
+        "name": "François Marcoux",
+        "position": "Intern",
+        "slug": "francois-marcoux",
+        "email": "Francois.Marcoux2@USherbrooke.ca",
+        "image": "/images/team/francois-marcoux/avatar.jpg",
+        "expertise": ["Federated learning"],
+        "education": [
+          {
+            "course": "B. Eng. Computer engineering",
+            "institution": "Université de Sherbrooke, Sherbrooke, Canada",
+            "year": "2019-2023"
+          }
+        ],
+        "bio": "François Marcoux completed his internship in the MEDomics UdeS laboratory in the summer of 2020. He worked on a literature review on distributed/federated machine learning. He kept his link with the lab by being a part-time research assistant during fall 2020.",
+        "note": "Former Member",
+        "socials": {
+          "linkedin": "",
+          "orcid": "",
+          "scholar": "",
+          "researchgate": "",
+          "github": "",
+          "stackoverflow": "",
+          "cv": ""
+        }
+      },
+      {
+        "name": "Julien Corriveau-Trudel",
+        "position": "Intern",
+        "slug": "julien-corriveau-trudel",
+        "email": "Julien.Corriveau-Trudel@USherbrooke.ca",
+        "image": "/images/team/julien-corriveau-trudel/avatar.jpg",
+        "expertise": ["Statistics"],
+        "education": [
+          {
+            "course": "M. Sc. Statistics",
+            "institution": "Université de Sherbrooke, Sherbrooke, Canada",
+            "year": "2021-2023"
+          },
+          {
+            "course": "B. Sc. Mathematics",
+            "institution": "Université de Sherbrooke, Sherbrooke, Canada",
+            "year": "2017-2020"
+          }
+        ],
+        "bio": "Julien Corriveau-Trudel completed his internship in the MEDomics UdeS lab in the summer of 2020. He worked on a literature review on distributed/federated machine learning.",
+        "note": "Former Member",
+        "socials": {
+          "linkedin": "https://www.linkedin.com/in/julien-corriveau-trudel/",
+          "orcid": "",
+          "scholar": "",
+          "researchgate": "",
+          "github": "",
+          "stackoverflow": "",
+          "cv": ""
+        }
+      },
+      {
+        "name": "Robin Mailhot",
+        "position": "Intern",
+        "slug": "robin-mailhot",
+        "email": "Robin.Mailhot@USherbrooke.ca",
+        "image": "/images/team/robin-mailhot/avatar.jpeg",
+        "expertise": ["Robotics"],
+        "education": [
+          {
+            "course": "B. Eng. Robotic engineering",
+            "institution": "Université de Sherbrooke, Sherbrooke, Canada",
+            "year": "2019-2023"
+          }
+        ],
+        "bio": "Robin Mailhot completed an internship in the MEDomics UdeS lab in the fall of 2020. He worked on the MEDomicsLab platform.",
+        "note": "Former Member",
+        "socials": {
+          "linkedin": "https://www.linkedin.com/in/robin-mailhot/",
+          "orcid": "",
+          "scholar": "",
+          "researchgate": "",
+          "github": "https://github.com/robinmailhot",
+          "stackoverflow": "",
+          "cv": ""
+        }
+      }
+    ]
+  }
+]

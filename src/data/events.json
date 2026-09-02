@@ -1,0 +1,89 @@
+[
+  {
+    "year": "2024",
+    "months": [
+      {
+        "month": "August",
+        "items": [
+          {
+            "title": "Thesis Defense: Analyzing the complexity of radiomics: Approaches for simplified modeling",
+            "slug": "2024-08-20-msc-mall",
+            "contributors": ["Mahdi Ait Lhaj Loutfi"],
+            "markdown": "community/events/2024-08-20-msc-mall.md"
+          }
+        ]
+      },
+      {
+        "month": "Symposium",
+        "items": [
+          {
+            "title": "MEDomicsLab Annual Symposium 2024",
+            "slug": "annual-symposium-2024",
+            "contributors": ["MEDomicsLab"],
+            "markdown": "community/events/annual-symposium-2024.md"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "year": "2023",
+    "months": [
+      {
+        "month": "April",
+        "items": [
+          {
+            "title": "Thesis Defense: Renal tumors classification using magnetic resonance imaging in a multitasking learning context.",
+            "slug": "2023-04-20-msc-aa",
+            "contributors": ["Alexandre Ayotte"],
+            "markdown": "community/events/2023-04-20-msc-aa.md"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "year": "2022",
+    "months": [
+      {
+        "month": "December",
+        "items": [
+          {
+            "title": "Thesis Defense: Machine learning strategies to predict late adverse effects in childhood acute lymphoblastic leukemia survivors",
+            "slug": "2022-12-09-msc-nr",
+            "contributors": ["Nicolas Raymond"],
+            "markdown": "community/events/2022-12-09-msc-nr.md"
+          }
+        ]
+      },
+      {
+        "month": "September",
+        "items": [
+          {
+            "title": "Thesis Defense: Electric Power Fuse Identification with Deep Learning",
+            "slug": "2022-09-09-msc-sgl",
+            "contributors": ["Simon Giard-Leroux"],
+            "markdown": "community/events/2022-09-09-msc-sgl.md"
+          }
+        ]
+      },
+      {
+        "month": "August",
+        "items": [
+          {
+            "title": "Laboratory event in Coaticook & Waterville!",
+            "slug": "2022-08-05-mini-putt",
+            "contributors": ["Martin Vallières"],
+            "markdown": "community/events/2022-08-05-mini-putt.md"
+          },
+          {
+            "title": "Departure dinner in Clarisse's honor!",
+            "slug": "2022-08-12-siboire",
+            "contributors": ["Martin Vallières"],
+            "markdown": "community/events/2022-08-12-siboire.md"
+          }
+        ]
+      }
+    ]
+  }
+]

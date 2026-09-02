@@ -1,0 +1,242 @@
+[
+  {
+    "year": "2025",
+    "items": [
+      {
+        "title": "MEDfl: A Collaborative Framework for Federated Learning in Medicine",
+        "slug": "medfl-a-collaborative-framework-for-federated-learning-in-medicine-2025",
+        "contributors": ["Ouael Nedjem Eddine SAHBI", "Hithem Lamri", "Martin Vallières"],
+        "journal": "T-CAIREM",
+        "link": "https://tcairem.utoronto.ca/2025-t-cairem-conference-evolution-generative-ai",
+        "markdown": "publications/medfl-a-collaborative-framework-for-federated-learning-in-medicine-2025.md",
+        "type": "Presentations",
+        "date": "2025-11-14"
+      },
+      {
+        "title": "Leveraging patients’ longitudinal data to improve the Hospital One-year Mortality Risk",
+        "slug": "leveraging-patients-longitudinal-data-to-improve-the-hospital-one-year-mortality-risk-2025",
+        "contributors": ["Hakima Laribi", "Nicolas Raymond", "Martin Vallières"],
+        "journal": "Health Information Science and Systems",
+        "link": "https://link.springer.com/article/10.1007/s13755-024-00332-4",
+        "markdown": "publications/leveraging-patients-longitudinal-data-to-improve-the-hospital-one-year-mortality-risk-2025.md",
+        "type": "Journal Papers",
+        "date": "2025-03-04"
+      }
+    ]
+  },
+  {
+    "year": "2024",
+    "items": [
+      {
+        "title": "Improving Prediction Confidence in Healthcare: Identifying and Addressing Uncertainty in Medical Predictions",
+        "slug": "improving-prediction-confidence-in-healthcare-identifying-and-addressing-uncertainty-in-medical-predictions-2024",
+        "contributors": ["Olivier Lefebvre", "Martin Vallières"],
+        "journal": "Pôle universitaire de santé numérique de l’Estrie",
+        "link": "https://event.fourwaves.com/fr/20241206/pages",
+        "markdown": "publications/improving-prediction-confidence-in-healthcare-identifying-and-addressing-uncertainty-in-medical-predictions-2024.md",
+        "type": "Presentations",
+        "date": "2024-12-06"
+      },
+      {
+        "title": "Synthetic Data for Accessible Learning in Healthcare: Improving Mortality Prediction with Longitudinal Data (Presentation)",
+        "slug": "synthetic-data-for-accessible-learning-in-healthcare-improving-mortality-prediction-with-longitudinal-data-presentation-2024",
+        "contributors": ["Hakima Laribi", "Nicolas Raymond", "Martin Vallières"],
+        "journal": "Pôle universitaire de santé numérique de l’Estrie",
+        "link": "https://event.fourwaves.com/fr/20241206/pages",
+        "markdown": "publications/synthetic-data-for-accessible-learning-in-healthcare-improving-mortality-prediction-with-longitudinal-data-presentation-2024.md",
+        "type": "Presentations",
+        "date": "2024-12-06"
+      },
+      {
+        "title": "Multi-task Bayesian Model Combining FDG-PET/CT Imaging and Clinical Data for Interpretable High-Grade Prostate Cancer Prognosis (Journal Article)",
+        "slug": "multi-task-bayesian-model-combining-fdg-pet-ct-imaging-and-clinical-data-for-interpretable-high-grade-prostate-cancer-prognosis-journal-article-2024",
+        "contributors": ["Maxence Larose", "Nicolas Raymond", "Martin Vallières"],
+        "journal": "Nature Scientific Reports",
+        "link": "https://www.nature.com/articles/s41598-024-77498-0",
+        "markdown": "publications/multi-task-bayesian-model-combining-fdg-pet-ct-imaging-and-clinical-data-for-interpretable-high-grade-prostate-cancer-prognosis-journal-article-2024.md",
+        "type": "Journal Papers",
+        "date": "2024-11-06"
+      },
+      {
+        "title": "Synthetic Data for Accessible Learning in Healthcare: Improving Mortality Prediction with Longitudinal Data (Preprint)",
+        "slug": "synthetic-data-for-accessible-learning-in-healthcare-improving-mortality-prediction-with-longitudinal-data-preprint-2024",
+        "contributors": ["Hakima Laribi", "Nicolas Raymond", "Martin Vallières"],
+        "journal": "Research Square",
+        "link": "https://www.researchsquare.com/article/rs-5363467/v1",
+        "markdown": "publications/synthetic-data-for-accessible-learning-in-healthcare-improving-mortality-prediction-with-longitudinal-data-preprint-2024.md",
+        "type": "Preprints",
+        "date": "2024-11-04"
+      },
+      {
+        "title": "Leveraging patients’ longitudinal data to improve the Hospital One-year Mortality Risk",
+        "slug": "leveraging-patients-longitudinal-data-to-improve-the-hospital-one-year-mortality-risk-2024",
+        "contributors": ["Hakima Laribi", "Nicolas Raymond", "Martin Vallières"],
+        "journal": "medRxiv",
+        "link": "https://www.medrxiv.org/content/10.1101/2024.06.21.24309191v3",
+        "markdown": "publications/leveraging-patients-longitudinal-data-to-improve-the-hospital-one-year-mortality-risk-2024.md",
+        "type": "Preprints",
+        "date": "2024-07-26"
+      },
+      {
+        "title": "Unraveling Radiomics Complexity: Strategies for Optimal Simplicity in Predictive Modeling",
+        "slug": "unraveling-radiomics-complexity-strategies-for-optimal-simplicity-in-predictive-modeling-2024",
+        "contributors": ["Mahdi Ait Lhaj Loutfi", "Teodora Boblea Podasca", "Martin Vallières"],
+        "journal": "arXiv",
+        "link": "https://arxiv.org/abs/2407.04888",
+        "markdown": "publications/unraveling-radiomics-complexity-strategies-for-optimal-simplicity-in-predictive-modeling-2024.md",
+        "type": "Preprints",
+        "date": "2024-07-05"
+      },
+      {
+        "title": "Development of Error Passing Network for Optimizing the Prediction of VO2 peak in Childhood Acute Leukemia Survivors",
+        "slug": "development-of-error-passing-network-for-optimizing-the-prediction-of-vo2-peak-in-childhood-acute-leukemia-survivors-2024",
+        "contributors": ["Nicolas Raymond", "Hakima Laribi", "Mehdi Mitiche", "Martin Vallières"],
+        "journal": "Proceedings of Machine Learning Research",
+        "link": "https://proceedings.mlr.press/v248/raymond24a.html",
+        "markdown": "publications/development-of-error-passing-network-for-optimizing-the-prediction-of-vo2-peak-in-childhood-acute-leukemia-survivors-2024.md",
+        "type": "Conference Papers",
+        "date": "2024-06-27"
+      },
+      {
+        "title": "Multi-task Bayesian Model Combining FDG-PET/CT Imaging and Clinical Data for Interpretable High-Grade Prostate Cancer Prognosis (Preprint)",
+        "slug": "multi-task-bayesian-model-combining-fdg-pet-ct-imaging-and-clinical-data-for-interpretable-high-grade-prostate-cancer-prognosis-preprint-2024",
+        "contributors": ["Maxence Larose", "Nicolas Raymond", "Martin Vallières"],
+        "journal": "medRxiv",
+        "link": "https://www.medrxiv.org/content/10.1101/2024.06.19.24308396v1",
+        "markdown": "publications/multi-task-bayesian-model-combining-fdg-pet-ct-imaging-and-clinical-data-for-interpretable-high-grade-prostate-cancer-prognosis-preprint-2024.md",
+        "type": "Preprints",
+        "date": "2024-06-20"
+      }
+    ]
+  },
+  {
+    "year": "2023",
+    "items": [
+      {
+        "title": "Investigating model failures by patient (profiles) for safer clinical deployment",
+        "slug": "investigating-model-failures-by-patient-profiles-for-safer-clinical-deployment-2023",
+        "contributors": ["Olivier Lefebvre", "Martin Vallières"],
+        "journal": "T-CAIREM",
+        "link": "https://tcairem-conference.ca/",
+        "markdown": "publications/investigating-model-failures-by-patient-profiles-for-safer-clinical-deployment-2023.md",
+        "type": "Presentations",
+        "date": "2023-10-13"
+      },
+      {
+        "title": "Graph neural networks for predicting patient mortality within one year of hospital admission",
+        "slug": "graph-neural-networks-for-predicting-patient-mortality-within-one-year-of-hospital-admission-2023",
+        "contributors": ["Hakima Laribi", "Nicolas Raymond", "Martin Vallières"],
+        "journal": "T-CAIREM",
+        "link": "https://tcairem-conference.ca/",
+        "markdown": "publications/graph-neural-networks-for-predicting-patient-mortality-within-one-year-of-hospital-admission-2023.md",
+        "type": "Presentations",
+        "date": "2023-10-13"
+      },
+      {
+        "title": "Electric Power Fuse Identification With Deep Learning",
+        "slug": "electric-power-fuse-identification-with-deep-learning-2023",
+        "contributors": [
+          "Simon Giard-Leroux",
+          "Guillaume Cléroux",
+          "Shreyas Sunil Kulkarni",
+          "Martin Vallières"
+        ],
+        "journal": "IEEE Transactions on Industrial Informatics",
+        "link": "https://ieeexplore.ieee.org/abstract/document/10045819",
+        "markdown": "publications/electric-power-fuse-identification-with-deep-learning-2023.md",
+        "type": "Journal Papers",
+        "date": "2023-02-16"
+      }
+    ]
+  },
+  {
+    "year": "2022",
+    "items": [
+      {
+        "title": "Machine learning strategies to predict late adverse effects in childhood acute lymphoblastic leukemia survivors",
+        "slug": "machine-learning-strategies-to-predict-late-adverse-effects-in-childhood-acute-lymphoblastic-leukemia-survivors-2022",
+        "contributors": ["Nicolas Raymond", "Hakima Laribi", "Mehdi Mitiche", "Martin Vallières"],
+        "journal": "arXiv",
+        "link": "https://arxiv.org/abs/2211.13188",
+        "markdown": "publications/machine-learning-strategies-to-predict-late-adverse-effects-in-childhood-acute-lymphoblastic-leukemia-survivors-2022.md",
+        "type": "Preprints",
+        "date": "2022-11-30"
+      },
+      {
+        "title": "Graph neural networks for predicting patient mortality within one year of hospital admission",
+        "slug": "graph-neural-networks-for-predicting-patient-mortality-within-one-year-of-hospital-admission-2022",
+        "contributors": ["Hakima Laribi"],
+        "journal": "CIRIUS",
+        "link": "https://www.dropbox.com/s/qshut4vilvaja93/Programmation_Cirius_JS_2022.pdf?dl=0",
+        "markdown": "publications/graph-neural-networks-for-predicting-patient-mortality-within-one-year-of-hospital-admission-2022.md",
+        "type": "Presentations",
+        "date": "2022-10-20"
+      },
+      {
+        "title": "A compliant package with international standards for radiomics analysis of medical images",
+        "slug": "a-compliant-package-with-international-standards-for-radiomics-analysis-of-medical-images-2022",
+        "contributors": ["Mahdi Ait Lhaj Loutfi"],
+        "journal": "CIRIUS",
+        "link": "https://www.dropbox.com/s/qshut4vilvaja93/Programmation_Cirius_JS_2022.pdf?dl=0",
+        "markdown": "publications/a-compliant-package-with-international-standards-for-radiomics-analysis-of-medical-images-2022.md",
+        "type": "Presentations",
+        "date": "2022-10-20"
+      },
+      {
+        "title": "Precision analysis of predictive uncertainty of machine learning models in medical context",
+        "slug": "precision-analysis-of-predictive-uncertainty-of-machine-learning-models-in-medical-context-2022",
+        "contributors": ["Olivier Lefebvre"],
+        "journal": "CIRIUS",
+        "link": "https://www.dropbox.com/s/qshut4vilvaja93/Programmation_Cirius_JS_2022.pdf?dl=0",
+        "markdown": "publications/precision-analysis-of-predictive-uncertainty-of-machine-learning-models-in-medical-context-2022.md",
+        "type": "Presentations",
+        "date": "2022-10-20"
+      },
+      {
+        "title": "An international standard compliant tool for radiomic feature extraction from medical images",
+        "slug": "an-international-standard-compliant-tool-for-radiomic-feature-extraction-from-medical-images-2022",
+        "contributors": ["Mahdi Ait Lhaj Loutfi"],
+        "journal": "Medical Imaging with Deep Learning 2022",
+        "link": "https://event.fourwaves.com/fr/qbinscientificday2022/resumes/1277c5e9-e4bf-4739-9265-d21af534e94f",
+        "markdown": "publications/an-international-standard-compliant-tool-for-radiomic-feature-extraction-from-medical-images-2022.md",
+        "type": "Presentations",
+        "date": "2022-06-02"
+      },
+      {
+        "title": "Graph Attention Network for Prostate Cancer Lymph Node Invasion Prediction",
+        "slug": "graph-attention-network-for-prostate-cancer-lymph-node-invasion-prediction-2022",
+        "contributors": ["Maxence Larose", "Nicolas Raymond", "Martin Vallières"],
+        "journal": "Quebec Bioimaging Network 2022",
+        "link": "https://openreview.net/forum?id=zIpx-MISaIA",
+        "markdown": "publications/graph-attention-network-for-prostate-cancer-lymph-node-invasion-prediction-2022.md",
+        "type": "Conference Papers",
+        "date": "2022-04-22"
+      }
+    ]
+  },
+  {
+    "year": "2021",
+    "items": [
+      {
+        "title": "3D convolutional neural network as a decision support system for multiple renal tumor classification tasks",
+        "slug": "3d-convolutional-neural-network-as-a-decision-support-system-for-multiple-renal-tumor-classification-tasks-2021",
+        "contributors": ["Alexandre Ayotte"],
+        "journal": "ACFAS 2021",
+        "link": "https://www.acfas.ca/evenements/congres/programme/88/600/614/c",
+        "markdown": "publications/3d-convolutional-neural-network-as-a-decision-support-system-for-multiple-renal-tumor-classification-tasks-2021.md",
+        "type": "Presentations",
+        "date": "2021-05-05"
+      },
+      {
+        "title": "Integration of genomic data in the design of learning models in precision oncology",
+        "slug": "integration-of-genomic-data-in-the-design-of-learning-models-in-precision-oncology-2021",
+        "contributors": ["Nicolas Raymond"],
+        "journal": "ACFAS 2021",
+        "link": "https://www.acfas.ca/evenements/congres/programme/88/600/614/c",
+        "markdown": "publications/integration-of-genomic-data-in-the-design-of-learning-models-in-precision-oncology-2021.md",
+        "type": "Presentations",
+        "date": "2021-05-05"
+      }
+    ]
+  }
+]

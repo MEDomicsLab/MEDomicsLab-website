@@ -1,0 +1,32 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "research-projects.schema.json",
+  "title": "Research Projects",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "required": ["title", "slug", "summary", "status", "track", "researchers"],
+    "additionalProperties": false,
+    "properties": {
+      "title": { "type": "string", "minLength": 1 },
+      "slug": { "type": "string", "pattern": "^[a-z0-9-]+$" },
+      "summary": { "type": "string", "minLength": 1 },
+      "status": { "type": "string", "enum": ["Active", "Completed"] },
+      "track": { "type": "string", "enum": ["General", "Doctorate", "Master's"] },
+      "coverImage": {
+        "type": "object",
+        "required": ["url"],
+        "additionalProperties": false,
+        "properties": {
+          "url": { "type": "string" },
+          "alt": { "type": "string" }
+        }
+      },
+      "researchers": {
+        "type": "array",
+        "items": { "type": "string", "pattern": "^[a-z0-9-]+$" }
+      },
+      "markdown": { "type": "string" }
+    }
+  }
+}

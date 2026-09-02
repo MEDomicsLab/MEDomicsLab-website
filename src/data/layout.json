@@ -1,0 +1,74 @@
+{
+  "navItems": [
+    { "path": "/", "labelKey": "home.nav.index", "defaultLabel": "Home" },
+    { "path": "/visions", "labelKey": "home.nav.visions", "defaultLabel": "Visions" },
+    { "path": "/research", "labelKey": "home.nav.research", "defaultLabel": "Research" },
+    { "path": "/team", "labelKey": "home.nav.team", "defaultLabel": "Team" },
+    {
+      "path": "/publications",
+      "labelKey": "home.nav.publications",
+      "defaultLabel": "Publications"
+    },
+    {
+      "labelKey": "home.nav.community",
+      "defaultLabel": "Community",
+      "children": [
+        { "label": "News", "path": "/community/news" },
+        { "label": "Events", "path": "/community/events" },
+        { "label": "Courses", "path": "/community/courses" },
+        {
+          "label": "Reach US!",
+          "path": "/community/contact",
+          "rollingText": ["Reach", "Join"],
+          "rollingSuffix": " US!"
+        }
+      ]
+    }
+  ],
+  "footer": {
+    "unitLink": {
+      "href": "https://www.mcgill.ca/medphys/",
+      "label": "Medical Physics Unit | McGill University"
+    },
+    "taglineKey": "footer.tagline",
+    "taglineDefault": "Advancing precision medicine.",
+    "contact": {
+      "labelKey": "footer.contact",
+      "labelDefault": "WHERE",
+      "addressLines": [
+        "Cedars Cancer Centre,",
+        "1001 boul. Décarie,",
+        "Medical Physics Unit, room DS1.7137,",
+        "Montréal, QC",
+        "H4A 3J1",
+        "Canada",
+        "",
+        "Office: Cedars Cancer Centre, Medical Physics Unit, room DS1.7137"
+      ],
+      "mapLink": {
+        "href": "https://maps.app.goo.gl/99cgW7YVyFUdVWz98",
+        "label": "Open Maps"
+      }
+    },
+    "social": {
+      "labelKey": "footer.social",
+      "labelDefault": "Connect",
+      "links": [
+        { "label": "GitHub Organization", "href": "https://github.com/MEDomicsLab" },
+        { "label": "YouTube Channel", "href": "https://www.youtube.com/@MEDomicsLab" },
+        {
+          "label": "Google Scholar",
+          "href": "https://scholar.google.com/citations?hl=en&user=fRkjFK4AAAAJ&view_op=list_works&sortby=pubdate"
+        },
+        { "label": "McGill Medical Physics Unit", "href": "https://www.mcgill.ca/medphys/" }
+      ],
+      "reachOutLabel": "Reach out",
+      "reachOutLinks": [
+        { "label": "LinkedIn", "href": "https://www.linkedin.com/in/martvallieres/" },
+        { "label": "martin.vallieres@mcgill.ca", "href": "mailto:martin.vallieres@mcgill.ca" }
+      ]
+    },
+    "credit": "Designed by Simon",
+    "creditLink": "https://simonprovost.xyz/"
+  }
+}

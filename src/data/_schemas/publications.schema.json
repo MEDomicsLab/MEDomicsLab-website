@@ -1,0 +1,40 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "publications.schema.json",
+  "title": "Publications",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "required": ["year", "items"],
+    "additionalProperties": false,
+    "properties": {
+      "year": { "type": "string", "pattern": "^[0-9]{4}$" },
+      "items": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "required": ["title", "slug", "contributors", "journal", "link", "type", "date"],
+          "additionalProperties": false,
+          "properties": {
+            "title": { "type": "string", "minLength": 1 },
+            "slug": { "type": "string", "pattern": "^[a-z0-9-]+$" },
+            "contributors": {
+              "type": "array",
+              "items": { "type": "string", "minLength": 1 },
+              "minItems": 1
+            },
+            "journal": { "type": "string", "minLength": 1 },
+            "link": { "type": "string", "minLength": 1 },
+            "markdown": { "type": "string" },
+            "type": {
+              "type": "string",
+              "enum": ["Journal Papers", "Conference Papers", "Preprints", "Presentations"]
+            },
+            "date": { "type": "string", "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$" },
+            "redirect": { "type": "boolean" }
+          }
+        }
+      }
+    }
+  }
+}

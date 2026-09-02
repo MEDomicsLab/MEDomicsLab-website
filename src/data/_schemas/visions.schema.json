@@ -1,0 +1,25 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "visions.schema.json",
+  "title": "Visions",
+  "type": "object",
+  "required": ["hero", "context", "mission", "visions"],
+  "properties": {
+    "hero": { "type": "object" },
+    "context": { "type": "object" },
+    "mission": { "type": "object" },
+    "visions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["axis", "title"],
+        "properties": {
+          "axis": { "type": "string" },
+          "title": { "type": "string" },
+          "statements": { "type": "array", "items": { "type": "string" } },
+          "imageUrl": { "type": "string" }
+        }
+      }
+    }
+  }
+}

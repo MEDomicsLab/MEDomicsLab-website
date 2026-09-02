@@ -1,0 +1,198 @@
+[
+  {
+    "year": "2025",
+    "months": [
+      {
+        "month": "March",
+        "items": [
+          {
+            "title": "Publication of the article “Leveraging patients’ longitudinal data to improve the Hospital One-year Mortality Risk”",
+            "slug": "2025-03-04-post-longitudinal-oym-article",
+            "contributors": ["Hakima Laribi", "Nicolas Raymond", "Martin Vallières"],
+            "markdown": "community/news/2025-03-04-post-longitudinal-oym-article.md"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "year": "2024",
+    "months": [
+      {
+        "month": "November",
+        "items": [
+          {
+            "title": "Publication of the article “Multi-task Bayesian Model Combining FDG-PET/CT Imaging and Clinical Data for Interpretable High-Grade Prostate Cancer Prognosis”",
+            "slug": "2024-11-06-post-prostate-models",
+            "contributors": ["Maxence Larose", "Nicolas Raymond", "Martin Vallières"],
+            "markdown": "community/news/2024-11-06-post-prostate-models.md"
+          }
+        ]
+      },
+      {
+        "month": "August",
+        "items": [
+          {
+            "title": "Mahdi Ait Lhaj Loutfi successfully defended his thesis",
+            "slug": "2024-08-20-mall-msc",
+            "contributors": ["Mahdi Ait Lhaj Loutfi"],
+            "markdown": "community/news/2024-08-20-mall-msc.md"
+          }
+        ]
+      },
+      {
+        "month": "July",
+        "items": [
+          {
+            "title": "Publication of the article “Leveraging patients’ longitudinal data to improve the Hospital One-year Mortality Risk” on medRxiv",
+            "slug": "2024-07-26-post-arxiv",
+            "contributors": ["Hakima Laribi", "Nicolas Raymond", "Martin Vallières"],
+            "markdown": "community/news/2024-07-26-post-arxiv.md"
+          },
+          {
+            "title": "Publication of the article “Unraveling Radiomics Complexity: Strategies for Optimal Simplicity in Predictive Modeling” on arXiv",
+            "slug": "2024-07-05-post-arxiv",
+            "contributors": ["Mahdi Ait Lhaj Loutfi", "Teodora Boblea Podasca", "Martin Vallières"],
+            "markdown": "community/news/2024-07-05-post-arxiv.md"
+          }
+        ]
+      },
+      {
+        "month": "June",
+        "items": [
+          {
+            "title": "Publication and presentation of the article “Development of Error Passing Network for Optimizing the Prediction of VO2 peak in Childhood Acute Leukemia Survivors”",
+            "slug": "2024-06-27-post-chil",
+            "contributors": [
+              "Nicolas Raymond",
+              "Hakima Laribi",
+              "Olivier Lefebvre",
+              "Martin Vallières"
+            ],
+            "markdown": "community/news/2024-06-27-post-chil.md"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "year": "2023",
+    "months": [
+      {
+        "month": "April",
+        "items": [
+          {
+            "title": "Alexandre Ayotte successfully defended his thesis",
+            "slug": "2023-04-20-aa-msc",
+            "contributors": ["Alexandre Ayotte"],
+            "markdown": "community/news/2023-04-20-aa-msc.md"
+          }
+        ]
+      },
+      {
+        "month": "February",
+        "items": [
+          {
+            "title": "Publication of the article “Electric Power Fuse Identification With Deep Learning”",
+            "slug": "2023-02-16-post-energai",
+            "contributors": [
+              "Simon Giard-Leroux",
+              "Guillaume Cléroux",
+              "Shreyas Sunil Kulkarni",
+              "Martin Vallières"
+            ],
+            "markdown": "community/news/2023-02-16-post-energai.md"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "year": "2022",
+    "months": [
+      {
+        "month": "December",
+        "items": [
+          {
+            "title": "Nicolas Raymond successfully defended his thesis",
+            "slug": "2022-12-09-nr-msc",
+            "contributors": ["Nicolas Raymond"],
+            "markdown": "community/news/2022-12-09-nr-msc.md"
+          }
+        ]
+      },
+      {
+        "month": "November",
+        "items": [
+          {
+            "title": "Publication of the article “Machine learning strategies to predict late adverse effects in childhood acute lymphoblastic leukemia survivors” on arXiv",
+            "slug": "2022-11-23-post-arxiv",
+            "contributors": ["Nicolas Raymond", "Martin Vallières"],
+            "markdown": "community/news/2022-11-23-post-arxiv.md"
+          }
+        ]
+      },
+      {
+        "month": "October",
+        "items": [
+          {
+            "title": "Several awards won at CIRIUS Science Day 2022",
+            "slug": "2022-10-20-cirius",
+            "contributors": ["Hakima Laribi", "Olivier Lefebvre", "Mahdi Ait Lhaj Loutfi"],
+            "markdown": "community/news/2022-10-20-cirius.md"
+          }
+        ]
+      },
+      {
+        "month": "September",
+        "items": [
+          {
+            "title": "Simon Giard-Leroux successfully defended his thesis",
+            "slug": "2022-09-09-sgl-msc",
+            "contributors": ["Simon Giard-Leroux"],
+            "markdown": "community/news/2022-09-09-sgl-msc.md"
+          },
+          {
+            "title": "Ph. D. study permit received for Hakima",
+            "slug": "2022-09-01-hakima-permis",
+            "contributors": ["Hakima Laribi"],
+            "markdown": "community/news/2022-09-01-hakima-permis.md"
+          }
+        ]
+      },
+      {
+        "month": "August",
+        "items": [
+          {
+            "title": "Olivier successfully defended his accelerated PhD proposal",
+            "slug": "2022-08-29-phd-oli",
+            "contributors": ["Olivier Lefebvre"],
+            "markdown": "community/news/2022-08-29-phd-oli.md"
+          }
+        ]
+      },
+      {
+        "month": "June",
+        "items": [
+          {
+            "title": "Participation in the RBIQ 2022 Scientific Day",
+            "slug": "2022-06-02-rbiq",
+            "contributors": ["Mahdi Ait Lhaj Loutfi"],
+            "markdown": "community/news/2022-06-02-rbiq.md"
+          }
+        ]
+      },
+      {
+        "month": "April",
+        "items": [
+          {
+            "title": "Publication of a short article in the MIDL 2022 conference",
+            "slug": "2022-04-22-midl",
+            "contributors": ["Maxence Larose", "Nicolas Raymond", "Martin Vallières"],
+            "markdown": "community/news/2022-04-22-midl.md"
+          }
+        ]
+      }
+    ]
+  }
+]
