@@ -11,7 +11,7 @@ body:
       value: |
         <div align="center">
           <a href="https://medomicslab.com/">
-            <img src="https://raw.githubusercontent.com/simonprovost/medomicslab/HEAD/docs/assets/banner/medomicslab-banner.webp" alt="MEDomicsLab banner" width="320">
+            <img src="https://raw.githubusercontent.com/MEDomicsLab/MEDomicsLab-website/refs/heads/main/docs/assets/banner/medomicslab-banner.webp" alt="MEDomicsLab banner" width="320">
           </a>
           <br>
           <strong>Official MEDomicsLab's Website.</strong>
