@@ -1,0 +1,27 @@
+.scroll-reveal {
+  margin: 0;
+  padding: 0;
+}
+
+.scroll-reveal-text {
+  font-family: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+  font-size: clamp(1.05rem, 1.55vw, 1.6rem);
+  line-height: 1.85;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  text-transform: none;
+
+  max-width: 70ch;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+
+  color: rgba(255, 255, 255, 0.88);
+}
+
+.word {
+  display: inline-block;
+}
+
+.scroll-reveal-text ::selection {
+  background: rgba(255, 255, 255, 0.18);
+}

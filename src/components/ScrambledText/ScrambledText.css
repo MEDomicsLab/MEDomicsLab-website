@@ -1,0 +1,18 @@
+.text-block {
+  margin: 0;
+  max-width: 840px;
+  font-family: monospace;
+  font-size: clamp(14px, 1.6vw, 20px);
+  color: rgba(255, 255, 255, 0.9);
+  line-height: 1.7;
+  white-space: pre-wrap;
+}
+
+.char {
+  will-change: transform;
+  display: inline-block;
+}
+
+.scrambled-text-demo {
+  margin-top: 0.75rem;
+}

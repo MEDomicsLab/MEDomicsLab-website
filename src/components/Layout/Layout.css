@@ -1,0 +1,35 @@
+.layout-glass-surface-dynamic {
+  background:
+    linear-gradient(180deg, var(--layout-surface-top) 0%, var(--layout-surface-bottom) 100%),
+    var(--layout-surface-base);
+  box-shadow:
+    inset 0 1px 0 var(--layout-surface-shadow-top),
+    inset 0 0 0 1px var(--layout-surface-shadow-ring);
+  backdrop-filter: blur(var(--layout-surface-blur)) saturate(var(--layout-surface-saturation));
+  -webkit-backdrop-filter: blur(var(--layout-surface-blur))
+    saturate(var(--layout-surface-saturation));
+}
+
+.layout-nav-text-dynamic {
+  color: var(--layout-nav-text-color);
+}
+
+.layout-dropdown-text-dynamic {
+  color: var(--layout-dropdown-text-color);
+}
+
+@keyframes liquid-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* The liquid-glass-react library transitions its inset highlight rings into
+   place ~200ms after the glass renders, producing a delayed "stroke" pop on
+   the community modal. Kill the transition so they appear in sync. */
+.community-modal-portal > span {
+  transition: none !important;
+}
