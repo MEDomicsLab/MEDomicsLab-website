@@ -1,0 +1,162 @@
+name: Issue → PR (content)
+
+# Turn a content issue (publication / news / event) into a draft PR by
+# parsing the Issue Form, validating against src/data/_schemas/, and
+# committing JSON + markdown to a new branch.
+#
+# Trigger when an issue is opened, edited, or labeled with one of the content
+# kinds. Runs on the default branch's workflow definition.
+
+on:
+  issues:
+    types: [opened, edited]
+
+permissions:
+  contents: write
+  issues: write
+  pull-requests: write
+
+concurrency:
+  group: issue-to-pr-${{ github.event.issue.number }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    if: >-
+      contains(github.event.issue.labels.*.name, 'publication') ||
+      contains(github.event.issue.labels.*.name, 'news') ||
+      contains(github.event.issue.labels.*.name, 'event') ||
+      contains(github.event.issue.labels.*.name, 'team')
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+
+      - name: Configure git identity
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+      - name: Translate issue into content
+        id: plan
+        env:
+          ISSUE_BODY: ${{ github.event.issue.body }}
+          ISSUE_LABELS: ${{ join(github.event.issue.labels.*.name, ',') }}
+          ISSUE_NUMBER: ${{ github.event.issue.number }}
+          ISSUE_AUTHOR: ${{ github.event.issue.user.login }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        continue-on-error: true
+        run: node .github/scripts/issue-to-content.mjs
+
+      - name: Comment on content-generation failure
+        if: steps.plan.outcome == 'failure' && (steps.plan.outputs.status == 'invalid' || steps.plan.outputs.status == 'error')
+        uses: actions/github-script@v7
+        env:
+          PLAN_STATUS: ${{ steps.plan.outputs.status }}
+          PLAN_ERRORS: ${{ steps.plan.outputs.errors }}
+          PLAN_KIND: ${{ steps.plan.outputs.kind }}
+        with:
+          script: |
+            const status = process.env.PLAN_STATUS;
+            const errors = process.env.PLAN_ERRORS;
+            const kind = process.env.PLAN_KIND || 'content';
+            const body = status === 'invalid'
+              ? [
+                  `:warning: I could not turn this **${kind}** submission into a PR yet:`,
+                  '',
+                  errors || '- The submission could not be validated.',
+                  '',
+                  'Edit the issue to fix these and the workflow will rerun automatically.',
+                ].join('\n')
+              : [
+                  `:warning: I could not process this **${kind}** submission because the automation encountered an unexpected error.`,
+                  '',
+                  `View the workflow logs: ${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`,
+                ].join('\n');
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              body,
+            });
+            await github.rest.issues.addLabels({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              labels: ['needs-changes'],
+            });
+            core.setFailed('Content generation failed; see issue comment.');
+
+      - name: Stop if nothing to do
+        if: steps.plan.outputs.status != 'ok'
+        run: |
+          echo "status=${{ steps.plan.outputs.status }}"
+          exit 0
+
+      # The issue form supplies prose and proper names.  Run checks that validate
+      # generated content, rather than the repository-wide source-code quality suite.
+      - name: Validate generated content
+        if: steps.plan.outputs.status == 'ok'
+        run: npm run check:issue-content
+
+      - name: Comment on quality-check failure
+        if: steps.plan.outputs.status == 'ok' && failure()
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const body = [
+              ':warning: The content was generated, but `npm run check:issue-content` failed, so no draft PR was opened.',
+              '',
+              `View the workflow logs: ${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`,
+            ].join('\n');
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              body,
+            });
+
+      - name: Open / refresh PR
+        if: steps.plan.outputs.status == 'ok'
+        uses: peter-evans/create-pull-request@v7
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          branch: ${{ steps.plan.outputs.branch }}
+          base: main
+          commit-message: ${{ steps.plan.outputs.commit_message }}
+          title: ${{ steps.plan.outputs.pr_title }}
+          body: ${{ steps.plan.outputs.pr_body }}
+          labels: |
+            content
+            issue-to-pr
+          draft: true
+          delete-branch: true
+          add-paths: ${{ steps.plan.outputs.changed_paths }}
+
+      - name: Comment success on issue
+        if: steps.plan.outputs.status == 'ok'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const branch = `${{ steps.plan.outputs.branch }}`;
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              body: `:rocket: Drafted a PR from this issue on branch \`${branch}\`. A maintainer will review and merge.`,
+            });
+            await github.rest.issues.removeLabel({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              name: 'needs-changes',
+            }).catch(() => {});
