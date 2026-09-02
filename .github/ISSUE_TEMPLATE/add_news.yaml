@@ -1,0 +1,103 @@
+name: "Add a news post"
+description: Share lab news (publication announcement, award, new joiner, milestone, blog post…).
+title: "[NEWS] - <headline>"
+labels:
+  - "content"
+  - "news"
+assignees:
+  - "simonprovost"
+body:
+  - type: markdown
+    attributes:
+      value: |
+        <div align="center">
+          <a href="https://medomicslab.com/">
+            <img src="https://raw.githubusercontent.com/simonprovost/medomicslab/HEAD/docs/assets/banner/medomicslab-banner.webp" alt="MEDomicsLab banner" width="320">
+          </a>
+          <br>
+          <strong>Official MEDomicsLab's Website.</strong>
+          <br>
+          <a href="https://medomicslab.com/">Live site</a>
+        </div>
+
+
+        News items are grouped by year → month. The listing card shows the title only — all prose lives in the markdown file.
+
+        See [`src/content/_templates/news.md`](https://github.com/simonprovost/medomicslab/blob/main/src/content/_templates/news.md) for the markdown skeleton.
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: "Before submitting"
+      options:
+        - label: This news item is suitable for public posting and all named people consent.
+          required: true
+        - label: Names of lab members match `src/data/team.json` exactly (so the cross-link works).
+          required: true
+  - type: input
+    id: title
+    attributes:
+      label: "Headline"
+      description: One sentence, no trailing period if avoidable.
+      placeholder: 'Publication of the article "…" in <Journal>'
+    validations:
+      required: true
+  - type: input
+    id: slug
+    attributes:
+      label: "Suggested slug"
+      description: Lowercase, hyphenated, prefixed by ISO date. Becomes `/community/news/<slug>`.
+      placeholder: "2025-03-04-post-longitudinal-oym-article"
+    validations:
+      required: true
+  - type: input
+    id: date
+    attributes:
+      label: "Publish date"
+      description: ISO `YYYY-MM-DD`. Determines year/month grouping.
+      placeholder: "2025-03-04"
+    validations:
+      required: true
+  - type: input
+    id: contributors
+    attributes:
+      label: "Contributors / people involved"
+      description: Comma-separated. Saved as a `contributors` array in `news.json`. Use `team.json` spelling for lab members so cross-links work.
+      placeholder: "Hakima Laribi, Nicolas Raymond, Martin Vallières"
+    validations:
+      required: true
+  - type: textarea
+    id: body
+    attributes:
+      label: "Full content (Markdown)"
+      description: |
+        Saved to `src/content/community/news/<slug>.md` and referenced from `news.json` via the `markdown` field. The listing card has no blurb anymore, so the opening paragraph here is what readers see first. Supports standard Markdown plus:
+        - Inline HTML (rendered via `rehype-raw`)
+        - `<dome-gallery album="my-album-slug" />` to embed a 3D gallery (requires entries in `src/data/albums.js`)
+        - External image Markdown such as `![description](https://example.com/image.jpg)`. These images are hotlinked, so use stable, public URLs only; they are not copied or optimized by this form.
+      placeholder: "Long-form announcement, paragraphs, links, images, etc."
+    validations:
+      required: true
+  - type: textarea
+    id: assets
+    attributes:
+      label: "Images / attachments for maintainer review"
+      description: Attach files a maintainer should review. They are not automatically copied to the repository or published; a maintainer will add approved assets to the PR.
+    validations:
+      required: false
+  - type: dropdown
+    id: related
+    attributes:
+      label: "Related content to publish alongside?"
+      multiple: true
+      options:
+        - "New publication entry"
+        - "New event entry"
+        - "New course entry"
+        - "Update an existing team member"
+  - type: textarea
+    id: additional
+    attributes:
+      label: "Additional context"
+      placeholder: "Optional — embargo dates, social media links, etc."
+    validations:
+      required: false

@@ -1,0 +1,168 @@
+name: "Add a new team member"
+description: Request that a new person be added to the MEDomicsLab team page.
+title: "[TEAM] - Add <full name>"
+labels:
+  - "content"
+  - "team"
+assignees:
+  - "simonprovost"
+body:
+  - type: markdown
+    attributes:
+      value: |
+        <div align="center">
+          <a href="https://medomicslab.com/">
+            <img src="https://raw.githubusercontent.com/simonprovost/medomicslab/HEAD/docs/assets/banner/medomicslab-banner.webp" alt="MEDomicsLab banner" width="320">
+          </a>
+          <br>
+          <strong>Official MEDomicsLab's Website.</strong>
+          <br>
+          <a href="https://medomicslab.com/">Live site</a>
+        </div>
+
+
+        Please fill **every required** field. Optional fields can be left blank — we'll skip them in the JSON. The maintainer will create the entry, generate avatar variants, and open the PR.
+
+        Only `name`, `position`, `slug`, and `image` are required by the schema; everything else is optional.
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: "Before submitting"
+      options:
+        - label: I (or the person being added) consent to having this information published on the public MEDomicsLab website.
+          required: true
+        - label: I have a square portrait photo to attach (or a stable, public direct image URL) — at least 512×512px and under 10 MB.
+          required: true
+        - label: I have checked the team page and this person is not already listed.
+          required: true
+  - type: input
+    id: full-name
+    attributes:
+      label: "Full name"
+      description: As it should appear on the site (with accents).
+      placeholder: "e.g. Martin Vallières"
+    validations:
+      required: true
+  - type: input
+    id: slug
+    attributes:
+      label: "Suggested URL slug"
+      description: Lowercase, hyphenated, no accents. Will become `/team/<slug>` and `public/images/team/<slug>/`.
+      placeholder: "e.g. martin-vallieres"
+    validations:
+      required: true
+  - type: input
+    id: cohort
+    attributes:
+      label: "Cohort / group"
+      description: |
+        Which `year` group in `team.json` should this person appear under? Existing values include `Lab Principal Investigator`, `Current`, and year-of-departure cohorts such as `2025`, `2024`, `2023` for alumni. Use one of those, or propose a new year-based cohort.
+      placeholder: "Current"
+    validations:
+      required: true
+  - type: input
+    id: position
+    attributes:
+      label: "Position"
+      description: Short title shown under the name on listing and detail pages. Stored as the `position` field in `team.json`.
+      placeholder: 'e.g. "Ph. D. Computer science" or "Associate Professor, Department of Oncology"'
+    validations:
+      required: true
+  - type: input
+    id: email
+    attributes:
+      label: "Email"
+      placeholder: "name@institution.edu"
+    validations:
+      required: false
+  - type: textarea
+    id: bio
+    attributes:
+      label: "Short biography"
+      description: 2–5 sentences. Plain text, no markdown.
+      placeholder: "Research interests, current focus, brief background."
+    validations:
+      required: true
+  - type: textarea
+    id: expertise
+    attributes:
+      label: "Areas of expertise"
+      description: One per line. Will become a bullet list.
+      placeholder: |
+        Machine learning
+        Medical imaging
+        Federated learning
+    validations:
+      required: true
+  - type: textarea
+    id: education
+    attributes:
+      label: "Education"
+      description: |
+        One per line, in the format `course | institution | year`. Most recent first.
+      placeholder: |
+        Ph.D. Computer Science | Université de Sherbrooke | 2024
+        M.Sc. Medical Physics | McGill University | 2020
+    validations:
+      required: false
+  - type: input
+    id: note
+    attributes:
+      label: "Special note"
+      description: Shown as a small badge (e.g. "Director", "Co-supervised with …").
+      placeholder: "Optional"
+    validations:
+      required: false
+  - type: markdown
+    attributes:
+      value: "### Social / academic links (all optional)"
+  - type: input
+    id: linkedin
+    attributes:
+      label: "LinkedIn"
+      placeholder: "https://www.linkedin.com/in/…"
+  - type: input
+    id: orcid
+    attributes:
+      label: "ORCID"
+      placeholder: "https://orcid.org/0000-0000-0000-0000"
+  - type: input
+    id: scholar
+    attributes:
+      label: "Google Scholar"
+      placeholder: "https://scholar.google.com/citations?user=…"
+  - type: input
+    id: researchgate
+    attributes:
+      label: "ResearchGate"
+      placeholder: "https://www.researchgate.net/profile/…"
+  - type: input
+    id: github
+    attributes:
+      label: "GitHub"
+      placeholder: "https://github.com/…"
+  - type: input
+    id: stackoverflow
+    attributes:
+      label: "Stack Overflow"
+      placeholder: "https://stackoverflow.com/users/…"
+  - type: input
+    id: cv
+    attributes:
+      label: "CV (URL)"
+      description: Direct link to a PDF if you'd like a CV button on your profile.
+      placeholder: "https://…"
+  - type: textarea
+    id: photo
+    attributes:
+      label: "Portrait photo"
+      description: Attach a square JPG, PNG, WebP, or AVIF image under 10 MB and at least 512×512px. Direct URLs must be stable and public. Responsive variants (80/128/160/256 × avif/webp/jpg) will be generated automatically.
+    validations:
+      required: true
+  - type: textarea
+    id: additional
+    attributes:
+      label: "Anything else?"
+      placeholder: "Optional context, supervisors, project affiliations, alumni destination, etc."
+    validations:
+      required: false

@@ -1,0 +1,155 @@
+name: "Add an event"
+description: Announce a thesis defense, symposium, talk, workshop, or other lab event.
+title: "[EVENT] - <event title>"
+labels:
+  - "content"
+  - "event"
+assignees:
+  - "simonprovost"
+body:
+  - type: markdown
+    attributes:
+      value: |
+        <div align="center">
+          <a href="https://medomicslab.com/">
+            <img src="https://raw.githubusercontent.com/simonprovost/medomicslab/HEAD/docs/assets/banner/medomicslab-banner.webp" alt="MEDomicsLab banner" width="320">
+          </a>
+          <br>
+          <strong>Official MEDomicsLab's Website.</strong>
+          <br>
+          <a href="https://medomicslab.com/">Live site</a>
+        </div>
+
+        <em>Feeds <code>src/data/events.json</code> and <code>src/content/community/events/&lt;slug&gt;.md</code>.</em>
+
+        Events are grouped by year → month. Only `title`, `slug`, and `contributors` are stored in `events.json`; everything else (kind, dates, time, location, registration, description) goes into the markdown body.
+
+        See [`src/content/_templates/event.md`](https://github.com/simonprovost/medomicslab/blob/main/src/content/_templates/event.md) for the markdown skeleton.
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: "Before submitting"
+      options:
+        - label: All people named in the event consent to being listed publicly.
+          required: true
+        - label: Lab member names match `src/data/team.json` exactly.
+          required: true
+  - type: input
+    id: title
+    attributes:
+      label: "Event title"
+      placeholder: "Thesis Defense: Analyzing the complexity of radiomics …"
+    validations:
+      required: true
+  - type: input
+    id: slug
+    attributes:
+      label: "Suggested slug"
+      description: Lowercase, hyphenated. Often prefixed with the date.
+      placeholder: "2024-08-20-msc-mall"
+    validations:
+      required: true
+  - type: dropdown
+    id: kind
+    attributes:
+      label: "Event kind"
+      options:
+        - "Thesis defense (Ph.D.)"
+        - "Thesis defense (M.Sc.)"
+        - "Symposium"
+        - "Workshop"
+        - "Invited talk"
+        - "Conference talk / poster"
+        - "Lab meeting / seminar"
+        - "Outreach"
+        - "Other"
+    validations:
+      required: true
+  - type: input
+    id: start-date
+    attributes:
+      label: "Start date"
+      description: ISO `YYYY-MM-DD`. Determines year/month grouping.
+      placeholder: "2024-08-20"
+    validations:
+      required: true
+  - type: input
+    id: end-date
+    attributes:
+      label: "End date"
+      description: Optional. ISO `YYYY-MM-DD`. Required for multi-day events.
+      placeholder: "2024-08-22"
+    validations:
+      required: false
+  - type: input
+    id: time
+    attributes:
+      label: "Time (with timezone)"
+      placeholder: "14:00–16:00 EDT"
+    validations:
+      required: false
+  - type: input
+    id: location
+    attributes:
+      label: "Location"
+      description: Physical venue and/or virtual link.
+      placeholder: "Université de Sherbrooke, room D7-1010 — and on Zoom"
+    validations:
+      required: true
+  - type: input
+    id: contributors
+    attributes:
+      label: "Contributors / speakers"
+      description: Comma-separated. Saved as a `contributors` array in `events.json`. Use `team.json` spelling for lab members so cross-links work.
+      placeholder: "Mahdi Ait Lhaj Loutfi"
+    validations:
+      required: true
+  - type: textarea
+    id: blurb
+    attributes:
+      label: "Short blurb"
+      description: Optional. The events listing shows the title only; if provided, this becomes the opening paragraph of the markdown file.
+      placeholder: "Mahdi Ait Lhaj Loutfi's M.Sc. thesis defense."
+    validations:
+      required: false
+  - type: textarea
+    id: body
+    attributes:
+      label: "Full description (Markdown)"
+      description: |
+        Saved to `src/content/community/events/<slug>.md`. Supports inline HTML and `<dome-gallery album="…" />`.
+        Markdown image links such as `![description](https://example.com/image.jpg)` remain externally hosted: use stable, public URLs only. They are not copied or optimized by this form.
+      placeholder: "Abstract, agenda, speaker bios, registration link, etc."
+    validations:
+      required: true
+  - type: input
+    id: registration
+    attributes:
+      label: "Registration / RSVP link"
+      placeholder: "Optional"
+    validations:
+      required: false
+  - type: textarea
+    id: assets
+    attributes:
+      label: "Images / attachments for maintainer review"
+      description: |
+        Attach files a maintainer should review. They are not automatically copied to the repository or published; a maintainer will add approved assets to the PR. For a gallery, include the intended album name.
+    validations:
+      required: false
+  - type: dropdown
+    id: related
+    attributes:
+      label: "Companion content to publish?"
+      multiple: true
+      options:
+        - "News post announcing the event"
+        - "News post recapping the event afterwards"
+        - "Linked publication entry"
+  - type: textarea
+    id: additional
+    attributes:
+      label: "Additional context"
+      placeholder: "Optional."
+    validations:
+      required: false

@@ -1,0 +1,5 @@
+blank_issues_enabled: false
+contact_links:
+  - name: 💬 Lab website
+    url: https://medomics.app/
+    about: Browse the live MEDomicsLab site before opening an issue.

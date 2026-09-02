@@ -1,0 +1,133 @@
+name: "Add a new publication"
+description: Request that a publication (paper, preprint, talk, poster…) be added to the lab's publications list.
+title: "[PUB] - <publication title>"
+labels:
+  - "content"
+  - "publication"
+assignees:
+  - "simonprovost"
+body:
+  - type: markdown
+    attributes:
+      value: |
+        <div align="center">
+          <a href="https://medomicslab.com/">
+            <img src="https://raw.githubusercontent.com/simonprovost/medomicslab/HEAD/docs/assets/banner/medomicslab-banner.webp" alt="MEDomicsLab banner" width="320">
+          </a>
+          <br>
+          <strong>Official MEDomicsLab's Website.</strong>
+          <br>
+          <a href="https://medomicslab.com/">Live site</a>
+        </div>
+
+
+        Publications are grouped by year. The maintainer derives the slug from the title and adds it explicitly to `publications.json` — you do not need to provide one.
+
+        See [`src/content/_templates/publication.md`](https://github.com/simonprovost/medomicslab/blob/main/src/content/_templates/publication.md) for the markdown skeleton.
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: "Before submitting"
+      options:
+        - label: I have searched the publications page and this entry does not already exist.
+          required: true
+        - label: All listed authors agree to be credited on the public site.
+          required: true
+        - label: For each lab-affiliated author, the name matches the spelling used in `src/data/team.json` (so the cross-link works).
+          required: true
+  - type: input
+    id: title
+    attributes:
+      label: "Title"
+      description: Exact title as it appears in the publication.
+      placeholder: "e.g. Leveraging patients' longitudinal data to improve the Hospital One-year Mortality Risk"
+    validations:
+      required: true
+  - type: input
+    id: contributors
+    attributes:
+      label: "Contributors"
+      description: Comma-separated, in publication order. Saved as a `contributors` array in `publications.json`. Use the same spelling as `team.json` for lab members so cross-links work.
+      placeholder: "Hakima Laribi, Nicolas Raymond, Martin Vallières"
+    validations:
+      required: true
+  - type: input
+    id: journal
+    attributes:
+      label: "Venue / journal / conference"
+      placeholder: "e.g. Health Information Science and Systems"
+    validations:
+      required: true
+  - type: dropdown
+    id: type
+    attributes:
+      label: "Type"
+      description: Must be one of the four values supported by `publications.schema.json`.
+      options:
+        - "Journal Papers"
+        - "Conference Papers"
+        - "Preprints"
+        - "Presentations"
+    validations:
+      required: true
+  - type: input
+    id: date
+    attributes:
+      label: "Publication date"
+      description: ISO format `YYYY-MM-DD`. Used for sorting within the year.
+      placeholder: "2025-03-04"
+    validations:
+      required: true
+  - type: input
+    id: year
+    attributes:
+      label: "Display year"
+      description: Four-digit year string used to group the entry (often the same as the date year, but can differ for accepted-but-not-yet-published works).
+      placeholder: "2025"
+    validations:
+      required: true
+  - type: input
+    id: link
+    attributes:
+      label: "Primary link (DOI / publisher URL)"
+      placeholder: "https://doi.org/..."
+    validations:
+      required: true
+  - type: input
+    id: redirect
+    attributes:
+      label: "Direct redirect?"
+      description: If checked by the maintainer, the publication card links straight to the primary link instead of opening a detail page on the site. Leave blank for the default behaviour.
+      placeholder: "yes / no — optional"
+    validations:
+      required: false
+  - type: textarea
+    id: abstract
+    attributes:
+      label: "Abstract / summary (Markdown)"
+      description: Will be saved to `src/content/publications/<slug>.md` and referenced from `publications.json` via the `markdown` field. Follow the structure in [`src/content/_templates/publication.md`](https://github.com/simonprovost/medomicslab/blob/main/src/content/_templates/publication.md). Markdown image links remain externally hosted, so use stable, public URLs only; they are not copied or optimized by this form.
+      placeholder: "Paste the abstract or a short summary."
+    validations:
+      required: false
+  - type: textarea
+    id: bibtex
+    attributes:
+      label: "BibTeX (optional)"
+      description: For maintainers who want to enrich the markdown page later.
+      render: bibtex
+    validations:
+      required: false
+  - type: textarea
+    id: assets
+    attributes:
+      label: "Images / attachments for maintainer review"
+      description: Attach files a maintainer should review. They are not automatically copied to the repository or published; a maintainer will add approved assets to the PR.
+    validations:
+      required: false
+  - type: textarea
+    id: additional
+    attributes:
+      label: "Additional context"
+      placeholder: "Optional — funding, related projects, news post to publish in parallel, etc."
+    validations:
+      required: false

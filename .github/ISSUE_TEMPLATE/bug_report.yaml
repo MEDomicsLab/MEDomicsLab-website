@@ -1,0 +1,155 @@
+name: "Bug Report"
+description: Report a problem with the MEDomicsLab website (broken UI, broken link, content rendering bug, etc.).
+title: "[BUG] - <title>"
+labels:
+  - "bug"
+assignees:
+  - "simonprovost"
+body:
+  - type: markdown
+    attributes:
+      value: |
+        <div align="center">
+          <a href="https://medomicslab.com/">
+            <img src="https://raw.githubusercontent.com/simonprovost/medomicslab/HEAD/docs/assets/banner/medomicslab-banner.webp" alt="MEDomicsLab banner" width="320">
+          </a>
+          <br>
+          <strong>Official MEDomicsLab's Website.</strong>
+          <br>
+          <a href="https://medomicslab.com/">Live site</a>
+        </div>
+
+
+        Thanks for taking the time to report an issue. Please fill the sections below so we can reproduce and fix it quickly.
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: "Before submitting"
+      description: A quick sanity check.
+      options:
+        - label: I have searched the existing issues and this bug has not already been reported.
+          required: true
+        - label: I have reproduced the issue against the latest `main` (or the deployed site).
+          required: true
+        - label: This is a bug in the website, not a request for new content (use the content templates instead).
+          required: true
+  - type: input
+    id: page-url
+    attributes:
+      label: "Affected page / URL"
+      description: Which page is broken? Paste the full URL or the route (e.g. `/publications/leveraging-patients-...-2025`).
+      placeholder: "https://medomics.app/team/martin-vallieres"
+    validations:
+      required: true
+  - type: textarea
+    id: description
+    attributes:
+      label: "Description"
+      description: Clear, concise description of what is wrong.
+      placeholder: "When I open …, the avatar fails to load and the layout shifts."
+    validations:
+      required: true
+  - type: textarea
+    id: reprod
+    attributes:
+      label: "Steps to reproduce"
+      value: |
+        1. Go to '...'
+        2. Click on '...'
+        3. Scroll to '...'
+        4. See the issue
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: "Expected behavior"
+      placeholder: "Describe what you expected to see."
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: "Actual behavior"
+      placeholder: "What actually happens. Include console errors if any."
+    validations:
+      required: true
+  - type: textarea
+    id: screenshots
+    attributes:
+      label: "Screenshots / screen recording"
+      description: Drag & drop images or a short video. Hugely helpful for visual bugs.
+      placeholder: "Optional but strongly encouraged."
+    validations:
+      required: false
+  - type: markdown
+    attributes:
+      value: "### Environment"
+  - type: dropdown
+    id: env
+    attributes:
+      label: "Where did this happen?"
+      options:
+        - "Production (medomics.app)"
+        - "Local dev (`npm run dev`)"
+        - "Local preview (`npm run preview`)"
+        - "PR preview deployment"
+        - "Other"
+    validations:
+      required: true
+  - type: dropdown
+    id: browser
+    attributes:
+      label: "Browser"
+      options:
+        - "Chrome / Chromium / Edge"
+        - "Firefox"
+        - "Safari"
+        - "Mobile Safari (iOS)"
+        - "Mobile Chrome (Android)"
+        - "Other"
+    validations:
+      required: true
+  - type: input
+    id: browser-version
+    attributes:
+      label: "Browser version"
+      placeholder: "e.g. Chrome 131, Safari 18.1"
+    validations:
+      required: false
+  - type: dropdown
+    id: os
+    attributes:
+      label: "Operating system"
+      options:
+        - "macOS"
+        - "Windows"
+        - "Linux"
+        - "iOS"
+        - "Android"
+        - "Other"
+    validations:
+      required: true
+  - type: input
+    id: viewport
+    attributes:
+      label: "Viewport / device"
+      description: Helpful for layout bugs.
+      placeholder: "e.g. 1440×900 desktop, iPhone 15 Pro, 768px tablet"
+    validations:
+      required: false
+  - type: textarea
+    id: console
+    attributes:
+      label: "Browser console / network errors"
+      description: Open DevTools → Console and Network tab and paste any red errors.
+      render: text
+    validations:
+      required: false
+  - type: textarea
+    id: additional
+    attributes:
+      label: "Additional context"
+      placeholder: "Anything else that might help — recent changes, related PRs, etc."
+    validations:
+      required: false

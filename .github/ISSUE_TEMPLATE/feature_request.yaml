@@ -1,0 +1,106 @@
+name: "Feature Request"
+description: Suggest a new feature, page, component, or UX improvement for the MEDomicsLab site.
+title: "[FEAT] - <title>"
+labels:
+  - "enhancement"
+assignees:
+  - "simonprovost"
+body:
+  - type: markdown
+    attributes:
+      value: |
+        <div align="center">
+          <a href="https://medomicslab.com/">
+            <img src="https://raw.githubusercontent.com/simonprovost/medomicslab/HEAD/docs/assets/banner/medomicslab-banner.webp" alt="MEDomicsLab banner" width="320">
+          </a>
+          <br>
+          <strong>Official MEDomicsLab's Website.</strong>
+          <br>
+          <a href="https://medomicslab.com/">Live site</a>
+        </div>
+
+
+        Thanks for the suggestion! Please describe **what** you'd like to see and **why**. Bear in mind this is a marketing/research site — most content lives in `src/data/*.json` and `src/content/**/*.md`, so additions are usually small. Larger UX changes are very welcome.
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: "Before submitting"
+      options:
+        - label: I have searched existing issues and discussions for similar requests.
+          required: true
+        - label: This is a feature/UX request, not a content addition (use the "Add new …" templates for content).
+          required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: "What's the problem / opportunity?"
+      description: What is hard, missing, or could be better today?
+      placeholder: "Visitors can't filter publications by year on mobile because the dropdown is hidden behind the hero."
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: "Proposed solution"
+      description: Describe the feature. Include user flow, UI ideas, accessibility considerations, and which files/components you think it touches.
+      placeholder: "Add a sticky year filter at the top of `/publications` using `MotionHighlight`. Affects `PublicationsPage.jsx`."
+    validations:
+      required: true
+  - type: textarea
+    id: mockups
+    attributes:
+      label: "Mockups, screenshots, references"
+      description: Drag & drop images, links to inspiration, Figma frames, etc.
+      placeholder: "Optional but very welcome."
+    validations:
+      required: false
+  - type: dropdown
+    id: scope
+    attributes:
+      label: "Scope"
+      description: Rough size of the change.
+      options:
+        - "Tiny (single component / copy tweak)"
+        - "Small (one page, no new dependency)"
+        - "Medium (new page or component, may touch routing/data)"
+        - "Large (cross-cutting, new dependency, design overhaul)"
+    validations:
+      required: true
+  - type: dropdown
+    id: areas
+    attributes:
+      label: "Area(s) impacted"
+      multiple: true
+      options:
+        - "Home / hero"
+        - "Team"
+        - "Publications"
+        - "Research projects / tracks"
+        - "Community — News"
+        - "Community — Events"
+        - "Community — Courses"
+        - "Visions"
+        - "Layout / navigation / footer"
+        - "Theme / design tokens"
+        - "Performance / accessibility / SEO"
+        - "CI / tooling"
+        - "Other"
+    validations:
+      required: true
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: "Alternatives considered"
+      placeholder: "Optional."
+    validations:
+      required: false
+  - type: dropdown
+    id: contribution
+    attributes:
+      label: "Willing to contribute a PR?"
+      options:
+        - "Yes — I'd like to implement it"
+        - "Yes — with guidance"
+        - "No — request only"
+    validations:
+      required: true
