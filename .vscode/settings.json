@@ -1,0 +1,48 @@
+{
+  "json.schemas": [
+    {
+      "fileMatch": ["src/data/publications.json"],
+      "url": "./src/data/_schemas/publications.schema.json"
+    },
+    {
+      "fileMatch": ["src/data/news.json"],
+      "url": "./src/data/_schemas/news.schema.json"
+    },
+    {
+      "fileMatch": ["src/data/events.json"],
+      "url": "./src/data/_schemas/events.schema.json"
+    },
+    {
+      "fileMatch": ["src/data/courses.json"],
+      "url": "./src/data/_schemas/courses.schema.json"
+    },
+    {
+      "fileMatch": ["src/data/research-projects.json"],
+      "url": "./src/data/_schemas/research-projects.schema.json"
+    },
+    {
+      "fileMatch": ["src/data/research-tracks.json"],
+      "url": "./src/data/_schemas/research-tracks.schema.json"
+    },
+    {
+      "fileMatch": ["src/data/team.json"],
+      "url": "./src/data/_schemas/team.schema.json"
+    },
+    {
+      "fileMatch": ["src/data/home.json"],
+      "url": "./src/data/_schemas/home.schema.json"
+    },
+    {
+      "fileMatch": ["src/data/layout.json"],
+      "url": "./src/data/_schemas/layout.schema.json"
+    },
+    {
+      "fileMatch": ["src/data/theme.json"],
+      "url": "./src/data/_schemas/theme.schema.json"
+    },
+    {
+      "fileMatch": ["src/data/visions.json"],
+      "url": "./src/data/_schemas/visions.schema.json"
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+# Image paths (relative to public/, leading slash) intentionally kept
+# even though they aren't referenced from src/ yet.
+#
+# Used by: .github/scripts/check-unused-assets.mjs
+
+# MED3pa working diagrams kept for future content updates
+/images/albums/research-MED3pa/objectives.drawio.svg
+/images/albums/research-MED3pa/sl_tree.drawio.svg
+
+# MEDomics platform working asset (alternate hero)
+/images/albums/research-medomics_platform/medomicslab.jpg

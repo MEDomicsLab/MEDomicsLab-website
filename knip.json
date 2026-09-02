@@ -1,0 +1,19 @@
+{
+  "$schema": "https://unpkg.com/knip@6/schema.json",
+  "entry": ["src/main.jsx"],
+  "project": ["src/**/*.{js,jsx}"],
+  "ignore": ["src/components/ui/**", "src/data/**", "src/content/**"],
+  "ignoreDependencies": [
+    "tw-animate-css",
+    "@radix-ui/react-accordion",
+    "@radix-ui/react-menubar",
+    "@radix-ui/react-navigation-menu",
+    "@radix-ui/react-scroll-area",
+    "@radix-ui/react-separator",
+    "@radix-ui/react-slot",
+    "@radix-ui/react-tabs",
+    "class-variance-authority",
+    "sharp"
+  ],
+  "ignoreExportsUsedInFile": true
+}
