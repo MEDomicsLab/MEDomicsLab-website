@@ -379,6 +379,25 @@
           "stackoverflow": "",
           "cv": ""
         }
+      },
+      {
+        "name": "Simon SALUT",
+        "position": "Postdoctoral Researcher",
+        "slug": "simon-provost",
+        "image": "/images/team/simon-provost/avatar.png",
+        "bio": "https://simonprovost.xyz/",
+        "expertise": ["ML", "AutoML", "ML4Health"],
+        "email": "simon.g.provost@mcgill.ca",
+        "education": [
+          {
+            "course": "Ph.D Computer Science",
+            "institution": "University of Kent",
+            "year": "2026"
+          }
+        ],
+        "socials": {
+          "github": "https://simonprovost.xyz/"
+        }
       }
     ]
   },
