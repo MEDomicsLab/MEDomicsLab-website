@@ -3,7 +3,7 @@ import { expect, test } from "@playwright/test";
 const cases = [
   {
     path: "/",
-    title: /MEDomicsLab \| Medical AI & Precision Medicine Research/,
+    title: /Home \| MEDomicsLab/,
     canonical: "https://medomicslab.com/",
     schemaType: "Organization",
   },

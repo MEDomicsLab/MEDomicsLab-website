@@ -13,8 +13,13 @@ const SITE_URL = "https://medomicslab.com";
 const DEFAULT_DESCRIPTION =
   "MEDomicsLab develops reliable predictive models from heterogeneous medical data for precision medicine research.";
 const DEFAULT_IMAGE = "/images/homepage.jpg";
+const SITE_TAGLINE = `${SITE_NAME} | Medical AI & Precision Medicine Research`;
 
 const collectionMetadata = {
+  "/": {
+    title: "Home",
+    description: DEFAULT_DESCRIPTION,
+  },
   "/visions": {
     title: "Vision & Mission",
     description:
@@ -162,9 +167,10 @@ export default function Seo() {
   const page = collectionMetadata[pathname];
   const record = detail?.record;
   const rawTitle = record?.title || record?.name || page?.title || null;
-  const title = rawTitle
-    ? `${rawTitle} | ${SITE_NAME}`
-    : `${SITE_NAME} | Medical AI & Precision Medicine Research`;
+  const title = rawTitle ? `${rawTitle} | ${SITE_NAME}` : SITE_TAGLINE;
+  // The tab reads "Home | MEDomicsLab" like every other page; share cards keep the
+  // descriptive homepage title.
+  const shareTitle = pathname === "/" ? SITE_TAGLINE : title;
   const description =
     record?.summary || record?.position || page?.description || DEFAULT_DESCRIPTION;
   const canonicalUrl = `${SITE_URL}${pathname === "/" ? "/" : pathname}`;
@@ -188,12 +194,12 @@ export default function Seo() {
       <meta property="og:site_name" content={SITE_NAME} />
       <meta property="og:type" content={detail?.type === "NewsArticle" ? "article" : "website"} />
       <meta property="og:locale" content="en_CA" />
-      <meta property="og:title" content={title} />
+      <meta property="og:title" content={shareTitle} />
       <meta property="og:description" content={description} />
       <meta property="og:url" content={canonicalUrl} />
       <meta property="og:image" content={image} />
       <meta name="twitter:card" content="summary_large_image" />
-      <meta name="twitter:title" content={title} />
+      <meta name="twitter:title" content={shareTitle} />
       <meta name="twitter:description" content={description} />
       <meta name="twitter:image" content={image} />
       <script type="application/ld+json">{JSON.stringify(structuredData)}</script>
