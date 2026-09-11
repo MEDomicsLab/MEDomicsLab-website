@@ -3,6 +3,7 @@ import { ArrowLeft } from "lucide-react";
 import { useTranslations } from "../../lib/translations";
 import MarkdownContent from "../../components/MarkdownContent/MarkdownContent";
 import coursesData from "../../data/courses.json";
+import BrandName from "../../components/BrandName/BrandName.jsx";
 
 export default function CoursesDetailPage() {
   const { t } = useTranslations();
@@ -34,7 +35,7 @@ export default function CoursesDetailPage() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
           <div className="lg:col-span-8">
             <h1 className="text-5xl md:text-7xl font-bold uppercase tracking-tighter leading-none">
-              {course.title}
+              <BrandName>{course.title}</BrandName>
             </h1>
             {course.markdown ? (
               <MarkdownContent markdownPath={course.markdown} />

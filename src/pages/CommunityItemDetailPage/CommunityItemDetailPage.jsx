@@ -2,6 +2,7 @@ import { Link, useParams } from "react-router-dom";
 import { ArrowLeft } from "lucide-react";
 import { useTranslations } from "../../lib/translations";
 import MarkdownContent from "../../components/MarkdownContent/MarkdownContent";
+import BrandName from "../../components/BrandName/BrandName.jsx";
 
 export default function CommunityItemDetailPage({ title, data, backPath }) {
   const { t } = useTranslations();
@@ -38,7 +39,7 @@ export default function CommunityItemDetailPage({ title, data, backPath }) {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
           <div className="lg:col-span-8">
             <h1 className="text-5xl md:text-7xl font-bold uppercase tracking-tighter leading-none">
-              {item.title}
+              <BrandName>{item.title}</BrandName>
             </h1>
             {item.markdown ? (
               <MarkdownContent markdownPath={item.markdown} />

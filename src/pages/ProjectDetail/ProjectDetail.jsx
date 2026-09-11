@@ -6,6 +6,7 @@ import { useEffect } from "react";
 import MarkdownContent from "../../components/MarkdownContent/MarkdownContent";
 import AvatarImage from "../../components/AvatarImage/AvatarImage";
 import { getMemberBySlug } from "../../lib/team";
+import BrandName from "../../components/BrandName/BrandName.jsx";
 
 export default function ProjectDetail() {
   const { t } = useTranslations();
@@ -67,7 +68,7 @@ export default function ProjectDetail() {
               className="text-5xl md:text-7xl font-bold uppercase tracking-tighter leading-none max-w-4xl"
               data-fimo-source={`ResearchProject.${project.slug}.title`}
             >
-              {project.title}
+              <BrandName>{project.title}</BrandName>
             </h1>
           </div>
         </div>

@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { cn } from "../../lib/utils";
+import BrandName from "../BrandName/BrandName.jsx";
 import HoverArrow from "../HoverArrow/HoverArrow.jsx";
 
 const VARIANT_STYLES = {
@@ -102,7 +103,7 @@ export function EntryRowTitle({ variant = "compact", className, children, ...res
       className={cn(styles.title, "group-hover:text-primary transition-colors", className)}
       {...rest}
     >
-      {children}
+      <BrandName>{children}</BrandName>
     </h3>
   );
 }

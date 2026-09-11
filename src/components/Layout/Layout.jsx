@@ -112,7 +112,7 @@ export default function Layout() {
       <div className="fixed top-4 left-1/2 -translate-x-1/2 z-50 text-center md:top-8 md:left-8 md:translate-x-0 md:text-left text-white">
         <Link
           to="/"
-          className="text-xl font-bold tracking-tighter uppercase group relative flex items-center gap-2 justify-center md:justify-start"
+          className="text-xl font-bold tracking-tighter group relative flex items-center gap-2 justify-center md:justify-start"
           aria-label="MEDomicsLab homepage"
         >
           {t("brand.name", "MEDomicsLab")}
@@ -379,7 +379,7 @@ export default function Layout() {
             <Link
               to="/"
               onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-              className="group flex items-center gap-2 transition-colors hover:text-foreground"
+              className="group flex items-center gap-2 normal-case transition-colors hover:text-foreground"
               aria-label="Back to the MEDomicsLab homepage"
             >
               © {new Date().getFullYear()} MEDomicsLab

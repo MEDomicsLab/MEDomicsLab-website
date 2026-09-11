@@ -5,6 +5,7 @@ import pubData from "../../data/publications.json";
 import teamData from "../../data/team.json";
 import MarkdownContent from "../../components/MarkdownContent/MarkdownContent";
 import HoverArrow from "../../components/HoverArrow/HoverArrow.jsx";
+import BrandName from "../../components/BrandName/BrandName.jsx";
 
 const normalizeAuthorName = (value) =>
   value
@@ -76,7 +77,7 @@ export default function PublicationDetailPage() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
           <div className="lg:col-span-8">
             <h1 className="text-5xl md:text-7xl font-bold uppercase tracking-tighter leading-none">
-              {publication.title}
+              <BrandName>{publication.title}</BrandName>
             </h1>
             {authors.length > 0 && (
               <p className="mt-6 text-lg md:text-xl text-muted-foreground leading-relaxed">
