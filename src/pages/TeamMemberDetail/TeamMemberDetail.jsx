@@ -1,9 +1,14 @@
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { Link, useParams } from "react-router-dom";
-import { ArrowLeft, Mail, Award, BookOpen, Copy } from "lucide-react";
+import { ArrowLeft, Mail, Award, BookOpen, Copy, Activity } from "lucide-react";
 import teamData from "../../data/team.json";
 import { useTranslations } from "../../lib/translations";
+import { getMemberActivity } from "../../lib/memberActivity";
 import AvatarImage from "../../components/AvatarImage/AvatarImage";
+import EntryRow, { EntryRowBody, EntryRowTitle } from "../../components/EntryRow/EntryRow.jsx";
+import RevealList from "../../components/RevealList/RevealList.jsx";
+
+const VISIBLE_ACTIVITY_COUNT = 3;
 
 const SOCIAL_ITEMS = [
   { key: "linkedin", label: "LinkedIn" },
@@ -30,6 +35,9 @@ export default function TeamMemberDetail() {
     }
   }
 
+  const [isCopied, setIsCopied] = useState(false);
+  const activity = useMemo(() => (member ? getMemberActivity(member) : []), [member]);
+
   if (!member) {
     return (
       <div className="min-h-screen flex flex-col items-center justify-center space-y-4">
@@ -46,7 +54,6 @@ export default function TeamMemberDetail() {
     .map((part) => part[0])
     .join("");
   const socials = member.socials ?? {};
-  const [isCopied, setIsCopied] = useState(false);
 
   return (
     <div className="min-h-screen bg-background pt-32 pb-20">
@@ -199,6 +206,36 @@ export default function TeamMemberDetail() {
                 </ul>
               </div>
             ) : null}
+
+            {activity.length > 0 && (
+              <div className="space-y-6 border-t border-border pt-12">
+                <h3 className="text-sm uppercase tracking-widest text-muted-foreground flex items-center">
+                  <Activity className="w-4 h-4 mr-2" />
+                  {t("team.latest", "Latest")}
+                </h3>
+                <RevealList
+                  visibleCount={VISIBLE_ACTIVITY_COUNT}
+                  moreLabel={t("team.latest.more", "See more")}
+                  lessLabel={t("team.latest.less", "See less")}
+                >
+                  {activity.map((entry) => (
+                    <EntryRow key={entry.to} to={entry.to}>
+                      <EntryRowBody>
+                        <div className="flex items-center gap-3 text-[10px] uppercase tracking-widest text-muted-foreground">
+                          <span className="border border-white/10 rounded-full px-2 py-1 bg-white/5 text-white/70">
+                            {entry.kind}
+                          </span>
+                          {entry.dateLabel && <span>{entry.dateLabel}</span>}
+                        </div>
+                        <EntryRowTitle className="text-base normal-case tracking-normal">
+                          {entry.title}
+                        </EntryRowTitle>
+                      </EntryRowBody>
+                    </EntryRow>
+                  ))}
+                </RevealList>
+              </div>
+            )}
           </div>
         </div>
       </div>
