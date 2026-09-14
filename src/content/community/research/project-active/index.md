@@ -20,7 +20,7 @@ banner:
 ### General
 
 - [Development of the _MEDomics_ platform](/research/medomics-platform)
-- [Development of the _MEDimage_ package](/research/medimage)
+- [Development of the _MEDiml_ package](/research/mediml)
 
 ### Doctorate
 

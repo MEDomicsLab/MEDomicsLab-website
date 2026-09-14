@@ -36,14 +36,14 @@
     "markdown": "community/research/project-active/medomics_platform/index.md"
   },
   {
-    "title": "Development of the MEDimage package",
-    "slug": "medimage",
+    "title": "Development of the MEDiml package",
+    "slug": "mediml",
     "summary": "Open-source Python software for medical image processing and IBSI-compliant radiomics extraction.",
     "status": "Active",
     "track": "General",
     "coverImage": {
-      "url": "/images/albums/research-medimage/medimage-overview.png",
-      "alt": "Schematic diagram of the MEDimage package"
+      "url": "/images/albums/research-mediml/mediml-overview.png",
+      "alt": "Schematic diagram of the MEDiml package"
     },
     "researchers": [
       "clarisse-cheng",
@@ -52,7 +52,7 @@
       "martin-vallieres",
       "mohammed-benabbassi"
     ],
-    "markdown": "community/research/project-active/medimage/index.md"
+    "markdown": "community/research/project-active/mediml/index.md"
   },
   {
     "title": "Predictive Performance Precision Analysis in Medicine (MED3pa)",
