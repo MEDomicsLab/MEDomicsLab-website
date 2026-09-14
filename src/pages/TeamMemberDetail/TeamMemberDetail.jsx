@@ -69,7 +69,7 @@ export default function TeamMemberDetail() {
                   size={128}
                   loading="eager"
                   className="rounded-full"
-                  imgClassName="grayscale rounded-full"
+                  imgClassName="rounded-full"
                 />
               ) : (
                 <div className="w-full h-full flex items-center justify-center text-muted-foreground uppercase tracking-widest">
