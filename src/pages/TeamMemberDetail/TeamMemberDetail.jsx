@@ -6,7 +6,11 @@ import { useTranslations } from "../../lib/translations";
 import { getMemberActivity } from "../../lib/memberActivity";
 import AvatarImage from "../../components/AvatarImage/AvatarImage";
 import EntryRow, { EntryRowBody, EntryRowTitle } from "../../components/EntryRow/EntryRow.jsx";
+import FilterMenu from "../../components/FilterMenu/FilterMenu.jsx";
 import RevealList from "../../components/RevealList/RevealList.jsx";
+
+/** Order the Latest filter lists its options in, and the order rows tie-break on. */
+const ACTIVITY_KINDS = ["Publication", "News", "Event", "Project"];
 
 const VISIBLE_ACTIVITY_COUNT = 3;
 
@@ -37,6 +41,26 @@ export default function TeamMemberDetail() {
 
   const [isCopied, setIsCopied] = useState(false);
   const activity = useMemo(() => (member ? getMemberActivity(member) : []), [member]);
+
+  // Only offer the kinds this member actually has something in.
+  const availableKinds = useMemo(
+    () => ACTIVITY_KINDS.filter((kind) => activity.some((entry) => entry.kind === kind)),
+    [activity]
+  );
+  const [activeKinds, setActiveKinds] = useState(ACTIVITY_KINDS);
+  const visibleActivity = useMemo(
+    () => activity.filter((entry) => activeKinds.includes(entry.kind)),
+    [activity, activeKinds]
+  );
+
+  // Guard against emptying the list. `activeKinds` spans every kind so the
+  // choice carries between profiles, but only the kinds this member has can
+  // keep the list non-empty, so those are what the guard counts.
+  const toggleKind = (kind) =>
+    setActiveKinds((prev) => {
+      const next = prev.includes(kind) ? prev.filter((item) => item !== kind) : [...prev, kind];
+      return availableKinds.some((available) => next.includes(available)) ? next : prev;
+    });
 
   if (!member) {
     return (
@@ -209,16 +233,26 @@ export default function TeamMemberDetail() {
 
             {activity.length > 0 && (
               <div className="space-y-6 border-t border-border pt-12">
-                <h3 className="text-sm uppercase tracking-widest text-muted-foreground flex items-center">
-                  <Activity className="w-4 h-4 mr-2" />
-                  {t("team.latest", "Latest")}
-                </h3>
+                <div className="flex items-start justify-between gap-6">
+                  <h3 className="text-sm uppercase tracking-widest text-muted-foreground flex items-center">
+                    <Activity className="w-4 h-4 mr-2" />
+                    {t("team.latest", "Latest")}
+                  </h3>
+                  {availableKinds.length > 1 && (
+                    <FilterMenu
+                      options={availableKinds}
+                      active={activeKinds}
+                      onToggle={toggleKind}
+                      label={`Filter ${member.name}'s latest activity`}
+                    />
+                  )}
+                </div>
                 <RevealList
                   visibleCount={VISIBLE_ACTIVITY_COUNT}
                   moreLabel={t("team.latest.more", "See more")}
                   lessLabel={t("team.latest.less", "See less")}
                 >
-                  {activity.map((entry) => (
+                  {visibleActivity.map((entry) => (
                     <EntryRow key={entry.to} to={entry.to}>
                       <EntryRowBody>
                         <div className="flex items-center gap-3 text-[10px] uppercase tracking-widest text-muted-foreground">
