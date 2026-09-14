@@ -1,21 +1,26 @@
 import { useEffect, useMemo, useRef, useState } from "react";
-import { SlidersHorizontal } from "lucide-react";
 import { useTranslations } from "../../lib/translations";
 import pubData from "../../data/publications.json";
 import { cn } from "../../lib/utils";
 import EntryRow, { EntryRowBody, EntryRowTitle } from "../../components/EntryRow/EntryRow.jsx";
+import FilterMenu from "../../components/FilterMenu/FilterMenu.jsx";
 import PageShell, { PageTitle } from "../../components/PageShell/PageShell.jsx";
+
+const PUBLICATION_TYPES = ["Journal Papers", "Conference Papers", "Preprints", "Presentations"];
 
 export default function PublicationsPage() {
   const { t } = useTranslations();
   const [activeYear, setActiveYear] = useState(pubData[0]?.year ?? "");
-  const [isFilterOpen, setIsFilterOpen] = useState(false);
   const [isFocused, setIsFocused] = useState(false);
   const sectionRefs = useRef({});
-  const filterRef = useRef(null);
 
-  const publicationTypes = ["Journal Papers", "Conference Papers", "Preprints", "Presentations"];
-  const [activeTypes, setActiveTypes] = useState(publicationTypes);
+  const [activeTypes, setActiveTypes] = useState(PUBLICATION_TYPES);
+  // Never let the selection empty out: the last active type stays active.
+  const toggleType = (type) =>
+    setActiveTypes((prev) => {
+      if (!prev.includes(type)) return [...prev, type];
+      return prev.length === 1 ? prev : prev.filter((item) => item !== type);
+    });
 
   const typeOrder = {
     "Journal Papers": 0,
@@ -73,30 +78,6 @@ export default function PublicationsPage() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, [activeYear, filteredGroups]);
 
-  useEffect(() => {
-    const handleClick = (event) => {
-      if (!filterRef.current) return;
-      if (filterRef.current.contains(event.target)) return;
-      setIsFilterOpen(false);
-    };
-
-    if (isFilterOpen) {
-      document.addEventListener("mousedown", handleClick);
-    }
-
-    return () => document.removeEventListener("mousedown", handleClick);
-  }, [isFilterOpen]);
-
-  const toggleType = (type) => {
-    setActiveTypes((prev) => {
-      if (prev.includes(type)) {
-        if (prev.length === 1) return prev;
-        return prev.filter((item) => item !== type);
-      }
-      return [...prev, type];
-    });
-  };
-
   return (
     <PageShell
       ticks={{
@@ -106,13 +87,6 @@ export default function PublicationsPage() {
         onSelect: (id) => sectionRefs.current[id]?.scrollIntoView({ behavior: "smooth" }),
       }}
     >
-      {isFilterOpen && (
-        <div
-          className="fixed inset-0 z-20"
-          onClick={() => setIsFilterOpen(false)}
-          aria-hidden="true"
-        />
-      )}
       <div className="flex flex-col gap-6 md:flex-row md:items-start md:justify-between">
         <div>
           <PageTitle className="text-4xl sm:text-5xl md:text-7xl lg:text-9xl mb-6">
@@ -154,45 +128,12 @@ export default function PublicationsPage() {
                   {yearGroup.year}
                 </h2>
                 {yearIndex === 0 && (
-                  <div ref={filterRef} className="relative flex justify-end">
-                    <button
-                      type="button"
-                      onClick={() => setIsFilterOpen((prev) => !prev)}
-                      className="h-12 w-12 rounded-full border border-white/10 bg-white/5 text-white shadow-[0_8px_32px_0_rgba(0,0,0,0.36)] backdrop-blur-xl flex items-center justify-center hover:text-primary transition-colors"
-                      aria-label="Filter publications"
-                    >
-                      <SlidersHorizontal className="h-5 w-5" />
-                    </button>
-                    <div
-                      className={cn(
-                        "absolute right-0 top-full mt-2 min-w-[220px] rounded-2xl border border-white/10 bg-white/5 backdrop-blur-xl shadow-[0_8px_32px_0_rgba(0,0,0,0.36)] transition-all duration-200 z-30",
-                        isFilterOpen
-                          ? "opacity-100 translate-y-0 pointer-events-auto"
-                          : "opacity-0 translate-y-2 pointer-events-none"
-                      )}
-                    >
-                      <div className="flex flex-col gap-2 px-4 py-4">
-                        {publicationTypes.map((type) => {
-                          const isActive = activeTypes.includes(type);
-                          return (
-                            <button
-                              key={type}
-                              type="button"
-                              onClick={() => toggleType(type)}
-                              className={cn(
-                                "text-left text-xs uppercase tracking-widest transition-colors cursor-pointer hover:text-primary",
-                                isActive
-                                  ? "text-white scale-[1.01] animate-scale-bounce"
-                                  : "text-muted-foreground scale-95 animate-scale-down-bounce"
-                              )}
-                            >
-                              {type}
-                            </button>
-                          );
-                        })}
-                      </div>
-                    </div>
-                  </div>
+                  <FilterMenu
+                    options={PUBLICATION_TYPES}
+                    active={activeTypes}
+                    onToggle={toggleType}
+                    label="Filter publications"
+                  />
                 )}
               </div>
               <div className="h-px w-full bg-border" />

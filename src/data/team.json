@@ -165,6 +165,42 @@
         }
       },
       {
+        "name": "Mahdi Ait Lhaj Loutfi",
+        "position": "Ph. D. Biological & Biomedical Engineering",
+        "slug": "mahdi-ait-lhaj-loutfi",
+        "email": "mahdi.aitlhajloutfi@mail.mcgill.ca",
+        "image": "/images/team/mahdi-ait-lhaj-loutfi/avatar.jpg",
+        "expertise": ["Python", "Medical imaging", "Radiomics", "Artificial intelligence"],
+        "education": [
+          {
+            "course": "Ph. D. Biological & Biomedical Engineering",
+            "institution": "McGill University, Montreal, Canada",
+            "year": "2026-"
+          },
+          {
+            "course": "M. Sc. Computer science",
+            "institution": "Université de Sherbrooke, Sherbrooke, Canada",
+            "year": "2021-2024"
+          },
+          {
+            "course": "B. Sc. Computer science",
+            "institution": "",
+            "year": ""
+          }
+        ],
+        "bio": "Mahdi Ait Lhaj Loutfi is a Ph. D. student in Biological & Biomedical Engineering at McGill University and a member of the MEDomicsLab, where he works on the development of the MEDomics platform. He completed his master’s degree in 2024, with a research project focused on exploring the complexity of radiomic features. In his Ph. D., he continues exploring the potential of radiomics in improving medical diagnosis and treatments. He is also the main architect and maintainer of the MEDiml package, a vital component of MEDomics.",
+        "note": "PhD Student",
+        "socials": {
+          "linkedin": "https://www.linkedin.com/in/mahdi-ait-lhaj-loutfi-332014253/",
+          "orcid": "",
+          "scholar": "",
+          "researchgate": "",
+          "github": "https://github.com/MahdiAll99",
+          "stackoverflow": "",
+          "cv": ""
+        }
+      },
+      {
         "name": "Elodie Gillard",
         "position": "M. Sc. Radiation sciences and medical imaging",
         "slug": "elodie-gillard",
@@ -273,63 +309,32 @@
         }
       },
       {
-        "name": "Anthonin Falk",
-        "position": "Intern in AI / Imaging",
-        "slug": "anthonin-falk",
-        "email": "anthonin.falk@gmail.com",
-        "image": "/images/team/anthonin-falk/avatar.jpg",
-        "expertise": [
-          "Medical imaging",
-          "Artificial intelligence",
-          "Machine Learning",
-          "Computer science for healthcare"
-        ],
+        "name": "Moustafa Amine Bezzahi",
+        "position": "M. Sc. Software Engineering",
+        "slug": "moustafa-amine-bezzahi",
+        "email": "moustafa.amine.bezzahi@usherbrooke.ca",
+        "image": "/images/team/moustafa-amine-bezzahi/avatar.jpg",
+        "expertise": ["Deep learning", "Computer vision", "Medical Imaging", "Digital Health"],
         "education": [
           {
-            "course": "General Engineering Diploma",
-            "institution": "École Centrale de Nantes, Nantes, France",
-            "year": "2022-2025"
-          }
-        ],
-        "bio": "Anthonin Falk is completing an internship in artificial intelligence applied to medical imaging from April to September 2025. He is working on reducing the complexity and improving the interpretability of a predictive model designed to determine which patients are most likely to suffer side effects during radiotherapy treatment.",
-        "note": "Research Assistant / Intern",
-        "socials": {
-          "linkedin": "http://www.linkedin.com/in/anthonin-falk",
-          "orcid": "",
-          "scholar": "",
-          "researchgate": "",
-          "github": "https://github.com/S3vy",
-          "stackoverflow": "",
-          "cv": ""
-        }
-      },
-      {
-        "name": "Mahdi Ait Lhaj Loutfi",
-        "position": "ML / Imaging",
-        "slug": "mahdi-ait-lhaj-loutfi",
-        "email": "Mahdi.Ait.Lhaj.Loutfi@USherbrooke.ca",
-        "image": "/images/team/mahdi-ait-lhaj-loutfi/avatar.jpg",
-        "expertise": ["Python", "Medical imaging", "Radiomics", "Artificial intelligence"],
-        "education": [
-          {
-            "course": "M. Sc. Computer science",
+            "course": "M. Sc. Software Engineering",
             "institution": "Université de Sherbrooke, Sherbrooke, Canada",
-            "year": "2021-2024"
+            "year": "2025-2027"
           },
           {
-            "course": "B. Sc. Computer science",
-            "institution": "",
-            "year": ""
+            "course": "Engineering Degree, M. Sc. Computer science",
+            "institution": "Higher National School of Computer Science, Algiers, Algeria",
+            "year": "2019-2024"
           }
         ],
-        "bio": "Mahdi Ait Lhaj Loutfi is a research professional in the MEDomicsLab, where he works on the development of the MEDomics platform. He completed his master’s degree in 2024, with a research project focused on exploring the complexity of radiomic features. He is also the main architect and maintainer of the MEDimage package, a vital component of MEDomicsLab.",
-        "note": "Research Assistant / Intern",
+        "bio": "Moustafa has been a Master’s student in the MEDomicsLab since 2025. Prior to this, he completed a research internship from November 2023 to August 2024. During his internship, he developed a pipeline for the automatic detection and characterization of small renal masses using CT imaging datasets. He is currently focused on identifying optimal segmentation strategies and developing multitask classification models. In addition, he is building an end-to-end application designed to support radiologists and urologists in urological oncology decision-making. This tool is intended to be integrated into the MEDomics platform.",
+        "note": "MSc Student",
         "socials": {
-          "linkedin": "https://www.linkedin.com/in/mahdi-ait-lhaj-loutfi-332014253/",
+          "linkedin": "",
           "orcid": "",
           "scholar": "",
           "researchgate": "",
-          "github": "https://github.com/MahdiAll99",
+          "github": "https://github.com/mus-bz",
           "stackoverflow": "",
           "cv": ""
         }
@@ -385,6 +390,37 @@
   {
     "year": "2025",
     "members": [
+      {
+        "name": "Anthonin Falk",
+        "position": "Intern in AI / Imaging",
+        "slug": "anthonin-falk",
+        "email": "anthonin.falk@gmail.com",
+        "image": "/images/team/anthonin-falk/avatar.jpg",
+        "expertise": [
+          "Medical imaging",
+          "Artificial intelligence",
+          "Machine Learning",
+          "Computer science for healthcare"
+        ],
+        "education": [
+          {
+            "course": "General Engineering Diploma",
+            "institution": "École Centrale de Nantes, Nantes, France",
+            "year": "2022-2025"
+          }
+        ],
+        "bio": "Anthonin Falk completed an internship in artificial intelligence applied to medical imaging from April to September 2025. He was working on reducing the complexity and improving the interpretability of a predictive model designed to determine which patients are most likely to suffer side effects during radiotherapy treatment.",
+        "note": "Former Member",
+        "socials": {
+          "linkedin": "http://www.linkedin.com/in/anthonin-falk",
+          "orcid": "",
+          "scholar": "",
+          "researchgate": "",
+          "github": "https://github.com/S3vy",
+          "stackoverflow": "",
+          "cv": ""
+        }
+      },
       {
         "name": "Brahim Fakri",
         "position": "Research professional",
@@ -675,37 +711,6 @@
           "scholar": "",
           "researchgate": "",
           "github": "https://github.com/lyna1404",
-          "stackoverflow": "",
-          "cv": ""
-        }
-      },
-      {
-        "name": "Moustafa Amine Bezzahi",
-        "position": "Intern",
-        "slug": "moustafa-amine-bezzahi",
-        "email": "hm_bezzahi@esi.dz",
-        "image": "/images/team/moustafa-amine-bezzahi/avatar.jpg",
-        "expertise": [
-          "Artificiel Intelligence",
-          "Computer vision",
-          "Digital Health",
-          "Medical Imaging"
-        ],
-        "education": [
-          {
-            "course": "Engineering Degree, M. Sc. Computer science",
-            "institution": "Higher National School of Computer Science, Algiers, Algeria",
-            "year": "2019-2024"
-          }
-        ],
-        "bio": "Moustafa did an internship at MEDomicsLab UdeS from November 2023 till August 2024. He Worked on automatic detection of small renal masses using CHUS Medical Imaging dataset. He was supervised by Dr Patrick Richard and Pr Martin Vallières.",
-        "note": "Former Member",
-        "socials": {
-          "linkedin": "",
-          "orcid": "",
-          "scholar": "",
-          "researchgate": "",
-          "github": "https://github.com/mus-bz",
           "stackoverflow": "",
           "cv": ""
         }

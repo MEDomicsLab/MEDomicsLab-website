@@ -1,0 +1,56 @@
+/*
+ * "See more" reveal animation
+ */
+
+.reveal-list-extra {
+  display: grid;
+  grid-template-rows: 0fr;
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(-8px);
+  visibility: hidden;
+  transition:
+    grid-template-rows 420ms cubic-bezier(0.16, 1, 0.3, 1),
+    opacity 220ms ease,
+    transform 420ms cubic-bezier(0.16, 1, 0.3, 1),
+    visibility 0s linear 420ms;
+}
+
+/*
+ * A grid item in a 0fr track keeps an automatic minimum size unless its own
+ * overflow is clipped.
+ */
+.reveal-list-extra > div {
+  min-height: 0;
+  overflow: hidden;
+}
+
+.reveal-list.is-open .reveal-list-extra {
+  grid-template-rows: 1fr;
+  opacity: 1;
+  transform: translateY(0);
+  visibility: visible;
+  transition-delay: var(--reveal-list-delay, 0ms);
+}
+
+.reveal-list-toggle:hover {
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 4px;
+}
+
+.reveal-list-toggle:focus-visible {
+  border-radius: 2px;
+  outline: 2px solid currentcolor;
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal-list-extra {
+    transition-duration: 0.01ms;
+  }
+
+  .reveal-list.is-open .reveal-list-extra {
+    transition-delay: 0ms;
+  }
+}
