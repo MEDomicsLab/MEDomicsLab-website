@@ -101,7 +101,7 @@ body:
     attributes:
       label: "Contributors / speakers"
       description: Comma-separated. Saved as a `contributors` array in `events.json`. Use `team.json` spelling for lab members so cross-links work.
-      placeholder: "Mahdi Ait Lhaj Loutfi"
+      placeholder: "Mahdi Loutfi"
     validations:
       required: true
   - type: textarea
@@ -109,7 +109,7 @@ body:
     attributes:
       label: "Short blurb"
       description: Optional. The events listing shows the title only; if provided, this becomes the opening paragraph of the markdown file.
-      placeholder: "Mahdi Ait Lhaj Loutfi's M.Sc. thesis defense."
+      placeholder: "Mahdi Loutfi's M.Sc. thesis defense."
     validations:
       required: false
   - type: textarea

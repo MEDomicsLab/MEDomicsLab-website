@@ -4,7 +4,7 @@ title: "Project: Exploration of the complexity levels of radiomic characteristic
 type: book
 
 authors:
-  - Mahdi Ait Lhaj Loutfi
+  - Mahdi Loutfi
   - Martin Vallières
 ---
 
@@ -20,7 +20,7 @@ Master's
 
 ## Team
 
-- [Mahdi Ait Lhaj Loutfi](/team/mahdi-ait-lhaj-loutfi)<sup>1</sup> (2021-today)
+- [Mahdi Loutfi](/team/mahdi-loutfi)<sup>1</sup> (2021-today)
 - [Martin Lepage](https://www.usherbrooke.ca/recherche/specialistes/details/martin.lepage)<sup>2</sup> (2021-today)
 - [Martin Vallières](/team/martin-vallieres)<sup>1</sup> (2021-today)
 
