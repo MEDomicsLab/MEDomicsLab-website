@@ -1,5 +1,20 @@
 [
   {
+    "title": "MDPH 610: Instrumentation and Computation in Medical Physics",
+    "summary": "A course on electronics, computer programming, and instrumentation as applied to medical physics.",
+    "slug": "mdph-610-instrumentation-and-computation-in-medical-physics",
+    "markdown": "community/courses/mdph-610-instrumentation-and-computation-in-medical-physics.md",
+    "authors": ["Martin Vallières"],
+    "sessions": ["Winter 2027"],
+    "links": [
+      {
+        "label": "View in McGill Course Catalogue",
+        "url": "https://coursecatalogue.mcgill.ca/courses/mdph-610/"
+      }
+    ],
+    "institution": "McGill"
+  },
+  {
     "title": "IMN 714 : Extraction de caractéristiques d’images médicales",
     "summary": "Extraction de caractéristiques d'images médicales",
     "slug": "imn-714-extraction-caracteristiques-images-medicales",

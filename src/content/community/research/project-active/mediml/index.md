@@ -6,7 +6,7 @@ type: book
 authors:
   - Clarisse Cheng
   - Corentin Gauthier
-  - Mahdi Ait Lhaj Loutfi
+  - Mahdi Loutfi
   - Martin Vallières
   - Mohammed Benabbassi
 ---
@@ -25,7 +25,7 @@ General
 
 - [Clarisse Cheng](/team/clarisse-cheng)<sup>1</sup> (summer 2022)
 - [Corentin Gauthier](/team/corentin-gauthier)<sup>1</sup> (summer 2022)
-- [Mahdi Ait Lhaj Loutfi](/team/mahdi-ait-lhaj-loutfi)<sup>1</sup> (2021-today)
+- [Mahdi Loutfi](/team/mahdi-loutfi)<sup>1</sup> (2021-today)
 - [Martin Vallières](/team/martin-vallieres)<sup>1</sup> (2020-today)
 - [Mohammed Benabbassi](/team/mohammed-benabbassi)<sup>1</sup> (fall 2022)
 

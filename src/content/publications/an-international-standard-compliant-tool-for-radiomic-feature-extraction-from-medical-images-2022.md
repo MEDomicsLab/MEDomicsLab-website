@@ -6,7 +6,7 @@
 
 ## Authors
 
-- [Mahdi Ait Lhaj Loutfi](/team/mahdi-ait-lhaj-loutfi)
+- [Mahdi Loutfi](/team/mahdi-loutfi)
 
 ## Summary
 

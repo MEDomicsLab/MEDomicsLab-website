@@ -3,6 +3,24 @@
     "year": "2026",
     "items": [
       {
+        "title": "Optimizing renal mass histology prediction with artificial intelligence using handcrafted radiomics",
+        "slug": "optimizing-renal-mass-histology-prediction-with-artificial-intelligence-using-handcrafted-radiomics-2026",
+        "contributors": [
+          "Teodora Boblea Podasca",
+          "Mahdi Loutfi",
+          "Marc-Antoine Blais",
+          "Marie-Lou Gadoury-Campbell",
+          "Stéphanie Boulet",
+          "Martin Vallières",
+          "Patrick O. Richard"
+        ],
+        "journal": "World Journal of Urology",
+        "link": "https://doi.org/10.1007/s00345-026-06296-2",
+        "markdown": "publications/optimizing-renal-mass-histology-prediction-with-artificial-intelligence-using-handcrafted-radiomics-2026.md",
+        "type": "Journal Papers",
+        "date": "2026-02-25"
+      },
+      {
         "title": "Kaféfak Presentation - First Publication Award",
         "slug": "kafefak-presentation-first-publication-award-2026",
         "contributors": ["Olivier Lefebvre"],
@@ -120,7 +138,7 @@
       {
         "title": "Unraveling Radiomics Complexity: Strategies for Optimal Simplicity in Predictive Modeling",
         "slug": "unraveling-radiomics-complexity-strategies-for-optimal-simplicity-in-predictive-modeling-2024",
-        "contributors": ["Mahdi Ait Lhaj Loutfi", "Teodora Boblea Podasca", "Martin Vallières"],
+        "contributors": ["Mahdi Loutfi", "Teodora Boblea Podasca", "Martin Vallières"],
         "journal": "arXiv",
         "link": "https://arxiv.org/abs/2407.04888",
         "markdown": "publications/unraveling-radiomics-complexity-strategies-for-optimal-simplicity-in-predictive-modeling-2024.md",
@@ -215,7 +233,7 @@
       {
         "title": "A compliant package with international standards for radiomics analysis of medical images",
         "slug": "a-compliant-package-with-international-standards-for-radiomics-analysis-of-medical-images-2022",
-        "contributors": ["Mahdi Ait Lhaj Loutfi"],
+        "contributors": ["Mahdi Loutfi"],
         "journal": "CIRIUS",
         "link": "https://www.dropbox.com/s/qshut4vilvaja93/Programmation_Cirius_JS_2022.pdf?dl=0",
         "markdown": "publications/a-compliant-package-with-international-standards-for-radiomics-analysis-of-medical-images-2022.md",
@@ -235,7 +253,7 @@
       {
         "title": "An international standard compliant tool for radiomic feature extraction from medical images",
         "slug": "an-international-standard-compliant-tool-for-radiomic-feature-extraction-from-medical-images-2022",
-        "contributors": ["Mahdi Ait Lhaj Loutfi"],
+        "contributors": ["Mahdi Loutfi"],
         "journal": "Medical Imaging with Deep Learning 2022",
         "link": "https://event.fourwaves.com/fr/qbinscientificday2022/resumes/1277c5e9-e4bf-4739-9265-d21af534e94f",
         "markdown": "publications/an-international-standard-compliant-tool-for-radiomic-feature-extraction-from-medical-images-2022.md",

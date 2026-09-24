@@ -17,7 +17,7 @@ authors:
   - Kayla Davio-Roy
   - Ludmila Amriou
   - Lyna Hiba Chikouche
-  - Mahdi Ait Lhaj Loutfi
+  - Mahdi Loutfi
   - Mamadou Mountagha Bah
   - Mariem Kallel
   - Mohammed Benabbassi
@@ -53,7 +53,7 @@ General
 - [Kayla Davio-Roy](/team/kayla-davio-roy)<sup>1</sup> (summer 2021)
 - [Ludmila Amriou](/team/ludmila-amriou)<sup>1</sup> (2023-2024)
 - [Lyna Hiba Chikouche](/team/lyna-hiba-chikouche)<sup>1</sup> (2023-2024)
-- [Mahdi Ait Lhaj Loutfi](/team/mahdi-ait-lhaj-loutfi)<sup>1</sup> (2021-today)
+- [Mahdi Loutfi](/team/mahdi-loutfi)<sup>1</sup> (2021-today)
 - [Mamadou Mountagha Bah](/team/mamadou-mountagha-bah)<sup>1</sup> (2020-2021)
 - [Mariem Kallel](/team/mariem-kallel)<sup>1</sup> (2024-today)
 - [Mohammed Benabbassi](/team/mohammed-benabbassi)<sup>1</sup> (fall 2022)

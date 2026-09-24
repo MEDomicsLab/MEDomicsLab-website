@@ -165,11 +165,11 @@
         }
       },
       {
-        "name": "Mahdi Ait Lhaj Loutfi",
+        "name": "Mahdi Loutfi",
         "position": "Ph. D. Biological & Biomedical Engineering",
-        "slug": "mahdi-ait-lhaj-loutfi",
+        "slug": "mahdi-loutfi",
         "email": "mahdi.aitlhajloutfi@mail.mcgill.ca",
-        "image": "/images/team/mahdi-ait-lhaj-loutfi/avatar.jpg",
+        "image": "/images/team/mahdi-loutfi/avatar.jpg",
         "expertise": ["Python", "Medical imaging", "Radiomics", "Artificial intelligence"],
         "education": [
           {
@@ -178,20 +178,20 @@
             "year": "2026-"
           },
           {
-            "course": "M. Sc. Computer science",
+            "course": "M. Sc. Computer science, Medical Imaging option",
             "institution": "Université de Sherbrooke, Sherbrooke, Canada",
             "year": "2021-2024"
           },
           {
-            "course": "B. Sc. Computer science",
+            "course": "B. Sc. Computer engineering",
             "institution": "",
             "year": ""
           }
         ],
-        "bio": "Mahdi Ait Lhaj Loutfi is a Ph. D. student in Biological & Biomedical Engineering at McGill University and a member of the MEDomicsLab, where he works on the development of the MEDomics platform. He completed his master’s degree in 2024, with a research project focused on exploring the complexity of radiomic features. In his Ph. D., he continues exploring the potential of radiomics in improving medical diagnosis and treatments. He is also the main architect and maintainer of the MEDiml package, a vital component of MEDomics.",
+        "bio": "Mahdi Loutfi is a Ph. D. student in Biological & Biomedical Engineering at McGill University and a member of the MEDomicsLab, where he continues to work on the development of the MEDomics platform. He completed his master’s degree in 2024, with a research project focused on exploring the complexity of radiomic features. In his Ph. D., he continues exploring the potential of radiomics in improving medical diagnosis and treatments. He is also the main architect and maintainer of the MEDiml package, a component of MEDomics for medical images analysis.",
         "note": "PhD Student",
         "socials": {
-          "linkedin": "https://www.linkedin.com/in/mahdi-ait-lhaj-loutfi-332014253/",
+          "linkedin": "https://www.linkedin.com/in/mahdi-loutfi-332014253/",
           "orcid": "",
           "scholar": "",
           "researchgate": "",

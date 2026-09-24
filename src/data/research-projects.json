@@ -23,7 +23,7 @@
       "kayla-davio-roy",
       "ludmila-amriou",
       "lyna-hiba-chikouche",
-      "mahdi-ait-lhaj-loutfi",
+      "mahdi-loutfi",
       "mamadou-mountagha-bah",
       "mariem-kallel",
       "mohammed-benabbassi",
@@ -48,7 +48,7 @@
     "researchers": [
       "clarisse-cheng",
       "corentin-gauthier",
-      "mahdi-ait-lhaj-loutfi",
+      "mahdi-loutfi",
       "martin-vallieres",
       "mohammed-benabbassi"
     ],
@@ -213,7 +213,7 @@
       "url": "/images/albums/research-radiomics-complexity/summary.svg",
       "alt": "Résumé du projet"
     },
-    "researchers": ["mahdi-ait-lhaj-loutfi", "martin-vallieres"],
+    "researchers": ["mahdi-loutfi", "martin-vallieres"],
     "markdown": "community/research/project-completed/radiomics-complexity/index.md"
   },
   {

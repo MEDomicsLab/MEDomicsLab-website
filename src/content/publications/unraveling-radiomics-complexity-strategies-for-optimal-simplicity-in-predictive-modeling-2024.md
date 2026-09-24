@@ -6,7 +6,7 @@
 
 ## Authors
 
-- [Mahdi Ait Lhaj Loutfi](/team/mahdi-ait-lhaj-loutfi)<sup>1</sup>
+- [Mahdi Loutfi](/team/mahdi-loutfi)<sup>1</sup>
 - [Teodora Boblea Podasca](/team/teodora-boblea-podasca)<sup>2</sup>
 - Alex Zwanenburg<sup>3,4,5,6</sup>
 - Taman Upadhaya<sup>7</sup>

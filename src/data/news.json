@@ -3,6 +3,17 @@
     "year": "2026",
     "months": [
       {
+        "month": "February",
+        "items": [
+          {
+            "title": "Publication of the article \"Optimizing renal mass histology prediction with artificial intelligence using handcrafted radiomics\"",
+            "slug": "2026-02-25-post-renal-mass-radiomics",
+            "contributors": ["Mahdi Loutfi", "Martin Vallières"],
+            "markdown": "community/news/2026-02-25-post-renal-mass-radiomics.md"
+          }
+        ]
+      },
+      {
         "month": "March",
         "items": [
           {
@@ -49,9 +60,9 @@
         "month": "August",
         "items": [
           {
-            "title": "Mahdi Ait Lhaj Loutfi successfully defended his thesis",
+            "title": "Mahdi Loutfi successfully defended his thesis",
             "slug": "2024-08-20-mall-msc",
-            "contributors": ["Mahdi Ait Lhaj Loutfi"],
+            "contributors": ["Mahdi Loutfi"],
             "markdown": "community/news/2024-08-20-mall-msc.md"
           }
         ]
@@ -68,7 +79,7 @@
           {
             "title": "Publication of the article “Unraveling Radiomics Complexity: Strategies for Optimal Simplicity in Predictive Modeling” on arXiv",
             "slug": "2024-07-05-post-arxiv",
-            "contributors": ["Mahdi Ait Lhaj Loutfi", "Teodora Boblea Podasca", "Martin Vallières"],
+            "contributors": ["Mahdi Loutfi", "Teodora Boblea Podasca", "Martin Vallières"],
             "markdown": "community/news/2024-07-05-post-arxiv.md"
           }
         ]
@@ -154,7 +165,7 @@
           {
             "title": "Several awards won at CIRIUS Science Day 2022",
             "slug": "2022-10-20-cirius",
-            "contributors": ["Hakima Laribi", "Olivier Lefebvre", "Mahdi Ait Lhaj Loutfi"],
+            "contributors": ["Hakima Laribi", "Olivier Lefebvre", "Mahdi Loutfi"],
             "markdown": "community/news/2022-10-20-cirius.md"
           }
         ]
@@ -193,7 +204,7 @@
           {
             "title": "Participation in the RBIQ 2022 Scientific Day",
             "slug": "2022-06-02-rbiq",
-            "contributors": ["Mahdi Ait Lhaj Loutfi"],
+            "contributors": ["Mahdi Loutfi"],
             "markdown": "community/news/2022-06-02-rbiq.md"
           }
         ]
