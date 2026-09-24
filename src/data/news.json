@@ -8,10 +8,7 @@
           {
             "title": "Publication of the article \"Optimizing renal mass histology prediction with artificial intelligence using handcrafted radiomics\"",
             "slug": "2026-02-25-post-renal-mass-radiomics",
-            "contributors": [
-              "Mahdi Loutfi",
-              "Martin Vallières"
-            ],
+            "contributors": ["Mahdi Loutfi", "Martin Vallières"],
             "markdown": "community/news/2026-02-25-post-renal-mass-radiomics.md"
           }
         ]

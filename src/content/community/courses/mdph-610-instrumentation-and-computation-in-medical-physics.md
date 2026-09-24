@@ -22,4 +22,3 @@ This course covers electronics, computer programming, and instrumentation as app
 
 - Prerequisite: [MDPH 601](https://coursecatalogue.mcgill.ca/courses/mdph-601/) or [MDPH 614](https://coursecatalogue.mcgill.ca/courses/mdph-614/)
 - Restriction: Not open to students who have taken MDPH 612.
-
