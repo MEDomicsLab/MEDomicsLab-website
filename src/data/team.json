@@ -384,6 +384,41 @@
           "stackoverflow": "",
           "cv": ""
         }
+      },
+      {
+        "name": "Steven Ravary",
+        "position": "MSc candidate in Biological and Biomedical Engineering",
+        "slug": "steven-ravary",
+        "image": "/images/team/steven-ravary/avatar.jpg",
+        "bio": "Steven is a master's student in the MEDomicsLab since 2026. A former healthcare professional, he previously worked on a prior project focused on data processing and validation of open-source datasets. He is working on deep learning and Bayesian methods for hierarchical intermediate multimodal fusion. He will be developing MEDfusion, a module for hierarchical multimodal fusion that will be integrated into the MEDomics platform",
+        "expertise": [
+          "Healthcare AI",
+          "Hierarchical multimodal fusion",
+          "Deep Learning",
+          "Bayesian methods"
+        ],
+        "email": "steven.ravary@mail.mcgill.ca",
+        "education": [
+          {
+            "course": "M.Sc. Biological and Biomedical Engineering",
+            "institution": "McGill University",
+            "year": "2026–"
+          },
+          {
+            "course": "Graduate Diploma Computer Science and Applied AI",
+            "institution": "Concordia University",
+            "year": "2024–2026"
+          },
+          {
+            "course": "PharmD Pharmacy",
+            "institution": "Université Laval",
+            "year": "2011–2015"
+          }
+        ],
+        "socials": {
+          "linkedin": "https://www.linkedin.com/in/steven-ravary-a2853717/",
+          "github": "https://github.com/StRavary"
+        }
       }
     ]
   },
