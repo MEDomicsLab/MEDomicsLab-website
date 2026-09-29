@@ -38,33 +38,6 @@ In progress (2020-today)
 
 General
 
-## Team
-
-- [Andréanne Allaire](/team/andreanne-allaire)<sup>1</sup> (2022-2024)
-- [Brahim Fakri](/team/brahim-fakri)<sup>1</sup> (2022-2025)
-- [Cedrik Lampron](/team/cedrik-lampron)<sup>1</sup> (2024-2025)
-- [Charles Lévesque-Matte](/team/charles-levesque-matte)<sup>1</sup> (fall 2020)
-- [Charles-Olivier Ipperciel](/team/charles-olivier-ipperciel)<sup>1</sup> (2024-2025)
-- [Clarisse Cheng](/team/clarisse-cheng)<sup>1</sup> (summer 2022)
-- [Corentin Gauthier](/team/corentin-gauthier)<sup>1</sup> (summer 2022)
-- [Guillaume Blain](/team/guillaume-blain)<sup>1</sup> (summer 2022-2025)
-- [Hithem Lamri](/team/hithem-lamri)<sup>1</sup> (fall 2022-2023)
-- [Jonathan Perron](/team/jonathan-perron)<sup>1</sup> (2020-2021)
-- [Kayla Davio-Roy](/team/kayla-davio-roy)<sup>1</sup> (summer 2021)
-- [Ludmila Amriou](/team/ludmila-amriou)<sup>1</sup> (2023-2024)
-- [Lyna Hiba Chikouche](/team/lyna-hiba-chikouche)<sup>1</sup> (2023-2024)
-- [Mahdi Loutfi](/team/mahdi-loutfi)<sup>1</sup> (2021-today)
-- [Mamadou Mountagha Bah](/team/mamadou-mountagha-bah)<sup>1</sup> (2020-2021)
-- [Mariem Kallel](/team/mariem-kallel)<sup>1</sup> (2024-today)
-- [Mohammed Benabbassi](/team/mohammed-benabbassi)<sup>1</sup> (fall 2022)
-- [Nicolas Longchamps](/team/nicolas-longchamps)<sup>1</sup> (summer 2022-today)
-- [Ouael Nedjem Eddine SAHBI](/team/ouael-nedjem-eddine-sahbi)<sup>1</sup> (2023-today)
-- [Robin Mailhot](/team/robin-mailhot)<sup>1</sup> (fall 2020)
-- [Sarah Denis](/team/sarah-denis)<sup>1</sup> (2023-2024)
-- [Martin Vallières](/team/martin-vallieres)<sup>1</sup> (2020-today)
-
-<sup>1</sup> Department of Computer Science, Université de Sherbrooke, Sherbrooke (QC), Canada
-
 ## Description
 
 [//]: # "MEDomics platform is an _open-source_ computing platform for integrative data modeling in medicine. It was created by an "

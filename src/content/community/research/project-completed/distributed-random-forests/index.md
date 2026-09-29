@@ -20,15 +20,6 @@ Completed (2022)
 
 Bachelor's
 
-## Team
-
-- Vincent Latourelle<sup>1</sup> (winter 2022)
-- Steven Robidas<sup>1</sup> (winter 2022)
-- [Olivier Lefebvre](/team/olivier-lefebvre)<sup>1</sup> (winter 2022)
-- [Martin Vallières](/team/martin-vallieres)<sup>1</sup> (winter 2022)
-
-<sup>1</sup> Computer science department, Université de Sherbrooke, Sherbrooke (QC), Canada
-
 ## Preamble
 
 This final project was realized by Vincent Latourelle and Steven Robidas in the winter 2022 session as part of

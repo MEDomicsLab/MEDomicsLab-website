@@ -22,17 +22,6 @@ Done (2020-)
 
 General
 
-## Team
-
-- [Fabio Provencher-Flores](/team/fabio-provencher-flores)<sup>1</sup> (summer 2020)
-- [François Marcoux](/team/francois-marcoux)<sup>1</sup> (summer 2020)
-- [Julien Corriveau-Trudel](/team/julien-corriveau-trudel)<sup>1</sup> (summer 2020)
-- [Nicolas Raymond](/team/nicolas-raymond)<sup>1</sup> (2020-)
-- [Olivier Lefebvre](/team/olivier-lefebvre)<sup>1</sup> (2020-)
-- [Martin Vallières](/team/martin-vallieres)<sup>1</sup> (2020-)
-
-<sup>1</sup> Computer science department, Université de Sherbrooke, Sherbrooke (QC), Canada
-
 ## Description
 
 The objective of this project is to write a report to implement the methods associated with the figure below.

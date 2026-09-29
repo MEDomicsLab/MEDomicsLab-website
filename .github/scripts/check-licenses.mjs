@@ -1,10 +1,6 @@
 #!/usr/bin/env node
 /**
- * License compliance: fails if any production dependency carries a license
- * that is not in the allowed list (typical for open-source web apps).
- *
- * "Senior practice" guard against accidentally pulling in GPL/AGPL/SSPL/etc.
- * which would put obligations on the site we don't want.
+ * Fail if a production dependency has a license outside the allow-list.
  */
 import { init } from "license-checker-rseidelsohn";
 import path from "node:path";

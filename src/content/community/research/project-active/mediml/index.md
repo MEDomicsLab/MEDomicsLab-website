@@ -21,16 +21,6 @@ In progress (2022 April-today)
 
 General
 
-## Team
-
-- [Clarisse Cheng](/team/clarisse-cheng)<sup>1</sup> (summer 2022)
-- [Corentin Gauthier](/team/corentin-gauthier)<sup>1</sup> (summer 2022)
-- [Mahdi Loutfi](/team/mahdi-loutfi)<sup>1</sup> (2021-today)
-- [Martin Vallières](/team/martin-vallieres)<sup>1</sup> (2020-today)
-- [Mohammed Benabbassi](/team/mohammed-benabbassi)<sup>1</sup> (fall 2022)
-
-<sup>1</sup> Computer science department, Université de Sherbrooke, Sherbrooke (QC), Canada
-
 ## Description
 
 [MEDiml](https://github.com/MEDomicsLab/MEDiml) is an _open-source_ software for medical image processing and radiomic calculations. It was created by our laboratory in collaboration with the international consortium of medical scientists (<https://medomics.ai>). The software is based on the Python programming language and built with different layers of flexibility via modules, classes and parameters option that allow to load, process, medical images and calculate radiomic features from them. The intrinsic workflow of MEDiml is designed to be adequate to these tasks and offers a [documentation](https://www.mediml.app) rich in tutorials, demonstrations and instructions that are able to introduce novice users to the software. With this software, we aim to provide an open-source platform tested, maintained and standardized with the international norms defined by the [IBSI](https://theibsi.github.io/) for easy and reproducible image processing and radiomics extraction.

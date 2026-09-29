@@ -18,16 +18,6 @@ Completed (2022-2024)
 
 Master's
 
-## Team
-
-- [Teodora Boblea Podasca](/team/teodora-boblea-podasca)<sup>1</sup> (2022-today)
-- [Dr. Patrick Richard](https://www.usherbrooke.ca/recherche/specialistes/details/patrick.richard)<sup>1</sup> (2022-today)
-- [Martin Vallières](/team/martin-vallieres)<sup>2</sup> (2022-today)
-
-<sup>1</sup> Surgery department, Urology service, Université de Sherbrooke, Sherbrooke (QC), Canada
-
-<sup>2</sup> Computer science department, Université de Sherbrooke, Sherbrooke (QC), Canada
-
 ## Description
 
 Despite advances in medical imaging over the past few decades, it cannot accurately determine whether a small (<4 cm)

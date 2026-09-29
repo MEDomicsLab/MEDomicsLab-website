@@ -3,7 +3,7 @@
  * Flags files under public/images/** that are not referenced anywhere in
  * src/data, src/content, src/**.{js,jsx,css}, or index.html.
  *
- * Smart matching:
+ * Reference matching:
  * - For files matching <base>-<size>.<ext>, also looks for the canonical
  *   <base>.<ext> reference (since AvatarImage / SkeletonImage derive variants
  *   at runtime from the canonical filename).

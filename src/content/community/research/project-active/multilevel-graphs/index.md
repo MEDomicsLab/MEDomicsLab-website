@@ -18,13 +18,6 @@ In progress (2022-today)
 
 Doctorate
 
-## Team
-
-- [Hakima Laribi](/team/hakima-laribi)<sup>1</sup> (2022-today)
-- [Martin Vallières](/team/martin-vallieres)<sup>1</sup> (2022-today)
-
-<sup>1</sup> Computer science department, Université de Sherbrooke, Sherbrooke (QC), Canada
-
 ## Motivations
 
 Graph Neural Networks have recently revealed great potential to learn graph representations and capture topological relationships between nodes. The spatial convolution of GNNs enables each node to acknowledge its neighborhood by receiving information through edges and generate meaningful vector representations for the task at hand. Several levels of graph can be built to explore different connections types between data and learn exhaustive representations in distinct contexts.
