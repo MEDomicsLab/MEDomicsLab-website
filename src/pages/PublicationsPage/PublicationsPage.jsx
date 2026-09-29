@@ -1,33 +1,26 @@
 import { useEffect, useMemo, useRef, useState } from "react";
-import { useTranslations } from "../../lib/translations";
 import pubData from "../../data/publications.json";
 import { cn } from "../../lib/utils";
 import EntryRow, { EntryRowBody, EntryRowTitle } from "../../components/EntryRow/EntryRow.jsx";
-import FilterMenu from "../../components/FilterMenu/FilterMenu.jsx";
+import FilterChips from "../../components/FilterChips/FilterChips.jsx";
 import PageShell, { PageTitle } from "../../components/PageShell/PageShell.jsx";
 
-const PUBLICATION_TYPES = ["Journal Papers", "Conference Papers", "Preprints", "Presentations"];
+const PUBLICATION_TYPES = ["Journal Papers", "Conference Papers", "Preprints"];
+
+const TYPE_COUNTS = pubData
+  .flatMap((group) => group.items)
+  .reduce((counts, item) => ({ ...counts, [item.type]: (counts[item.type] ?? 0) + 1 }), {});
+const typeOrder = Object.fromEntries(PUBLICATION_TYPES.map((type, index) => [type, index]));
+
+const TOTAL = Object.values(TYPE_COUNTS).reduce((sum, count) => sum + count, 0);
 
 export default function PublicationsPage() {
-  const { t } = useTranslations();
   const [activeYear, setActiveYear] = useState(pubData[0]?.year ?? "");
   const [isFocused, setIsFocused] = useState(false);
   const sectionRefs = useRef({});
 
-  const [activeTypes, setActiveTypes] = useState(PUBLICATION_TYPES);
-  // Never let the selection empty out: the last active type stays active.
-  const toggleType = (type) =>
-    setActiveTypes((prev) => {
-      if (!prev.includes(type)) return [...prev, type];
-      return prev.length === 1 ? prev : prev.filter((item) => item !== type);
-    });
-
-  const typeOrder = {
-    "Journal Papers": 0,
-    "Conference Papers": 1,
-    Preprints: 2,
-    Presentations: 3,
-  };
+  const [selectedTypes, setSelectedTypes] = useState([]);
+  const activeTypes = selectedTypes.length ? selectedTypes : PUBLICATION_TYPES;
 
   const filteredGroups = useMemo(() => {
     return [...pubData]
@@ -44,6 +37,7 @@ export default function PublicationsPage() {
       .filter((group) => group.items.length > 0)
       .sort((a, b) => b.year - a.year);
   }, [activeTypes]);
+  const shownCount = filteredGroups.reduce((sum, group) => sum + group.items.length, 0);
 
   useEffect(() => {
     if (!filteredGroups.length) return;
@@ -80,6 +74,7 @@ export default function PublicationsPage() {
 
   return (
     <PageShell
+      className="collection-index publications-index"
       ticks={{
         variant: "publications",
         items: filteredGroups.map((group) => ({ id: group.year, label: String(group.year) })),
@@ -87,55 +82,50 @@ export default function PublicationsPage() {
         onSelect: (id) => sectionRefs.current[id]?.scrollIntoView({ behavior: "smooth" }),
       }}
     >
-      <div className="flex flex-col gap-6 md:flex-row md:items-start md:justify-between">
-        <div>
-          <PageTitle className="text-4xl sm:text-5xl md:text-7xl lg:text-9xl mb-6">
-            {t("publications.title", "Publications")}
-          </PageTitle>
-          <p className="text-sm md:text-base text-muted-foreground max-w-3xl mb-16">
-            MEDomicsLab publications are curated for lab-specific outputs. For a broader view of
-            Martin Vallières’ work, see{" "}
-            <a
-              href="https://scholar.google.com/citations?user=fRkjFK4AAAAJ&hl=en"
-              target="_blank"
-              rel="noreferrer"
-              className="text-primary hover:text-white transition-colors"
-            >
-              Google Scholar
-            </a>
-            .
-          </p>
-        </div>
-      </div>
+      <PageTitle className="mb-6">Publications</PageTitle>
+      <p className="text-base md:text-lg text-muted-foreground max-w-3xl mb-10">
+        MEDomicsLab publications are curated for lab-specific outputs. For a broader view of Martin
+        Vallières’ work, see{" "}
+        <a
+          href="https://scholar.google.com/citations?user=fRkjFK4AAAAJ&hl=en"
+          target="_blank"
+          rel="noreferrer"
+          className="text-primary hover:text-white transition-colors"
+        >
+          Google Scholar
+        </a>
+        .
+      </p>
+      <FilterChips
+        className="mb-16"
+        label="Filter publications by type"
+        options={PUBLICATION_TYPES.map((type) => ({ value: type, count: TYPE_COUNTS[type] ?? 0 }))}
+        selected={selectedTypes}
+        onChange={setSelectedTypes}
+        total={TOTAL}
+        shown={shownCount}
+        noun="publications"
+      />
 
       <div className="space-y-20">
-        {filteredGroups.map((yearGroup, yearIndex) => (
+        {filteredGroups.map((yearGroup) => (
           <div
             key={yearGroup.year}
             ref={(element) => {
               sectionRefs.current[yearGroup.year] = element;
             }}
-            className="relative"
+            className="collection-group publication-year scroll-mt-32"
+            data-active={activeYear === yearGroup.year}
           >
             <div className="relative">
-              <div className="flex items-start justify-between gap-6">
-                <h2
-                  className={cn(
-                    "font-bold text-muted-foreground/30 mb-6 transition-all duration-500",
-                    isFocused ? "text-7xl md:text-8xl" : "text-4xl md:text-5xl"
-                  )}
-                >
-                  {yearGroup.year}
-                </h2>
-                {yearIndex === 0 && (
-                  <FilterMenu
-                    options={PUBLICATION_TYPES}
-                    active={activeTypes}
-                    onToggle={toggleType}
-                    label="Filter publications"
-                  />
+              <h2
+                className={cn(
+                  "collection-group-title publication-year-title mb-6 transition-all duration-500",
+                  isFocused ? "text-6xl md:text-7xl" : "text-4xl md:text-5xl"
                 )}
-              </div>
+              >
+                {yearGroup.year}
+              </h2>
               <div className="h-px w-full bg-border" />
             </div>
 
@@ -144,15 +134,13 @@ export default function PublicationsPage() {
                 <EntryRow key={idx} to={`/publications/${pub.slug}`} variant="detailed">
                   <EntryRowBody variant="detailed">
                     {activeTypes.length > 1 && (
-                      <span className="text-[10px] uppercase tracking-widest border border-white/10 rounded-full px-2 py-1 text-white/70 bg-white/5 w-fit mb-3">
+                      <span className="inline-block text-xs uppercase tracking-widest border border-white/10 rounded-full px-3 py-1 text-white/70 bg-white/5 w-fit mb-3">
                         {pub.type}
                       </span>
                     )}
                     <EntryRowTitle variant="detailed">{pub.title}</EntryRowTitle>
-                    <p className="text-sm text-muted-foreground">{pub.contributors.join(", ")}</p>
-                    <p className="text-xs uppercase tracking-widest text-muted-foreground/70">
-                      {pub.journal}
-                    </p>
+                    <p className="text-base text-muted-foreground">{pub.contributors.join(", ")}</p>
+                    <p className="text-sm italic text-muted-foreground/80">{pub.journal}</p>
                   </EntryRowBody>
                 </EntryRow>
               ))}

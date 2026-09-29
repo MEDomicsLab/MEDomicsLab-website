@@ -1,125 +1,118 @@
-import { useEffect, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import { Link } from "react-router-dom";
-import ResearchProject from "../../schemas/ResearchProject";
-import { useTranslations } from "../../lib/translations";
-import { cn } from "../../lib/utils";
+import projects from "../../data/research-projects.json";
 import trackMeta from "../../data/research-tracks.json";
 import PageShell, { PageTitle } from "../../components/PageShell/PageShell.jsx";
+import FilterChips from "../../components/FilterChips/FilterChips.jsx";
+import BrandName from "../../components/BrandName/BrandName.jsx";
 import HoverArrow from "../../components/HoverArrow/HoverArrow.jsx";
 
-const TRACKS = ["General", "Doctorate", "Master's", "Completed"];
+const TAGS = Object.keys(trackMeta);
+
+const tagsOf = (project) =>
+  project.status === "Completed" ? [project.track, "Completed"] : [project.track];
+
+const sortKey = (project) =>
+  (project.status === "Completed" ? TAGS.length : 0) + TAGS.indexOf(project.track);
 
 export default function ResearchPage() {
-  const { t } = useTranslations();
-  const { data: projects, isLoading } = ResearchProject.useGet();
-  const [activeTrack, setActiveTrack] = useState(TRACKS[0]);
+  const [selectedTags, setSelectedTags] = useState([]);
 
-  useEffect(() => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  }, [activeTrack]);
+  const orderedProjects = useMemo(
+    () =>
+      projects
+        .map((project, index) => ({ project, index }))
+        .sort((a, b) => sortKey(a.project) - sortKey(b.project) || a.index - b.index)
+        .map(({ project }) => project),
+    []
+  );
 
-  const filteredProjects = useMemo(() => {
-    if (!projects) return [];
-    if (activeTrack === "Completed") {
-      return projects.filter((project) => project.status === "Completed");
-    }
-    return projects.filter(
-      (project) => project.track === activeTrack && project.status === "Active"
-    );
-  }, [projects, activeTrack]);
+  const tagCounts = useMemo(
+    () =>
+      orderedProjects.reduce((counts, project) => {
+        for (const tag of tagsOf(project)) counts[tag] = (counts[tag] ?? 0) + 1;
+        return counts;
+      }, {}),
+    [orderedProjects]
+  );
 
-  const activeIndex = TRACKS.indexOf(activeTrack);
-  const nextTrack = TRACKS[(activeIndex + 1) % TRACKS.length];
-
-  if (isLoading) {
-    return (
-      <div className="min-h-screen flex items-center justify-center text-xs uppercase tracking-widest">
-        {t("common.loading", "Initializing Data...")}
-      </div>
-    );
-  }
+  const filteredProjects = useMemo(
+    () =>
+      selectedTags.length
+        ? orderedProjects.filter((project) =>
+            tagsOf(project).some((tag) => selectedTags.includes(tag))
+          )
+        : orderedProjects,
+    [orderedProjects, selectedTags]
+  );
 
   return (
-    <PageShell
-      ticks={{
-        variant: "team",
-        items: TRACKS.map((track) => ({ id: track, label: track })),
-        activeId: activeTrack,
-        onSelect: (id) => setActiveTrack(id),
-        tooltip: (item) => trackMeta[item.id]?.description,
-      }}
-    >
-      <PageTitle className="mb-20">{t("research.title", "Research Projects")}</PageTitle>
-      <div className="flex flex-wrap gap-3 mb-10 lg:hidden">
-        {TRACKS.map((track) => (
-          <button
-            key={track}
-            type="button"
-            onClick={() => setActiveTrack(track)}
-            className={cn(
-              "inline-flex items-center rounded-full border px-4 py-2 text-xs uppercase tracking-widest transition-colors",
-              track === activeTrack
-                ? "border-primary text-primary"
-                : "border-border text-muted-foreground hover:text-primary hover:border-primary"
-            )}
-          >
-            {track}
-          </button>
-        ))}
-      </div>
+    <PageShell className="research-index">
+      <PageTitle className="mb-10">Research Projects</PageTitle>
+      <FilterChips
+        className="mb-16"
+        label="Filter research projects by tag"
+        options={TAGS.map((tag) => ({ value: tag, count: tagCounts[tag] ?? 0 }))}
+        selected={selectedTags}
+        onChange={setSelectedTags}
+        total={orderedProjects.length}
+        shown={filteredProjects.length}
+        noun="projects"
+      />
 
-      <div className="grid grid-cols-1 gap-20">
+      <div className="grid grid-cols-1 gap-16">
         {filteredProjects.map((project, index) => (
-          <div key={project.slug} className="group relative border-t border-border pt-12">
+          <Link
+            key={project.slug}
+            to={`/research/${project.slug}`}
+            className="research-project group relative block border-t border-border pt-10"
+          >
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-              <div className="lg:col-span-2 text-xs uppercase tracking-widest text-muted-foreground">
-                0{index + 1} / {project.status}
+              <div className="lg:col-span-1 text-sm tabular-nums text-muted-foreground">
+                {String(index + 1).padStart(2, "0")}
               </div>
 
-              <div className="lg:col-span-6 space-y-8">
-                <div className="inline-flex items-center text-[10px] uppercase tracking-widest px-2 py-1 border border-border text-muted-foreground w-fit">
-                  {project.status}
+              <div className="lg:col-span-7 space-y-6">
+                <div className="flex flex-wrap items-center gap-2">
+                  <span className="inline-flex items-center text-xs uppercase tracking-widest px-3 py-1 border border-border text-muted-foreground transition-colors group-hover:border-primary group-hover:text-primary">
+                    {project.status}
+                  </span>
+                  {tagsOf(project)
+                    .filter((tag) => tag !== "Completed")
+                    .map((tag) => (
+                      <span
+                        key={tag}
+                        title={trackMeta[tag]?.description}
+                        className="inline-flex items-center rounded-full text-sm px-3 py-1 bg-white/5 border border-white/10 text-foreground/80"
+                      >
+                        {tag}
+                      </span>
+                    ))}
                 </div>
-                <h2 className="text-4xl md:text-5xl font-bold tracking-tight uppercase group-hover:text-primary transition-colors">
-                  {project.title}
+                <h2 className="text-3xl md:text-4xl font-bold normal-case tracking-tight leading-tight group-hover:text-primary transition-colors">
+                  <BrandName>{project.title}</BrandName>
                 </h2>
                 <p className="text-lg md:text-xl text-muted-foreground leading-relaxed max-w-2xl">
                   {project.summary}
                 </p>
-                <div className="pt-4">
-                  <Link
-                    to={`/research/${project.slug}`}
-                    className="inline-flex items-center text-xs uppercase tracking-widest border border-border px-6 py-3 hover:bg-primary hover:text-primary-foreground hover:border-primary transition-all"
-                  >
-                    {t("research.view", "View Project")}
-                  </Link>
-                </div>
+                <span className="project-link-label">
+                  View Project <HoverArrow size="lg" />
+                </span>
               </div>
 
-              <div className="lg:col-span-4 relative aspect-[4/3] overflow-hidden bg-secondary/20 rounded-2xl border border-border/60">
+              <div className="project-image lg:col-span-4 relative aspect-[4/3] overflow-hidden bg-secondary/20">
                 {project.coverImage && (
                   <img
                     src={project.coverImage.url}
                     alt={project.coverImage.alt}
-                    className="object-cover w-full h-full grayscale group-hover:grayscale-0 transition-all duration-700 ease-out transform group-hover:scale-105"
+                    loading="lazy"
+                    className="object-cover w-full h-full transition-[scale] duration-700 ease-out group-hover:scale-105"
                   />
                 )}
-                <div className="absolute inset-0 bg-primary/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 mix-blend-overlay" />
               </div>
             </div>
-          </div>
+          </Link>
         ))}
-      </div>
-
-      <div className="mt-20 pt-8 border-t border-border/60 flex justify-end">
-        <button
-          type="button"
-          onClick={() => setActiveTrack(nextTrack)}
-          className="inline-flex items-center text-xs uppercase tracking-widest hover:text-primary transition-colors group"
-        >
-          Next track: {nextTrack}
-          <HoverArrow variant="slide" className="ml-2" />
-        </button>
       </div>
     </PageShell>
   );

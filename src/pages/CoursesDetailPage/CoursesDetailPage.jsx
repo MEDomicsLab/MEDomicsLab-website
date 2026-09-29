@@ -1,40 +1,26 @@
-import { Link, useParams } from "react-router-dom";
-import { ArrowLeft } from "lucide-react";
-import { useTranslations } from "../../lib/translations";
+import { useParams } from "react-router-dom";
+import BackLink from "../../components/BackLink/BackLink.jsx";
+import DetailNotFound from "../../components/DetailNotFound/DetailNotFound.jsx";
 import MarkdownContent from "../../components/MarkdownContent/MarkdownContent";
 import coursesData from "../../data/courses.json";
 import BrandName from "../../components/BrandName/BrandName.jsx";
 
 export default function CoursesDetailPage() {
-  const { t } = useTranslations();
   const { slug } = useParams();
   const course = coursesData.find((entry) => entry.slug === slug);
 
   if (!course) {
-    return (
-      <div className="min-h-screen flex flex-col items-center justify-center space-y-4">
-        <div className="text-xl uppercase tracking-widest font-bold">Course Not Found</div>
-        <Link to="/community/courses" className="text-primary hover:underline text-sm uppercase">
-          Return to Courses
-        </Link>
-      </div>
-    );
+    return <DetailNotFound title="Course" to="/community/courses" linkLabel="Return to Courses" />;
   }
 
   return (
-    <div className="min-h-screen bg-background pb-20">
-      <div className="container mx-auto px-4 md:px-8 pt-24">
-        <Link
-          to="/community/courses"
-          className="inline-flex items-center text-xs uppercase tracking-widest text-primary mb-8 hover:text-white transition-colors"
-        >
-          <ArrowLeft className="w-4 h-4 mr-2" />
-          {t("community.back", "Back to Courses")}
-        </Link>
+    <div className="community-detail min-h-screen bg-background pb-20">
+      <div className="container mx-auto px-4 md:px-8">
+        <BackLink to="/community/courses">Back to Courses</BackLink>
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
           <div className="lg:col-span-8">
-            <h1 className="text-5xl md:text-7xl font-bold uppercase tracking-tighter leading-none">
+            <h1 className="text-3xl md:text-5xl font-bold normal-case tracking-tight leading-tight">
               <BrandName>{course.title}</BrandName>
             </h1>
             {course.markdown ? (
