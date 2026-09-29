@@ -1,0 +1,36 @@
+{
+  "description": "MEDomicsLab develops reliable predictive models from heterogeneous medical data for precision medicine research.",
+  "tagline": "Medical AI & Precision Medicine Research",
+  "image": "/images/homepage.jpg",
+  "pages": {
+    "/": { "title": "Home" },
+    "/research": {
+      "title": "Research",
+      "description": "Explore MEDomicsLab research in medical imaging, radiomics, predictive modelling, and precision medicine."
+    },
+    "/publications": {
+      "title": "Publications",
+      "description": "Browse MEDomicsLab journal papers, conference papers, and preprints in medical artificial intelligence."
+    },
+    "/team": {
+      "title": "Team",
+      "description": "Meet the researchers, students, and collaborators of MEDomicsLab."
+    },
+    "/community/news": {
+      "title": "News",
+      "description": "The latest MEDomicsLab research news, publications, awards, and milestones."
+    },
+    "/community/events": {
+      "title": "Events",
+      "description": "Upcoming and past MEDomicsLab events, presentations, and community activities."
+    },
+    "/community/courses": {
+      "title": "Courses",
+      "description": "MEDomicsLab courses in medical imaging, machine learning, and scientific programming."
+    },
+    "/community/contact": {
+      "title": "Contact",
+      "description": "Get in touch with MEDomicsLab for research and collaboration enquiries."
+    }
+  }
+}
