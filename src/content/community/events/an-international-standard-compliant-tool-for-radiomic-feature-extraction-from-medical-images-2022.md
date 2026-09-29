@@ -1,5 +1,7 @@
 ![RBIQ](/images/albums/medomicslab-rbiq-2022/featured.jpg)
 
+**Venue:** Medical Imaging with Deep Learning 2022
+
 ## Date
 
 2022-06-02

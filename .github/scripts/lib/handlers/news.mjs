@@ -14,6 +14,7 @@ import { validateAgainst } from "../validate.mjs";
 const FIELD = {
   title: "Headline",
   slug: "Suggested slug",
+  category: "Category",
   date: "Publish date",
   contributors: "Contributors / people involved",
   body: "Full content (Markdown)",
@@ -25,7 +26,7 @@ export const news = {
   emoji: "📰",
   buildPlan(fields) {
     const errors = [];
-    const required = ["title", "slug", "date", "contributors", "body"];
+    const required = ["title", "slug", "category", "date", "contributors", "body"];
     for (const key of required) {
       if (!fields[FIELD[key]]) errors.push(`Missing required field: \`${FIELD[key]}\``);
     }
@@ -50,6 +51,7 @@ export const news = {
     const entry = {
       title: fields[FIELD.title].trim(),
       slug,
+      category: fields[FIELD.category].trim(),
       contributors: splitList(fields[FIELD.contributors]),
       markdown: markdownRel,
     };
@@ -84,6 +86,7 @@ export const news = {
       summary: [
         `**Year/month:** ${plan.year} / ${plan.month}`,
         `**Slug:** \`${plan.slug}\``,
+        `**Category:** ${plan.entry.category}`,
         `**Contributors:** ${plan.entry.contributors.join(", ") || "(none)"}`,
       ].join("\n"),
     };

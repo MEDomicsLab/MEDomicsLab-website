@@ -12,7 +12,7 @@ import { publication } from "../lib/handlers/publication.mjs";
 import { news } from "../lib/handlers/news.mjs";
 import { event } from "../lib/handlers/event.mjs";
 import { team } from "../lib/handlers/team.mjs";
-import { writeJson } from "../lib/data-store.mjs";
+import { writeJson, insertCommunityItem, communityOrderProblems } from "../lib/data-store.mjs";
 
 const __filename = fileURLToPath(import.meta.url);
 const here = path.dirname(__filename);
@@ -89,6 +89,7 @@ test("handlers reject impossible dates and empty normalized slugs", () => {
   const invalidNewsDate = news.buildPlan({
     Headline: "Example news",
     "Suggested slug": "example-news",
+    Category: "Other",
     "Publish date": "2026-02-31",
     "Contributors / people involved": "Example Person",
     "Full content (Markdown)": "Example body.",
@@ -196,6 +197,21 @@ test("news handler infers year/month from publish date", () => {
   assert.equal(plan.year, "2025");
   assert.equal(plan.month, "March");
   assert.equal(plan.entry.markdown, `community/news/${plan.slug}.md`);
+  assert.equal(plan.entry.category, "Publications");
+});
+
+test("event handler refuses a kind it has no filter category for", () => {
+  const plan = event.buildPlan({
+    "Event title": "Example event",
+    "Suggested slug": "example-event",
+    "Event kind": "Something new",
+    "Start date": "2026-09-02",
+    Location: "Example room",
+    "Contributors / speakers": "Example Person",
+    "Full description (Markdown)": "Example body.",
+  });
+  assert.equal(plan.ok, false);
+  assert.match(plan.errors.join("\n"), /Unknown event kind/);
 });
 
 test("event handler folds metadata into the markdown body", () => {
@@ -204,7 +220,9 @@ test("event handler folds metadata into the markdown body", () => {
   assert.equal(plan.ok, true, JSON.stringify(plan, null, 2));
   assert.equal(plan.year, "2026");
   assert.equal(plan.month, "May");
-  assert.match(plan.markdownBody, /\*\*Kind:\*\* Thesis defense \(Ph\.D\.\)/);
+  assert.match(plan.markdownBody, /\*\*Kind:\*\* Thesis defense \(PhD\)/);
+  assert.equal(plan.entry.category, "Thesis Defenses");
+  assert.equal(plan.entry.date, "2026-05-01");
   assert.match(plan.markdownBody, /\*\*Location:\*\*/);
 });
 
@@ -347,4 +365,38 @@ test("team apply() writes resized avatar variants and updates team.json", async 
       assert.ok(fs.existsSync(file), `expected ${file}`);
     }
   }
+});
+
+test("insertCommunityItem keeps years and months newest first regardless of insertion order", () => {
+  const item = (slug) => ({ title: slug, slug, contributors: [] });
+  let tree = [{ year: "2025", months: [{ month: "March", items: [item("a")] }] }];
+  tree = insertCommunityItem(tree, { year: "2025", month: "February", item: item("b") });
+  tree = insertCommunityItem(tree, { year: "2025", month: "November", item: item("c") });
+  tree = insertCommunityItem(tree, { year: "2026", month: "January", item: item("d") });
+  assert.deepEqual(
+    tree.map((y) => [y.year, y.months.map((m) => m.month)]),
+    [
+      ["2026", ["January"]],
+      ["2025", ["November", "March", "February"]],
+    ]
+  );
+  assert.deepEqual(communityOrderProblems(tree), []);
+});
+
+test("communityOrderProblems flags reversed months and non-month labels", () => {
+  const tree = [
+    {
+      year: "2024",
+      months: [
+        { month: "February", items: [] },
+        { month: "March", items: [] },
+        { month: "Symposium", items: [] },
+      ],
+    },
+  ];
+  assert.deepEqual(communityOrderProblems(tree), [
+    "2024: March must come before February",
+    '2024: "Symposium" is not a month name',
+  ]);
+  assert.throws(() => insertCommunityItem([], { year: "2024", month: "Symposium", item: {} }));
 });

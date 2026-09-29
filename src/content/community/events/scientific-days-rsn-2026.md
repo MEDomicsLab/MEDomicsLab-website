@@ -1,8 +1,10 @@
-![First Publication Award certificate](/images/albums/2026-first-med3pa-presentation/certificat.png)
+![Olivier Lefebvre presenting at the RSN Scientific Days](/images/albums/2026-rsn-med3pa-presentation/presentation.jpeg)
+
+**Venue:** Réseau Santé Numérique (RSN)
 
 ## Date
 
-2026-04-29
+2026-03-31
 
 ## Authors
 
@@ -10,7 +12,7 @@
 
 ## Summary
 
-Olivier Lefebvre received the First Publication Award from the Faculty of Science, which highlights publications that distinguished themselves both within their field and among all entries submitted for the competition. The award was presented during the Kaféfak conference, where he was invited to give a three-minute presentation to make his research accessible to a broad audience. A $200 prize accompanies the award.
+Olivier Lefebvre presented his research during the **Réseau Santé Numérique (RSN) Scientific Day** at Université Laval. He delivered a seven-minute presentation highlighting the key contributions of his work and its implications for the development of reliable and trustworthy machine-learning models in healthcare. The talk offered an accessible overview of his methodological advances and their relevance to real-world clinical applications.
 
 ## Abstract
 
@@ -34,10 +36,11 @@ By identifying low-confidence predictions, our framework improves model reliabil
 
 Better leveraging confidence in model predictions could improve reliability and trustworthiness, supporting safer and more effective use in health care.
 
-## Poster
+## Presentation
 
-<iframe src="/publications/2026-first-med3pa-presentation/Lefebvre_olivier_kafefak_2026.pdf" width="100%" height="600px" style="border: none; background: transparent;"></iframe>
+<iframe src="/publications/2026-rsn-med3pa-presentation/Lefebvre_olivier_rsn_2026.pdf" width="100%" height="600px" style="border: none; background: transparent;"></iframe>
 
 ## Links
 
-- [Awarded paper in JAMIA](https://doi.org/10.1093/jamia/ocag034)
+- [Event Details](https://event.fourwaves.com/jsrsn/pages)
+- [Related paper in JAMIA](https://doi.org/10.1093/jamia/ocag034)

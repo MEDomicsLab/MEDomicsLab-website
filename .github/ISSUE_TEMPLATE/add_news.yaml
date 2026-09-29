@@ -23,7 +23,7 @@ body:
 
         News items are grouped by year → month. The listing card shows the title only — all prose lives in the markdown file.
 
-        See [`src/content/_templates/news.md`](https://github.com/simonprovost/medomicslab/blob/main/src/content/_templates/news.md) for the markdown skeleton.
+        See [`src/content/_templates/news.md`](https://github.com/MEDomicsLab/MEDomicsLab-website/blob/main/src/content/_templates/news.md) for the markdown skeleton.
   - type: checkboxes
     id: checks
     attributes:
@@ -47,6 +47,20 @@ body:
       label: "Suggested slug"
       description: Lowercase, hyphenated, prefixed by ISO date. Becomes `/community/news/<slug>`.
       placeholder: "2025-03-04-post-longitudinal-oym-article"
+    validations:
+      required: true
+  - type: dropdown
+    id: category
+    attributes:
+      label: "Category"
+      description: Drives the filter on the News page. Saved as `category` in `news.json`.
+      options:
+        - "Publications"
+        - "Thesis Defenses"
+        - "Awards"
+        - "Milestones"
+        - "Conferences"
+        - "Other"
     validations:
       required: true
   - type: input

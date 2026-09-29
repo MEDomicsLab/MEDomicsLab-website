@@ -1,5 +1,7 @@
 ![CIRIUS](/images/albums/cirius-olivier-2022/cirius-blanc.png)
 
+**Venue:** CIRIUS
+
 ## Date
 
 2022-10-20

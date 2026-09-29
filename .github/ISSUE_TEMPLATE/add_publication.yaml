@@ -23,7 +23,7 @@ body:
 
         Publications are grouped by year. The maintainer derives the slug from the title and adds it explicitly to `publications.json` — you do not need to provide one.
 
-        See [`src/content/_templates/publication.md`](https://github.com/simonprovost/medomicslab/blob/main/src/content/_templates/publication.md) for the markdown skeleton.
+        See [`src/content/_templates/publication.md`](https://github.com/MEDomicsLab/MEDomicsLab-website/blob/main/src/content/_templates/publication.md) for the markdown skeleton.
   - type: checkboxes
     id: checks
     attributes:
@@ -62,12 +62,11 @@ body:
     id: type
     attributes:
       label: "Type"
-      description: Must be one of the four values supported by `publications.schema.json`.
+      description: Must be one of the three values supported by `publications.schema.json`. Talks and posters are events now; file them with the "Add an event" form instead.
       options:
         - "Journal Papers"
         - "Conference Papers"
         - "Preprints"
-        - "Presentations"
     validations:
       required: true
   - type: input
@@ -105,7 +104,7 @@ body:
     id: abstract
     attributes:
       label: "Abstract / summary (Markdown)"
-      description: Will be saved to `src/content/publications/<slug>.md` and referenced from `publications.json` via the `markdown` field. Follow the structure in [`src/content/_templates/publication.md`](https://github.com/simonprovost/medomicslab/blob/main/src/content/_templates/publication.md). Markdown image links remain externally hosted, so use stable, public URLs only; they are not copied or optimized by this form.
+      description: Will be saved to `src/content/publications/<slug>.md` and referenced from `publications.json` via the `markdown` field. Follow the structure in [`src/content/_templates/publication.md`](https://github.com/MEDomicsLab/MEDomicsLab-website/blob/main/src/content/_templates/publication.md). Markdown image links remain externally hosted, so use stable, public URLs only; they are not copied or optimized by this form.
       placeholder: "Paste the abstract or a short summary."
     validations:
       required: false

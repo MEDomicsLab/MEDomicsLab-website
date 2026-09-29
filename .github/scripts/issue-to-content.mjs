@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * Issue → PR pipeline (Option 1: rigid, deterministic, no AI).
+ * Convert an Issue Form submission into a validated content change.
  *
  * Reads a GitHub Issue Form submission, parses the body into key/value
  * fields, hands the parsed payload to a per-template handler that
@@ -21,7 +21,7 @@
  * Exit codes:
  *   0  – success (plan + files written, output emitted)
  *   2  – validation failure (errors emitted to GITHUB_OUTPUT for comment)
- *   1  – unexpected error (workflow should fail noisily)
+ *   1  – unexpected error
  */
 import fs from "node:fs";
 import path from "node:path";

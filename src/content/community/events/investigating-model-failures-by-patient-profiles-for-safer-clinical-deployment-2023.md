@@ -1,5 +1,7 @@
 ![T-CAIREM](/images/albums/2023-tcairem-lefebvre-presentation/tcairem.png)
 
+**Venue:** T-CAIREM
+
 ## Date
 
 2023-10-13

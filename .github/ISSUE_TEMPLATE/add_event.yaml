@@ -22,9 +22,9 @@ body:
 
         <em>Feeds <code>src/data/events.json</code> and <code>src/content/community/events/&lt;slug&gt;.md</code>.</em>
 
-        Events are grouped by year → month. Only `title`, `slug`, and `contributors` are stored in `events.json`; everything else (kind, dates, time, location, registration, description) goes into the markdown body.
+        Events are grouped by year → month. Only `title`, `slug`, `category` (derived from the event kind), `date`, and `contributors` are stored in `events.json`; everything else (time, location, registration, description) goes into the markdown body. Talks and posters belong here, not in the publication form.
 
-        See [`src/content/_templates/event.md`](https://github.com/simonprovost/medomicslab/blob/main/src/content/_templates/event.md) for the markdown skeleton.
+        See [`src/content/_templates/event.md`](https://github.com/MEDomicsLab/MEDomicsLab-website/blob/main/src/content/_templates/event.md) for the markdown skeleton.
   - type: checkboxes
     id: checks
     attributes:
@@ -53,14 +53,16 @@ body:
     id: kind
     attributes:
       label: "Event kind"
+      description: Also decides the event's filter category on the Events page (talks and posters → Presentations, defenses → Thesis Defenses, and so on).
       options:
-        - "Thesis defense (Ph.D.)"
-        - "Thesis defense (M.Sc.)"
+        - "Thesis defense (PhD)"
+        - "Thesis defense (MSc)"
         - "Symposium"
         - "Workshop"
         - "Invited talk"
         - "Conference talk / poster"
         - "Lab meeting / seminar"
+        - "Lab life / social"
         - "Outreach"
         - "Other"
     validations:
@@ -109,7 +111,7 @@ body:
     attributes:
       label: "Short blurb"
       description: Optional. The events listing shows the title only; if provided, this becomes the opening paragraph of the markdown file.
-      placeholder: "Mahdi Loutfi's M.Sc. thesis defense."
+      placeholder: "Mahdi Loutfi's MSc thesis defense."
     validations:
       required: false
   - type: textarea

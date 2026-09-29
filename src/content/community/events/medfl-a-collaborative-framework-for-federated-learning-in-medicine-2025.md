@@ -1,5 +1,7 @@
 ![T-CAIREM](/images/albums/2025-tcairem-SAHBI-presentation/tcairem.png)
 
+**Venue:** T-CAIREM
+
 ## Date
 
 2025-11-14

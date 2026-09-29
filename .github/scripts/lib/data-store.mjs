@@ -209,22 +209,52 @@ export function insertPublication(arr, year, item) {
 }
 
 /**
+ * Return a description of every place a year/months tree (news or events)
+ * breaks the site's ordering contract (years newest first, months real
+ * English month names newest first), or an empty array when it is sound.
+ */
+export function communityOrderProblems(arr) {
+  const problems = [];
+  arr.forEach((yearBucket, index) => {
+    const previous = arr[index - 1];
+    if (previous && previous.year.localeCompare(yearBucket.year) <= 0) {
+      problems.push(`year ${yearBucket.year} must come before ${previous.year}`);
+    }
+    yearBucket.months.forEach((monthBucket, monthIndex) => {
+      const position = MONTH_NAMES.indexOf(monthBucket.month);
+      if (position === -1) {
+        problems.push(`${yearBucket.year}: "${monthBucket.month}" is not a month name`);
+        return;
+      }
+      const before = yearBucket.months[monthIndex - 1];
+      if (before && MONTH_NAMES.indexOf(before.month) <= position) {
+        problems.push(`${yearBucket.year}: ${monthBucket.month} must come before ${before.month}`);
+      }
+    });
+  });
+  return problems;
+}
+
+/**
  * Insert a community item (news or event) into a year/months tree.
- * `month` is the human-readable month name; entries are inserted in the
- * most-recent-first order callers already use.
+ * `month` is the human-readable month name. Years and months are kept newest
+ * first by calendar order, not by insertion order, so content added out of
+ * sequence still lands in the right place.
  */
 export function insertCommunityItem(arr, { year, month, item }) {
+  if (!MONTH_NAMES.includes(month)) throw new Error(`Not a month name: ${month}`);
   const next = JSON.parse(JSON.stringify(arr));
   let yearBucket = next.find((y) => y.year === year);
   if (!yearBucket) {
     yearBucket = { year, months: [] };
-    next.unshift(yearBucket);
+    next.push(yearBucket);
     next.sort((a, b) => b.year.localeCompare(a.year));
   }
   let monthBucket = yearBucket.months.find((m) => m.month === month);
   if (!monthBucket) {
     monthBucket = { month, items: [] };
-    yearBucket.months.unshift(monthBucket);
+    yearBucket.months.push(monthBucket);
+    yearBucket.months.sort((a, b) => MONTH_NAMES.indexOf(b.month) - MONTH_NAMES.indexOf(a.month));
   }
   if (monthBucket.items.some((i) => i.slug === item.slug)) {
     throw new Error(`Slug already exists: ${item.slug}`);

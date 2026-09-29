@@ -6,6 +6,10 @@ Pipeline drafted news post
 
 2025-03-04-test-news-post
 
+### Category
+
+Publications
+
 ### Publish date
 
 2025-03-04

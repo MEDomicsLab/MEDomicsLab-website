@@ -26,6 +26,19 @@ const FIELD = {
   additional: "Additional context",
 };
 
+const CATEGORY_BY_KIND = {
+  "Thesis defense (PhD)": "Thesis Defenses",
+  "Thesis defense (MSc)": "Thesis Defenses",
+  Symposium: "Symposiums",
+  Workshop: "Workshops",
+  "Invited talk": "Presentations",
+  "Conference talk / poster": "Presentations",
+  "Lab meeting / seminar": "Seminars",
+  "Lab life / social": "Lab Life",
+  Outreach: "Outreach",
+  Other: "Other",
+};
+
 export const event = {
   label: "event",
   emoji: "📅",
@@ -64,10 +77,20 @@ export const event = {
     if (!slug)
       return { ok: false, errors: [`Suggested slug must contain at least one letter or number.`] };
     const markdownRel = `community/events/${slug}.md`;
+    const kind = fields[FIELD.kind].trim();
+    const category = CATEGORY_BY_KIND[kind];
+    if (!category) {
+      return {
+        ok: false,
+        errors: [`Unknown event kind \`${kind}\`; pick one of the form's options.`],
+      };
+    }
 
     const entry = {
       title: fields[FIELD.title].trim(),
       slug,
+      category,
+      date: startDate,
       contributors: splitList(fields[FIELD.contributors]),
       markdown: markdownRel,
     };
@@ -75,7 +98,7 @@ export const event = {
     const blurb = (fields[FIELD.blurb] || "").trim();
     const lines = [];
     if (blurb) lines.push(blurb, "");
-    lines.push(`**Kind:** ${fields[FIELD.kind].trim()}`);
+    lines.push(`**Kind:** ${kind}`);
     lines.push(`**Date:** ${startDate}${endDate ? ` – ${endDate}` : ""}`);
     if (fields[FIELD.time]) lines.push(`**Time:** ${fields[FIELD.time].trim()}`);
     lines.push(`**Location:** ${fields[FIELD.location].trim()}`);
@@ -119,6 +142,7 @@ export const event = {
       summary: [
         `**Year/month:** ${plan.year} / ${plan.month}`,
         `**Slug:** \`${plan.slug}\``,
+        `**Category:** ${plan.entry.category}`,
         `**Contributors:** ${plan.entry.contributors.join(", ") || "(none)"}`,
       ].join("\n"),
     };

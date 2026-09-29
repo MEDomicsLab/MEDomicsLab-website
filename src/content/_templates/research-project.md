@@ -2,7 +2,9 @@
      Drop a copy of this file under
      src/content/community/research/project-active/<slug>/index.md (or
      project-completed/<slug>/index.md) and add a matching entry to
-     src/data/research-projects.json. -->
+     src/data/research-projects.json. People go in that entry's
+     `researchers` list (team.json slugs); the project page shows them in its
+     sidebar, so there is no Team section here. -->
 
 ![<!-- replace: alt text -->](/images/albums/<!-- replace: album folder -->/featured.png "<!-- caption -->")
 
@@ -13,10 +15,6 @@
 ## Type
 
 <!-- replace: General | Doctorate | Master's -->
-
-## Team
-
-- [<!-- Member Name -->](/team/<!-- member-slug -->) (<!-- dates / role -->)
 
 ## Description
 
