@@ -1,56 +1,67 @@
 {
   "hero": {
-    "label": "Medical Physics Unit | McGill University",
-    "title": "MEDomicsLab",
-    "subtitle": "Martin Vallières' Research Laboratory focusing on the development of predictive models with heterogeneous medical data",
-    "scrollLabel": "Scroll Down",
-    "videoUrl": "https://player.mux.com/woXPgmdOJABon5rpYZeDBKa4c00nDrRLlheSHS2rNfvs?metadata-video-title=final_medomics_homepage_video&video-title=final_medomics_homepage_video",
-    "imageUrl": "images/homepage.jpg",
-    "githubLabel": "Visit GitHub Organization",
-    "githubUrl": "https://github.com/MEDomicsLab",
-    "visionsLabel": "Visit our lab's visions",
-    "visionsUrl": "/visions"
+    "videoUrl": "https://player.mux.com/woXPgmdOJABon5rpYZeDBKa4c00nDrRLlheSHS2rNfvs?metadata-video-title=final_medomics_homepage_video&video-title=final_medomics_homepage_video"
   },
   "brand": {
-    "logoUrl": "/images/logo/medomicslab.png"
+    "name": "MEDomicsLab",
+    "siteUrl": "https://medomicslab.com",
+    "repositoryUrl": "https://github.com/MEDomicsLab/MEDomicsLab-website",
+    "logoUrl": "/images/logo/medomicslab.png",
+    "lightLogoUrl": "/images/homepage-neue/MEDomicsLab-white.png"
   },
   "mission": {
-    "label": "Mission",
-    "text": "We advance precision medicine by building open-source, clinically grounded AI tools and methods spanning medical imaging, multimodal predictive modeling, and privacy-aware collaboration.",
-    "linkTextPrimary": "Explore MEDomicsLab's Visions",
-    "linkTextSecondary": "Explore MEDomicsLab's Research Projects",
-    "linkTextTertiary": "Explore Martin Vallières' Profile"
+    "text": "We advance precision medicine by building open-source, clinically grounded AI tools and methods spanning medical imaging, multimodal predictive modeling, and privacy-aware collaboration."
   },
   "sections": {
-    "focusAreas": {
-      "title": "FEATURED RESEARCH",
-      "viewAll": "View all research"
-    },
-    "recentOutput": {
-      "title": "Featured Papers",
-      "viewAll": "View publications"
-    },
-    "openSource": {
-      "title": "Featured Open-Source",
-      "viewAll": "View all open-source projects",
-      "repositories": [
+    "ecosystem": {
+      "apps": [
         {
           "name": "MEDomics",
-          "description": "MEDomics is an open-source platform designed to advance medical AI by bridging clinical and computational research.",
-          "status": "Active",
-          "url": "https://github.com/MEDomicsLab/MEDomics"
+          "website": "https://medomics.app/",
+          "repo": "https://github.com/MEDomicsLab/MEDomics",
+          "logo": "/images/homepage-neue/MEDomics-white.png",
+          "statsSnapshot": {
+            "stars": 8,
+            "forks": 7
+          }
+        },
+        {
+          "name": "MEDiml",
+          "website": "https://www.mediml.app/",
+          "repo": "https://github.com/MEDomicsLab/MEDiml",
+          "logo": "/images/homepage-neue/MEDiml-white.png",
+          "statsSnapshot": {
+            "stars": 8,
+            "forks": 2
+          }
         },
         {
           "name": "MED3pa",
-          "description": "The MED3pa package is specifically designed to address critical challenges in deploying machine learning models, with a particular focus on the robustness and reliability of models under real-world conditions.",
-          "status": "Active",
-          "url": "https://github.com/MEDomicsLab/MED3pa"
+          "website": "https://www.med3pa.app/",
+          "repo": "https://github.com/MEDomicsLab/MED3pa",
+          "logo": "/images/homepage-neue/MED3pa-white.png",
+          "statsSnapshot": {
+            "stars": 5,
+            "forks": 0
+          }
         },
         {
           "name": "MEDfl",
-          "description": "MEDfl is an open-source Federated Learning (FL) framework designed for both simulation and real-world distributed training in the medical and healthcare domains.",
-          "status": "Active",
-          "url": "https://github.com/MEDomicsLab/MEDfl"
+          "repo": "https://github.com/MEDomicsLab/MEDfl",
+          "logo": "/images/homepage-neue/MEDfl-white.png",
+          "statsSnapshot": {
+            "stars": 3,
+            "forks": 0
+          }
+        },
+        {
+          "name": "MEDprofiles",
+          "repo": "https://github.com/MEDomicsLab/MEDprofiles",
+          "statsSnapshot": {
+            "stars": 0,
+            "forks": 0
+          },
+          "logo": "/images/homepage-neue/MEDprofiles-white.png"
         }
       ]
     }
