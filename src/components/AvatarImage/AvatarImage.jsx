@@ -1,22 +1,12 @@
 import { useMemo, useState } from "react";
 import { cn } from "../../lib/utils";
 import { Skeleton } from "../ui/skeleton";
-
-const buildVariant = (src, size, format) => {
-  if (!src) return src;
-  const dotIndex = src.lastIndexOf(".");
-  if (dotIndex === -1) return src;
-  const base = src.slice(0, dotIndex);
-  return `${base}-${size}.${format}`;
-};
+import { imageSrcSet, imageVariant } from "../../lib/images";
 
 const AVATAR_VARIANT_SIZES = [80, 128, 160, 256];
 
-const buildSrcSet = (src, sizes, format) =>
-  sizes.map((size) => `${buildVariant(src, size, format)} ${size}w`).join(", ");
-
 export default function AvatarImage({ src, alt, size, className, imgClassName, loading = "lazy" }) {
-  const [isLoaded, setIsLoaded] = useState(false);
+  const [isLoaded, setIsLoaded] = useState(import.meta.env.SSR);
   const pixelSizes = useMemo(
     () => AVATAR_VARIANT_SIZES.filter((variantSize) => variantSize >= size),
     [size]
@@ -35,16 +25,16 @@ export default function AvatarImage({ src, alt, size, className, imgClassName, l
       <picture>
         <source
           type="image/avif"
-          srcSet={buildSrcSet(src, pixelSizes, "avif")}
+          srcSet={imageSrcSet(src, pixelSizes, "avif")}
           sizes={sizesAttribute}
         />
         <source
           type="image/webp"
-          srcSet={buildSrcSet(src, pixelSizes, "webp")}
+          srcSet={imageSrcSet(src, pixelSizes, "webp")}
           sizes={sizesAttribute}
         />
         <img
-          src={buildVariant(src, fallbackSize, "webp")}
+          src={imageVariant(src, fallbackSize, "webp")}
           sizes={sizesAttribute}
           alt={alt}
           width={size}

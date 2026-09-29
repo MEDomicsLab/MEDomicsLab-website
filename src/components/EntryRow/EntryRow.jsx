@@ -7,19 +7,19 @@ const VARIANT_STYLES = {
   compact: {
     wrapper: "border-t border-border py-6",
     layout: "flex items-baseline justify-between gap-4",
-    title: "text-lg font-bold uppercase tracking-tight",
+    title: "text-lg md:text-xl font-bold normal-case tracking-tight leading-snug",
     arrow:
       "w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity flex-shrink-0 text-primary",
   },
   detailed: {
     wrapper: "border-b border-border/50 py-8",
     layout: "grid grid-cols-1 md:grid-cols-12 gap-6 items-baseline",
-    title: "text-xl md:text-2xl font-bold leading-tight mt-1",
+    title: "text-xl md:text-2xl font-bold normal-case tracking-tight leading-tight mt-1",
     arrow: "w-6 h-6 text-primary",
   },
 };
 
-const BASE_WRAPPER = "group block pl-[5px] hover:bg-white/5 transition-colors relative";
+const BASE_WRAPPER = "entry-row group block pl-[5px] hover:bg-white/5 transition-colors relative";
 
 function ResolveAnchor({ to, href, target, rel, children, className, ...rest }) {
   if (to) {
@@ -50,9 +50,6 @@ export default function EntryRow({
   variant = "compact",
   className,
   children,
-  hideArrow = false,
-  arrowClassName,
-  arrowWrapperClassName,
   ...rest
 }) {
   const styles = VARIANT_STYLES[variant] ?? VARIANT_STYLES.compact;
@@ -68,22 +65,17 @@ export default function EntryRow({
     >
       <div className={styles.layout}>
         {children}
-        {!hideArrow && (
-          <div
-            className={cn(
-              variant === "detailed" ? "md:col-span-2 flex justify-end" : "flex-shrink-0",
-              arrowWrapperClassName
-            )}
-          >
-            {variant === "detailed" ? (
-              <span className="inline-flex items-center text-xs uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-opacity">
-                <HoverArrow className={cn(styles.arrow, arrowClassName)} />
-              </span>
-            ) : (
-              <HoverArrow className={cn(styles.arrow, arrowClassName)} />
-            )}
-          </div>
-        )}
+        <div
+          className={variant === "detailed" ? "md:col-span-2 flex justify-end" : "flex-shrink-0"}
+        >
+          {variant === "detailed" ? (
+            <span className="inline-flex items-center text-xs uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-opacity">
+              <HoverArrow className={styles.arrow} />
+            </span>
+          ) : (
+            <HoverArrow className={styles.arrow} />
+          )}
+        </div>
       </div>
     </ResolveAnchor>
   );
@@ -96,14 +88,25 @@ export function EntryRowBody({ variant = "compact", className, children }) {
   return <div className={cn("space-y-1", className)}>{children}</div>;
 }
 
-export function EntryRowTitle({ variant = "compact", className, children, ...rest }) {
+export function EntryRowTitle({
+  as: Tag = "h3",
+  variant = "compact",
+  className,
+  children,
+  ...rest
+}) {
   const styles = VARIANT_STYLES[variant] ?? VARIANT_STYLES.compact;
   return (
-    <h3
-      className={cn(styles.title, "group-hover:text-primary transition-colors", className)}
+    <Tag
+      className={cn(
+        "entry-row-title",
+        styles.title,
+        "group-hover:text-primary transition-colors",
+        className
+      )}
       {...rest}
     >
       <BrandName>{children}</BrandName>
-    </h3>
+    </Tag>
   );
 }

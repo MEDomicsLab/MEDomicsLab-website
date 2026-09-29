@@ -2,15 +2,18 @@ import { useEffect, useState } from "react";
 import ReactMarkdown from "react-markdown";
 import rehypeRaw from "rehype-raw";
 import remarkGfm from "remark-gfm";
-import { getMarkdownContent } from "../../lib/markdown";
+import { getCachedMarkdown, getMarkdownContent } from "../../lib/markdown";
 import { cn } from "../../lib/utils";
 import EventGallery from "../EventGallery/EventGallery";
 import SkeletonImage from "../SkeletonImage/SkeletonImage";
 import "./MarkdownContent.css";
 
+const withoutFrontmatter = (content) => content.replace(/^---[\s\S]*?---\s*/, "");
+
 export default function MarkdownContent({ markdownPath, className }) {
-  const [status, setStatus] = useState("idle");
-  const [content, setContent] = useState("");
+  const cached = getCachedMarkdown(markdownPath);
+  const [status, setStatus] = useState(cached === undefined ? "idle" : "ready");
+  const [content, setContent] = useState(() => withoutFrontmatter(cached ?? ""));
 
   useEffect(() => {
     let isMounted = true;
@@ -21,20 +24,30 @@ export default function MarkdownContent({ markdownPath, className }) {
       return undefined;
     }
 
+    const cached = getCachedMarkdown(markdownPath);
+    if (cached !== undefined) {
+      setContent(withoutFrontmatter(cached));
+      setStatus("ready");
+      return undefined;
+    }
+
     setStatus("loading");
+    getMarkdownContent(markdownPath)
+      .then((loaded) => {
+        if (!isMounted) return;
 
-    getMarkdownContent(markdownPath).then((loaded) => {
-      if (!isMounted) return;
-
-      if (loaded) {
-        const sanitized = loaded.replace(/^---[\s\S]*?---\s*/, "");
-        setContent(sanitized);
-        setStatus("ready");
-      } else {
-        setContent("");
-        setStatus("missing");
-      }
-    });
+        if (loaded) {
+          setContent(withoutFrontmatter(loaded));
+          setStatus("ready");
+        } else {
+          setContent("");
+          setStatus("missing");
+        }
+      })
+      .catch((error) => {
+        console.error(`Could not load article: ${markdownPath}`, error);
+        if (isMounted) setStatus("error");
+      });
 
     return () => {
       isMounted = false;
@@ -51,16 +64,24 @@ export default function MarkdownContent({ markdownPath, className }) {
     return <p className="mt-6 text-sm text-muted-foreground">Article file not found.</p>;
   }
 
+  if (status === "error") {
+    return (
+      <p role="alert" className="mt-6 text-sm text-muted-foreground">
+        Unable to load this article. Please reload the page.
+      </p>
+    );
+  }
+
   return (
     <div className={cn("prose prose-invert max-w-none mt-6", className)}>
       <ReactMarkdown
         rehypePlugins={[rehypeRaw]}
         remarkPlugins={[remarkGfm]}
         components={{
-          "dome-gallery": ({ node, ...props }) => (
-            <EventGallery album={props.album ?? props["data-album"]} />
+          "dome-gallery": ({ album, "data-album": dataAlbum }) => (
+            <EventGallery album={album ?? dataAlbum} />
           ),
-          img: ({ node, ...props }) => (
+          img: ({ node: _node, ...props }) => (
             <SkeletonImage
               {...props}
               className={cn("w-full", props.className)}

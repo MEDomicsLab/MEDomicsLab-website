@@ -1,10 +1,8 @@
-import { useEffect, useState } from "react";
 import { cn } from "../../lib/utils";
 
 const SCALE_PROFILES = {
   team: [1.45, 1.2, 1.05, 0.9],
   publications: [1.45, 1.2, 1.05, 0.9],
-  compact: [1.2, 1.05, 0.9],
   timeline: [1.4, 1.15, 1.05, 0.9],
 };
 
@@ -13,30 +11,20 @@ const VARIANT_STYLES = {
     inactiveOpacity: "opacity-40 hover:opacity-100",
     activeText: "text-primary font-bold",
     inactiveText: "text-muted-foreground",
-    tick: "dynamic",
   },
   publications: {
     inactiveOpacity: "opacity-40 hover:opacity-100",
     activeText: "text-primary font-bold",
     inactiveText: "text-muted-foreground",
-    tick: "dynamic",
-  },
-  compact: {
-    inactiveOpacity: "opacity-50 hover:opacity-100",
-    activeText: "text-primary",
-    inactiveText: "text-muted-foreground",
-    tick: "static",
   },
   timeline: {
     inactiveOpacity: "opacity-40 hover:opacity-100",
     activeText: "text-primary font-bold",
     inactiveText: "text-muted-foreground",
-    tick: "dynamic",
   },
 };
 
 const VARIANT_DEFAULTS = {
-  publications: { hideOnScrollAfter: 160 },
   timeline: { className: "w-28 shrink-0" },
 };
 
@@ -45,12 +33,7 @@ const getDockScale = (distance, profile) => {
   return profile[profile.length - 1];
 };
 
-function Tick({ isActive, style = "dynamic" }) {
-  if (style === "static") {
-    return (
-      <div className="absolute -left-[40px] h-[1px] bg-primary transition-all duration-300 w-6" />
-    );
-  }
+function Tick({ isActive }) {
   return (
     <div
       className={cn(
@@ -61,42 +44,30 @@ function Tick({ isActive, style = "dynamic" }) {
   );
 }
 
-function TickButton({ item, isActive, scale, onClick, tooltip, variantStyles, labelClassName }) {
+function TickButton({ item, isActive, scale, onClick, tooltip, variantStyles }) {
   return (
     <button
       type="button"
       onClick={onClick}
       title={tooltip}
+      aria-current={isActive ? "true" : undefined}
       className={cn(
         "group relative flex items-center transition-all duration-300",
         isActive ? "opacity-100" : variantStyles.inactiveOpacity
       )}
       style={{ transform: `scale(${scale})` }}
     >
-      <Tick isActive={isActive} style={variantStyles.tick} />
+      <Tick isActive={isActive} />
       <span
         className={cn(
-          "text-sm font-mono tracking-widest transition-transform duration-300",
-          isActive ? variantStyles.activeText : variantStyles.inactiveText,
-          labelClassName
+          "text-sm tracking-widest transition-transform duration-300",
+          isActive ? variantStyles.activeText : variantStyles.inactiveText
         )}
       >
         {item.label}
       </span>
     </button>
   );
-}
-
-function useHideOnScroll(threshold) {
-  const [hidden, setHidden] = useState(false);
-  useEffect(() => {
-    if (threshold == null) return undefined;
-    const handler = () => setHidden(window.scrollY > threshold);
-    window.addEventListener("scroll", handler, { passive: true });
-    handler();
-    return () => window.removeEventListener("scroll", handler);
-  }, [threshold]);
-  return hidden;
 }
 
 export default function SectionTicks({
@@ -107,24 +78,18 @@ export default function SectionTicks({
   onSelect,
   onSelectSub,
   tooltip,
-  hideOnScrollAfter,
   className,
-  labelClassName,
 }) {
   const variantStyles = VARIANT_STYLES[variant] ?? VARIANT_STYLES.team;
   const profile = SCALE_PROFILES[variant] ?? SCALE_PROFILES.team;
   const defaults = VARIANT_DEFAULTS[variant] ?? {};
-  const resolvedHideOnScrollAfter = hideOnScrollAfter ?? defaults.hideOnScrollAfter;
   const resolvedClassName = cn(defaults.className, className);
   const activeIndex = items.findIndex((item) => item.id === activeId);
-  const isHidden = useHideOnScroll(resolvedHideOnScrollAfter);
 
   return (
     <div
       className={cn(
-        "hidden lg:block sticky top-32 self-start z-20 h-fit",
-        resolvedHideOnScrollAfter != null && "transition-opacity duration-300",
-        resolvedHideOnScrollAfter != null && isHidden && "opacity-0 pointer-events-none",
+        "section-ticks hidden lg:block sticky top-32 self-start z-20 h-fit",
         resolvedClassName
       )}
     >
@@ -145,9 +110,9 @@ export default function SectionTicks({
                   onClick={() => onSelect?.(item.id)}
                   tooltip={tooltip?.(item)}
                   variantStyles={variantStyles}
-                  labelClassName={labelClassName}
                 />
                 <div
+                  aria-hidden={!isActive}
                   className={cn(
                     "transition-all duration-300 overflow-hidden",
                     isActive ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
@@ -162,6 +127,8 @@ export default function SectionTicks({
                         <button
                           key={sub.id}
                           type="button"
+                          tabIndex={isActive ? 0 : -1}
+                          aria-current={isActive && isSubActive ? "true" : undefined}
                           onClick={() => onSelectSub?.(item.id, sub.id)}
                           className={cn(
                             "group relative inline-flex items-center w-fit transition-all duration-300",
@@ -173,7 +140,7 @@ export default function SectionTicks({
                               "uppercase tracking-widest transition-all duration-300",
                               isSubActive
                                 ? "text-xs text-primary"
-                                : "text-[10px] text-muted-foreground",
+                                : "text-xs text-muted-foreground",
                               subDistance > 1 ? "opacity-70" : "opacity-100"
                             )}
                           >
@@ -197,7 +164,6 @@ export default function SectionTicks({
               onClick={() => onSelect?.(item.id)}
               tooltip={tooltip?.(item)}
               variantStyles={variantStyles}
-              labelClassName={labelClassName}
             />
           );
         })}

@@ -1,24 +1,12 @@
-.layout-glass-surface-dynamic {
-  background:
-    linear-gradient(180deg, var(--layout-surface-top) 0%, var(--layout-surface-bottom) 100%),
-    var(--layout-surface-base);
-  box-shadow:
-    inset 0 1px 0 var(--layout-surface-shadow-top),
-    inset 0 0 0 1px var(--layout-surface-shadow-ring);
-  backdrop-filter: blur(var(--layout-surface-blur)) saturate(var(--layout-surface-saturation));
-  -webkit-backdrop-filter: blur(var(--layout-surface-blur))
-    saturate(var(--layout-surface-saturation));
+.nav-dropdown-portal > * {
+  transition: none !important;
 }
 
-.layout-nav-text-dynamic {
-  color: var(--layout-nav-text-color);
+.nav-dropdown-content--in {
+  animation: nav-dropdown-text-in 180ms ease-out both;
 }
 
-.layout-dropdown-text-dynamic {
-  color: var(--layout-dropdown-text-color);
-}
-
-@keyframes liquid-fade-in {
+@keyframes nav-dropdown-text-in {
   from {
     opacity: 0;
   }
@@ -27,9 +15,92 @@
   }
 }
 
-/* The liquid-glass-react library transitions its inset highlight rings into
-   place ~200ms after the glass renders, producing a delayed "stroke" pop on
-   the community modal. Kill the transition so they appear in sync. */
-.community-modal-portal > span {
-  transition: none !important;
+@media (prefers-reduced-motion: reduce) {
+  .nav-dropdown-content--in {
+    animation: none;
+  }
+}
+
+.github-slide {
+  position: relative;
+  padding-left: calc(1.5rem + 5px);
+}
+
+.github-slide__icon {
+  position: absolute;
+  left: 0;
+  display: inline-flex;
+  transition:
+    transform 0.3s ease,
+    opacity 0.3s ease;
+}
+
+.github-slide__text {
+  margin-right: -1rem;
+  transition: transform 0.3s ease;
+}
+
+.github-slide__arrow {
+  display: inline-flex;
+  width: 1rem;
+  justify-content: flex-end;
+  opacity: 0;
+  transform: translateX(100%);
+  transition:
+    transform 0.3s ease,
+    opacity 0.3s ease;
+}
+
+.github-slide:hover .github-slide__icon,
+.github-slide:focus-visible .github-slide__icon {
+  opacity: 0;
+  transform: translateX(100%);
+}
+
+.github-slide:hover .github-slide__text,
+.github-slide:focus-visible .github-slide__text {
+  transform: translateX(calc(-1.5rem - 5px));
+}
+
+.github-slide:hover .github-slide__arrow,
+.github-slide:focus-visible .github-slide__arrow {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .github-slide__icon,
+  .github-slide__text,
+  .github-slide__arrow {
+    transition: none;
+  }
+}
+
+.liquid-nav-anchor,
+.liquid-github-anchor {
+  transition-property: transform, box-shadow, filter, background-color, opacity !important;
+}
+
+@media (max-width: 767px) {
+  .github-slide {
+    touch-action: manipulation;
+  }
+  .github-slide .github-slide__icon {
+    opacity: 1;
+    transform: none;
+  }
+  .github-slide .github-slide__text {
+    transform: none;
+  }
+  .github-slide .github-slide__arrow {
+    opacity: 0;
+    transform: none;
+    margin-left: 8px;
+  }
+  .github-slide[aria-expanded="true"] .github-slide__arrow {
+    opacity: 1;
+  }
+  .github-slide__text {
+    margin-right: 0;
+  }
 }

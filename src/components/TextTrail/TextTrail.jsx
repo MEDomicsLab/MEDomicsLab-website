@@ -1,10 +1,11 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
   CanvasTexture,
   Clock,
   Color,
   LinearFilter,
   LinearMipmapLinearFilter,
+  LinearSRGBColorSpace,
   Mesh,
   OrthographicCamera,
   PlaneGeometry,
@@ -15,6 +16,7 @@ import {
   WebGLRenderer,
   WebGLRenderTarget,
 } from "three";
+import "./TextTrail.css";
 
 const hexToRgb = (hex) => {
   let h = hex.replace("#", "");
@@ -26,12 +28,6 @@ const hexToRgb = (hex) => {
   }
   const n = Number.parseInt(h, 16);
   return [(n >> 16) & 255, (n >> 8) & 255, n & 255];
-};
-
-const loadFont = async (fam) => {
-  if ("fonts" in document) {
-    await document.fonts.load(`64px "${fam}"`);
-  }
 };
 
 const BASE_VERT = `
@@ -85,6 +81,7 @@ const PERSIST_FRAG = `
 uniform sampler2D sampler;
 uniform float time;
 uniform vec2 mousePos;
+uniform vec3 backgroundColor;
 uniform float noiseFactor,noiseScale,rgbPersistFactor,alphaPersistFactor;
 varying vec2 v_uv;
 ${SIMPLEX}
@@ -92,55 +89,79 @@ void main(){
   float a=snoise3(vec3(v_uv*noiseFactor,time*.1))*noiseScale;
   float b=snoise3(vec3(v_uv*noiseFactor,time*.1+100.))*noiseScale;
   vec4 t=texture2D(sampler,v_uv+vec2(a,b)+mousePos*.005);
-  gl_FragColor=vec4(t.xyz*rgbPersistFactor,alphaPersistFactor);
+  gl_FragColor=vec4(mix(backgroundColor,t.xyz,rgbPersistFactor),alphaPersistFactor);
 }`;
 
 const TEXT_FRAG = `
 uniform sampler2D sampler;uniform vec3 color;varying vec2 v_uv;
 void main(){
   vec4 t=texture2D(sampler,v_uv);
-  float alpha=smoothstep(0.1,0.9,t.a);
+  float alpha=smoothstep(0.1,0.6,t.a);
   if(alpha<0.01)discard;
   gl_FragColor=vec4(color,alpha);
 }`;
 
 const TextTrail = ({
-  text = "Trail",
-  fontFamily = "Figtree",
-  fontWeight = "900",
+  text,
+  fontFamily,
+  fontWeight,
   noiseFactor = 1,
   noiseScale = 0.0005,
   rgbPersistFactor = 0.98,
   alphaPersistFactor = 0.95,
-  animateColor = false,
-  startColor = "#ffffff",
-  textColor = "#ffffff",
-  backgroundColor = 0x271e37,
-  backgroundAlpha = 1,
-  colorCycleInterval = 3000,
+  textColor,
+  backgroundColor,
   supersample = 2,
 }) => {
   const ref = useRef(null);
 
-  const persistColor = useRef(hexToRgb(textColor || startColor).map((c) => c / 255));
-  const targetColor = useRef([...persistColor.current]);
+  const [animated, setAnimated] = useState(false);
+  const [reducedMotion, setReducedMotion] = useState(false);
 
   useEffect(() => {
-    if (!ref.current) {
+    const media = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const update = () => setReducedMotion(media.matches);
+    update();
+    media.addEventListener("change", update);
+    return () => media.removeEventListener("change", update);
+  }, []);
+
+  useEffect(() => {
+    const container = ref.current;
+    setAnimated(false);
+    if (
+      !container ||
+      reducedMotion ||
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches
+    )
+      return undefined;
+
+    const size = () => ({
+      w: Math.max(container.clientWidth, 1),
+      h: Math.max(container.clientHeight, 1),
+    });
+    let { w, h } = size();
+    let disposed = false;
+    let fontReady = false;
+    const texCanvas = document.createElement("canvas");
+    const ctx = texCanvas.getContext("2d", { alpha: true, colorSpace: "srgb" });
+    if (!ctx) {
+      console.warn("Text trail unavailable: no 2D canvas context. Showing static text.");
       return undefined;
     }
 
-    const size = () => ({
-      w: ref.current.clientWidth,
-      h: ref.current.clientHeight,
-    });
-    let { w, h } = size();
-
-    const renderer = new WebGLRenderer({ antialias: true, alpha: true });
-    renderer.setClearColor(new Color(backgroundColor), backgroundAlpha);
-    renderer.setPixelRatio(window.devicePixelRatio || 1);
+    let renderer;
+    try {
+      renderer = new WebGLRenderer({ antialias: true, alpha: true });
+    } catch (error) {
+      console.warn("Text trail unavailable. Showing static text.", error);
+      return undefined;
+    }
+    renderer.outputColorSpace = LinearSRGBColorSpace;
+    renderer.setClearColor(new Color(backgroundColor).convertLinearToSRGB(), 1);
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
     renderer.setSize(w, h);
-    ref.current.appendChild(renderer.domElement);
+    container.appendChild(renderer.domElement);
 
     const scene = new Scene();
     const fluidScene = new Scene();
@@ -156,6 +177,9 @@ const TextTrail = ({
         sampler: { value: null },
         time: { value: 0 },
         mousePos: { value: new Vector2(-1, 1) },
+        backgroundColor: {
+          value: new Vector3(...hexToRgb(backgroundColor).map((c) => c / 255)),
+        },
         noiseFactor: { value: noiseFactor },
         noiseScale: { value: noiseScale },
         rgbPersistFactor: { value: rgbPersistFactor },
@@ -171,7 +195,7 @@ const TextTrail = ({
     const labelMat = new ShaderMaterial({
       uniforms: {
         sampler: { value: null },
-        color: { value: new Vector3(...persistColor.current) },
+        color: { value: new Vector3(...hexToRgb(textColor).map((c) => c / 255)) },
       },
       vertexShader: BASE_VERT,
       fragmentShader: TEXT_FRAG,
@@ -180,24 +204,14 @@ const TextTrail = ({
     const label = new Mesh(new PlaneGeometry(Math.min(w, h), Math.min(w, h)), labelMat);
     scene.add(label);
 
-    const texCanvas = document.createElement("canvas");
-    const ctx = texCanvas.getContext("2d", {
-      alpha: true,
-      colorSpace: "srgb",
-    });
-
     const drawText = () => {
       const max = Math.min(renderer.capabilities.maxTextureSize, 4096);
-      const pixelRatio = (window.devicePixelRatio || 1) * supersample;
-      const canvasSize = max * pixelRatio;
+      const canvasSize = Math.min(
+        Math.ceil(Math.min(w, h) * (window.devicePixelRatio || 1) * supersample),
+        max
+      );
       texCanvas.width = canvasSize;
       texCanvas.height = canvasSize;
-      texCanvas.style.width = `${max}px`;
-      texCanvas.style.height = `${max}px`;
-
-      ctx.setTransform(1, 0, 0, 1, 0, 0);
-      ctx.scale(pixelRatio, pixelRatio);
-      ctx.clearRect(0, 0, max, max);
       ctx.imageSmoothingEnabled = true;
       ctx.imageSmoothingQuality = "high";
       ctx.shadowColor = "rgba(255,255,255,0.3)";
@@ -205,15 +219,11 @@ const TextTrail = ({
       ctx.fillStyle = "#fff";
       ctx.textAlign = "center";
       ctx.textBaseline = "middle";
-
       const refSize = 250;
-      ctx.font = `${fontWeight} ${refSize}px ${fontFamily}`;
+      ctx.font = `${fontWeight} ${refSize}px "${fontFamily}"`;
       const width = ctx.measureText(text).width;
-      ctx.font = `${fontWeight} ${(refSize * max) / width}px ${fontFamily}`;
-
-      const cx = max / 2;
-      const cy = max / 2;
-      const offs = [
+      ctx.font = `${fontWeight} ${(refSize * canvasSize) / width}px "${fontFamily}"`;
+      const offsets = [
         [0, 0],
         [0.1, 0],
         [-0.1, 0],
@@ -224,9 +234,9 @@ const TextTrail = ({
         [0.1, -0.1],
         [-0.1, 0.1],
       ];
-      ctx.globalAlpha = 1 / offs.length;
-      offs.forEach(([dx, dy]) => {
-        ctx.fillText(text, cx + dx, cy + dy);
+      ctx.globalAlpha = 1 / offsets.length;
+      offsets.forEach(([dx, dy]) => {
+        ctx.fillText(text, canvasSize / 2 + dx, canvasSize / 2 + dy);
       });
       ctx.globalAlpha = 1;
 
@@ -234,22 +244,31 @@ const TextTrail = ({
       tex.generateMipmaps = true;
       tex.minFilter = LinearMipmapLinearFilter;
       tex.magFilter = LinearFilter;
+      labelMat.uniforms.sampler.value?.dispose();
       labelMat.uniforms.sampler.value = tex;
     };
-
-    loadFont(fontFamily).finally(drawText);
 
     const mouse = [0, 0];
     const target = [0, 0];
     const onMove = (e) => {
-      const r = ref.current.getBoundingClientRect();
+      const r = container.getBoundingClientRect();
       target[0] = ((e.clientX - r.left) / r.width) * 2 - 1;
       target[1] = ((r.top + r.height - e.clientY) / r.height) * 2 - 1;
     };
-    ref.current.addEventListener("pointermove", onMove);
+    const onLeave = () => target.fill(0);
+    container.addEventListener("pointermove", onMove);
+    container.addEventListener("pointerleave", onLeave);
+    const onContextLost = () => {
+      renderer.setAnimationLoop(null);
+      setAnimated(false);
+      console.warn("Text trail WebGL context lost. Showing static text.");
+    };
+    renderer.domElement.addEventListener("webglcontextlost", onContextLost);
 
     const ro = new ResizeObserver(() => {
-      ({ w, h } = size());
+      const next = size();
+      if (next.w === w && next.h === h) return;
+      ({ w, h } = next);
       renderer.setSize(w, h);
       cam.left = -w / 2;
       cam.right = w / 2;
@@ -262,22 +281,12 @@ const TextTrail = ({
       rt1.setSize(w, h);
       label.geometry.dispose();
       label.geometry = new PlaneGeometry(Math.min(w, h), Math.min(w, h));
+      if (fontReady) drawText();
     });
-    ro.observe(ref.current);
+    ro.observe(container);
 
-    const timer = setInterval(() => {
-      if (!textColor) {
-        targetColor.current = [Math.random(), Math.random(), Math.random()];
-      }
-    }, colorCycleInterval);
-
-    renderer.setAnimationLoop(() => {
-      const dt = clock.getDelta();
-      if (animateColor && !textColor) {
-        for (let i = 0; i < 3; i += 1) {
-          persistColor.current[i] += (targetColor.current[i] - persistColor.current[i]) * dt;
-        }
-      }
+    const render = () => {
+      const dt = Math.min(clock.getDelta(), 0.1);
       const speed = dt * 5;
       mouse[0] += (target[0] - mouse[0]) * speed;
       mouse[1] += (target[1] - mouse[1]) * speed;
@@ -285,8 +294,6 @@ const TextTrail = ({
       quadMat.uniforms.mousePos.value.set(mouse[0], mouse[1]);
       quadMat.uniforms.sampler.value = rt1.texture;
       quadMat.uniforms.time.value = clock.getElapsedTime();
-      labelMat.uniforms.color.value.set(...persistColor.current);
-
       renderer.autoClearColor = false;
       renderer.setRenderTarget(rt0);
       renderer.clearColor();
@@ -296,19 +303,35 @@ const TextTrail = ({
       renderer.render(fluidScene, cam);
       renderer.render(scene, cam);
       [rt0, rt1] = [rt1, rt0];
-    });
+    };
+
+    document.fonts.load(`${fontWeight} 64px "${fontFamily}"`).then(
+      () => {
+        if (disposed) return;
+        fontReady = true;
+        drawText();
+        renderer.setAnimationLoop(render);
+        setAnimated(true);
+      },
+      (error) => {
+        if (!disposed) console.warn("Text trail font unavailable. Showing static text.", error);
+      }
+    );
 
     return () => {
+      disposed = true;
       renderer.setAnimationLoop(null);
-      clearInterval(timer);
-      ref.current?.removeEventListener("pointermove", onMove);
+      container.removeEventListener("pointermove", onMove);
+      container.removeEventListener("pointerleave", onLeave);
+      renderer.domElement.removeEventListener("webglcontextlost", onContextLost);
       ro.disconnect();
-      ref.current?.removeChild(renderer.domElement);
+      container.removeChild(renderer.domElement);
       renderer.dispose();
       rt0.dispose();
       rt1.dispose();
       quadMat.dispose();
       quad.geometry.dispose();
+      labelMat.uniforms.sampler.value?.dispose();
       labelMat.dispose();
       label.geometry.dispose();
     };
@@ -320,16 +343,22 @@ const TextTrail = ({
     noiseScale,
     rgbPersistFactor,
     alphaPersistFactor,
-    animateColor,
-    startColor,
     textColor,
     backgroundColor,
-    backgroundAlpha,
-    colorCycleInterval,
     supersample,
+    reducedMotion,
   ]);
 
-  return <div className="h-full w-full" ref={ref} />;
+  return (
+    <div
+      className="text-trail"
+      data-animated={animated}
+      style={{ fontFamily, fontWeight, color: textColor, backgroundColor }}
+      ref={ref}
+    >
+      <span className="text-trail-static">{text}</span>
+    </div>
+  );
 };
 
 export default TextTrail;

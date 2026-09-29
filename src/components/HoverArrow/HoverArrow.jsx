@@ -4,7 +4,7 @@ import { cn } from "../../lib/utils";
 const VARIANTS = {
   rotate: {
     Icon: ArrowUpRight,
-    motion: "group-hover:rotate-45 hover:rotate-45",
+    motion: "group-hover:rotate-45 group-focus-within:rotate-45 hover:rotate-45",
   },
   slide: {
     Icon: ArrowRight,
@@ -34,7 +34,13 @@ export default function HoverArrow({ variant = "rotate", size = "sm", className,
 
   return (
     <Icon
-      className={cn("transition-transform duration-300 ease-out", motion, sizeClass, className)}
+      aria-hidden="true"
+      className={cn(
+        "shrink-0 transition-transform duration-300 ease-out motion-reduce:transition-none",
+        motion,
+        sizeClass,
+        className
+      )}
       {...props}
     />
   );

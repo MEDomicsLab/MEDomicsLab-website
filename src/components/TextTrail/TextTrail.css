@@ -1,0 +1,21 @@
+.text-trail {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 100%;
+  height: 100%;
+  container-type: inline-size;
+}
+.text-trail-static {
+  font-size: min(55cqw, 55svh);
+  line-height: 1;
+  letter-spacing: -0.04em;
+}
+.text-trail canvas {
+  position: absolute;
+  inset: 0;
+}
+.text-trail[data-animated="false"] canvas,
+.text-trail[data-animated="true"] .text-trail-static {
+  visibility: hidden;
+}
