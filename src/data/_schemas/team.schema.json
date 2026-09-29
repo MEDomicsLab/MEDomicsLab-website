@@ -8,7 +8,10 @@
     "required": ["year", "members"],
     "additionalProperties": false,
     "properties": {
-      "year": { "type": "string", "minLength": 1 },
+      "year": {
+        "type": "string",
+        "minLength": 1
+      },
       "members": {
         "type": "array",
         "items": {
@@ -16,16 +19,108 @@
           "required": ["name", "position", "slug", "image"],
           "additionalProperties": false,
           "properties": {
-            "name": { "type": "string", "minLength": 1 },
-            "position": { "type": "string", "minLength": 1 },
-            "slug": { "type": "string", "pattern": "^[a-z0-9-]+$" },
-            "email": { "type": "string" },
-            "image": { "type": "string", "minLength": 1 },
-            "bio": { "type": "string" },
-            "note": { "type": "string" },
+            "name": {
+              "type": "string",
+              "minLength": 1
+            },
+            "position": {
+              "type": "string",
+              "minLength": 1
+            },
+            "slug": {
+              "type": "string",
+              "pattern": "^[a-z0-9-]+$"
+            },
+            "email": {
+              "type": "string"
+            },
+            "image": {
+              "type": "string",
+              "minLength": 1
+            },
+            "bio": {
+              "type": "string"
+            },
+            "note": {
+              "type": "string"
+            },
+            "degreeSuffix": {
+              "type": "string",
+              "description": "Optional qualification displayed after the PI name on the homepage."
+            },
+            "appointments": {
+              "type": "array",
+              "description": "Appointments displayed in the homepage PI block, in display order.",
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": ["start", "title", "department", "university", "href", "logo"],
+                "properties": {
+                  "start": { "type": "string", "pattern": "^\\d{4}$" },
+                  "end": { "type": "string", "pattern": "^\\d{4}$" },
+                  "title": { "type": "string", "minLength": 1 },
+                  "department": { "type": "string", "minLength": 1 },
+                  "university": { "type": "string", "minLength": 1 },
+                  "href": { "type": "string", "format": "uri" },
+                  "logo": { "type": "string", "minLength": 1 }
+                }
+              }
+            },
+            "affiliations": {
+              "type": "array",
+              "description": "Secondary appointments, shown as 'Role | Organization' lines on the member's profile. An optional URL links the organization to an institutional profile or official website.",
+              "items": {
+                "type": "object",
+                "required": ["role", "organization"],
+                "additionalProperties": false,
+                "properties": {
+                  "role": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "organization": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "url": {
+                    "type": "string",
+                    "format": "uri",
+                    "pattern": "^https?://"
+                  }
+                }
+              }
+            },
+            "institutes": {
+              "type": "array",
+              "description": "Institute directory pages, shown as small logo links under the PI on the homepage.",
+              "items": {
+                "type": "object",
+                "required": ["name", "url", "logo"],
+                "additionalProperties": false,
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "url": {
+                    "type": "string",
+                    "format": "uri"
+                  },
+                  "logo": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "wide": {
+                    "type": "boolean"
+                  }
+                }
+              }
+            },
             "expertise": {
               "type": "array",
-              "items": { "type": "string" }
+              "items": {
+                "type": "string"
+              }
             },
             "education": {
               "type": "array",
@@ -34,9 +129,15 @@
                 "required": ["course", "institution", "year"],
                 "additionalProperties": false,
                 "properties": {
-                  "course": { "type": "string" },
-                  "institution": { "type": "string" },
-                  "year": { "type": "string" }
+                  "course": {
+                    "type": "string"
+                  },
+                  "institution": {
+                    "type": "string"
+                  },
+                  "year": {
+                    "type": "string"
+                  }
                 }
               }
             },
@@ -44,13 +145,27 @@
               "type": "object",
               "additionalProperties": false,
               "properties": {
-                "linkedin": { "type": "string" },
-                "orcid": { "type": "string" },
-                "scholar": { "type": "string" },
-                "researchgate": { "type": "string" },
-                "github": { "type": "string" },
-                "stackoverflow": { "type": "string" },
-                "cv": { "type": "string" }
+                "linkedin": {
+                  "type": "string"
+                },
+                "orcid": {
+                  "type": "string"
+                },
+                "scholar": {
+                  "type": "string"
+                },
+                "researchgate": {
+                  "type": "string"
+                },
+                "github": {
+                  "type": "string"
+                },
+                "stackoverflow": {
+                  "type": "string"
+                },
+                "cv": {
+                  "type": "string"
+                }
               }
             }
           }

@@ -4,10 +4,30 @@
     "members": [
       {
         "name": "Martin Vallières",
-        "position": "Associate Professor, Department of Oncology",
+        "position": "Associate Professor | Medical Physics Unit, Department of Oncology, McGill University",
         "slug": "martin-vallieres",
         "email": "martin.vallieres@mcgill.ca",
         "image": "/images/team/martin-vallieres/avatar.jpg",
+        "degreeSuffix": "PhD",
+        "appointments": [
+          {
+            "start": "2025",
+            "title": "Associate Professor",
+            "department": "Department of Oncology",
+            "university": "McGill University",
+            "href": "https://www.mcgill.ca/",
+            "logo": "/images/logo/institutes/mcgill-university-crest.webp"
+          },
+          {
+            "start": "2020",
+            "end": "2025",
+            "title": "Assistant Professor",
+            "department": "Department of Computer Science",
+            "university": "Université de Sherbrooke",
+            "href": "https://www.usherbrooke.ca/",
+            "logo": "/images/logo/institutes/universite-sherbrooke-crest.svg"
+          }
+        ],
         "expertise": [
           "Precision medicine via medical image analysis",
           "Machine learning",
@@ -32,18 +52,73 @@
             "year": "2017-2018"
           },
           {
-            "course": "Ph. D. Medical physics",
+            "course": "PhD Medical physics",
             "institution": "McGill University, Montreal, Canada",
             "year": "2017"
           },
           {
-            "course": "M. Sc. Medical physics",
+            "course": "MSc Medical Radiation Physics",
             "institution": "McGill University, Montreal, Canada",
             "year": "2012"
+          },
+          {
+            "course": "Bachelor of Engineering in Engineering Physics",
+            "institution": "École Polytechnique de Montréal, Montreal, Canada",
+            "year": "2010"
           }
         ],
         "bio": "Martin Vallières is devoting much of his work on the development of integrative modeling solutions for heterogeneous medical data. He was Assistant Professor, Department of Computer Science, Université de Sherbrooke between 2020 - 2025. He leads the development of MEDomics (https://medomics.app/), an open-source platform for end-to-end predictive modeling in medicine.",
         "note": "Director",
+        "affiliations": [
+          {
+            "role": "Associate Member",
+            "organization": "Dept. of Biomedical Engineering, McGill University",
+            "url": "https://www.mcgill.ca/bme/"
+          },
+          {
+            "role": "Investigator",
+            "organization": "Research Institute of the McGill University Health Centre",
+            "url": "https://rimuhc.ca/-/martin-vallieres"
+          },
+          {
+            "role": "Investigator",
+            "organization": "Lady Davis Institute for Medical Research",
+            "url": "https://www.ladydavis.ca/en/researcher/martin-vallieres/"
+          },
+          {
+            "role": "Associate Academic Member",
+            "organization": "Mila - Quebec AI Institute",
+            "url": "https://mila.quebec/en/directory/martin-vallieres"
+          },
+          {
+            "role": "Co-Director",
+            "organization": "Réseau santé numérique",
+            "url": "https://rsn.quebec/team/martin-vallieres-phd/"
+          }
+        ],
+        "institutes": [
+          {
+            "name": "RSN – Réseau santé numérique",
+            "url": "https://rsn.quebec/en/team/martin-vallieres-phd/",
+            "logo": "/images/logo/institutes/rsn.png"
+          },
+          {
+            "name": "Mila - Quebec AI Institute",
+            "url": "https://mila.quebec/en/directory/martin-vallieres",
+            "logo": "/images/logo/institutes/mila-mark.svg"
+          },
+          {
+            "name": "Lady Davis Institute for Medical Research",
+            "url": "https://www.ladydavis.ca/en/researcher/martin-vallieres/",
+            "logo": "/images/logo/institutes/ladydavis.png"
+          },
+          {
+            "name": "Research Institute of the McGill University Health Centre (RI-MUHC)",
+            "url": "https://rimuhc.ca/",
+            "logo": "/images/logo/institutes/ri-muhc.svg",
+            "wide": true
+          }
+        ],
         "socials": {
           "linkedin": "https://www.linkedin.com/in/martvallieres/",
           "orcid": "",
@@ -61,19 +136,19 @@
     "members": [
       {
         "name": "Hakima Laribi",
-        "position": "Ph. D. Computer science",
+        "position": "PhD Computer science",
         "slug": "hakima-laribi",
         "email": "Hakima.Laribi@USherbrooke.ca",
         "image": "/images/team/hakima-laribi/avatar.jpeg",
         "expertise": ["Knowledge graphs", "Graph neural networks", "Health informatics"],
         "education": [
           {
-            "course": "Ph. D. Computer science",
+            "course": "PhD Computer science",
             "institution": "Université de Sherbrooke, Sherbrooke, Canada",
             "year": "2022-"
           },
           {
-            "course": "Engineering Diploma, M. Sc. Computer science",
+            "course": "Engineering Diploma, MSc Computer science",
             "institution": "École nationale Supérieure d'Informatique, Alger, Algeria",
             "year": "2017-2022"
           }
@@ -92,7 +167,7 @@
       },
       {
         "name": "Juan Duran",
-        "position": "Ph. D. Biomedical Engineering",
+        "position": "PhD Biomedical Engineering",
         "slug": "juan-duran",
         "email": "juan.duran@mail.mcgill.ca",
         "image": "/images/team/juan-duran/avatar.jpg",
@@ -106,7 +181,7 @@
         ],
         "education": [
           {
-            "course": "Ph. D.  Biomedical Engineering",
+            "course": "PhD Biomedical Engineering",
             "institution": "McGill University, Montreal, Canada",
             "year": "2023-"
           },
@@ -130,7 +205,7 @@
       },
       {
         "name": "Olivier Lefebvre",
-        "position": "Ph. D. Computer science",
+        "position": "PhD Computer science",
         "slug": "olivier-lefebvre",
         "email": "Olivier.Lefebvre3@USherbrooke.ca",
         "image": "/images/team/olivier-lefebvre/avatar.jpeg",
@@ -142,12 +217,12 @@
         ],
         "education": [
           {
-            "course": "Ph. D. Computer science",
+            "course": "PhD Computer science",
             "institution": "Université de Sherbrooke, Sherbrooke, Canada",
             "year": "2021-"
           },
           {
-            "course": "B. Sc. Mathematics",
+            "course": "BSc Mathematics",
             "institution": "Université de Sherbrooke, Sherbrooke, Canada",
             "year": "2017-2020"
           }
@@ -166,29 +241,29 @@
       },
       {
         "name": "Mahdi Loutfi",
-        "position": "Ph. D. Biological & Biomedical Engineering",
+        "position": "PhD Biological & Biomedical Engineering",
         "slug": "mahdi-loutfi",
         "email": "mahdi.aitlhajloutfi@mail.mcgill.ca",
         "image": "/images/team/mahdi-loutfi/avatar.jpg",
         "expertise": ["Python", "Medical imaging", "Radiomics", "Artificial intelligence"],
         "education": [
           {
-            "course": "Ph. D. Biological & Biomedical Engineering",
+            "course": "PhD Biological & Biomedical Engineering",
             "institution": "McGill University, Montreal, Canada",
             "year": "2026-"
           },
           {
-            "course": "M. Sc. Computer science, Medical Imaging option",
+            "course": "MSc Computer science, Medical Imaging option",
             "institution": "Université de Sherbrooke, Sherbrooke, Canada",
             "year": "2021-2024"
           },
           {
-            "course": "B. Sc. Computer engineering",
+            "course": "BSc Computer engineering",
             "institution": "",
             "year": ""
           }
         ],
-        "bio": "Mahdi Loutfi is a Ph. D. student in Biological & Biomedical Engineering at McGill University and a member of the MEDomicsLab, where he continues to work on the development of the MEDomics platform. He completed his master’s degree in 2024, with a research project focused on exploring the complexity of radiomic features. In his Ph. D., he continues exploring the potential of radiomics in improving medical diagnosis and treatments. He is also the main architect and maintainer of the MEDiml package, a component of MEDomics for medical images analysis.",
+        "bio": "Mahdi Loutfi is a PhD student in Biological & Biomedical Engineering at McGill University and a member of the MEDomicsLab, where he continues to work on the development of the MEDomics platform. He completed his master’s degree in 2024, with a research project focused on exploring the complexity of radiomic features. In his PhD, he continues exploring the potential of radiomics in improving medical diagnosis and treatments. He is also the main architect and maintainer of the MEDiml package, a component of MEDomics for medical images analysis.",
         "note": "PhD Student",
         "socials": {
           "linkedin": "https://www.linkedin.com/in/mahdi-loutfi-332014253/",
@@ -202,7 +277,7 @@
       },
       {
         "name": "Elodie Gillard",
-        "position": "M. Sc. Radiation sciences and medical imaging",
+        "position": "MSc Radiation sciences and medical imaging",
         "slug": "elodie-gillard",
         "email": "elodie.gillard@usherbrooke.ca",
         "image": "/images/team/elodie-gillard/avatar.jpg",
@@ -213,7 +288,7 @@
         ],
         "education": [
           {
-            "course": "M. Sc. Radiation sciences and medical imaging",
+            "course": "MSc Radiation sciences and medical imaging",
             "institution": "Université de Sherbrooke, Sherbrooke, Canada",
             "year": "2024-2026"
           },
@@ -223,12 +298,12 @@
             "year": "2019-2023"
           },
           {
-            "course": "B.Sc. Biomedical sciences",
+            "course": "BSc Biomedical sciences",
             "institution": "Université Laval, Quebec City, Canada",
             "year": "2016-2019"
           }
         ],
-        "bio": "Elodie Gillard is a M.Sc. student in radiation sciences and medical imaging at the MEDomicsLab under the supervision of Pr Martin Vallières in co-direction with Pr David Mathieu, Pr David Fortin and Pr Martin Lepage. Her project aims to predict adverse radiation effects following stereotactic radiotherapy treatment to brain tumours using artificial intelligence, specifically radiomics and machine learning.",
+        "bio": "Elodie Gillard is an MSc student in radiation sciences and medical imaging at the MEDomicsLab under the supervision of Pr Martin Vallières in co-direction with Pr David Mathieu, Pr David Fortin and Pr Martin Lepage. Her project aims to predict adverse radiation effects following stereotactic radiotherapy treatment to brain tumours using artificial intelligence, specifically radiomics and machine learning.",
         "note": "MSc Student",
         "socials": {
           "linkedin": "",
@@ -241,39 +316,8 @@
         }
       },
       {
-        "name": "Mariem Kallel",
-        "position": "M. Sc. Software Engineering",
-        "slug": "mariem-kallel",
-        "email": "mariem.kallel@usherbrooke.ca",
-        "image": "/images/team/mariem-kallel/avatar.jpg",
-        "expertise": ["Human-Computer Interfaces", "Health Informatics", "Artificial Intelligence"],
-        "education": [
-          {
-            "course": "M. Sc. Software Engineering",
-            "institution": "Université de Sherbrooke, Sherbrooke, Canada",
-            "year": "2024-2026"
-          },
-          {
-            "course": "Engineering Diploma, M. Sc. Computer science",
-            "institution": "National School of Computer Science, University of Manouba, Tunis, Tunisia",
-            "year": "2018-2023"
-          }
-        ],
-        "bio": "Mariem Kallel is a M.Sc. student in Software Engineering at the MEDomicsLab since Winter 2024. Her research project mainly focuses on optimizing the MEDomics platform interface to encourage widespread understanding and adoption among different users, especially physicians.",
-        "note": "MSc Student",
-        "socials": {
-          "linkedin": "https://ca.linkedin.com/in/mariem-kallel-4a80201b5",
-          "orcid": "",
-          "scholar": "",
-          "researchgate": "",
-          "github": "https://github.com/mariemkallel16",
-          "stackoverflow": "",
-          "cv": ""
-        }
-      },
-      {
         "name": "Ouael Nedjem Eddine SAHBI",
-        "position": "M. Sc. Software Engineering",
+        "position": "MSc Software Engineering",
         "slug": "ouael-nedjem-eddine-sahbi",
         "email": "ouael2019esi@gmail.com",
         "image": "/images/team/ouael-nedjem-eddine-sahbi/avatar.jpg",
@@ -286,12 +330,12 @@
         ],
         "education": [
           {
-            "course": "M. Sc. Software Engineering",
+            "course": "MSc Software Engineering",
             "institution": "Université de Sherbrooke, Sherbrooke, Canada",
             "year": "2025-2027"
           },
           {
-            "course": "Engineering Degree, M. Sc. Computer science",
+            "course": "Engineering Degree, MSc Computer science",
             "institution": "Higher National School of Computer Science, Algiers, Algeria",
             "year": "2019-2024"
           }
@@ -310,19 +354,19 @@
       },
       {
         "name": "Moustafa Amine Bezzahi",
-        "position": "M. Sc. Software Engineering",
+        "position": "MSc Software Engineering",
         "slug": "moustafa-amine-bezzahi",
         "email": "moustafa.amine.bezzahi@usherbrooke.ca",
         "image": "/images/team/moustafa-amine-bezzahi/avatar.jpg",
         "expertise": ["Deep learning", "Computer vision", "Medical Imaging", "Digital Health"],
         "education": [
           {
-            "course": "M. Sc. Software Engineering",
+            "course": "MSc Software Engineering",
             "institution": "Université de Sherbrooke, Sherbrooke, Canada",
             "year": "2025-2027"
           },
           {
-            "course": "Engineering Degree, M. Sc. Computer science",
+            "course": "Engineering Degree, MSc Computer science",
             "institution": "Higher National School of Computer Science, Algiers, Algeria",
             "year": "2019-2024"
           }
@@ -340,26 +384,6 @@
         }
       },
       {
-        "name": "Marc-Alexandre Parent",
-        "position": "Research professional",
-        "slug": "marc-alexandre-parent",
-        "email": "",
-        "image": "/images/team/marc-alexandre-parent/avatar.jpg",
-        "expertise": ["Python"],
-        "education": [],
-        "bio": "",
-        "note": "Research Assistant / Intern",
-        "socials": {
-          "linkedin": "",
-          "orcid": "",
-          "scholar": "",
-          "researchgate": "",
-          "github": "https://github.com/m-alexparent",
-          "stackoverflow": "",
-          "cv": ""
-        }
-      },
-      {
         "name": "Nicolas Longchamps",
         "position": "Research assistant",
         "slug": "nicolas-longchamps",
@@ -368,7 +392,7 @@
         "expertise": ["Robotics"],
         "education": [
           {
-            "course": "B. Eng. Robotic engineering",
+            "course": "BEng Robotic engineering",
             "institution": "Université de Sherbrooke, Sherbrooke, Canada",
             "year": ""
           }
@@ -400,7 +424,7 @@
         "email": "steven.ravary@mail.mcgill.ca",
         "education": [
           {
-            "course": "M.Sc. Biological and Biomedical Engineering",
+            "course": "MSc Biological and Biomedical Engineering",
             "institution": "McGill University",
             "year": "2026–"
           },
@@ -425,6 +449,37 @@
   {
     "year": "2025",
     "members": [
+      {
+        "name": "Mariem Kallel",
+        "position": "MSc Software Engineering",
+        "slug": "mariem-kallel",
+        "email": "mariem.kallel@usherbrooke.ca",
+        "image": "/images/team/mariem-kallel/avatar.jpg",
+        "expertise": ["Human-Computer Interfaces", "Health Informatics", "Artificial Intelligence"],
+        "education": [
+          {
+            "course": "MSc Software Engineering",
+            "institution": "Université de Sherbrooke, Sherbrooke, Canada",
+            "year": "2024-2026"
+          },
+          {
+            "course": "Engineering Diploma, MSc Computer science",
+            "institution": "National School of Computer Science, University of Manouba, Tunis, Tunisia",
+            "year": "2018-2023"
+          }
+        ],
+        "bio": "Mariem Kallel is an MSc student in Software Engineering at the MEDomicsLab since Winter 2024. Her research project mainly focuses on optimizing the MEDomics platform interface to encourage widespread understanding and adoption among different users, especially physicians.",
+        "note": "Former Member",
+        "socials": {
+          "linkedin": "https://ca.linkedin.com/in/mariem-kallel-4a80201b5",
+          "orcid": "",
+          "scholar": "",
+          "researchgate": "",
+          "github": "https://github.com/mariemkallel16",
+          "stackoverflow": "",
+          "cv": ""
+        }
+      },
       {
         "name": "Anthonin Falk",
         "position": "Intern in AI / Imaging",
@@ -470,7 +525,7 @@
             "year": "2022"
           },
           {
-            "course": "M. Sc. in Management",
+            "course": "MSc in Management",
             "institution": "Sprott School of Business, Carleton University, Ottawa, Canada",
             "year": "2014"
           }
@@ -496,7 +551,7 @@
         "expertise": ["Game Jams", "Cybersecurity", "Data Governance"],
         "education": [
           {
-            "course": "B. Sc. Computer science",
+            "course": "BSc Computer science",
             "institution": "Université de Sherbrooke",
             "year": "2021-2025"
           },
@@ -527,7 +582,7 @@
         "expertise": ["Web development", "Full stack"],
         "education": [
           {
-            "course": "B. Sc. Computer science",
+            "course": "BSc Computer science",
             "institution": "Université de Sherbrooke",
             "year": "2022-2025"
           }
@@ -553,7 +608,7 @@
         "expertise": ["Python", "Robotics", "Full Stack Web Development"],
         "education": [
           {
-            "course": "B. Eng. Robotic engineering",
+            "course": "BEng Robotic engineering",
             "institution": "Université de Sherbrooke, Sherbrooke, Canada",
             "year": "2020-2024"
           }
@@ -569,6 +624,26 @@
           "stackoverflow": "",
           "cv": ""
         }
+      },
+      {
+        "name": "Marc-Alexandre Parent",
+        "position": "Research professional",
+        "slug": "marc-alexandre-parent",
+        "email": "",
+        "image": "/images/team/marc-alexandre-parent/avatar.jpg",
+        "expertise": ["Python"],
+        "education": [],
+        "bio": "",
+        "note": "Former Member",
+        "socials": {
+          "linkedin": "",
+          "orcid": "",
+          "scholar": "",
+          "researchgate": "",
+          "github": "https://github.com/m-alexparent",
+          "stackoverflow": "",
+          "cv": ""
+        }
       }
     ]
   },
@@ -577,19 +652,19 @@
     "members": [
       {
         "name": "Maxence Larose",
-        "position": "M. Sc. Physics",
+        "position": "MSc Physics",
         "slug": "maxence-larose",
         "email": "Maxence.Larose@USherbrooke.ca",
         "image": "/images/team/maxence-larose/avatar.jpg",
         "expertise": ["Physics"],
         "education": [
           {
-            "course": "M. Sc. Physics",
+            "course": "MSc Physics",
             "institution": "Université Laval, Quebec City, Canada",
             "year": "2021-2023"
           },
           {
-            "course": "B. Eng. Physics engineering",
+            "course": "BEng Physics engineering",
             "institution": "Université Laval, Quebec City, Canada",
             "year": "2017-2021"
           }
@@ -608,14 +683,14 @@
       },
       {
         "name": "Teodora Boblea Podasca",
-        "position": "M. Sc. Health sciences",
+        "position": "MSc Health sciences",
         "slug": "teodora-boblea-podasca",
         "email": "Teodora.Boblea.Podasca@USherbrooke.ca",
         "image": "/images/team/teodora-boblea-podasca/avatar.png",
         "expertise": ["Kidney cancer", "Radiomics", "Urology"],
         "education": [
           {
-            "course": "M. Sc. Health sciences, research type",
+            "course": "MSc Health sciences, research type",
             "institution": "Université de Sherbrooke, Sherbrooke, Canada",
             "year": "2022-2024"
           },
@@ -625,7 +700,7 @@
             "year": "2018-2022"
           }
         ],
-        "bio": "Teodora Boblea was a M. Sc. student in Health Sciences between fall 2022 and fall 2024. Her project involved using radiomics to predict the histology (benign vs. malignant) of a small renal mass on CT scans.",
+        "bio": "Teodora Boblea was an MSc student in Health Sciences between fall 2022 and fall 2024. Her project involved using radiomics to predict the histology (benign vs. malignant) of a small renal mass on CT scans.",
         "note": "Former Member",
         "socials": {
           "linkedin": "",
@@ -646,7 +721,7 @@
         "expertise": ["Magnetic resonance imaging", "Medical physics", "Radiomics"],
         "education": [
           {
-            "course": "B. Sc. Physics",
+            "course": "BSc Physics",
             "institution": "Université de Sherbrooke, Sherbrooke, Canada",
             "year": "2017-2021"
           }
@@ -672,7 +747,7 @@
         "expertise": ["Artificial Intelligence", "Medical Imaging"],
         "education": [
           {
-            "course": "Engineering Degree, M. Sc. Computer science",
+            "course": "Engineering Degree, MSc Computer science",
             "institution": "Higher National School of Computer Science, Algiers, Algeria",
             "year": "2019-2024"
           }
@@ -701,7 +776,7 @@
         ],
         "education": [
           {
-            "course": "Engineering Degree, M. Sc. Computer science",
+            "course": "Engineering Degree, MSc Computer science",
             "institution": "Higher National School of Computer Science, Algiers, Algeria",
             "year": "2019-2024"
           }
@@ -733,7 +808,7 @@
         ],
         "education": [
           {
-            "course": "Engineering Degree, M. Sc. Computer science",
+            "course": "Engineering Degree, MSc Computer science",
             "institution": "Higher National School of Computer Science, Algiers, Algeria",
             "year": "2019-2024"
           }
@@ -759,12 +834,12 @@
         "expertise": ["Machine Learning", "Healthcare Informatics"],
         "education": [
           {
-            "course": "M. Sc. Computer Science, concentration in AI and data science",
+            "course": "MSc Computer Science, concentration in AI and data science",
             "institution": "Université de Sherbrooke, Sherbrooke, Canada",
             "year": ""
           },
           {
-            "course": "Engineering Diploma, M. Sc. Computer science",
+            "course": "Engineering Diploma, MSc Computer science",
             "institution": "École Polytechnique de l'Université de Tours, Tours, France",
             "year": "2018-2023"
           }
@@ -788,19 +863,19 @@
     "members": [
       {
         "name": "Alexandre Ayotte",
-        "position": "M. Sc. Computer science, imaging",
+        "position": "MSc Computer science, imaging",
         "slug": "alexandre-ayotte",
         "email": "Alexandre.Ayotte2@USherbrooke.ca",
         "image": "/images/team/alexandre-ayotte/avatar.jpg",
         "expertise": ["Classification of renal tumors", "Multi-task learning"],
         "education": [
           {
-            "course": "M. Sc. Computer science (imaging and digital media)",
+            "course": "MSc Computer science (imaging and digital media)",
             "institution": "Université de Sherbrooke, Sherbrooke, Canada",
             "year": "2020-2022"
           },
           {
-            "course": "B. Sc. Mathematics (statistics)",
+            "course": "BSc Mathematics (statistics)",
             "institution": "Université de Sherbrooke, Sherbrooke, Canada",
             "year": "2016-2019"
           }
@@ -826,12 +901,12 @@
         "expertise": ["Machine Learning", "Bioinformatics", "Data science"],
         "education": [
           {
-            "course": "M. Sc. Computer Science, concentration in AI and data science",
+            "course": "MSc Computer Science, concentration in AI and data science",
             "institution": "Université de Sherbrooke, Sherbrooke, Canada",
             "year": "2022-2023"
           },
           {
-            "course": "Engineering Diploma, M. Sc. Computer science",
+            "course": "Engineering Diploma, MSc Computer science",
             "institution": "TELECOM Nancy, Nancy, France",
             "year": "2020-2023"
           }
@@ -857,7 +932,7 @@
         "expertise": ["Federated Learning", "Computer science"],
         "education": [
           {
-            "course": "Engineering Diploma, M. Sc. Computer science",
+            "course": "Engineering Diploma, MSc Computer science",
             "institution": "",
             "year": ""
           }
@@ -881,7 +956,7 @@
     "members": [
       {
         "name": "Nicolas Raymond",
-        "position": "M. Sc. Computer science",
+        "position": "MSc Computer science",
         "slug": "nicolas-raymond",
         "email": "Nicolas.Raymond2@USherbrooke.ca",
         "image": "/images/team/nicolas-raymond/avatar.jpg",
@@ -894,12 +969,12 @@
         ],
         "education": [
           {
-            "course": "M. Sc. Computer science",
+            "course": "MSc Computer science",
             "institution": "Université de Sherbrooke, Sherbrooke, Canada",
             "year": "2020-2022"
           },
           {
-            "course": "B. Sc. Mathematics",
+            "course": "BSc Mathematics",
             "institution": "Université de Sherbrooke, Sherbrooke, Canada",
             "year": "2016-2019"
           }
@@ -918,19 +993,19 @@
       },
       {
         "name": "Simon Giard-Leroux",
-        "position": "(M. Sc. Computer science), electrical engineer",
+        "position": "(MSc Computer science), electrical engineer",
         "slug": "simon-giard-leroux",
         "email": "sgiardleroux@gmail.com",
         "image": "/images/team/simon-giard-leroux/avatar.png",
         "expertise": ["Electrical energy", "Object detection"],
         "education": [
           {
-            "course": "M. Sc. Computer science",
+            "course": "MSc Computer science",
             "institution": "Université de Sherbrooke, Sherbrooke, Canada",
             "year": "2020-2022"
           },
           {
-            "course": "B. Eng. Electrical engineering",
+            "course": "BEng Electrical engineering",
             "institution": "Université de Sherbrooke, Sherbrooke, Canada",
             "year": "2012-2016"
           }
@@ -956,7 +1031,7 @@
         "expertise": ["Embedded systems"],
         "education": [
           {
-            "course": "B. Eng. Electronics engineering",
+            "course": "BEng Electronics engineering",
             "institution": "ENSEA, Cergy, France",
             "year": "2020-2023"
           }
@@ -982,7 +1057,7 @@
         "expertise": ["Python", "JavaScript", "Machine learning"],
         "education": [
           {
-            "course": "B. Eng. Embedded systems, information technology",
+            "course": "BEng Embedded systems, information technology",
             "institution": "École centrale de Nantes, Nantes, France",
             "year": "2021-2024"
           }
@@ -1008,7 +1083,7 @@
         "expertise": ["Julia"],
         "education": [
           {
-            "course": "B. Sc. Computer science",
+            "course": "BSc Computer science",
             "institution": "Université de Sherbrooke, Sherbrooke, Canada",
             "year": "2020-2023"
           }
@@ -1034,7 +1109,7 @@
         "expertise": ["Python", "Reinforcement learning", "Federated learning", "Data Science"],
         "education": [
           {
-            "course": "B. Sc. Computer science",
+            "course": "BSc Computer science",
             "institution": "Université de Sherbrooke, Sherbrooke, Canada",
             "year": "2021-2024"
           }
@@ -1065,7 +1140,7 @@
         "expertise": ["Text Detection"],
         "education": [
           {
-            "course": "B. Sc. Multimedia and video game sciences",
+            "course": "BSc Multimedia and video game sciences",
             "institution": "Université de Sherbrooke, Sherbrooke, Canada",
             "year": "2019-2022"
           }
@@ -1091,12 +1166,12 @@
         "expertise": ["Line Detection"],
         "education": [
           {
-            "course": "M. Eng. Robotic engineering",
+            "course": "MEng Robotic engineering",
             "institution": "Université de Sherbrooke, Sherbrooke, Canada",
             "year": "2022-2024"
           },
           {
-            "course": "B. Eng. Robotic engineering",
+            "course": "BEng Robotic engineering",
             "institution": "Université de Sherbrooke, Sherbrooke, Canada",
             "year": "2017-2021"
           }
@@ -1184,12 +1259,12 @@
         "expertise": ["Machine learning"],
         "education": [
           {
-            "course": "M. Sc. Computer science",
+            "course": "MSc Computer science",
             "institution": "Université de Sherbrooke, Sherbrooke, Canada",
             "year": "2019-2020"
           },
           {
-            "course": "B. Eng. Computer engineering",
+            "course": "BEng Computer engineering",
             "institution": "Ecole Nationale des Sciences Appliquées, Kénitra, Morocco",
             "year": "2015-2018"
           },
@@ -1246,12 +1321,12 @@
         "expertise": ["Machine learning"],
         "education": [
           {
-            "course": "M. Sc. Mathematics",
+            "course": "MSc Mathematics",
             "institution": "Birla Institute of Technology and Science, Pilani, Inde",
             "year": "2016-2021"
           },
           {
-            "course": "B. Eng. Computer science",
+            "course": "BEng Computer science",
             "institution": "Birla Institute of Technology and Science, Pilani, Inde",
             "year": "2016-2021"
           }
@@ -1282,7 +1357,7 @@
         "expertise": ["Machine learning", "Python"],
         "education": [
           {
-            "course": "B. Eng. Computer engineering",
+            "course": "BEng Computer engineering",
             "institution": "Université de Sherbrooke, Sherbrooke, Canada",
             "year": "2019-2023"
           }
@@ -1308,7 +1383,7 @@
         "expertise": ["Federated learning"],
         "education": [
           {
-            "course": "B. Sc. Image and video game science",
+            "course": "BSc Image and video game science",
             "institution": "Université de Sherbrooke, Sherbrooke, Canada",
             "year": "2019-2022"
           }
@@ -1334,7 +1409,7 @@
         "expertise": ["Federated learning"],
         "education": [
           {
-            "course": "B. Eng. Computer engineering",
+            "course": "BEng Computer engineering",
             "institution": "Université de Sherbrooke, Sherbrooke, Canada",
             "year": "2019-2023"
           }
@@ -1360,12 +1435,12 @@
         "expertise": ["Statistics"],
         "education": [
           {
-            "course": "M. Sc. Statistics",
+            "course": "MSc Statistics",
             "institution": "Université de Sherbrooke, Sherbrooke, Canada",
             "year": "2021-2023"
           },
           {
-            "course": "B. Sc. Mathematics",
+            "course": "BSc Mathematics",
             "institution": "Université de Sherbrooke, Sherbrooke, Canada",
             "year": "2017-2020"
           }
@@ -1391,7 +1466,7 @@
         "expertise": ["Robotics"],
         "education": [
           {
-            "course": "B. Eng. Robotic engineering",
+            "course": "BEng Robotic engineering",
             "institution": "Université de Sherbrooke, Sherbrooke, Canada",
             "year": "2019-2023"
           }

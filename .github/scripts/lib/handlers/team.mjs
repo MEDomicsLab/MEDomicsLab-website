@@ -15,6 +15,7 @@ const FIELD = {
   bio: "Short biography",
   expertise: "Areas of expertise",
   education: "Education",
+  affiliations: "Affiliations",
   note: "Special note",
   linkedin: "LinkedIn",
   orcid: "ORCID",
@@ -68,6 +69,32 @@ function parseEducation(value) {
       continue;
     }
     entries.push({ course: parts[0], institution: parts[1], year: parts[2] });
+  }
+  return { entries, errors };
+}
+
+function parseAffiliations(value) {
+  const entries = [];
+  const errors = [];
+  for (const row of parseLines(value)) {
+    const parts = row.split("|").map((part) => part.trim());
+    if (parts.length < 2 || parts.length > 3 || !parts[0] || !parts[1]) {
+      errors.push(
+        `Affiliation row must be \`role | organization | official URL (optional)\` (got \`${row}\`).`
+      );
+      continue;
+    }
+    const [role, organization, url] = parts;
+    if (url) {
+      try {
+        const parsed = new URL(url);
+        if (!["http:", "https:"].includes(parsed.protocol)) throw new Error("invalid protocol");
+      } catch {
+        errors.push(`Affiliation URL must be an absolute HTTP(S) URL (got ${url}).`);
+        continue;
+      }
+    }
+    entries.push({ role, organization, ...(url ? { url } : {}) });
   }
   return { entries, errors };
 }
@@ -190,6 +217,10 @@ export const team = {
     }
     const { entries: education, errors: eduErrors } = parseEducation(fields[FIELD.education]);
     if (eduErrors.length) return { ok: false, errors: eduErrors };
+    const { entries: affiliations, errors: affiliationErrors } = parseAffiliations(
+      fields[FIELD.affiliations]
+    );
+    if (affiliationErrors.length) return { ok: false, errors: affiliationErrors };
 
     const photoSource = extractPhotoSource(fields[FIELD.photo]);
     if (!photoSource) {
@@ -212,6 +243,7 @@ export const team = {
     if (fields[FIELD.email]) member.email = fields[FIELD.email].trim();
     if (fields[FIELD.note]) member.note = fields[FIELD.note].trim();
     if (education.length) member.education = education;
+    if (affiliations.length) member.affiliations = affiliations;
     const socials = buildSocials(fields);
     if (Object.keys(socials).length) member.socials = socials;
 
@@ -269,6 +301,11 @@ export const team = {
       `**Avatar:** ${variantPaths.length} variants generated under \`public/images/team/${plan.slug}/\``,
     ];
     if (plan.additional) summaryLines.push("", plan.additional);
+    if (plan.member.affiliations?.length) {
+      summaryLines.push(
+        `**Affiliations:** ${plan.member.affiliations.map(({ role, organization }) => `${role} | ${organization}`).join("; ")}`
+      );
+    }
 
     return {
       ok: true,

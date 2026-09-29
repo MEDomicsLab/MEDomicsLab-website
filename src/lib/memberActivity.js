@@ -2,10 +2,7 @@ import eventsData from "../data/events.json";
 import newsData from "../data/news.json";
 import publicationsData from "../data/publications.json";
 import researchProjects from "../data/research-projects.json";
-
-/**
- * Everything a team member shows up in, newest first.
- */
+import { normalizeName } from "./team";
 
 const MONTHS = [
   "january",
@@ -22,21 +19,11 @@ const MONTHS = [
   "december",
 ];
 
-/** Lowercase, de-accent and strip punctuation so "Guillaume Cléroux" matches "guillaume cleroux". */
-const normalizeName = (value) =>
-  value
-    .normalize("NFKD")
-    .replace(/\p{Diacritic}/gu, "")
-    .toLowerCase()
-    .replace(/[^a-z0-9]+/g, " ")
-    .trim();
-
 const credits = (contributors, name) =>
   (contributors ?? []).some((contributor) => normalizeName(contributor) === normalizeName(name));
 
 /**
- * Community slugs are date-prefixed (`2026-03-31-post-med3pa-article`). Fall back to the
- * year/month headings the item is filed under when a slug carries no date.
+ * Use the slug's date prefix, or the enclosing year/month when it has none.
  */
 const resolveDate = (slug, year, month) => {
   const fromSlug = /^(\d{4})-(\d{2})-(\d{2})/.exec(slug);

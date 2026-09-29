@@ -78,3 +78,7 @@ _No response_
 ### Anything else?
 
 _No response_
+
+### Affiliations
+
+Associate Member | Dept. of Biomedical Engineering, McGill University | https://www.mcgill.ca/bme/

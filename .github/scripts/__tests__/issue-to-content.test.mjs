@@ -279,7 +279,7 @@ test("writeJson preserves unchanged hand-formatted entries", async () => {
   assert.match(updated, /"contributors": \["Existing Author", "Another Author"\]/);
 });
 
-test("team handler builds a plan with parsed expertise + education", () => {
+test("team handler builds a plan with parsed expertise, education, and affiliations", () => {
   const fields = parseIssueForm(fixture("team-valid.md"));
   const plan = team.buildPlan(fields);
   assert.equal(plan.ok, true, JSON.stringify(plan, null, 2));
@@ -291,8 +291,22 @@ test("team handler builds a plan with parsed expertise + education", () => {
     "Federated learning",
   ]);
   assert.equal(plan.member.education.length, 2);
+  assert.deepEqual(plan.member.affiliations, [
+    {
+      role: "Associate Member",
+      organization: "Dept. of Biomedical Engineering, McGill University",
+      url: "https://www.mcgill.ca/bme/",
+    },
+  ]);
   assert.equal(plan.member.socials.linkedin, "https://www.linkedin.com/in/test-member/");
   assert.equal(plan.photoSource, "team-photo.png");
+
+  const invalidAffiliation = team.buildPlan({
+    ...fields,
+    Affiliations: "Associate Member | Biomedical Engineering | javascript:alert(1)",
+  });
+  assert.equal(invalidAffiliation.ok, false);
+  assert.match(invalidAffiliation.errors.join("\n"), /absolute HTTP\(S\) URL/);
 });
 
 test("team apply() writes resized avatar variants and updates team.json", async () => {
@@ -318,6 +332,7 @@ test("team apply() writes resized avatar variants and updates team.json", async 
   const member = cohort.members.find((m) => m.slug === plan.slug);
   assert.ok(member, "expected new member in team.json");
   assert.equal(member.image, `/images/team/${plan.slug}/avatar.png`);
+  assert.deepEqual(member.affiliations, plan.member.affiliations);
   const teamSource = fs.readFileSync(path.join(dataDir, "team.json"), "utf8");
   assert.equal(
     await prettier.check(teamSource, { parser: "json", printWidth: 100 }),
