@@ -1,9 +1,5 @@
 ![First Publication Award certificate](/images/albums/2026-first-med3pa-presentation/certificat.png)
 
-## Authors
-
-- [Olivier Lefebvre](/team/olivier-lefebvre)
-
 ## Summary
 
 Olivier Lefebvre received the First Publication Award from the Faculty of Science, which highlights publications that distinguished themselves both within their field and among all entries submitted for the competition. The award was presented during the Kaféfak conference, where he was invited to give a three-minute presentation to make his research accessible to a broad audience. A $200 prize accompanies the award.

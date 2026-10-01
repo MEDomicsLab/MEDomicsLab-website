@@ -1,9 +1,5 @@
 ![RBIQ](/images/albums/medomicslab-rbiq-2022/featured.jpg)
 
-## Authors
-
-- [Mahdi Loutfi](/team/mahdi-loutfi)
-
 ## Summary
 
 Cancer is a heterogeneous disease with unique genomic and phenotypic characteristics that differ from patient to

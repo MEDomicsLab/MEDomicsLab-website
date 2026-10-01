@@ -1,9 +1,5 @@
 ![Olivier Lefebvre presenting at the RSN Scientific Days](/images/albums/2026-rsn-med3pa-presentation/presentation.jpeg)
 
-## Authors
-
-- [Olivier Lefebvre](/team/olivier-lefebvre)
-
 ## Summary
 
 Olivier Lefebvre presented his research during the **Réseau Santé Numérique (RSN) Scientific Day** at Université Laval. He delivered a seven-minute presentation highlighting the key contributions of his work and its implications for the development of reliable and trustworthy machine-learning models in healthcare. The talk offered an accessible overview of his methodological advances and their relevance to real-world clinical applications.

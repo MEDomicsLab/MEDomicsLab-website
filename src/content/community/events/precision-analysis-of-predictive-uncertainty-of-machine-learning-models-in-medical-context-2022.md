@@ -1,9 +1,5 @@
 ![CIRIUS](/images/albums/cirius-olivier-2022/cirius-blanc.png)
 
-## Authors
-
-- [Olivier Lefebvre](/team/olivier-lefebvre)
-
 ## Summary
 
 Machine learning is increasingly used in a variety of applications. Machine learning

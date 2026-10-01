@@ -1,8 +1,3 @@
-## Authors
-
-- [Mahdi Loutfi](/team/mahdi-loutfi)
-- [Martin Vallières](/team/martin-vallieres)
-
 ## Summary
 
 **Purpose**: Clinical translation of radiomics is hindered by the high-dimensional feature sets and lack of accessible tools for clinicians. MEDiml, an open-source platform designed to help democratize the development of radiomics models by identifying the simplest predictive features through both a code-based and graphical interface.

@@ -1,9 +1,3 @@
-## Authors
-
-- [Hakima Laribi](/team/hakima-laribi)
-- [Nicolas Raymond](/team/nicolas-raymond)
-- [Martin Vallières](/team/martin-vallieres)
-
 ## Summary
 
 **Introduction :**

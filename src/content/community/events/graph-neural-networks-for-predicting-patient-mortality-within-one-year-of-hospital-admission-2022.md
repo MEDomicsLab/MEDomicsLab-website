@@ -1,9 +1,5 @@
 ![CIRIUS](/images/albums/cirius-hakima-2022/cirius-blanc.png)
 
-## Authors
-
-- [Hakima Laribi](/team/hakima-laribi)
-
 ## Summary
 
 A goal of care discussion GOC is a communication process that takes place in a hospital setting

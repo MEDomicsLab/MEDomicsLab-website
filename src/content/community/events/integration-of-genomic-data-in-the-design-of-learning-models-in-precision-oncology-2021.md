@@ -1,9 +1,5 @@
 ![ACFAS](/images/albums/genomics-acfas-2021/featured.png)
 
-## Authors
-
-- [Nicolas Raymond](/team/nicolas-raymond)
-
 ## Summary
 
 Acute lymphoblastic leukemia (ALL) accounts for nearly one-third of all pediatric cancers in Canada each year.

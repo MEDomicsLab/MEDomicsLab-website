@@ -1,9 +1,5 @@
 ![ACFAS](/images/albums/3d-conv-acfas-2021/featured.png)
 
-## Authors
-
-- [Alexandre Ayotte](/team/alexandre-ayotte)
-
 ## Summary
 
 **Research objective:** To develop an interpretable tool for the automatic classification of renal lesions from MRI images. The classification is performed according to the nature, malignancy or benignity of the tumors and according to their subtype and grade for malignant tumors.

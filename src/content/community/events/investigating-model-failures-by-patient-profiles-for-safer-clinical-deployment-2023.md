@@ -1,10 +1,5 @@
 ![T-CAIREM](/images/albums/2023-tcairem-lefebvre-presentation/tcairem.png)
 
-## Authors
-
-- [Olivier Lefebvre](/team/olivier-lefebvre)
-- [Martin Vallières](/team/martin-vallieres)
-
 ## Summary
 
 **Introduction**

@@ -1,8 +1,3 @@
-## Authors
-
-- [Olivier Lefebvre](/team/olivier-lefebvre)
-- [Martin Vallières](/team/martin-vallieres)
-
 ## Summary
 
 **Introduction :**

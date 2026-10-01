@@ -1,9 +1,5 @@
 ![CIRIUS](/images/albums/cirius-mahdi-2022/cirius-blanc.png)
 
-## Authors
-
-- [Mahdi Loutfi](/team/mahdi-loutfi)
-
 ## Summary
 
 Precision oncology is an important field in cancer research as its main goal is to lead

@@ -1,12 +1,5 @@
 ![T-CAIREM](/images/albums/2025-tcairem-SAHBI-presentation/tcairem.png)
 
-## Authors
-
-- [Ouael Nedjem Eddine SAHBI](/team/ouael-nedjem-eddine-sahbi)
-- [Hithem lamri](/team/hithem-lamri)
-- [Bessam abdulrazak](https://www.usherbrooke.ca/recherche/fr/specialistes/details/bessam.abdulrazak)
-- [Martin Vallières](/team/martin-vallieres)
-
 ## Summary
 
 **1. Context and Problem**
