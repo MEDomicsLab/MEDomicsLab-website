@@ -22,7 +22,7 @@ Hakima Laribi, Nicolas Raymond
 
 A test news post body that becomes the markdown file.
 
-### Images / attachments
+### Images / attachments for maintainer review
 
 _No response_
 

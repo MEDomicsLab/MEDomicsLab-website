@@ -12,6 +12,7 @@ import { publication } from "../lib/handlers/publication.mjs";
 import { news } from "../lib/handlers/news.mjs";
 import { event } from "../lib/handlers/event.mjs";
 import { team } from "../lib/handlers/team.mjs";
+import { validateAgainst } from "../lib/validate.mjs";
 import { writeJson, insertCommunityItem, communityOrderProblems } from "../lib/data-store.mjs";
 
 const __filename = fileURLToPath(import.meta.url);
@@ -419,4 +420,64 @@ test("communityOrderProblems flags reversed months and non-month labels", () => 
     '2024: "Symposium" is not a month name',
   ]);
   assert.throws(() => insertCommunityItem([], { year: "2024", month: "Symposium", item: {} }));
+});
+
+test("event submissions can omit an unknown day and venue without inventing metadata", () => {
+  const fields = parseIssueForm(fixture("event-valid.md"));
+  delete fields["Start date"];
+  delete fields.Location;
+  fields["Listing month"] = "2026-05";
+  const plan = event.buildPlan(fields);
+  assert.equal(plan.ok, true);
+  assert.equal(plan.year, "2026");
+  assert.equal(plan.month, "May");
+  assert.equal(plan.entry.date, undefined);
+  assert.equal(plan.entry.venue, undefined);
+  assert.equal(event.buildPlan({ ...fields, "Listing month": "2026-13" }).ok, false);
+  assert.equal(event.buildPlan({ ...fields, "Listing month": "" }).ok, false);
+  assert.equal(event.buildPlan({ ...fields, "End date": "2026-05-03" }).ok, false);
+  const dated = event.buildPlan({ ...fields, "Start date": "2026-06-01" });
+  assert.equal(dated.month, "June");
+  assert.equal(dated.entry.date, "2026-06-01");
+});
+
+test("news sidebar dates are independent of the timeline publish date", () => {
+  const fields = parseIssueForm(fixture("news-valid.md"));
+  const undated = news.buildPlan(fields);
+  assert.equal(undated.entry.date, undefined);
+  assert.equal(undated.entry.event, undefined);
+  const dated = news.buildPlan({ ...fields, "Date to display": "2025-02-27" });
+  assert.equal(dated.ok, true);
+  assert.equal(dated.month, "March");
+  assert.equal(dated.entry.date, "2025-02-27");
+  assert.equal(dated.entry.event, undefined);
+});
+
+test("news accepts partial event metadata and rejects invalid date ranges", () => {
+  const fields = parseIssueForm(fixture("news-valid.md"));
+  for (const details of [
+    { "Event kind": "Workshop" },
+    { "Event venue": "Mila, Montréal" },
+    { "Event kind": "Workshop", "Date to display": "2025-02-27" },
+    { "Date to display": "2025-02-27", "Event end date": "2025-02-28" },
+  ]) {
+    const plan = news.buildPlan({ ...fields, ...details });
+    assert.equal(plan.ok, true);
+    assert.equal(plan.entry.event.date, details["Date to display"]);
+    assert.equal(plan.entry.event.venue, details["Event venue"]);
+    assert.equal(plan.entry.event.kind, details["Event kind"]);
+    assert.equal(plan.entry.event.endDate, details["Event end date"]);
+    const result = validateAgainst("news.schema.json", [
+      { year: plan.year, months: [{ month: plan.month, items: [plan.entry] }] },
+    ]);
+    assert.equal(result.ok, true, JSON.stringify(result));
+  }
+  for (const details of [
+    { "Date to display": "2025-02-30" },
+    { "Event end date": "2025-02-28" },
+    { "Date to display": "2025-02-27", "Event end date": "2025-02-26" },
+    { "Date to display": "2025-02-27", "Event end date": "2025-02-30" },
+  ]) {
+    assert.equal(news.buildPlan({ ...fields, ...details }).ok, false);
+  }
 });

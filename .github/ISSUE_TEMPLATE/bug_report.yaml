@@ -38,7 +38,7 @@ body:
     attributes:
       label: "Affected page / URL"
       description: Which page is broken? Paste the full URL or the route (e.g. `/publications/leveraging-patients-...-2025`).
-      placeholder: "https://medomics.app/team/martin-vallieres"
+      placeholder: "https://medomicslab.com/team/martin-vallieres"
     validations:
       required: true
   - type: textarea
@@ -90,7 +90,7 @@ body:
     attributes:
       label: "Where did this happen?"
       options:
-        - "Production (medomics.app)"
+        - "Production (medomicslab.com)"
         - "Local dev (`npm run dev`)"
         - "Local preview (`npm run preview`)"
         - "PR preview deployment"

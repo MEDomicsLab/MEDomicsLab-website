@@ -2,7 +2,8 @@
      Drop a copy of this file under src/content/community/events/<YYYY-MM-DD-slug>.md
      and add a matching entry to src/data/events.json.
      Put date, endDate, kind, and venue in that JSON entry. These optional fields appear in the event sidebar;
-     omit unknown values. Keep times, registration, and links in the body. -->
+     omit unknown values. Contributors appear in the Researchers sidebar; do not add an Authors section.
+     Keep times, registration, and links in the body. -->
 
 <!-- Optional banner image -->
 <!-- ![<alt>](/images/albums/<album>/featured.png) -->

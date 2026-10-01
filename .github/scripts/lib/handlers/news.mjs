@@ -16,6 +16,10 @@ const FIELD = {
   slug: "Suggested slug",
   category: "Category",
   date: "Publish date",
+  displayDate: "Date to display",
+  endDate: "Event end date",
+  kind: "Event kind",
+  venue: "Event venue",
   contributors: "Contributors / people involved",
   body: "Full content (Markdown)",
   additional: "Additional context",
@@ -41,6 +45,32 @@ export const news = {
         ],
       };
     }
+    const displayDate = (fields[FIELD.displayDate] || "").trim();
+    const endDate = (fields[FIELD.endDate] || "").trim();
+    const kind = (fields[FIELD.kind] || "").trim();
+    const venue = (fields[FIELD.venue] || "").trim();
+    for (const [label, value] of [
+      [FIELD.displayDate, displayDate],
+      [FIELD.endDate, endDate],
+    ]) {
+      if (value && !isValidIsoDate(value)) {
+        errors.push(`${label} must be a real calendar date in YYYY-MM-DD format.`);
+      }
+    }
+    if (endDate && !displayDate) errors.push("Event end date requires a date to display.");
+    if (endDate && displayDate && endDate < displayDate) {
+      errors.push("Event end date cannot be before the date to display.");
+    }
+    if (errors.length) return { ok: false, errors };
+    const eventDetails =
+      kind || venue || endDate
+        ? {
+            ...(displayDate ? { date: displayDate } : {}),
+            ...(endDate ? { endDate } : {}),
+            ...(kind ? { kind } : {}),
+            ...(venue ? { venue } : {}),
+          }
+        : null;
     const year = date.slice(0, 4);
     const month = monthName(date);
     const slug = slugify(fields[FIELD.slug]);
@@ -52,6 +82,7 @@ export const news = {
       title: fields[FIELD.title].trim(),
       slug,
       category: fields[FIELD.category].trim(),
+      ...(eventDetails ? { event: eventDetails } : displayDate ? { date: displayDate } : {}),
       contributors: splitList(fields[FIELD.contributors]),
       markdown: markdownRel,
     };

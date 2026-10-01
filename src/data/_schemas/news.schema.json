@@ -96,7 +96,8 @@
           "type": "object",
           "description": "Optional event details for a news post recapping or announcing an event. Displayed in the sidebar.",
           "additionalProperties": false,
-          "required": ["date", "kind", "venue"],
+          "minProperties": 1,
+          "dependencies": { "endDate": ["date"] },
           "properties": {
             "date": {
               "type": "string",

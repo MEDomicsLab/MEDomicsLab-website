@@ -42,7 +42,7 @@ Body of the event description.
 
 _No response_
 
-### Poster / images / gallery
+### Images / attachments for maintainer review
 
 _No response_
 

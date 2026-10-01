@@ -17,6 +17,7 @@ const FIELD = {
   kind: "Event kind",
   startDate: "Start date",
   endDate: "End date",
+  listingMonth: "Listing month",
   time: "Time (with timezone)",
   location: "Location",
   contributors: "Contributors / speakers",
@@ -44,14 +45,14 @@ export const event = {
   emoji: "📅",
   buildPlan(fields) {
     const errors = [];
-    const required = ["title", "slug", "kind", "startDate", "location", "contributors", "body"];
+    const required = ["title", "slug", "kind", "contributors", "body"];
     for (const key of required) {
       if (!fields[FIELD[key]]) errors.push(`Missing required field: \`${FIELD[key]}\``);
     }
     if (errors.length) return { ok: false, errors };
 
-    const startDate = fields[FIELD.startDate].trim();
-    if (!isValidIsoDate(startDate)) {
+    const startDate = (fields[FIELD.startDate] || "").trim();
+    if (startDate && !isValidIsoDate(startDate)) {
       return {
         ok: false,
         errors: [
@@ -68,11 +69,19 @@ export const event = {
         ],
       };
     }
+    if (endDate && !startDate) {
+      return { ok: false, errors: ["End date requires a start date."] };
+    }
     if (endDate && endDate < startDate) {
       return { ok: false, errors: [`End date cannot be before the start date.`] };
     }
-    const year = startDate.slice(0, 4);
-    const month = monthName(startDate);
+    const listingMonth = (fields[FIELD.listingMonth] || "").trim();
+    if (!startDate && !/^\d{4}-(0[1-9]|1[0-2])$/.test(listingMonth)) {
+      return { ok: false, errors: ["Provide a start date or a listing month in YYYY-MM format."] };
+    }
+    const groupingDate = startDate || `${listingMonth}-01`;
+    const year = groupingDate.slice(0, 4);
+    const month = monthName(groupingDate);
     const slug = slugify(fields[FIELD.slug]);
     if (!slug)
       return { ok: false, errors: [`Suggested slug must contain at least one letter or number.`] };
@@ -90,9 +99,9 @@ export const event = {
       title: fields[FIELD.title].trim(),
       slug,
       category,
-      date: startDate,
+      ...(startDate ? { date: startDate } : {}),
       kind,
-      venue: fields[FIELD.location].trim(),
+      ...(fields[FIELD.location]?.trim() ? { venue: fields[FIELD.location].trim() } : {}),
       ...(endDate ? { endDate } : {}),
       contributors: splitList(fields[FIELD.contributors]),
       markdown: markdownRel,

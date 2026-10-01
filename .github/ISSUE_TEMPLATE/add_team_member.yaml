@@ -21,9 +21,9 @@ body:
         </div>
 
 
-        Please fill **every required** field. Optional fields can be left blank — we'll skip them in the JSON. The maintainer will create the entry, generate avatar variants, and open the PR.
+        Please fill **every required** field. Optional fields can be left blank — we'll skip them in the JSON. The automation creates the entry, generates avatar variants, and opens a draft PR for maintainer review.
 
-        Only `name`, `position`, `slug`, and `image` are required by the schema; everything else is optional.
+        This form also requires a cohort, biography, expertise, and portrait so the new profile is ready to review. Leave optional fields blank.
   - type: checkboxes
     id: checks
     attributes:
@@ -165,7 +165,7 @@ body:
     id: photo
     attributes:
       label: "Portrait photo"
-      description: Attach a square JPG, PNG, WebP, or AVIF image under 10 MB and at least 512×512px. Direct URLs must be stable and public. Responsive variants (80/128/160/256 × avif/webp/jpg) will be generated automatically.
+      description: Attach a square JPG, PNG, WebP, or AVIF image under 10 MB and at least 512×512px. Direct URLs must be stable and public. Responsive variants (80/128/160/256 × AVIF/WebP with JPG or PNG fallback) will be generated automatically.
     validations:
       required: true
   - type: textarea

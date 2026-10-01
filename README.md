@@ -36,7 +36,7 @@
 ## <a id="how-to-add-content-user-friendly"></a><img src="docs/assets/icons/lucide/badge-plus.svg" width="32" alt="" /> How To Add Content (User-Friendly)
 
 > [!TIP]
-> This is the simple, no-code way to add or update lab content. Choose the matching form at [**Issues → New issue**](https://github.com/simonprovost/medomicslab/issues/new/choose), fill it in, and submit it. The automation validates your details and opens a draft pull request for a maintainer to review and merge—no local setup required.
+> This is the simple, no-code way to add or update lab content. Choose the matching form at [**Issues → New issue**](https://github.com/MEDomicsLab/MEDomicsLab-website/issues/new/choose), fill it in, and submit it. The automation validates your details and opens a draft pull request for a maintainer to review and merge—no local setup required.
 
 <details>
 <summary><strong><img src="docs/assets/icons/lucide/users-round.svg" width="18" alt="" align="absmiddle" />&nbsp;&nbsp;Add a team member</strong></summary>
@@ -58,7 +58,7 @@ The automation will:
 3. Insert the entry into the right cohort in `src/data/team.json`.
 4. Open a draft PR.
 
-If a field looks confusing, leave the placeholder text in place; the parser ignores `_No response_`.
+Leave optional fields blank when unknown. Fill every required field with the actual details.
 
 </details>
 
@@ -72,7 +72,7 @@ Use the `Add a new publication` template.
 A publication entry needs:
 
 - A clear title, comma-separated authors, and the year.
-- A _kind_ picked from the dropdown (`Journal Papers`, `Conference Papers`, `Preprints`, `Presentations`).
+- A _kind_ picked from the dropdown (`Journal Papers`, `Conference Papers`, `Preprints`). Submit talks and posters with the event form.
 - A DOI or URL. The DOI is preferred when one exists; the site renders both.
 - A short abstract. One paragraph is enough; readers click through for the full text.
 
@@ -94,11 +94,11 @@ Cover at minimum:
 - Title (e.g. `Thesis Defense: ...`).
 - Slug, usually prefixed with the date (`2026-05-15-msc-defense-x`).
 - _Event kind_ from the dropdown (thesis defense, symposium, workshop, talk, lab meeting, outreach, other).
-- Start date in ISO format (`YYYY-MM-DD`). End date only for multi-day events.
-- Location, even if it is just `Online` or a Zoom link.
+- A sourced start date (`YYYY-MM-DD`), or a listing month (`YYYY-MM`) when the exact day is unknown. The listing month only sets the timeline group.
+- Optional end date for multi-day events, and venue when explicitly known. Keep meeting links in the body.
 - Contributors / speakers, comma-separated, lab spelling.
 
-Event details live in [`src/data/events.json`](./src/data/events.json) and appear in the right-hand sidebar: `date`, optional `endDate`, `kind` (falling back to `category`), and `venue`. The sidebar shows a date only when an exact date is available. News entries can store an exact `date`, or use an `event` object with `date`, `kind`, and `venue` (plus optional `endDate`) for event recaps. News dates are added only when the source text, title, or imagery states them. Contributors appear underneath. The submission form saves event dates, kind, and location (as `venue`) automatically. Keep time, registration, links, description, abstract, agenda, and media in `src/content/community/events/<slug>.md`, which supports HTML and standard Markdown images. Add each photo in its own paragraph to display full-width images with rounded corners, as in the latest Mila news post.
+Event details live in [`src/data/events.json`](./src/data/events.json) and appear in the right-hand sidebar: `date`, optional `endDate`, `kind` (falling back to `category`), and `venue`. The sidebar shows a date only when an exact date is available. News entries can store an exact `date`, or use an `event` object with any known `date`, `kind`, and `venue` (plus optional `endDate`, which requires `date`) for event recaps. News dates are added only when the source text, title, or imagery states them. Contributors appear underneath. The submission form saves event dates, kind, and location (as `venue`) automatically. Keep time, registration, links, description, abstract, agenda, and media in `src/content/community/events/<slug>.md`, which supports HTML and standard Markdown images. Add each photo in its own paragraph to display full-width images with rounded corners, as in the latest Mila news post.
 
 </details>
 
@@ -113,7 +113,9 @@ You'll need:
 
 - A one-sentence headline.
 - A slug prefixed with the publish date (`2026-04-24-symposium-recap`).
-- The publish date in ISO format. This decides the year and month grouping on `/community/news`.
+- The planned website publish date in ISO format. This sets the timeline group only.
+- An optional **Date to display**, supported by the source text, title, or images. Leave unknown dates blank.
+- For event news, optional event kind, venue, and end date. These appear in the sidebar.
 - Comma-separated contributors. Lab spelling, again.
 - A markdown body. The listing card shows the title only, so the opening paragraph here is what readers see first when they click through.
 
