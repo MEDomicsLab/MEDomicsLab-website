@@ -2,6 +2,8 @@ import { useEffect, useRef, useState } from "react";
 import { RotateCw } from "lucide-react";
 import * as THREE from "three";
 import homeData from "../../data/home.json";
+import WavyFrame from "../../components/WavyFrame/WavyFrame.jsx";
+import { wavyFramePath } from "../../components/WavyFrame/wavyFramePath.js";
 
 const WIDTH = 1500;
 const HEIGHT = 1000;
@@ -228,8 +230,16 @@ export default function LabPostcard({ paused, mission }) {
       camera.position.z = 7.3;
       const group = new THREE.Group();
       const geometry = new THREE.PlaneGeometry(4.8, 3.2);
+      const maskCanvas = document.createElement("canvas");
+      maskCanvas.width = WIDTH;
+      maskCanvas.height = HEIGHT;
+      const backMask = new THREE.CanvasTexture(maskCanvas);
       const frontMaterial = new THREE.MeshBasicMaterial({ map: front, transparent: true });
-      const backMaterial = new THREE.MeshBasicMaterial({ map: back, transparent: true });
+      const backMaterial = new THREE.MeshBasicMaterial({
+        map: back,
+        alphaMap: backMask,
+        transparent: true,
+      });
       const frontMesh = new THREE.Mesh(geometry, frontMaterial);
       const backMesh = new THREE.Mesh(geometry, backMaterial);
       frontMesh.position.z = 0.006;
@@ -243,6 +253,16 @@ export default function LabPostcard({ paused, mission }) {
         camera.aspect = width / height;
         camera.position.z = Math.max(7.3, 8.4 / camera.aspect);
         camera.updateProjectionMatrix();
+        const cardWidth =
+          (4.8 * height) /
+          (2 * camera.position.z * Math.tan(THREE.MathUtils.degToRad(camera.fov / 2)));
+        const scale = WIDTH / cardWidth;
+        const mask = maskCanvas.getContext("2d");
+        mask.fillStyle = "black";
+        mask.fillRect(0, 0, WIDTH, HEIGHT);
+        mask.fillStyle = "white";
+        mask.fill(new Path2D(wavyFramePath(WIDTH, HEIGHT, 25 * scale, 5 * scale)));
+        backMask.needsUpdate = true;
       });
       resize.observe(element);
       const pointerMove = (event) => {
@@ -287,6 +307,7 @@ export default function LabPostcard({ paused, mission }) {
         backMaterial.dispose();
         front.dispose();
         back.dispose();
+        backMask.dispose();
         renderer.dispose();
         renderer.domElement.remove();
       };
@@ -314,7 +335,12 @@ export default function LabPostcard({ paused, mission }) {
         }
         aria-pressed={flipped}
       >
-        <span className="neue-postcard-fallback" aria-hidden="true">
+        <WavyFrame
+          as="span"
+          depth={flipped ? 5 : 0}
+          className="neue-postcard-fallback"
+          aria-hidden="true"
+        >
           {flipped ? (
             <span className="neue-postcard-fallback-back">
               <span className="neue-postcard-fallback-header">
@@ -335,7 +361,7 @@ export default function LabPostcard({ paused, mission }) {
               </span>
             </>
           )}
-        </span>
+        </WavyFrame>
       </button>
       <p className="neue-postcard-caption">
         <button onClick={flip}>

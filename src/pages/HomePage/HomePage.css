@@ -131,6 +131,7 @@ body:has(.neue-home-layout) .nav-dropdown-portal {
   min-height: 740px;
   height: 100svh;
   --hero-centre-y: 50svh;
+  --hero-film-centre-x: 50%;
   --hero-film-width: 29vw;
   --hero-film-height: 32svh;
   --hero-word-gap: 24px;
@@ -145,6 +146,7 @@ body:has(.neue-home-layout) .nav-dropdown-portal {
 .neue-hero-composition {
   position: absolute;
   inset: 0;
+  overflow: clip;
   pointer-events: none;
 }
 .neue-home .neue-hero h1 {
@@ -162,19 +164,15 @@ body:has(.neue-home-layout) .nav-dropdown-portal {
   letter-spacing: -0.04em;
 }
 .neue-hero-medomics {
-  left: calc(24px + var(--hero-ink-left, 0px));
   top: calc(var(--hero-centre-y) - var(--hero-film-height) / 2);
-  transform: none;
 }
 .neue-hero-lab {
-  left: calc(50% + var(--hero-film-width) / 2 + var(--hero-word-gap) + var(--hero-ink-left, 0px));
   top: calc(var(--hero-centre-y) + var(--hero-film-height) / 2);
-  transform: translateY(calc(-100% - var(--hero-lab-descent, 0px)));
 }
 .neue-hero-film {
   position: absolute;
-  left: 50%;
-  top: var(--hero-centre-y);
+  left: calc(var(--hero-film-centre-x) + (50% - var(--hero-film-centre-x)) * var(--hero-expand, 0));
+  top: calc(var(--hero-centre-y) + (50svh - var(--hero-centre-y)) * var(--hero-expand, 0));
   transform: translate(-50%, -50%);
   width: calc(var(--hero-film-width) + (100vw - var(--hero-film-width)) * var(--hero-expand, 0));
   height: calc(
@@ -183,6 +181,36 @@ body:has(.neue-home-layout) .nav-dropdown-portal {
   z-index: 2;
   overflow: hidden;
   pointer-events: auto;
+}
+@media (min-width: 768px) {
+  .neue-hero {
+    --hero-film-width: calc(100vw - 48px - var(--hero-word-width, 42vw) - var(--hero-word-gap));
+    --hero-film-centre-x: calc(24px + var(--hero-film-width) / 2);
+    --hero-film-height: min(
+      48svh,
+      var(--hero-film-width) * 9 / 16,
+      var(--hero-available-height, 100svh) - 48px
+    );
+    --hero-word-gap: clamp(24px, 3vw, 56px);
+    --hero-word-size: clamp(48px, (var(--hero-available-height, 100svh) - 48px) / 1.7, 9vw);
+  }
+  .neue-home .neue-hero h1 {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.12em;
+    margin: 0;
+    right: 24px;
+    top: calc(var(--hero-centre-y) + var(--hero-film-height) / 2);
+    font-size: var(--hero-word-size);
+    transform: translateY(-100%);
+    z-index: 3;
+  }
+  .neue-hero h1 span {
+    position: static;
+    transform: none;
+  }
 }
 .neue-hero-bottom {
   opacity: var(--hero-copy-opacity, 1);

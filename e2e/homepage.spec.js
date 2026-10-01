@@ -93,21 +93,18 @@ test("the hero stays pinned while the profile covers it; navigation is centred i
   const film = await page.locator(".neue-hero-film").boundingBox();
   const word = await page.locator(".neue-hero-medomics").boundingBox();
   const lab = await page.locator(".neue-hero-lab").boundingBox();
+  const bottom = await page.locator(".neue-hero-bottom").boundingBox();
+  const navBottom = Math.max(nav.y + nav.height, github.y + github.height);
+  const centre = (navBottom + bottom.y) / 2;
   const description = await page.locator(".neue-hero-description").boundingBox();
-  const ink = await page.locator(".neue-hero").evaluate((el) => ({
-    left: parseFloat(el.style.getPropertyValue("--hero-ink-left")),
-    descent: parseFloat(el.style.getPropertyValue("--hero-lab-descent")),
-  }));
-  expect(Math.abs(word.x - ink.left - description.x)).toBeLessThan(1);
-  expect(word.x + word.width).toBeLessThanOrEqual(853);
-  expect(film.x).toBeGreaterThan(word.x + word.width);
-  expect(Math.abs(film.x + film.width / 2 - 853)).toBeLessThan(1);
-  expect(Math.abs(film.y + film.height / 2 - 448.5)).toBeLessThan(1);
-  expect(Math.abs(word.y - film.y)).toBeLessThan(1);
-  expect(Math.abs(lab.y + lab.height + ink.descent - film.y - film.height)).toBeLessThan(1);
-  expect(Math.abs((word.y + lab.y + lab.height + ink.descent) / 2 - 448.5)).toBeLessThan(1);
-  expect(lab.x).toBeGreaterThan(film.x + film.width);
-  expect(lab.y).toBeGreaterThan(film.y);
+  expect(Math.abs(film.x - description.x)).toBeLessThan(1);
+  expect(Math.abs(lab.x - word.x)).toBeLessThan(1);
+  expect(lab.y).toBeGreaterThan(word.y + word.height);
+  expect(word.x - film.x - film.width).toBeGreaterThan(24);
+  expect(Math.abs(word.x + word.width - 1682)).toBeLessThan(1);
+  expect(film.width).toBeGreaterThan(800);
+  expect(Math.abs(film.y + film.height / 2 - centre)).toBeLessThan(1);
+  expect(Math.abs(lab.y + lab.height - film.y - film.height)).toBeLessThan(1);
   await expect(page.locator(".neue-hero-medomics")).toHaveCSS(
     "font-size",
     await page.locator(".neue-hero-lab").evaluate((el) => getComputedStyle(el).fontSize)
@@ -122,7 +119,11 @@ test("the hero stays pinned while the profile covers it; navigation is centred i
   const hero = await page.locator(".neue-hero").boundingBox();
   expect(hero.y).toBe(0);
   const expanded = await page.locator(".neue-hero-film").boundingBox();
-  expect(Math.abs(expanded.width - 1706)).toBeLessThan(2);
+  expect(Math.abs(expanded.x)).toBeLessThan(1);
+  expect(Math.abs(expanded.y)).toBeLessThan(1);
+  expect(expanded.width).toBeCloseTo(1706, 0);
+  expect(expanded.height).toBeCloseTo(897, 0);
+  expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBe(1706);
   const portrait = await page.locator(".neue-profile-photo").boundingBox();
   const appointments = page.locator(".neue-appointments > p");
   const first = await appointments.first().boundingBox();
@@ -362,7 +363,7 @@ test("partner logos and ecosystem orbit move continuously and honour the pause c
   await expect(track).toHaveCSS("animation-play-state", "paused");
 });
 
-test("homepage video opens fullscreen and settles into the same centred player", async ({
+test("homepage titles enter from the right and the same video enters from the left", async ({
   page,
 }) => {
   await page.setViewportSize({ width: 1706, height: 897 });
@@ -377,8 +378,7 @@ test("homepage video opens fullscreen and settles into the same centred player",
   await page.route("https://stream.mux.com/**", (route) => route.abort());
   await page.goto("/", { waitUntil: "domcontentloaded" });
   const film = page.locator(".neue-hero-film");
-  await expect(film).toHaveCSS("width", "1706px");
-  await expect(film).toHaveCSS("height", "897px");
+  await expect(film).toHaveCSS("opacity", "0");
   await expect(film.locator(".neue-video-frame")).toHaveCSS("opacity", "0");
   await expect
     .poll(() => page.locator(".neue-video-source mux-player").evaluate((el) => el.paused))
@@ -394,6 +394,7 @@ test("homepage video opens fullscreen and settles into the same centred player",
     ".neue-hero-credit",
     ".liquid-nav-anchor",
     ".liquid-github-anchor",
+    ".neue-hero-film",
   ];
   const initialPositions = await page.evaluate(
     (selectors) =>
@@ -408,9 +409,12 @@ test("homepage video opens fullscreen and settles into the same centred player",
     timeout: 8000,
   });
   const bounds = await film.boundingBox();
-  expect(Math.abs(bounds.x + bounds.width / 2 - 853)).toBeLessThan(1);
-  expect(Math.abs(bounds.y + bounds.height / 2 - 448.5)).toBeLessThan(1);
-  expect(bounds.width).toBeLessThan(600);
+  expect(Math.abs(bounds.x - 24)).toBeLessThan(1);
+  const navigation = await page.locator(".liquid-nav-anchor").boundingBox();
+  const bottom = await page.locator(".neue-hero-bottom").boundingBox();
+  const centre = (navigation.y + navigation.height + bottom.y) / 2;
+  expect(Math.abs(bounds.y + bounds.height / 2 - centre)).toBeLessThan(1);
+  expect(bounds.width).toBeGreaterThan(800);
   const finalPositions = await page.evaluate(
     (selectors) =>
       selectors.map((selector) => {
@@ -419,8 +423,9 @@ test("homepage video opens fullscreen and settles into the same centred player",
       }),
     selectors
   );
-  expect(finalPositions[0].x).toBeGreaterThan(initialPositions[0].x + 50);
+  expect(finalPositions[0].x).toBeLessThan(initialPositions[0].x - 50);
   expect(finalPositions[1].x).toBeLessThan(initialPositions[1].x - 50);
+  expect(finalPositions[6].x).toBeGreaterThan(initialPositions[6].x + 50);
   for (const i of [2, 3]) expect(finalPositions[i].y).toBeLessThan(initialPositions[i].y - 40);
   for (const i of [4, 5]) expect(finalPositions[i].y).toBeGreaterThan(initialPositions[i].y + 70);
   await expect(page.locator(".neue-video-source mux-player")).toHaveAttribute(
@@ -441,10 +446,11 @@ test("homepage entrance can be skipped and is omitted for reduced motion", async
   await page.reload();
   await expect(page.locator(".neue-home")).not.toHaveAttribute(
     "data-hero-intro",
-    /waiting|holding|shrinking/
+    /waiting|holding|shrinking|entering/
   );
   const bounds = await page.locator(".neue-hero-film").boundingBox();
-  expect(bounds.width).toBeLessThan(600);
+  expect(bounds.x).toBeGreaterThan(0);
+  expect(bounds.x + bounds.width).toBeLessThanOrEqual(page.viewportSize().width);
   await expect(page.getByRole("navigation", { name: "Main navigation" })).toBeVisible();
 });
 

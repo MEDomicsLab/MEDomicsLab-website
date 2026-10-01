@@ -3,35 +3,31 @@ import { useLayoutEffect } from "react";
 export default function useHeroLayout(root, paused) {
   useLayoutEffect(() => {
     const hero = root.current.querySelector(".neue-hero");
+    const bottom = hero.querySelector(".neue-hero-bottom");
     const word = hero.querySelector(".neue-hero-medomics");
+    const navigation = [
+      ...root.current
+        .closest(".neue-home-layout")
+        .querySelectorAll(".liquid-nav-anchor, .liquid-github-anchor"),
+    ];
     const query = window.matchMedia("(prefers-reduced-motion: reduce)");
     let frame;
     let disposed = false;
     const fit = () => {
-      if (disposed || window.innerWidth <= 767) return;
-      const styles = getComputedStyle(hero);
-      const left = parseFloat(styles.paddingLeft);
-      const gap = parseFloat(styles.getPropertyValue("--hero-word-gap"));
-      const filmWidth = window.innerWidth * 0.29;
-      const available = (window.innerWidth - filmWidth) / 2 - left - gap;
-      const context = document.createElement("canvas").getContext("2d");
-      const font = getComputedStyle(word);
-      context.font = `600 100px ${font.fontFamily}`;
-      context.letterSpacing = "-4px";
-      const measure = context.measureText("MEDomics");
-      const size =
-        (available / (measure.actualBoundingBoxLeft + measure.actualBoundingBoxRight)) * 100;
-      context.font = `600 ${size}px ${font.fontFamily}`;
-      context.letterSpacing = `${size * -0.04}px`;
-      hero.style.setProperty("--hero-word-size", `${size}px`);
-      hero.style.setProperty(
-        "--hero-ink-left",
-        `${context.measureText("MEDomics").actualBoundingBoxLeft}px`
-      );
-      hero.style.setProperty(
-        "--hero-lab-descent",
-        `${context.measureText("Lab").actualBoundingBoxDescent}px`
-      );
+      if (disposed) return;
+      if (window.innerWidth <= 767) {
+        hero.style.removeProperty("--hero-centre-y");
+        hero.style.removeProperty("--hero-available-height");
+        hero.style.removeProperty("--hero-word-width");
+        return;
+      }
+      // The pills are centred on their CSS top. Layout measurements exclude
+      // entrance/hover transforms, so the composition does not follow their animation.
+      const navBottom = Math.max(...navigation.map((el) => el.offsetTop + el.offsetHeight / 2));
+      const available = bottom.offsetTop - navBottom;
+      hero.style.setProperty("--hero-centre-y", `${(navBottom + bottom.offsetTop) / 2}px`);
+      hero.style.setProperty("--hero-available-height", `${available}px`);
+      hero.style.setProperty("--hero-word-width", `${word.offsetWidth}px`);
     };
     const update = () => {
       frame = undefined;
@@ -52,20 +48,23 @@ export default function useHeroLayout(root, paused) {
     fit();
     update();
     document.fonts.ready.then(fit);
+    const observer = new ResizeObserver(fit);
+    [hero, bottom, word, ...navigation].forEach((el) => observer.observe(el));
     window.addEventListener("resize", resize);
     window.addEventListener("scroll", scroll, { passive: true });
     query.addEventListener("change", update);
     return () => {
       disposed = true;
+      observer.disconnect();
       cancelAnimationFrame(frame);
       window.removeEventListener("resize", resize);
       window.removeEventListener("scroll", scroll);
       query.removeEventListener("change", update);
       hero.style.removeProperty("--hero-expand");
       hero.style.removeProperty("--hero-copy-opacity");
-      hero.style.removeProperty("--hero-word-size");
-      hero.style.removeProperty("--hero-ink-left");
-      hero.style.removeProperty("--hero-lab-descent");
+      hero.style.removeProperty("--hero-available-height");
+      hero.style.removeProperty("--hero-centre-y");
+      hero.style.removeProperty("--hero-word-width");
     };
   }, [root, paused]);
 }

@@ -29,23 +29,29 @@ export default function useHeroEntrance(root, paused) {
         ...page.querySelectorAll(".neue-hero-description, .neue-hero-credit, .neue-hero-logo"),
       ];
       const navigation = [...layout.querySelectorAll(".liquid-nav-anchor, .liquid-github-anchor")];
-      const moving = [medomics, lab, ...bottomContent, ...navigation];
+      const desktop = window.matchMedia("(min-width: 768px)").matches;
+      const moving = [medomics, lab, ...bottomContent, ...navigation, ...(desktop ? [film] : [])];
       const reveal = [
         ...page.querySelectorAll(".neue-hero h1 span, .neue-hero-bottom"),
         ...navigation,
+        ...(desktop ? [film] : []),
       ];
       const target = film.getBoundingClientRect();
+      const targetTop = getComputedStyle(film).top;
       let timeline;
       let timer;
       let started = false;
       let complete = false;
       const context = gsap.context(() => {
         gsap.set(hero, { overflow: "clip" });
-        gsap.set(film, { width: "100vw", height: "100svh", zIndex: 3 });
+        if (!desktop) {
+          gsap.set(film, { width: "100vw", height: "100svh", top: "50svh", zIndex: 3 });
+        }
         gsap.set(reveal, { autoAlpha: 0 });
         const distance = Math.min(180, Math.max(70, window.innerWidth * 0.1));
-        gsap.set(medomics, { translate: `${-distance}px 0px` });
+        gsap.set(medomics, { translate: `${desktop ? distance : -distance}px 0px` });
         gsap.set(lab, { translate: `${distance}px 0px` });
+        if (desktop) gsap.set(film, { translate: `${-distance}px 0px` });
         gsap.set(bottomContent, { translate: "0px 60px" });
         gsap.set(navigation, { translate: "0px -100px" });
       });
@@ -57,7 +63,7 @@ export default function useHeroEntrance(root, paused) {
         clearTimeout(timer);
         timeline?.kill();
         context.revert();
-        gsap.set(film, { clearProps: "width,height,zIndex" });
+        gsap.set(film, { clearProps: "width,height,top,zIndex" });
         gsap.set(reveal, { clearProps: "opacity,visibility" });
         gsap.set(moving, { clearProps: "translate" });
         page.dataset.heroIntro = "complete";
@@ -72,21 +78,28 @@ export default function useHeroEntrance(root, paused) {
         context.add(() => {
           timeline = gsap.timeline({ delay: 0.35, onComplete: settle });
           timeline.call(() => {
-            page.dataset.heroIntro = "shrinking";
+            page.dataset.heroIntro = desktop ? "entering" : "shrinking";
           });
           timeline.call(() => setVideoStarted(true), [], 0.1);
+          if (!desktop)
+            timeline.to(
+              film,
+              {
+                width: target.width,
+                height: target.height,
+                top: targetTop,
+                duration: 1.35,
+                ease: "power3.inOut",
+              },
+              0
+            );
+          const revealAt = desktop ? 0 : 0.5;
+          timeline.to(reveal, { autoAlpha: 1, duration: 0.65, ease: "power2.out" }, revealAt);
           timeline.to(
-            film,
-            {
-              width: target.width,
-              height: target.height,
-              duration: 1.35,
-              ease: "power3.inOut",
-            },
-            0
+            moving,
+            { translate: "0px 0px", duration: desktop ? 1.1 : 0.85, ease: "power3.out" },
+            revealAt
           );
-          timeline.to(reveal, { autoAlpha: 1, duration: 0.65, ease: "power2.out" }, 0.5);
-          timeline.to(moving, { translate: "0px 0px", duration: 0.85, ease: "power3.out" }, 0.5);
         });
       };
       timer = window.setTimeout(() => start.current?.(), 2200);
