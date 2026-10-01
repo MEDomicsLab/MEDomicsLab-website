@@ -22,7 +22,7 @@ body:
 
         <em>Feeds <code>src/data/events.json</code> and <code>src/content/community/events/&lt;slug&gt;.md</code>.</em>
 
-        Events are grouped by year → month. Only `title`, `slug`, `category` (derived from the event kind), `date`, and `contributors` are stored in `events.json`; everything else (time, location, registration, description) goes into the markdown body. Talks and posters belong here, not in the publication form.
+        Events are grouped by year → month. Event details (kind, dates, venue) are stored in `events.json` and displayed in the right-hand sidebar alongside contributors. The location field supplies the sidebar venue. The Markdown body holds time, registration, links, description, abstract, agenda, and media. Talks and posters belong here, not in the publication form.
 
         See [`src/content/_templates/event.md`](https://github.com/MEDomicsLab/MEDomicsLab-website/blob/main/src/content/_templates/event.md) for the markdown skeleton.
   - type: checkboxes
@@ -121,7 +121,7 @@ body:
       description: |
         Saved to `src/content/community/events/<slug>.md`. Supports inline HTML and `<dome-gallery album="…" />`.
         Markdown image links such as `![description](https://example.com/image.jpg)` remain externally hosted: use stable, public URLs only. They are not copied or optimized by this form.
-      placeholder: "Abstract, agenda, speaker bios, registration link, etc."
+      placeholder: "Abstract, agenda, speaker bios, etc. Date, type, and venue appear automatically in the sidebar."
     validations:
       required: true
   - type: input

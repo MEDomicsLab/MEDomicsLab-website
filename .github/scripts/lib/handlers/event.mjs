@@ -91,6 +91,9 @@ export const event = {
       slug,
       category,
       date: startDate,
+      kind,
+      venue: fields[FIELD.location].trim(),
+      ...(endDate ? { endDate } : {}),
       contributors: splitList(fields[FIELD.contributors]),
       markdown: markdownRel,
     };
@@ -98,14 +101,11 @@ export const event = {
     const blurb = (fields[FIELD.blurb] || "").trim();
     const lines = [];
     if (blurb) lines.push(blurb, "");
-    lines.push(`**Kind:** ${kind}`);
-    lines.push(`**Date:** ${startDate}${endDate ? ` – ${endDate}` : ""}`);
-    if (fields[FIELD.time]) lines.push(`**Time:** ${fields[FIELD.time].trim()}`);
-    lines.push(`**Location:** ${fields[FIELD.location].trim()}`);
+    if (fields[FIELD.time]) lines.push(`**Time:** ${fields[FIELD.time].trim()}`, "");
     if (fields[FIELD.registration]) {
-      lines.push(`**Registration:** ${fields[FIELD.registration].trim()}`);
+      lines.push(`**Registration:** ${fields[FIELD.registration].trim()}`, "");
     }
-    lines.push("", fields[FIELD.body].trim());
+    lines.push(fields[FIELD.body].trim());
     if (fields[FIELD.additional]) {
       lines.push("", "<!-- Additional context", fields[FIELD.additional].trim(), "-->");
     }

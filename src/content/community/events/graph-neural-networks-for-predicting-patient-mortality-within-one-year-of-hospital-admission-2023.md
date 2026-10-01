@@ -1,11 +1,5 @@
 ![T-CAIREM](/images/albums/2023-tcairem-hakima/tcairem.png)
 
-**Venue:** T-CAIREM
-
-## Date
-
-2023-10-13
-
 ## Authors
 
 - [Hakima Laribi](/team/hakima-laribi)

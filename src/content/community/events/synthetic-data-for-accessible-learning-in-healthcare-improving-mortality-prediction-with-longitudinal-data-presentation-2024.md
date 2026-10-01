@@ -1,9 +1,3 @@
-**Venue:** Pôle universitaire de santé numérique de l’Estrie
-
-## Date
-
-2024-12-06
-
 ## Authors
 
 - [Hakima Laribi](/team/hakima-laribi)

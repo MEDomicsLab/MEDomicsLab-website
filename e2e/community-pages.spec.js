@@ -46,9 +46,14 @@ for (const { title, path, data } of timelines) {
       .toBe(128);
     await expect(ticks).toHaveCSS("opacity", "1");
 
-    const matching = items.filter((item) => item.category === firstItem.category);
+    const firstChip = page
+      .getByRole("group", { name: `Filter ${title.toLowerCase()} by category` })
+      .getByRole("button")
+      .nth(1);
+    const category = (await firstChip.textContent()).replace(/\d+$/, "").trim();
+    const matching = items.filter((item) => item.category === category);
     const filter = page.getByRole("button", {
-      name: `${firstItem.category} ${matching.length}`,
+      name: `${category} ${matching.length}`,
       exact: true,
     });
     await filter.click();

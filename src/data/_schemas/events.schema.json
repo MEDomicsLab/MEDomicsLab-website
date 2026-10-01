@@ -69,7 +69,8 @@
                   "date": {
                     "type": "string",
                     "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$",
-                    "description": "ISO start date; orders items within a month."
+                    "description": "ISO start date; orders items within a month.",
+                    "format": "date"
                   },
                   "contributors": {
                     "type": "array",
@@ -93,6 +94,19 @@
                         "type": "string"
                       }
                     }
+                  },
+                  "kind": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "venue": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "endDate": {
+                    "type": "string",
+                    "format": "date",
+                    "description": "Optional inclusive end date for a multi-day event."
                   }
                 }
               }

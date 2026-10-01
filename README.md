@@ -98,7 +98,7 @@ Cover at minimum:
 - Location, even if it is just `Online` or a Zoom link.
 - Contributors / speakers, comma-separated, lab spelling.
 
-Only the title, slug and contributors live in [`src/data/events.json`](./src/data/events.json); everything else (kind, dates, time, location, registration link, full description) goes into the generated markdown file at `src/content/community/events/<slug>.md`. That markdown supports HTML and `<dome-gallery album="...">` embeds.
+Event details live in [`src/data/events.json`](./src/data/events.json) and appear in the right-hand sidebar: `date`, optional `endDate`, `kind` (falling back to `category`), and `venue`. The sidebar shows a date only when an exact date is available. News entries can store an exact `date`, or use an `event` object with `date`, `kind`, and `venue` (plus optional `endDate`) for event recaps. News dates are added only when the source text, title, or imagery states them. Contributors appear underneath. The submission form saves event dates, kind, and location (as `venue`) automatically. Keep time, registration, links, description, abstract, agenda, and media in `src/content/community/events/<slug>.md`, which supports HTML and `<dome-gallery album="...">` embeds.
 
 </details>
 
@@ -194,7 +194,7 @@ Year → months → items. Each item references a markdown file under `src/conte
 - **Template:** [`src/content/_templates/event.md`](./src/content/_templates/event.md)
 - **Pages:** `CommunityListPage` (`/community/events`), `CommunityItemDetailPage`.
 
-Same shape as news. The kind, dates, time, location, and registration link live in the markdown frontmatter / body, not in the JSON.
+Same year/month grouping as news. Store event logistics in JSON using the optional `date`, `endDate`, `kind`, and `venue` fields. The detail page displays them above the researchers; Markdown holds times, links, and the event's main content.
 
 </details>
 

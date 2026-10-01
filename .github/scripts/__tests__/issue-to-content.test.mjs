@@ -214,16 +214,36 @@ test("event handler refuses a kind it has no filter category for", () => {
   assert.match(plan.errors.join("\n"), /Unknown event kind/);
 });
 
-test("event handler folds metadata into the markdown body", () => {
+test("event handler stores sidebar metadata separately from the markdown body", () => {
   const fields = parseIssueForm(fixture("event-valid.md"));
   const plan = event.buildPlan(fields);
   assert.equal(plan.ok, true, JSON.stringify(plan, null, 2));
   assert.equal(plan.year, "2026");
   assert.equal(plan.month, "May");
-  assert.match(plan.markdownBody, /\*\*Kind:\*\* Thesis defense \(PhD\)/);
+  assert.equal(plan.entry.kind, "Thesis defense (PhD)");
   assert.equal(plan.entry.category, "Thesis Defenses");
   assert.equal(plan.entry.date, "2026-05-01");
-  assert.match(plan.markdownBody, /\*\*Location:\*\*/);
+  assert.equal(plan.entry.venue, "Université de Sherbrooke, room D7-1010");
+  assert.equal(plan.entry.time, undefined);
+  assert.equal(plan.entry.endDate, undefined);
+  assert.equal(plan.entry.registration, undefined);
+  assert.equal(
+    plan.markdownBody,
+    "Test Person's PhD defense.\n\n**Time:** 14:00–16:00 EDT\n\nBody of the event description."
+  );
+});
+
+test("event handler preserves multi-day logistics in sidebar data", () => {
+  const plan = event.buildPlan({
+    ...parseIssueForm(fixture("event-valid.md")),
+    "End date": "2026-05-03",
+    "Registration / RSVP link": "https://example.com/register",
+  });
+  assert.equal(plan.ok, true);
+  assert.equal(plan.entry.endDate, "2026-05-03");
+  assert.equal(plan.entry.registration, undefined);
+  assert.match(plan.markdownBody, /https:\/\/example.com\/register/);
+  assert.doesNotMatch(plan.markdownBody, /2026-05-03/);
 });
 
 test("event apply() generates a conventional PR title", async () => {

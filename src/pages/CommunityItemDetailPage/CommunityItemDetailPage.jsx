@@ -4,15 +4,24 @@ import DetailNotFound from "../../components/DetailNotFound/DetailNotFound.jsx";
 import MarkdownContent from "../../components/MarkdownContent/MarkdownContent";
 import BrandName from "../../components/BrandName/BrandName.jsx";
 import ResearcherList from "../../components/ResearcherList/ResearcherList.jsx";
+import EventMetadata from "../../components/EventMetadata/EventMetadata.jsx";
 import { getPeopleByNames } from "../../lib/team";
 
-export default function CommunityItemDetailPage({ title, data, backPath }) {
+export default function CommunityItemDetailPage({
+  title,
+  data,
+  backPath,
+  showEventMetadata = false,
+}) {
   const { slug } = useParams();
 
   const item =
     data
-      .flatMap((group) => group.months)
-      .flatMap((monthGroup) => monthGroup.items)
+      .flatMap((group) =>
+        group.months.flatMap((monthGroup) =>
+          monthGroup.items.map((entry) => ({ ...entry, year: group.year, month: monthGroup.month }))
+        )
+      )
       .find((entry) => entry.slug === slug) ?? null;
 
   if (!item) {
@@ -39,6 +48,13 @@ export default function CommunityItemDetailPage({ title, data, backPath }) {
           </div>
 
           <div className="lg:col-span-4 space-y-6 lg:sticky lg:top-32 h-fit">
+            {(showEventMetadata || item.event || item.date) && (
+              <EventMetadata
+                item={showEventMetadata ? item : item.event || item}
+                heading={showEventMetadata || item.event ? "Event details" : "News details"}
+                showType={showEventMetadata || Boolean(item.event)}
+              />
+            )}
             <ResearcherList people={getPeopleByNames(item.contributors)} />
           </div>
         </div>

@@ -1,9 +1,3 @@
-**Venue:** Lady Davis Institute (LDI) Conference (Poster Presentation)
-
-## Date
-
-2026-08-07
-
 ## Authors
 
 - [Mahdi Loutfi](/team/mahdi-loutfi)
@@ -18,13 +12,3 @@
 **Results**: We released the MEDiml software with detailed documentation (mediml.app). Evaluation demonstrated that maximum predictive performance does not always require high-complexity features. Optimal levels were: morphological for LGG-IDH1 and Meningioma-grading; intensity in NSCLC and RCC -CECT; and texture for RCC-MRI. In the RCC-CECT cohort, optimizing the re-segmentation range, a parameter for excluding non-target voxels affecting intensity features, improved performance from an AUC of 0.82 to 0.86.
 
 **Conclusion**: MEDiml successfully identifies the "optimal complexity level" for specific clinical outcomes, demonstrating that simpler models can often match or exceed the performance of high-dimensional sets. By providing an interactive, user-friendly interface and a strategy for feature minimization, MEDiml lowers the barrier to entry for clinicians, providing a scalable pathway for the clinical integration of radiomic biomarkers.
-
-## Links
-
-- [Primary link](NA)
-
-## BibTeX
-
-```bibtex
-
-```

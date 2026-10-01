@@ -7,7 +7,3 @@ The MEDomicsLab annual symposium brings together clinicians, researchers, and in
 - Keynote on adaptive imaging workflows.
 - Panel on responsible AI deployment in hospitals.
 - Hands-on demos of open-source radiomics tools.
-
-## Logistics
-
-The symposium takes place at McGill University with hybrid attendance options for remote collaborators.

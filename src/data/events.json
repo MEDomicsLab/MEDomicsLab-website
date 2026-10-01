@@ -11,7 +11,8 @@
             "category": "Presentations",
             "date": "2026-08-07",
             "contributors": ["Mahdi Loutfi", "Martin Vallières"],
-            "markdown": "community/events/simpler-radiomics-can-be-enough-identifying-the-minimal-feature-complexity-required-for-accurate-prediction-2026.md"
+            "markdown": "community/events/simpler-radiomics-can-be-enough-identifying-the-minimal-feature-complexity-required-for-accurate-prediction-2026.md",
+            "venue": "Lady Davis Institute (LDI) Conference (Poster Presentation)"
           }
         ]
       },
@@ -24,7 +25,8 @@
             "category": "Presentations",
             "date": "2026-04-29",
             "contributors": ["Olivier Lefebvre"],
-            "markdown": "community/events/kafefak-presentation-first-publication-award-2026.md"
+            "markdown": "community/events/kafefak-presentation-first-publication-award-2026.md",
+            "venue": "Université de Sherbrooke, Faculté des sciences"
           }
         ]
       },
@@ -37,7 +39,8 @@
             "category": "Presentations",
             "date": "2026-03-31",
             "contributors": ["Olivier Lefebvre"],
-            "markdown": "community/events/scientific-days-rsn-2026.md"
+            "markdown": "community/events/scientific-days-rsn-2026.md",
+            "venue": "Réseau Santé Numérique (RSN)"
           }
         ]
       }
@@ -55,7 +58,8 @@
             "category": "Presentations",
             "date": "2025-11-14",
             "contributors": ["Ouael Nedjem Eddine SAHBI", "Hithem Lamri", "Martin Vallières"],
-            "markdown": "community/events/medfl-a-collaborative-framework-for-federated-learning-in-medicine-2025.md"
+            "markdown": "community/events/medfl-a-collaborative-framework-for-federated-learning-in-medicine-2025.md",
+            "venue": "T-CAIREM"
           }
         ]
       }
@@ -73,7 +77,8 @@
             "category": "Presentations",
             "date": "2024-12-06",
             "contributors": ["Olivier Lefebvre", "Martin Vallières"],
-            "markdown": "community/events/improving-prediction-confidence-in-healthcare-identifying-and-addressing-uncertainty-in-medical-predictions-2024.md"
+            "markdown": "community/events/improving-prediction-confidence-in-healthcare-identifying-and-addressing-uncertainty-in-medical-predictions-2024.md",
+            "venue": "Pôle universitaire de santé numérique de l’Estrie"
           },
           {
             "title": "Synthetic Data for Accessible Learning in Healthcare: Improving Mortality Prediction with Longitudinal Data (Presentation)",
@@ -81,7 +86,8 @@
             "category": "Presentations",
             "date": "2024-12-06",
             "contributors": ["Hakima Laribi", "Nicolas Raymond", "Martin Vallières"],
-            "markdown": "community/events/synthetic-data-for-accessible-learning-in-healthcare-improving-mortality-prediction-with-longitudinal-data-presentation-2024.md"
+            "markdown": "community/events/synthetic-data-for-accessible-learning-in-healthcare-improving-mortality-prediction-with-longitudinal-data-presentation-2024.md",
+            "venue": "Pôle universitaire de santé numérique de l’Estrie"
           }
         ]
       },
@@ -93,7 +99,8 @@
             "slug": "2024-08-20-msc-mall",
             "category": "Thesis Defenses",
             "contributors": ["Mahdi Loutfi"],
-            "markdown": "community/events/2024-08-20-msc-mall.md"
+            "markdown": "community/events/2024-08-20-msc-mall.md",
+            "date": "2024-08-20"
           }
         ]
       },
@@ -105,7 +112,8 @@
             "slug": "annual-symposium-2024",
             "category": "Symposiums",
             "contributors": ["MEDomicsLab"],
-            "markdown": "community/events/annual-symposium-2024.md"
+            "markdown": "community/events/annual-symposium-2024.md",
+            "venue": "McGill University (hybrid attendance)"
           }
         ]
       }
@@ -123,7 +131,8 @@
             "category": "Presentations",
             "date": "2023-10-13",
             "contributors": ["Olivier Lefebvre", "Martin Vallières"],
-            "markdown": "community/events/investigating-model-failures-by-patient-profiles-for-safer-clinical-deployment-2023.md"
+            "markdown": "community/events/investigating-model-failures-by-patient-profiles-for-safer-clinical-deployment-2023.md",
+            "venue": "T-CAIREM"
           },
           {
             "title": "Graph neural networks for predicting patient mortality within one year of hospital admission",
@@ -131,7 +140,8 @@
             "category": "Presentations",
             "date": "2023-10-13",
             "contributors": ["Hakima Laribi", "Nicolas Raymond", "Martin Vallières"],
-            "markdown": "community/events/graph-neural-networks-for-predicting-patient-mortality-within-one-year-of-hospital-admission-2023.md"
+            "markdown": "community/events/graph-neural-networks-for-predicting-patient-mortality-within-one-year-of-hospital-admission-2023.md",
+            "venue": "T-CAIREM"
           }
         ]
       },
@@ -160,7 +170,8 @@
             "slug": "2022-12-09-msc-nr",
             "category": "Thesis Defenses",
             "contributors": ["Nicolas Raymond"],
-            "markdown": "community/events/2022-12-09-msc-nr.md"
+            "markdown": "community/events/2022-12-09-msc-nr.md",
+            "date": "2022-12-09"
           }
         ]
       },
@@ -173,7 +184,8 @@
             "category": "Presentations",
             "date": "2022-10-20",
             "contributors": ["Hakima Laribi"],
-            "markdown": "community/events/graph-neural-networks-for-predicting-patient-mortality-within-one-year-of-hospital-admission-2022.md"
+            "markdown": "community/events/graph-neural-networks-for-predicting-patient-mortality-within-one-year-of-hospital-admission-2022.md",
+            "venue": "CIRIUS"
           },
           {
             "title": "A compliant package with international standards for radiomics analysis of medical images",
@@ -181,7 +193,8 @@
             "category": "Presentations",
             "date": "2022-10-20",
             "contributors": ["Mahdi Loutfi"],
-            "markdown": "community/events/a-compliant-package-with-international-standards-for-radiomics-analysis-of-medical-images-2022.md"
+            "markdown": "community/events/a-compliant-package-with-international-standards-for-radiomics-analysis-of-medical-images-2022.md",
+            "venue": "CIRIUS"
           },
           {
             "title": "Precision analysis of predictive uncertainty of machine learning models in medical context",
@@ -189,7 +202,8 @@
             "category": "Presentations",
             "date": "2022-10-20",
             "contributors": ["Olivier Lefebvre"],
-            "markdown": "community/events/precision-analysis-of-predictive-uncertainty-of-machine-learning-models-in-medical-context-2022.md"
+            "markdown": "community/events/precision-analysis-of-predictive-uncertainty-of-machine-learning-models-in-medical-context-2022.md",
+            "venue": "CIRIUS"
           }
         ]
       },
@@ -213,14 +227,18 @@
             "slug": "2022-08-12-siboire",
             "category": "Lab Life",
             "contributors": ["Martin Vallières"],
-            "markdown": "community/events/2022-08-12-siboire.md"
+            "markdown": "community/events/2022-08-12-siboire.md",
+            "date": "2022-08-12",
+            "venue": "Siboire"
           },
           {
             "title": "Laboratory event in Coaticook & Waterville!",
             "slug": "2022-08-05-mini-putt",
             "category": "Lab Life",
             "contributors": ["Martin Vallières"],
-            "markdown": "community/events/2022-08-05-mini-putt.md"
+            "markdown": "community/events/2022-08-05-mini-putt.md",
+            "date": "2022-08-05",
+            "venue": "Coaticook & Waterville, Eastern Townships"
           }
         ]
       },
@@ -233,7 +251,8 @@
             "category": "Presentations",
             "date": "2022-06-02",
             "contributors": ["Mahdi Loutfi"],
-            "markdown": "community/events/an-international-standard-compliant-tool-for-radiomic-feature-extraction-from-medical-images-2022.md"
+            "markdown": "community/events/an-international-standard-compliant-tool-for-radiomic-feature-extraction-from-medical-images-2022.md",
+            "venue": "Medical Imaging with Deep Learning 2022"
           }
         ]
       }
@@ -251,7 +270,8 @@
             "category": "Presentations",
             "date": "2021-05-05",
             "contributors": ["Alexandre Ayotte"],
-            "markdown": "community/events/3d-convolutional-neural-network-as-a-decision-support-system-for-multiple-renal-tumor-classification-tasks-2021.md"
+            "markdown": "community/events/3d-convolutional-neural-network-as-a-decision-support-system-for-multiple-renal-tumor-classification-tasks-2021.md",
+            "venue": "ACFAS 2021"
           },
           {
             "title": "Integration of genomic data in the design of learning models in precision oncology",
@@ -259,7 +279,8 @@
             "category": "Presentations",
             "date": "2021-05-05",
             "contributors": ["Nicolas Raymond"],
-            "markdown": "community/events/integration-of-genomic-data-in-the-design-of-learning-models-in-precision-oncology-2021.md"
+            "markdown": "community/events/integration-of-genomic-data-in-the-design-of-learning-models-in-precision-oncology-2021.md",
+            "venue": "ACFAS 2021"
           }
         ]
       }

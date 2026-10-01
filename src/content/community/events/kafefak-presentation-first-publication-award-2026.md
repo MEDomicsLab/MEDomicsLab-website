@@ -1,11 +1,5 @@
 ![First Publication Award certificate](/images/albums/2026-first-med3pa-presentation/certificat.png)
 
-**Venue:** Université de Sherbrooke, Faculté des sciences
-
-## Date
-
-2026-04-29
-
 ## Authors
 
 - [Olivier Lefebvre](/team/olivier-lefebvre)

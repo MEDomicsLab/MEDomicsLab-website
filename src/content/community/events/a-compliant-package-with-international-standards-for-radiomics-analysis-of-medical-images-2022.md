@@ -1,11 +1,5 @@
 ![CIRIUS](/images/albums/cirius-mahdi-2022/cirius-blanc.png)
 
-**Venue:** CIRIUS
-
-## Date
-
-2022-10-20
-
 ## Authors
 
 - [Mahdi Loutfi](/team/mahdi-loutfi)

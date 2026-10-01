@@ -1,11 +1,5 @@
 ![Olivier Lefebvre presenting at the RSN Scientific Days](/images/albums/2026-rsn-med3pa-presentation/presentation.jpeg)
 
-**Venue:** Réseau Santé Numérique (RSN)
-
-## Date
-
-2026-03-31
-
 ## Authors
 
 - [Olivier Lefebvre](/team/olivier-lefebvre)

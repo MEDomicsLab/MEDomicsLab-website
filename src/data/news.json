@@ -6,8 +6,25 @@
         "month": "September",
         "items": [
           {
+            "title": "Participation in Mila's Community of Practice on Digital Health",
+            "slug": "2026-09-29-mila-digital-health",
+            "event": {
+              "date": "2026-09-29",
+              "kind": "Community of practice",
+              "venue": "Mila, Montréal"
+            },
+            "category": "Conferences",
+            "contributors": ["Steven Ravary", "Simon Provost"],
+            "markdown": "community/news/2026-09-29-mila-digital-health.md"
+          },
+          {
             "title": "Mariem Kallel successfully defended her thesis",
             "slug": "2026-09-22-mariem-msc",
+            "event": {
+              "date": "2026-08-27",
+              "kind": "Thesis defense (MSc)",
+              "venue": "Université de Sherbrooke, room D4-2011 (hybrid via Teams)"
+            },
             "category": "Thesis Defenses",
             "contributors": ["Mariem Kallel"],
             "markdown": "community/news/2026-09-22-mariem-msc.md"
@@ -22,7 +39,8 @@
             "slug": "2026-03-31-post-med3pa-article",
             "category": "Publications",
             "contributors": ["Olivier Lefebvre", "Martin Vallières"],
-            "markdown": "community/news/2026-03-31-post-med3pa-article.md"
+            "markdown": "community/news/2026-03-31-post-med3pa-article.md",
+            "date": "2026-03-31"
           }
         ]
       },
@@ -51,7 +69,8 @@
             "slug": "2025-03-04-post-longitudinal-oym-article",
             "category": "Publications",
             "contributors": ["Hakima Laribi", "Nicolas Raymond", "Martin Vallières"],
-            "markdown": "community/news/2025-03-04-post-longitudinal-oym-article.md"
+            "markdown": "community/news/2025-03-04-post-longitudinal-oym-article.md",
+            "date": "2025-03-04"
           }
         ]
       }
@@ -68,7 +87,8 @@
             "slug": "2024-11-06-post-prostate-models",
             "category": "Publications",
             "contributors": ["Maxence Larose", "Nicolas Raymond", "Martin Vallières"],
-            "markdown": "community/news/2024-11-06-post-prostate-models.md"
+            "markdown": "community/news/2024-11-06-post-prostate-models.md",
+            "date": "2024-11-06"
           }
         ]
       },
@@ -80,7 +100,8 @@
             "slug": "2024-08-20-mall-msc",
             "category": "Thesis Defenses",
             "contributors": ["Mahdi Loutfi"],
-            "markdown": "community/news/2024-08-20-mall-msc.md"
+            "markdown": "community/news/2024-08-20-mall-msc.md",
+            "date": "2024-08-20"
           }
         ]
       },
@@ -99,7 +120,8 @@
             "slug": "2024-07-05-post-arxiv",
             "category": "Publications",
             "contributors": ["Mahdi Loutfi", "Teodora Boblea Podasca", "Martin Vallières"],
-            "markdown": "community/news/2024-07-05-post-arxiv.md"
+            "markdown": "community/news/2024-07-05-post-arxiv.md",
+            "date": "2024-07-05"
           }
         ]
       },
@@ -167,7 +189,8 @@
             "slug": "2022-12-09-nr-msc",
             "category": "Thesis Defenses",
             "contributors": ["Nicolas Raymond"],
-            "markdown": "community/news/2022-12-09-nr-msc.md"
+            "markdown": "community/news/2022-12-09-nr-msc.md",
+            "date": "2022-12-09"
           }
         ]
       },
@@ -179,7 +202,8 @@
             "slug": "2022-11-23-post-arxiv",
             "category": "Publications",
             "contributors": ["Nicolas Raymond", "Martin Vallières"],
-            "markdown": "community/news/2022-11-23-post-arxiv.md"
+            "markdown": "community/news/2022-11-23-post-arxiv.md",
+            "date": "2022-11-23"
           }
         ]
       },
@@ -191,7 +215,8 @@
             "slug": "2022-10-20-cirius",
             "category": "Awards",
             "contributors": ["Hakima Laribi", "Olivier Lefebvre", "Mahdi Loutfi"],
-            "markdown": "community/news/2022-10-20-cirius.md"
+            "markdown": "community/news/2022-10-20-cirius.md",
+            "date": "2022-10-20"
           }
         ]
       },
@@ -234,7 +259,8 @@
             "slug": "2022-06-02-rbiq",
             "category": "Conferences",
             "contributors": ["Mahdi Loutfi"],
-            "markdown": "community/news/2022-06-02-rbiq.md"
+            "markdown": "community/news/2022-06-02-rbiq.md",
+            "date": "2022-06-02"
           }
         ]
       },

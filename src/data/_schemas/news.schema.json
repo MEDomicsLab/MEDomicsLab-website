@@ -86,6 +86,35 @@
         },
         "coverImage": {
           "$ref": "#/definitions/coverImage"
+        },
+        "date": {
+          "type": "string",
+          "format": "date",
+          "description": "Optional exact publication or event date stated in the news text, title, or imagery."
+        },
+        "event": {
+          "type": "object",
+          "description": "Optional event details for a news post recapping or announcing an event. Displayed in the sidebar.",
+          "additionalProperties": false,
+          "required": ["date", "kind", "venue"],
+          "properties": {
+            "date": {
+              "type": "string",
+              "format": "date"
+            },
+            "endDate": {
+              "type": "string",
+              "format": "date"
+            },
+            "kind": {
+              "type": "string",
+              "minLength": 1
+            },
+            "venue": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
         }
       }
     },

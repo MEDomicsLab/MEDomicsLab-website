@@ -1,11 +1,5 @@
 ![CIRIUS](/images/albums/cirius-hakima-2022/cirius-blanc.png)
 
-**Venue:** CIRIUS
-
-## Date
-
-2022-10-20
-
 ## Authors
 
 - [Hakima Laribi](/team/hakima-laribi)
