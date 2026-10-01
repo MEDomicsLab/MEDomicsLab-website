@@ -4,7 +4,6 @@ import rehypeRaw from "rehype-raw";
 import remarkGfm from "remark-gfm";
 import { getCachedMarkdown, getMarkdownContent } from "../../lib/markdown";
 import { cn } from "../../lib/utils";
-import EventGallery from "../EventGallery/EventGallery";
 import SkeletonImage from "../SkeletonImage/SkeletonImage";
 import "./MarkdownContent.css";
 
@@ -78,9 +77,6 @@ export default function MarkdownContent({ markdownPath, className }) {
         rehypePlugins={[rehypeRaw]}
         remarkPlugins={[remarkGfm]}
         components={{
-          "dome-gallery": ({ album, "data-album": dataAlbum }) => (
-            <EventGallery album={album ?? dataAlbum} />
-          ),
           img: ({ node: _node, ...props }) => (
             <SkeletonImage
               {...props}

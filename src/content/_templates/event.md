@@ -10,5 +10,8 @@
 <!-- replace: a paragraph (or several) describing the event. Tables, lists,
 and embedded media all work here. -->
 
-<!-- Optional photo gallery (album folder lives under public/images/albums/). -->
-<!-- <dome-gallery album="<album>"></dome-gallery> -->
+<!-- Optional photos: add one Markdown image per paragraph, as in the Mila news post.
+     Images display at full width with rounded corners. -->
+<!-- ![<alt>](/images/albums/<album>/photo-1.png) -->
+
+<!-- ![<alt>](/images/albums/<album>/photo-2.png) -->
