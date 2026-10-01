@@ -323,6 +323,13 @@ body:has(.neue-home-layout) .nav-dropdown-portal {
   color: #fff;
   border: 1px solid #ffffff70;
   backdrop-filter: blur(10px);
+  opacity: 0;
+  pointer-events: auto;
+  transition: opacity 180ms ease;
+}
+.neue-hero-film:hover .neue-motion-toggle,
+.neue-hero-film:focus-within .neue-motion-toggle {
+  opacity: 1;
 }
 
 .neue-lab {
