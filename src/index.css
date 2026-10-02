@@ -79,18 +79,8 @@
   border-radius: inherit;
   pointer-events: none;
   background:
+    url("/images/homepage-neue/paper-texture.webp") center / cover,
     linear-gradient(rgb(0 61 165 / 48%), rgb(0 61 165 / 48%)),
     url("/images/homepage-neue/branding-blue-texture.png") center / cover;
-}
-.blue-paper::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  border-radius: inherit;
-  pointer-events: none;
-  background: url("/images/homepage-neue/paper-texture.webp") center / cover;
-  filter: grayscale(1) contrast(1.4);
-  mix-blend-mode: soft-light;
-  opacity: 1;
+  background-blend-mode: soft-light, normal, normal;
 }

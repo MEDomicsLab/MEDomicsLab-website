@@ -157,6 +157,16 @@ body:has(.neue-home-layout) .nav-dropdown-portal {
   background: var(--neue-accent);
   color: var(--neue-white);
 }
+.neue-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto;
+  z-index: -1;
+  height: 40px;
+  background: rgb(118 148 201);
+  opacity: 0.01;
+  pointer-events: none;
+}
 .neue-hero-composition {
   position: absolute;
   inset: 0;

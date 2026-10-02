@@ -148,7 +148,6 @@ export default function LabPostcard({ paused, mission }) {
         );
         ctx.fillStyle = "rgba(0,61,165,0.48)";
         ctx.fillRect(1190, 55, 235, 260);
-        ctx.filter = "grayscale(1) contrast(1.4)";
         ctx.globalCompositeOperation = "soft-light";
         ctx.drawImage(paperGrain, 1190, 55, 235, 260);
         ctx.restore();
