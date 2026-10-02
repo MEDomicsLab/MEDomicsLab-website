@@ -646,9 +646,7 @@ body:has(.neue-home-layout) .nav-dropdown-portal {
   font-size: 5.3vw;
   line-height: 0.97;
   letter-spacing: -0.05em;
-  transition:
-    transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
-    opacity 0.35s;
+  transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1);
 }
 .neue-ecosystem-title > span {
   display: block;
@@ -662,27 +660,8 @@ body:has(.neue-home-layout) .nav-dropdown-portal {
 .ecosystem-line {
   display: block;
 }
-.neue-ecosystem-centre.is-active .neue-ecosystem-title {
-  transform: translateY(-35px);
-  opacity: 0;
-}
-.neue-ecosystem-stats {
-  position: absolute;
-  inset: 0;
-  display: grid;
-  grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.4fr);
-  align-items: center;
-  gap: clamp(12px, 1.5vw, 26px);
-  opacity: 0;
-  transform: translateY(35px);
-  transition:
-    opacity 0.3s,
-    transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
-  pointer-events: none;
-}
-.neue-ecosystem-centre.is-active .neue-ecosystem-stats {
-  opacity: 1;
-  transform: none;
+.neue-ecosystem.is-open .neue-ecosystem-title {
+  opacity: 0.5;
 }
 .neue-stat-counts {
   display: grid;
@@ -727,6 +706,7 @@ body:has(.neue-home-layout) .nav-dropdown-portal {
   animation: neue-ecosystem-circle 100s linear infinite;
 }
 .neue-ecosystem-orbit:has(a:hover, a:focus-visible),
+.neue-ecosystem.is-spotlit .neue-ecosystem-orbit,
 .neue-motion-paused .neue-ecosystem-orbit {
   animation-play-state: paused;
 }
@@ -753,6 +733,101 @@ body:has(.neue-home-layout) .nav-dropdown-portal {
   width: 100%;
   height: 100%;
   object-fit: contain;
+}
+.neue-ecosystem.is-spotlit .neue-ecosystem-app {
+  transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.neue-ecosystem.is-open .neue-ecosystem-app:not(.is-lifted) {
+  opacity: 0.5;
+  pointer-events: none;
+}
+.neue-ecosystem-app.is-lifted {
+  opacity: 0;
+  transition: none;
+}
+/* No stacking context here or on the stain: the glass's blended rims isolate their nearest
+   one, and the blur would then see nothing behind it. The section is the isolated group. */
+.neue-ecosystem-spotlight {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+.neue-ecosystem-feature {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: min(29vw, 64svh);
+  aspect-ratio: 4 / 5;
+  display: block;
+  z-index: 3;
+  visibility: hidden;
+  pointer-events: none;
+  will-change: transform;
+}
+.neue-ecosystem.is-spotlit .neue-ecosystem-feature {
+  visibility: visible;
+}
+.neue-ecosystem.is-open .neue-ecosystem-feature {
+  pointer-events: auto;
+}
+.neue-ecosystem-feature img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+.neue-ecosystem-app:focus-visible {
+  outline: none;
+}
+.neue-ecosystem-stage:has(.neue-ecosystem-app:focus-visible) .neue-ecosystem-feature {
+  outline: 2px solid currentColor;
+  outline-offset: 6px;
+}
+.neue-ecosystem-stain {
+  --stain-shape: 63% 37% 58% 42% / 43% 62% 38% 57%;
+  --glass-opacity: 0;
+  position: absolute;
+  top: 50%;
+  left: 79.5%;
+  width: 0;
+  height: 0;
+  transition: --glass-opacity 0.4s ease;
+}
+.neue-ecosystem.is-right .neue-ecosystem-stain {
+  left: 20.5%;
+}
+.neue-ecosystem.is-open .neue-ecosystem-stain {
+  --glass-opacity: 1;
+  pointer-events: auto;
+  transition: --glass-opacity 0.6s ease 0.12s;
+}
+.neue-ecosystem-stain .glass-frame > *,
+.neue-ecosystem-stain .glass {
+  border-radius: var(--stain-shape) !important;
+}
+.neue-ecosystem-stain-body {
+  width: min(29vw, 64svh);
+  aspect-ratio: 1.42;
+  display: grid;
+  font-family: "Homepage Neue Montreal", sans-serif;
+  font-weight: 400;
+  line-height: 1.12;
+  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.45fr);
+  align-items: center;
+  gap: clamp(14px, 1.6vw, 30px);
+  padding-inline: min(3.5vw, 7.7svh) min(3.8vw, 8.4svh);
+  opacity: 0;
+  translate: 0 14px;
+  transition:
+    opacity 0.3s ease,
+    translate 0.4s ease;
+}
+.neue-ecosystem.is-open .neue-ecosystem-stain-body {
+  opacity: 1;
+  translate: none;
+  transition:
+    opacity 0.6s ease 0.35s,
+    translate 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.35s;
 }
 .neue-reel {
   position: relative;
@@ -1509,6 +1584,9 @@ body:has(.neue-home-layout) .nav-dropdown-portal {
   .neue-ecosystem-orbit {
     transform: none;
     animation: none;
+  }
+  .neue-ecosystem-spotlight {
+    display: none;
   }
   .neue-ecosystem-app {
     width: 29vw;

@@ -153,7 +153,7 @@ test("project focus reveals statistics and publications expose four readable, li
   const app = page.getByRole("link", { name: "MEDomics, website", exact: true });
   await app.focus();
   await app.scrollIntoViewIfNeeded();
-  await expect(page.locator(".neue-ecosystem-stats")).not.toContainText("MEDomics");
+  await expect(page.locator(".neue-ecosystem-stain-body")).not.toContainText("MEDomics");
   await expect(page.locator(".neue-stat-counts")).toContainText("42");
   await expect(page.locator(".neue-stat-counts")).toContainText("7");
   for (const name of ["MEDomics", "MED3pa", "MEDfl", "MEDiml", "MEDprofiles"]) {
@@ -162,7 +162,7 @@ test("project focus reveals statistics and publications expose four readable, li
     await expect(logo).toHaveAttribute("src", `/images/homepage-neue/${name}-white.png`);
     await expect.poll(() => logo.evaluate((el) => el.naturalWidth)).toBeGreaterThan(0);
   }
-  await expect(page.locator(".neue-ecosystem-stats")).not.toContainText("On GitHub");
+  await expect(page.locator(".neue-ecosystem-stain-body")).not.toContainText("On GitHub");
   const tabs = page.getByRole("button", { name: /^Read publication/ });
   await expect(tabs).toHaveCount(4);
   for (let i = 0; i < 4; i++) {
