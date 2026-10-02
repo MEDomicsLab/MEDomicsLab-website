@@ -56,7 +56,7 @@
   background: var(--neue-ink);
 }
 .neue-home-layout .liquid-nav-anchor,
-.neue-home-layout .liquid-github-anchor,
+.neue-home-layout .liquid-action-anchor,
 .neue-home-layout .neue-home-brand {
   font-family: "Homepage Neue Montreal", sans-serif;
 }

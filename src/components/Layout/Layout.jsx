@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
 import { Link, Outlet, useLocation } from "react-router-dom";
-import LiquidGlass from "../GlassSurface/GlassSurface.jsx";
+import { GlassFrame } from "../GlassSurface/GlassSurface.jsx";
 import { cn } from "../../lib/utils";
 import homeData from "../../data/home.json";
 import layoutData from "../../data/layout.json";
@@ -9,14 +9,14 @@ import { MotionHighlight, MotionHighlightItem } from "../MotionHighlight/MotionH
 import SkeletonImage from "../SkeletonImage/SkeletonImage.jsx";
 import Seo from "../Seo/Seo.jsx";
 import { LIQUID_PARAMS } from "../../lib/liquidGlassParams";
-import GithubMenu from "./GithubMenu.jsx";
+import SiteShortcuts from "./SiteShortcuts.jsx";
 import NavDropdown, {
   NAV_MENU_ITEM_CLASS,
   NAV_TEXT_CLASS,
   NAV_TRIGGER_CLOSE_DELAY,
   NAV_MENU_CLOSE_DELAY,
 } from "./NavDropdown.jsx";
-import { scrollToTopNow } from "../../lib/lenis";
+import { scrollToSection, scrollToTopNow } from "../../lib/lenis";
 import Footer from "../Footer/Footer.jsx";
 import "./Layout.css";
 import "./InteriorPages.css";
@@ -48,43 +48,18 @@ export default function Layout() {
   const clearCommunityFocusRequest = useCallback(() => setShouldFocusCommunityMenu(false), []);
   const [rollingTextIndex, setRollingTextIndex] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
-  const [isCompact, setIsCompact] = useState(false);
-  const [navLeft, setNavLeft] = useState("50%");
   const [navTop, setNavTop] = useState(46);
-  const [githubBelow, setGithubBelow] = useState(false);
   const [heroBehindNav, setHeroBehindNav] = useState(isHome);
-  const [githubLeft, setGithubLeft] = useState("calc(100% - 80px)");
 
   useLayoutEffect(() => {
-    const EDGE = 32;
-    const GAP = 12;
     const update = () => {
-      const navWidth =
-        document.querySelector(".liquid-nav-anchor")?.getBoundingClientRect().width ?? 0;
-      const githubWidth =
-        document.querySelector(".liquid-github-anchor")?.getBoundingClientRect().width ?? 0;
-      const width = window.innerWidth;
-      setIsMobile(width <= 767);
-      setIsCompact(width > 767 && width < 1024);
-      setNavLeft(width / 2);
-      setNavTop(width < 1100 ? 96 : 46);
-      const following = width / 2 + navWidth / 2 + GAP + githubWidth / 2;
-      const below = width <= 767 || following + githubWidth / 2 > width - 12;
-      setGithubBelow(below);
-      setGithubLeft(width <= 767 ? width / 2 : below ? width - EDGE - githubWidth / 2 : following);
+      setIsMobile(window.innerWidth <= 767);
+      setNavTop(window.innerWidth < 1100 ? 96 : 46);
     };
     update();
-    const ro = new ResizeObserver(update);
-    for (const selector of [".liquid-nav-anchor", ".liquid-github-anchor"]) {
-      const el = document.querySelector(selector);
-      if (el) ro.observe(el);
-    }
     window.addEventListener("resize", update);
-    return () => {
-      ro.disconnect();
-      window.removeEventListener("resize", update);
-    };
-  }, [isHome]);
+    return () => window.removeEventListener("resize", update);
+  }, []);
 
   useEffect(() => {
     return () => {
@@ -109,6 +84,23 @@ export default function Layout() {
     scrollToTopNow();
     const frame = requestAnimationFrame(scrollToTopNow);
     return () => cancelAnimationFrame(frame);
+  }, [location.key, location.hash]);
+
+  useEffect(() => {
+    if (!location.hash) return undefined;
+    let cancelled = false;
+    let frame;
+    document.fonts.ready.then(() => {
+      if (cancelled) return;
+      frame = requestAnimationFrame(() => {
+        const section = document.getElementById(location.hash.slice(1));
+        if (section) scrollToSection(section);
+      });
+    });
+    return () => {
+      cancelled = true;
+      cancelAnimationFrame(frame);
+    };
   }, [location.key, location.hash]);
 
   const navItems = layoutData.navItems;
@@ -156,7 +148,7 @@ export default function Layout() {
         </Link>
       </div>
 
-      <LiquidGlass
+      <GlassFrame
         displacementScale={liquid.nav.displacementScale}
         blurAmount={liquid.nav.blurAmount}
         saturation={liquid.nav.saturation}
@@ -166,11 +158,11 @@ export default function Layout() {
         mode={liquid.nav.mode}
         overLight={liquid.nav.overLight}
         padding={isMobile ? (isHome ? "12px 8px" : "12px 16px") : "12px 24px"}
-        className="liquid-nav-anchor"
+        surfaceClassName="liquid-nav-anchor"
         style={{
           position: "fixed",
           top: navTop,
-          left: navLeft,
+          left: "50%",
           zIndex: 50,
         }}
       >
@@ -313,20 +305,14 @@ export default function Layout() {
             )}
           </MotionHighlight>
         </nav>
-      </LiquidGlass>
+      </GlassFrame>
 
-      <GithubMenu
+      <SiteShortcuts
         href={
           layoutData.footer.social.links.find((link) => link.href.startsWith("https://github.com/"))
             .href
         }
-        apps={homeData.sections.ecosystem.apps}
-        compact={isCompact}
-        mobile={isMobile}
-        hoverTextColor={!isHome}
         liquid={liquid}
-        anchorClassName="liquid-github-anchor"
-        style={{ top: githubBelow ? navTop + 66 : navTop, left: githubLeft }}
       />
 
       <main className={cn("min-h-screen md:pt-0", location.pathname === "/" ? "pt-0" : "pt-28")}>

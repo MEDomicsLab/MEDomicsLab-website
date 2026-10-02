@@ -44,7 +44,7 @@
           "properties": {
             "apps": {
               "type": "array",
-              "description": "Shared projects for the homepage ecosystem and navbar GitHub menu.",
+              "description": "Projects displayed in the homepage ecosystem.",
               "items": {
                 "type": "object",
                 "additionalProperties": false,
@@ -57,7 +57,7 @@
                   "website": {
                     "type": "string",
                     "format": "uri",
-                    "description": "Public website. When absent, the homepage diagram and the navbar GitHub menu link the repository instead."
+                    "description": "Public website. When absent, the homepage ecosystem links to the repository instead."
                   },
                   "repo": {
                     "type": "string",

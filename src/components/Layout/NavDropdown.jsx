@@ -52,8 +52,8 @@ export default function NavDropdown({
       if (!trigger) return;
       const pillBottom = Math.max(
         trigger.bottom,
-        ...[".liquid-nav-anchor", ".liquid-github-anchor"].map(
-          (selector) => document.querySelector(selector)?.getBoundingClientRect().bottom ?? 0
+        ...[...document.querySelectorAll(".liquid-nav-anchor")].map(
+          (element) => element.getBoundingClientRect().bottom
         )
       );
       const content = contentRef.current;

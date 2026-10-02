@@ -104,6 +104,32 @@ for (const reducedMotion of ["no-preference", "reduce"]) {
       await expectAtTop(page, "/team");
     });
 
+    test("the ecosystem shortcut reaches its section from another route and on repeat visits", async ({
+      page,
+    }) => {
+      for (const path of ["/research", "/"]) {
+        await page.goto(path);
+        if (path === "/") await page.keyboard.press("Escape");
+        const shortcut = page.getByRole("link", { name: "MEDomics Ecosystem", exact: true });
+        await shortcut.click();
+        await expect(page).toHaveURL(/\/#ecosystem$/);
+        const distance = () =>
+          page.locator("#ecosystem").evaluate((el) => Math.abs(el.getBoundingClientRect().top));
+        await expect.poll(distance).toBeLessThan(2);
+        await page.waitForTimeout(800);
+        expect(await distance()).toBeLessThan(2);
+        await page.evaluate(() => window.scrollTo(0, 0));
+        await shortcut.press("Enter");
+        await expect.poll(distance).toBeLessThan(2);
+      }
+      await page.reload();
+      await expect
+        .poll(() =>
+          page.locator("#ecosystem").evaluate((el) => Math.abs(el.getBoundingClientRect().top))
+        )
+        .toBeLessThan(2);
+    });
+
     test("the homepage anchor still reaches the lab before navigating to a new page", async ({
       page,
     }) => {

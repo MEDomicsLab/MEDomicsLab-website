@@ -11,7 +11,7 @@ export default function Ecosystem() {
   );
   const current = active ? stats[active.repo] : null;
   return (
-    <section className="neue-ecosystem" aria-labelledby="ecosystem-heading">
+    <section id="ecosystem" className="neue-ecosystem" aria-labelledby="ecosystem-heading">
       <div className="neue-ecosystem-stage">
         <div className={`neue-ecosystem-centre ${active ? "is-active" : ""}`}>
           <h2 id="ecosystem-heading" className="neue-ecosystem-title">

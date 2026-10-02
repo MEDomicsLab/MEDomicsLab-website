@@ -1,5 +1,6 @@
 import PageLink from "../../components/PageLink/PageLink.jsx";
 import { lazy, Suspense } from "react";
+import { RotateCw } from "lucide-react";
 import homeData from "../../data/home.json";
 import { imageVariant } from "../../lib/images";
 import { investigatorName, principalInvestigator as pi } from "./homepageContent";
@@ -81,7 +82,18 @@ export default function PrincipalInvestigator({ paused }) {
         </div>
       </div>
       <div className="neue-postcard-column">
-        <Suspense fallback={<div className="neue-postcard" />}>
+        <Suspense
+          fallback={
+            <div className="neue-postcard-wrap" aria-hidden="true">
+              <div className="neue-postcard" />
+              <p className="neue-postcard-caption">
+                <button disabled tabIndex={-1}>
+                  <RotateCw size={15} /> Turn the postcard
+                </button>
+              </p>
+            </div>
+          }
+        >
           <LabPostcard paused={paused} mission={homeData.mission.text} />
         </Suspense>
       </div>

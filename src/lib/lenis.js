@@ -9,6 +9,15 @@ export const setLenis = (lenis) => {
   instance = lenis;
 };
 
+export const scrollToSection = (section) => {
+  const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (instance) {
+    instance.scrollTo(section, { immediate: reducedMotion, duration: 1.1, force: true });
+  } else {
+    section.scrollIntoView({ behavior: reducedMotion ? "instant" : "smooth", block: "start" });
+  }
+};
+
 export const scrollToTopNow = () => {
   instance?.scrollTo(0, { immediate: true, force: true });
   window.scrollTo({ top: 0, left: 0, behavior: "instant" });

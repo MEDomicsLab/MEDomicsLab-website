@@ -1,0 +1,30 @@
+@property --glass-opacity {
+  syntax: "<number>";
+  inherits: true;
+  initial-value: 1;
+}
+
+.glass-frame {
+  display: contents;
+}
+.glass-frame > *,
+.glass-frame .glass,
+.glass-frame .glass > * {
+  transition: none !important;
+}
+.glass-frame > :not(.glass-frame__surface) {
+  width: var(--glass-width) !important;
+  height: var(--glass-height) !important;
+}
+
+.glass-frame .glass__warp,
+.glass-frame .glass > :last-child,
+.glass-frame > span:nth-of-type(2) {
+  opacity: var(--glass-opacity);
+}
+.glass-frame > span:nth-of-type(1) {
+  opacity: calc(0.2 * var(--glass-opacity)) !important;
+}
+.glass-frame .glass {
+  box-shadow: 0 12px 40px rgb(0 0 0 / calc(0.25 * var(--glass-opacity))) !important;
+}

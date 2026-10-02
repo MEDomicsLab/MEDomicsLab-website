@@ -75,7 +75,7 @@ test("all generated ecosystem and project-card artwork remains available", async
   }
 });
 
-test("the hero stays pinned while the profile covers it; navigation is centred independently of GitHub", async ({
+test("the hero stays pinned while the profile covers it; navigation is centred independently of its shortcuts", async ({
   page,
 }) => {
   await page.setViewportSize({ width: 1706, height: 897 });
@@ -527,14 +527,11 @@ test("dropdown links underline and the navbar stays centred on other routes", as
   const news = page.getByRole("menuitem", { name: "News", exact: true });
   await news.hover();
   await expect(news).toHaveCSS("text-decoration-line", "underline");
-  await page.locator(".liquid-github-anchor a").hover();
-  const app = page.getByRole("menu", { name: "MEDomicsLab apps" }).getByRole("menuitem").first();
-  await app.hover();
-  await expect(app).toHaveCSS("text-decoration-line", "underline");
-  await expect(page.getByRole("menuitem", { name: "MEDprofiles", exact: true })).toHaveAttribute(
-    "href",
-    "https://github.com/MEDomicsLab/MEDprofiles"
-  );
+  const github = page.locator(".liquid-github-anchor a");
+  await github.hover();
+  await expect(github.locator(".nav-action-slide__arrow")).toHaveCSS("opacity", "1");
+  await expect(github).toHaveAttribute("href", "https://github.com/MEDomicsLab");
+  await expect(page.getByRole("menu", { name: "MEDomicsLab apps" })).toHaveCount(0);
   await page.goto("/");
   await page.keyboard.press("Escape");
   await expect(page.locator('[aria-current="page"]')).toHaveCSS("color", "rgb(255, 255, 255)");
