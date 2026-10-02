@@ -13,7 +13,7 @@ export default function Seo() {
       <meta name="description" content={meta.description} />
       <meta
         name="theme-color"
-        content={theme.cssVars[pathname === "/" ? "--tertiary" : "--background"]}
+        content={pathname === "/" ? "rgb(0 148 155 / 79%)" : theme.cssVars["--background"]}
       />
       <meta name="robots" content={meta.indexable ? "index, follow" : "noindex, follow"} />
       {meta.canonicalUrl && <link rel="canonical" href={meta.canonicalUrl} />}
