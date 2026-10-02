@@ -614,3 +614,29 @@ for (const width of [390, 1440]) {
     await expect.poll(async () => (await title.boundingBox()).width).toBeCloseTo(start.width, 0);
   });
 }
+
+for (const width of [390, 1440]) {
+  test(`the footer reaches the viewport bottom without animation overflow at ${width}px`, async ({
+    page,
+  }) => {
+    await page.setViewportSize({ width, height: 900 });
+    for (const path of ["/", "/research"]) {
+      await page.goto(path);
+      await page.keyboard.press("Escape");
+      await page.evaluate(() => document.fonts.ready);
+      await page.evaluate(() => window.scrollTo(0, document.documentElement.scrollHeight));
+      await expect
+        .poll(() =>
+          page
+            .locator(".neue-footer")
+            .evaluate((el) =>
+              Math.abs(
+                document.documentElement.scrollHeight -
+                  (el.getBoundingClientRect().bottom + window.scrollY)
+              )
+            )
+        )
+        .toBeLessThan(1);
+    }
+  });
+}

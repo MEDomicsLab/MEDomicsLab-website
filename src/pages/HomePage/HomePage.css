@@ -1217,6 +1217,7 @@ body:has(.neue-home-layout) .nav-dropdown-portal {
 
 .neue-footer {
   position: relative;
+  overflow: clip;
   z-index: 0;
   background: var(--neue-accent);
   color: var(--neue-white);
@@ -1227,7 +1228,6 @@ body:has(.neue-home-layout) .nav-dropdown-portal {
   grid-template-columns: 0.38fr 1fr 1.3fr 1fr 1.35fr;
   gap: 20px;
   padding-bottom: 38px;
-  border-bottom: 1px solid currentColor;
 }
 .neue-footer-logo img {
   width: 100%;
