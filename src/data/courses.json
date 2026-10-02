@@ -1,9 +1,9 @@
 [
   {
-    "title": "MDPH 610: Instrumentation and Computation in Medical Physics",
-    "summary": "A course on electronics, computer programming, and instrumentation as applied to medical physics.",
-    "slug": "mdph-610-instrumentation-and-computation-in-medical-physics",
-    "markdown": "community/courses/mdph-610-instrumentation-and-computation-in-medical-physics.md",
+    "title": "MDPH 610: Supervised Machine Learning in Medicine",
+    "summary": "A graduate course on supervised machine learning and how it is applied in medicine.",
+    "slug": "mdph-610-supervised-machine-learning-in-medicine",
+    "markdown": "community/courses/mdph-610-supervised-machine-learning-in-medicine.md",
     "authors": ["Martin Vallières"],
     "sessions": ["Winter 2027"],
     "links": [

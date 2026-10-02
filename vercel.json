@@ -4,5 +4,12 @@
   "buildCommand": "npm run build",
   "outputDirectory": "dist",
   "cleanUrls": true,
-  "trailingSlash": false
+  "trailingSlash": false,
+  "redirects": [
+    {
+      "source": "/community/courses/mdph-610-instrumentation-and-computation-in-medical-physics",
+      "destination": "/community/courses/mdph-610-supervised-machine-learning-in-medicine",
+      "permanent": true
+    }
+  ]
 }

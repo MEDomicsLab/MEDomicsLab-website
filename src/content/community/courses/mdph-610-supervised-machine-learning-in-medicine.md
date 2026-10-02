@@ -10,13 +10,15 @@
 
 - Term: Winter 2027
 - Credits: 2
+- Level: Graduate
+- Topic: Machine learning
 - Offered by: Medical Physics Unit (Graduate Studies), McGill University
-- Instructor: [Martin Vallières](/team/martin-vallieres/)
+- Instructor: [Martin Vallières](/team/martin-vallieres/), Professor, Medical Physics Unit, McGill University
 - Location: Medical Physics Unit, McGill University Hospital
 
 ## Course description
 
-This course covers electronics, computer programming, and instrumentation as applied to medical physics. Basic knowledge of electronics and computers is assumed. The detailed course contents may vary from year to year, depending on the background of the students.
+This graduate course covers supervised machine learning and how it is applied in medicine. In the McGill Course Catalogue it is listed under MDPH 610, Instrumentation and Computation in Medical Physics, whose content changes from year to year to suit the students' background.
 
 ## Prerequisites and restrictions
 
