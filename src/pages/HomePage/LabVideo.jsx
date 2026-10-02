@@ -98,7 +98,7 @@ export function LabVideoProvider({ paused, children }) {
   );
 }
 
-export default function LabVideo({ onPosterReady }) {
+export default function LabVideo() {
   const canvas = useRef(null);
   const film = useContext(FilmContext);
   useEffect(() => {
@@ -131,7 +131,7 @@ export default function LabVideo({ onPosterReady }) {
   }, [film]);
   return (
     <div className="neue-video" aria-hidden="true">
-      <img className="neue-video-poster" src="/images/homepage.jpg" alt="" onLoad={onPosterReady} />
+      <img className="neue-video-poster" src="/images/homepage.jpg" alt="" />
       <canvas className="neue-video-frame" ref={canvas} />
     </div>
   );

@@ -88,23 +88,28 @@ test("the hero stays pinned while the profile covers it; navigation is centred i
   });
   const nav = await page.locator(".liquid-nav-anchor").boundingBox();
   const github = await page.locator(".liquid-github-anchor").boundingBox();
-  expect(Math.abs(github.x - nav.x - nav.width - 12)).toBeLessThan(2);
+  const ecosystem = await page.locator(".liquid-ecosystem-anchor").boundingBox();
   expect(Math.abs(nav.x + nav.width / 2 - 853)).toBeLessThan(2);
   const film = await page.locator(".neue-hero-film").boundingBox();
   const word = await page.locator(".neue-hero-medomics").boundingBox();
   const lab = await page.locator(".neue-hero-lab").boundingBox();
   const bottom = await page.locator(".neue-hero-bottom").boundingBox();
-  const navBottom = Math.max(nav.y + nav.height, github.y + github.height);
+  expect((github.x + ecosystem.x + ecosystem.width) / 2).toBeCloseTo(film.x + film.width / 2, 0);
+  expect(github.y + github.height / 2).toBeCloseTo(film.y + film.height / 2, 0);
+  expect(ecosystem.y).toBeCloseTo(github.y, 0);
+  const navBottom = nav.y + nav.height;
   const centre = (navBottom + bottom.y) / 2;
-  const description = await page.locator(".neue-hero-description").boundingBox();
-  expect(Math.abs(film.x - description.x)).toBeLessThan(1);
-  expect(Math.abs(lab.x - word.x)).toBeLessThan(1);
-  expect(lab.y).toBeGreaterThan(word.y + word.height);
-  expect(word.x - film.x - film.width).toBeGreaterThan(24);
-  expect(Math.abs(word.x + word.width - 1682)).toBeLessThan(1);
+  const title = await page.locator("#home-heading").boundingBox();
+  expect(film.x - title.x).toBeGreaterThanOrEqual(0);
+  expect(film.x - title.x).toBeLessThan(16);
+  expect(Math.abs(film.x + film.width - title.x - title.width)).toBeLessThan(4);
+  expect(Math.abs(lab.y - word.y)).toBeLessThan(1);
+  expect(Math.abs(lab.x - word.x - word.width)).toBeLessThan(1);
+  expect(film.y - title.y - title.height).toBeGreaterThan(10);
+  expect(film.y - title.y - title.height).toBeLessThan(20);
+  expect(Math.abs(title.x + title.width / 2 - 853)).toBeLessThan(1);
   expect(film.width).toBeGreaterThan(800);
-  expect(Math.abs(film.y + film.height / 2 - centre)).toBeLessThan(1);
-  expect(Math.abs(lab.y + lab.height - film.y - film.height)).toBeLessThan(1);
+  expect(Math.abs((title.y + film.y + film.height) / 2 - (centre - 6))).toBeLessThan(2);
   await expect(page.locator(".neue-hero-medomics")).toHaveCSS(
     "font-size",
     await page.locator(".neue-hero-lab").evaluate((el) => getComputedStyle(el).fontSize)
@@ -363,58 +368,79 @@ test("partner logos and ecosystem orbit move continuously and honour the pause c
   await expect(track).toHaveCSS("animation-play-state", "paused");
 });
 
-test("homepage titles enter from the right and the same video enters from the left", async ({
+test("homepage wordmark rises gently behind a video that is visible and stationary from first entry", async ({
   page,
 }) => {
   await page.setViewportSize({ width: 1706, height: 897 });
-  let releasePoster;
-  const posterGate = new Promise((resolve) => {
-    releasePoster = resolve;
-  });
-  await page.route("**/images/homepage.jpg", async (route) => {
-    await posterGate;
-    await route.continue();
-  });
   await page.route("https://stream.mux.com/**", (route) => route.abort());
+  await page.addInitScript(() => {
+    const animate = Element.prototype.animate;
+    Element.prototype.animate = function (...args) {
+      const animation = animate.apply(this, args);
+      if (document.querySelector(".neue-home")?.dataset.heroIntro === "revealing") {
+        animation.pause();
+      }
+      return animation;
+    };
+  });
   await page.goto("/", { waitUntil: "domcontentloaded" });
   const film = page.locator(".neue-hero-film");
-  await expect(film).toHaveCSS("opacity", "0");
-  await expect(film.locator(".neue-video-frame")).toHaveCSS("opacity", "0");
-  await expect
-    .poll(() => page.locator(".neue-video-source mux-player").evaluate((el) => el.paused))
-    .toBe(true);
+  await expect(film).toHaveCSS("opacity", "1");
+  await expect(film).toHaveCSS("translate", "none");
+  const firstFilm = await film.boundingBox();
   await page.locator(".neue-video-source mux-player").evaluate((el) => {
     el.dataset.entranceIdentity = "original-player";
   });
   await page.evaluate(() => document.fonts.ready);
+  await expect(page.locator(".neue-home")).toHaveAttribute("data-hero-intro", "revealing");
+  const durations = await page.evaluate(() => {
+    window.heroEntrance = document.getAnimations().filter((a) => a.constructor === Animation);
+    return window.heroEntrance.map((animation) => {
+      animation.pause();
+      return animation.effect.getComputedTiming().endTime;
+    });
+  });
+  expect(Math.max(...durations)).toBe(900);
   const selectors = [
     ".neue-hero-medomics",
     ".neue-hero-lab",
     ".neue-hero-description",
     ".neue-hero-credit",
     ".liquid-nav-anchor",
-    ".liquid-github-anchor",
     ".neue-hero-film",
   ];
-  const initialPositions = await page.evaluate(
-    (selectors) =>
-      selectors.map((selector) => {
-        const rect = document.querySelector(selector).getBoundingClientRect();
-        return { x: rect.x, y: rect.y };
-      }),
-    selectors
-  );
-  releasePoster();
-  await expect(page.locator(".neue-home")).toHaveAttribute("data-hero-intro", "complete", {
-    timeout: 8000,
-  });
+  const positionsAt = (time) =>
+    page.evaluate(
+      ([selectors, time]) => {
+        for (const animation of window.heroEntrance) animation.currentTime = time;
+        return selectors.map((selector) => {
+          const rect = document.querySelector(selector).getBoundingClientRect();
+          return { x: rect.x, y: rect.y };
+        });
+      },
+      [selectors, time]
+    );
+  const initialPositions = await positionsAt(0);
+  const reveal = [];
+  for (const time of [150, 300, 450, 600, 750, 899]) reveal.push(await positionsAt(time));
+  await page.evaluate(() => window.heroEntrance.forEach((animation) => animation.finish()));
+  await expect(page.locator(".neue-home")).toHaveAttribute("data-hero-intro", "complete");
+  for (const [index, sample] of reveal.entries()) {
+    const previous = index ? reveal[index - 1] : initialPositions;
+    expect(sample[0].y).toBeLessThan(previous[0].y);
+    expect(sample[5].x).toBeCloseTo(initialPositions[5].x, 0);
+    expect(sample[5].y).toBeCloseTo(initialPositions[5].y, 0);
+  }
   const bounds = await film.boundingBox();
-  expect(Math.abs(bounds.x - 24)).toBeLessThan(1);
+  expect(Math.abs(bounds.x + bounds.width / 2 - 853)).toBeLessThan(12);
   const navigation = await page.locator(".liquid-nav-anchor").boundingBox();
   const bottom = await page.locator(".neue-hero-bottom").boundingBox();
   const centre = (navigation.y + navigation.height + bottom.y) / 2;
-  expect(Math.abs(bounds.y + bounds.height / 2 - centre)).toBeLessThan(1);
+  const title = await page.locator("#home-heading").boundingBox();
+  expect(Math.abs((title.y + bounds.y + bounds.height) / 2 - (centre - 6))).toBeLessThan(2);
   expect(bounds.width).toBeGreaterThan(800);
+  expect(bounds.width).toBeCloseTo(firstFilm.width, 0);
+  expect(bounds.height).toBeCloseTo(firstFilm.height, 0);
   const finalPositions = await page.evaluate(
     (selectors) =>
       selectors.map((selector) => {
@@ -423,22 +449,35 @@ test("homepage titles enter from the right and the same video enters from the le
       }),
     selectors
   );
-  expect(finalPositions[0].x).toBeLessThan(initialPositions[0].x - 50);
-  expect(finalPositions[1].x).toBeLessThan(initialPositions[1].x - 50);
-  expect(finalPositions[6].x).toBeGreaterThan(initialPositions[6].x + 50);
-  for (const i of [2, 3]) expect(finalPositions[i].y).toBeLessThan(initialPositions[i].y - 40);
-  for (const i of [4, 5]) expect(finalPositions[i].y).toBeGreaterThan(initialPositions[i].y + 70);
+  for (const i of [0, 1]) {
+    expect(finalPositions[i].x).toBeCloseTo(initialPositions[i].x, 0);
+    expect(finalPositions[i].y).toBeLessThan(initialPositions[i].y - 80);
+  }
+  expect(finalPositions[5].x).toBeCloseTo(initialPositions[5].x, 0);
+  expect(finalPositions[5].y).toBeCloseTo(initialPositions[5].y, 0);
+  expect(finalPositions[2].x).toBeGreaterThan(initialPositions[2].x + 80);
+  expect(finalPositions[3].x).toBeLessThan(initialPositions[3].x - 80);
+  for (const i of [2, 3]) expect(finalPositions[i].y).toBeCloseTo(initialPositions[i].y, 0);
+  expect(finalPositions[4].y).toBeGreaterThan(initialPositions[4].y + 70);
   await expect(page.locator(".neue-video-source mux-player")).toHaveAttribute(
     "data-entrance-identity",
     "original-player"
   );
   await expect(page.getByRole("navigation", { name: "Main navigation" })).toBeVisible();
+  await page.evaluate(() => window.scrollTo(0, 400));
+  await expect(page.getByRole("link", { name: "GitHub", exact: true })).toBeVisible();
+  await page.evaluate(() => window.scrollTo(0, 0));
+  await expect(page.locator(".neue-home")).toHaveAttribute("data-hero-intro", "complete");
+  await expect(
+    page.locator(".site-shortcuts").getByRole("link", { name: "GitHub Organization", exact: true })
+  ).toBeVisible();
+  await expect(page.locator(".neue-hero-medomics")).toHaveCSS("translate", "none");
 });
 
 test("homepage entrance can be skipped and is omitted for reduced motion", async ({ page }) => {
   await page.route("https://stream.mux.com/**", (route) => route.abort());
   await page.goto("/", { waitUntil: "domcontentloaded" });
-  await expect(page.locator(".neue-home")).toHaveAttribute("data-hero-intro", /waiting|holding/);
+
   await page.keyboard.press("Escape");
   await expect(page.locator(".neue-home")).toHaveAttribute("data-hero-intro", "complete");
   await expect(page.getByRole("navigation", { name: "Main navigation" })).toBeVisible();
@@ -446,7 +485,7 @@ test("homepage entrance can be skipped and is omitted for reduced motion", async
   await page.reload();
   await expect(page.locator(".neue-home")).not.toHaveAttribute(
     "data-hero-intro",
-    /waiting|holding|shrinking|entering/
+    /waiting|revealing/
   );
   const bounds = await page.locator(".neue-hero-film").boundingBox();
   expect(bounds.x).toBeGreaterThan(0);
@@ -538,3 +577,40 @@ test("dropdown links underline and the navbar stays centred on other routes", as
   await page.locator("#lab").evaluate((el) => el.scrollIntoView());
   await expect(page.locator('[aria-current="page"]')).toHaveCSS("color", "rgb(240, 231, 212)");
 });
+
+for (const width of [390, 1440]) {
+  test(`the hero wordmark travels into the header and reverses cleanly at ${width}px`, async ({
+    page,
+  }) => {
+    await page.setViewportSize({ width, height: 900 });
+    await page.goto("/");
+    await page.keyboard.press("Escape");
+    await page.evaluate(() => document.fonts.ready);
+    const title = page.locator("#home-heading");
+    const brand = page.getByRole("link", { name: "MEDomicsLab homepage", exact: true });
+    const start = await title.boundingBox();
+    await expect(brand).toBeHidden();
+    await page.evaluate(() => window.scrollTo(0, 160));
+    await expect
+      .poll(async () => (await title.boundingBox()).width)
+      .toBeLessThan(start.width * 0.8);
+    const middle = await title.boundingBox();
+    expect(middle.y).toBeLessThan(start.y);
+    expect(middle.width).toBeGreaterThan(150);
+    await page.evaluate(() => window.scrollTo(0, 400));
+    await expect(page.locator(".neue-home-brand")).toHaveCSS("opacity", "1");
+    const landed = await title.boundingBox();
+    const destination = await page.locator(".site-brand-wordmark").boundingBox();
+    expect(landed.x).toBeCloseTo(destination.x, 0);
+    expect(landed.y).toBeCloseTo(destination.y, 0);
+    expect(landed.width).toBeCloseTo(destination.width, 0);
+    await expect(title.locator("span").first()).toHaveCSS("opacity", "0");
+    await page.evaluate(() => window.scrollTo(0, 0));
+    await expect(brand).toBeHidden();
+    await expect.poll(async () => (await title.boundingBox()).width).toBeCloseTo(start.width, 0);
+    await expect(title.locator("span").first()).toHaveCSS("opacity", "1");
+    await page.emulateMedia({ reducedMotion: "reduce" });
+    await page.evaluate(() => window.scrollTo(0, 160));
+    await expect.poll(async () => (await title.boundingBox()).width).toBeCloseTo(start.width, 0);
+  });
+}

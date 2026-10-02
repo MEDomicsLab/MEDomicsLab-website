@@ -116,7 +116,7 @@ export default function Layout() {
       <Seo />
       <div
         className={cn(
-          "fixed top-4 left-1/2 -translate-x-1/2 z-50 text-center md:top-8 md:left-8 md:translate-x-0 md:text-left text-white",
+          "site-brand fixed top-4 left-1/2 -translate-x-1/2 z-50 md:top-8 md:left-8 md:translate-x-0 text-white",
           isHome && "neue-home-brand",
           isHome && !homeScrolled && "is-hidden"
         )}
@@ -126,7 +126,7 @@ export default function Layout() {
           className="text-xl font-bold tracking-tighter group relative flex items-center gap-2 justify-center md:justify-start"
           aria-label={`${homeData.brand.name} homepage`}
         >
-          {homeData.brand.name}
+          <span className="site-brand-wordmark">{homeData.brand.name}</span>
           {homeData.brand?.logoUrl && (
             <>
               <span className="text-white/60 inline-block transition-transform duration-200 group-hover:rotate-[24deg]">

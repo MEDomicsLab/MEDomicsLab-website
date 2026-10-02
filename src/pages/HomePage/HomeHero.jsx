@@ -3,7 +3,7 @@ import LabVideo from "./LabVideo.jsx";
 import homeData from "../../data/home.json";
 import { investigatorName, principalInvestigator } from "./homepageContent";
 
-export default function HomeHero({ paused, onTogglePause, onPosterReady }) {
+export default function HomeHero({ paused, onTogglePause }) {
   return (
     <section className="neue-hero blue-paper" aria-labelledby="home-heading">
       <div className="neue-hero-composition">
@@ -11,8 +11,9 @@ export default function HomeHero({ paused, onTogglePause, onPosterReady }) {
           <span className="neue-hero-medomics">MEDomics</span>
           <span className="neue-hero-lab">Lab</span>
         </h1>
+        <div className="neue-hero-film-origin" aria-hidden="true" />
         <div className="neue-hero-film">
-          <LabVideo onPosterReady={onPosterReady} />
+          <LabVideo />
           <button
             type="button"
             className="neue-motion-toggle"

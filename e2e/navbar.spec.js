@@ -84,7 +84,7 @@ test.describe("main navigation", () => {
       expect(navBox).not.toBeNull();
       expect(brandBox).not.toBeNull();
       expect(navBox.x + navBox.width / 2).toBeCloseTo(width / 2, 1);
-      expect(brandBox.x).toBeCloseTo(16, 0);
+      expect(brandBox.x + brandBox.width / 2).toBeCloseTo(width / 2, 0);
       expect(brandBox.y + brandBox.height).toBeLessThanOrEqual(navBox.y);
 
       await page.evaluate(() => window.scrollTo(0, document.body.scrollHeight));

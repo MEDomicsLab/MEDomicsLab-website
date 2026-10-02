@@ -18,7 +18,7 @@ export default function HomePage() {
   const [paused, setPaused] = useState(false);
 
   useHeroLayout(root, paused);
-  const { onPosterReady, videoStarted } = useHeroEntrance(root, paused);
+  useHeroEntrance(root, paused);
 
   useEffect(() => {
     const query = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -30,13 +30,9 @@ export default function HomePage() {
 
   useHomepageMotion(root);
   return (
-    <LabVideoProvider paused={paused || !videoStarted}>
+    <LabVideoProvider paused={paused}>
       <div ref={root} className={`neue-home ${paused ? "neue-motion-paused" : ""}`}>
-        <HomeHero
-          paused={paused}
-          onTogglePause={() => setPaused((value) => !value)}
-          onPosterReady={onPosterReady}
-        />
+        <HomeHero paused={paused} onTogglePause={() => setPaused((value) => !value)} />
         <PrincipalInvestigator paused={paused} />
         <Ecosystem />
         <VideoReel />

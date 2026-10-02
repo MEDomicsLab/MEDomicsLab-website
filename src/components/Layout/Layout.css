@@ -21,6 +21,13 @@
   }
 }
 
+.site-brand-wordmark {
+  font-weight: 600;
+  letter-spacing: -0.04em;
+  line-height: 0.8;
+  text-box-trim: trim-both;
+  text-box-edge: cap alphabetic;
+}
 .nav-action-link {
   display: flex;
   align-items: center;

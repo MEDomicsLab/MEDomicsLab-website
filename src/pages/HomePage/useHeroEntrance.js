@@ -1,139 +1,107 @@
-import { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
-import { gsap } from "gsap";
+import { useEffect, useLayoutEffect, useRef } from "react";
 
+const DURATION = 900;
+const FADE_DURATION = 700;
+const EASE_OUT = "cubic-bezier(0.165, 0.84, 0.44, 1)";
+const FADE_EASE = "cubic-bezier(0.215, 0.61, 0.355, 1)";
+
+/**
+ * Reveal the wordmark above the stationary film. The browser composites the
+ * transform and opacity animations itself, so hydration, video start-up or
+ * other main-thread work cannot pause them partway.
+ */
 export default function useHeroEntrance(root, paused) {
-  const posterReady = useRef(false);
-  const [videoStarted, setVideoStarted] = useState(false);
-  const start = useRef(null);
   const finish = useRef(null);
-  const onPosterReady = useCallback(() => {
-    posterReady.current = true;
-    start.current?.();
-  }, []);
 
   useLayoutEffect(() => {
     const page = root.current;
-    const media = gsap.matchMedia();
-    media.add("(prefers-reduced-motion: no-preference)", () => {
-      if (window.location.hash) {
-        page.dataset.heroIntro = "skipped";
-        setVideoStarted(true);
-        return;
-      }
-      const film = page.querySelector(".neue-hero-film");
-      const hero = page.querySelector(".neue-hero");
-      const layout = page.closest(".neue-home-layout");
-      const medomics = page.querySelector(".neue-hero-medomics");
-      const lab = page.querySelector(".neue-hero-lab");
-      const bottomContent = [
-        ...page.querySelectorAll(".neue-hero-description, .neue-hero-credit, .neue-hero-logo"),
-      ];
-      const navigation = [...layout.querySelectorAll(".liquid-nav-anchor, .liquid-github-anchor")];
-      const desktop = window.matchMedia("(min-width: 768px)").matches;
-      const moving = [medomics, lab, ...bottomContent, ...navigation, ...(desktop ? [film] : [])];
-      const reveal = [
-        ...page.querySelectorAll(".neue-hero h1 span, .neue-hero-bottom"),
-        ...navigation,
-        ...(desktop ? [film] : []),
-      ];
-      const target = film.getBoundingClientRect();
-      const targetTop = getComputedStyle(film).top;
-      let timeline;
-      let timer;
-      let started = false;
-      let complete = false;
-      const context = gsap.context(() => {
-        gsap.set(hero, { overflow: "clip" });
-        if (!desktop) {
-          gsap.set(film, { width: "100vw", height: "100svh", top: "50svh", zIndex: 3 });
-        }
-        gsap.set(reveal, { autoAlpha: 0 });
-        const distance = Math.min(180, Math.max(70, window.innerWidth * 0.1));
-        gsap.set(medomics, { translate: `${desktop ? distance : -distance}px 0px` });
-        gsap.set(lab, { translate: `${distance}px 0px` });
-        if (desktop) gsap.set(film, { translate: `${-distance}px 0px` });
-        gsap.set(bottomContent, { translate: "0px 60px" });
-        gsap.set(navigation, { translate: "0px -100px" });
-      });
-      page.dataset.heroIntro = "waiting";
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+    if (reducedMotion.matches) return undefined;
+    if (window.location.hash) {
+      page.dataset.heroIntro = "skipped";
+      return () => delete page.dataset.heroIntro;
+    }
+    const hero = page.querySelector(".neue-hero");
+    const layout = page.closest(".neue-home-layout");
+    const title = page.querySelector("#home-heading");
+    const words = [...title.children];
+    const description = page.querySelector(".neue-hero-description");
+    const credit = page.querySelector(".neue-hero-credit");
+    const logo = page.querySelector(".neue-hero-logo");
+    const bottom = page.querySelector(".neue-hero-bottom");
+    const navigation = layout.querySelector(".liquid-nav-anchor");
+    const navigationLayers = [...navigation.parentElement.children];
+    const shortcutLayers = [...layout.querySelectorAll(".liquid-action-anchor > *")];
 
-      const settle = () => {
-        if (complete) return;
-        complete = true;
-        clearTimeout(timer);
-        timeline?.kill();
-        context.revert();
-        gsap.set(film, { clearProps: "width,height,top,zIndex" });
-        gsap.set(reveal, { clearProps: "opacity,visibility" });
-        gsap.set(moving, { clearProps: "translate" });
-        page.dataset.heroIntro = "complete";
-        setVideoStarted(true);
-      };
-      finish.current = settle;
-      start.current = () => {
-        if (started || complete) return;
-        started = true;
-        clearTimeout(timer);
-        page.dataset.heroIntro = "holding";
-        context.add(() => {
-          timeline = gsap.timeline({ delay: 0.35, onComplete: settle });
-          timeline.call(() => {
-            page.dataset.heroIntro = desktop ? "entering" : "shrinking";
-          });
-          timeline.call(() => setVideoStarted(true), [], 0.1);
-          if (!desktop)
-            timeline.to(
-              film,
-              {
-                width: target.width,
-                height: target.height,
-                top: targetTop,
-                duration: 1.35,
-                ease: "power3.inOut",
-              },
-              0
-            );
-          const revealAt = desktop ? 0 : 0.5;
-          timeline.to(reveal, { autoAlpha: 1, duration: 0.65, ease: "power2.out" }, revealAt);
-          timeline.to(
-            moving,
-            { translate: "0px 0px", duration: desktop ? 1.1 : 0.85, ease: "power3.out" },
-            revealAt
-          );
-        });
-      };
-      timer = window.setTimeout(() => start.current?.(), 2200);
-      if (posterReady.current) start.current();
-      const onKey = (event) => {
-        if (["Escape", "Tab", "ArrowDown", "PageDown", "End", " "].includes(event.key)) settle();
-      };
-      const onScroll = () => {
-        if (window.scrollY > 8) settle();
-      };
-      window.addEventListener("wheel", settle, { passive: true });
-      window.addEventListener("touchstart", settle, { passive: true });
-      window.addEventListener("scroll", onScroll, { passive: true });
-      window.addEventListener("resize", settle);
-      window.addEventListener("keydown", onKey);
-      return () => {
-        clearTimeout(timer);
-        timeline?.kill();
-        context.revert();
-        start.current = null;
-        finish.current = null;
-        delete page.dataset.heroIntro;
-        window.removeEventListener("wheel", settle);
-        window.removeEventListener("touchstart", settle);
-        window.removeEventListener("scroll", onScroll);
-        window.removeEventListener("resize", settle);
-        window.removeEventListener("keydown", onKey);
-      };
-    });
-    return () => media.revert();
+    hero.style.overflow = "clip";
+    title.style.zIndex = "1";
+    page.dataset.heroIntro = "revealing";
+    const rise = title.offsetHeight + 42;
+    const above = navigation.offsetTop + navigation.offsetHeight / 2 + 12;
+    const slide = (element, from, to = "none") =>
+      element.animate([{ transform: from }, { transform: to || "none" }], {
+        duration: DURATION,
+        easing: EASE_OUT,
+        fill: "backwards",
+      });
+    const animations = [
+      ...words.map((word) => slide(word, `translateY(${rise}px)`)),
+      slide(description, `translateX(${-description.getBoundingClientRect().right}px)`),
+      slide(credit, `translateX(${window.innerWidth - credit.getBoundingClientRect().left}px)`),
+      slide(logo, "translateY(60px)"),
+      ...navigationLayers.map((layer) =>
+        slide(layer, `${layer.style.transform} translateY(${-above}px)`, layer.style.transform)
+      ),
+      bottom.animate([{ opacity: 0 }, { opacity: 1 }], {
+        duration: FADE_DURATION,
+        easing: FADE_EASE,
+        fill: "backwards",
+      }),
+      ...shortcutLayers.map((layer) =>
+        layer.animate([{ "--glass-opacity": 0 }, { "--glass-opacity": 1 }], {
+          duration: FADE_DURATION,
+          easing: FADE_EASE,
+          fill: "backwards",
+        })
+      ),
+    ];
+
+    let complete = false;
+    const settle = () => {
+      if (complete) return;
+      complete = true;
+      animations.forEach((animation) => animation.cancel());
+      hero.style.removeProperty("overflow");
+      title.style.removeProperty("z-index");
+      page.dataset.heroIntro = "complete";
+    };
+    finish.current = settle;
+    Promise.all(animations.map((animation) => animation.finished)).then(settle, () => {});
+
+    const onKey = (event) => {
+      if (["Escape", "Tab", "ArrowDown", "PageDown", "End", " "].includes(event.key)) settle();
+    };
+    const onScroll = () => {
+      if (window.scrollY > 8) settle();
+    };
+    window.addEventListener("wheel", settle, { passive: true });
+    window.addEventListener("touchstart", settle, { passive: true });
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", settle);
+    window.addEventListener("keydown", onKey);
+    return () => {
+      settle();
+      finish.current = null;
+      delete page.dataset.heroIntro;
+      window.removeEventListener("wheel", settle);
+      window.removeEventListener("touchstart", settle);
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", settle);
+      window.removeEventListener("keydown", onKey);
+    };
   }, [root]);
 
   useEffect(() => {
     if (paused) finish.current?.();
   }, [paused]);
-  return { onPosterReady, videoStarted };
 }
