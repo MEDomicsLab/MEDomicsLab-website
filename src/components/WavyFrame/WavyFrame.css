@@ -1,0 +1,3 @@
+.wavy-frame {
+  clip-path: var(--wavy-frame-outline, none);
+}

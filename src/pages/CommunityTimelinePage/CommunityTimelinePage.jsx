@@ -1,11 +1,45 @@
 import { useEffect, useMemo, useRef, useState } from "react";
-import { useTranslations } from "../../lib/translations";
 import PageShell, { PageTitle } from "../../components/PageShell/PageShell.jsx";
-import SectionDivider from "../../components/SectionDivider/SectionDivider.jsx";
 import EntryRow, { EntryRowBody, EntryRowTitle } from "../../components/EntryRow/EntryRow.jsx";
+import FilterChips from "../../components/FilterChips/FilterChips.jsx";
 
-export default function CommunityTimelinePage({ title, data, basePath }) {
-  const { t } = useTranslations();
+export default function CommunityTimelinePage({ title, data: allData, basePath, categories = [] }) {
+  const [selectedCategories, setSelectedCategories] = useState([]);
+
+  const allItems = useMemo(
+    () => allData.flatMap((group) => group.months.flatMap((monthGroup) => monthGroup.items)),
+    [allData]
+  );
+  const categoryOptions = useMemo(
+    () =>
+      categories
+        .map((category) => ({
+          value: category,
+          count: allItems.filter((item) => item.category === category).length,
+        }))
+        .filter((option) => option.count > 0),
+    [allItems, categories]
+  );
+
+  const data = useMemo(() => {
+    if (!selectedCategories.length) return allData;
+    return allData
+      .map((group) => ({
+        ...group,
+        months: group.months
+          .map((monthGroup) => ({
+            ...monthGroup,
+            items: monthGroup.items.filter((item) => selectedCategories.includes(item.category)),
+          }))
+          .filter((monthGroup) => monthGroup.items.length > 0),
+      }))
+      .filter((group) => group.months.length > 0);
+  }, [allData, selectedCategories]);
+  const shownCount = data.reduce(
+    (sum, group) =>
+      sum + group.months.reduce((acc, monthGroup) => acc + monthGroup.items.length, 0),
+    0
+  );
   const [activeYear, setActiveYear] = useState(null);
   const [activeMonth, setActiveMonth] = useState(null);
   const sectionRefs = useRef({});
@@ -74,6 +108,7 @@ export default function CommunityTimelinePage({ title, data, basePath }) {
 
   return (
     <PageShell
+      className="collection-index community-timeline"
       ticks={{
         variant: "timeline",
         items: tickItems,
@@ -88,55 +123,74 @@ export default function CommunityTimelinePage({ title, data, basePath }) {
           }),
       }}
     >
-      <PageTitle className="mb-20">{t(`community.${title.toLowerCase()}.title`, title)}</PageTitle>
+      <PageTitle>{title}</PageTitle>
+      {categoryOptions.length > 1 && (
+        <FilterChips
+          className="mb-16"
+          label={`Filter ${title.toLowerCase()} by category`}
+          options={categoryOptions}
+          selected={selectedCategories}
+          onChange={setSelectedCategories}
+          total={allItems.length}
+          shown={shownCount}
+          noun={title.toLowerCase()}
+        />
+      )}
 
-      <div className="space-y-32 pb-32">
+      <div className="space-y-20">
         {data.map((group) => (
-          <div key={group.year} className="space-y-16">
-            <SectionDivider label={group.year} />
+          <section
+            key={group.year}
+            ref={(element) => {
+              yearRefs.current[group.year] = element;
+            }}
+            className="collection-group scroll-mt-32"
+            data-active={activeYear === group.year}
+            aria-labelledby={`timeline-year-${group.year}`}
+          >
+            <h2
+              id={`timeline-year-${group.year}`}
+              className="collection-group-title text-4xl md:text-5xl mb-6"
+            >
+              {group.year}
+            </h2>
+            <div className="h-px w-full bg-border" />
 
-            <div className="space-y-16">
-              {group.months.map((monthGroup, monthIndex) => (
+            <div className="space-y-12 mt-8">
+              {group.months.map((monthGroup) => (
                 <div
                   key={`${group.year}-${monthGroup.month}`}
                   ref={(element) => {
                     const key = `${group.year}-${monthGroup.month}`;
                     sectionRefs.current[key] = element;
-                    if (monthIndex === 0) {
-                      yearRefs.current[group.year] = element;
-                    }
                   }}
                   className="scroll-mt-32"
                 >
-                  <SectionDivider label={monthGroup.month} tone="muted" className="mb-8" />
+                  <h3 className="timeline-month-title">{monthGroup.month}</h3>
 
                   <div className="space-y-0">
-                    {monthGroup.items.map((item, index) => (
+                    {monthGroup.items.map((item) => (
                       <EntryRow key={item.title} to={`${basePath}/${item.slug}`} variant="detailed">
-                        <div className="md:col-span-1 text-xs uppercase tracking-widest text-muted-foreground">
-                          {String(index + 1).padStart(2, "0")}
-                        </div>
-                        <EntryRowBody variant="detailed" className="md:col-span-7 space-y-3">
-                          <EntryRowTitle
-                            variant="detailed"
-                            className="text-2xl md:text-3xl uppercase"
-                          >
+                        <EntryRowBody variant="detailed">
+                          {item.category && (
+                            <span className="inline-block text-xs uppercase tracking-widest border border-white/10 rounded-full px-3 py-1 text-white/70 bg-white/5 w-fit">
+                              {item.category}
+                            </span>
+                          )}
+                          <EntryRowTitle as="h4" variant="detailed">
                             {item.title}
                           </EntryRowTitle>
-                        </EntryRowBody>
-                        <div className="md:col-span-2 text-xs uppercase tracking-widest text-muted-foreground">
-                          <span>Contributors</span>
-                          <p className="mt-3 text-sm normal-case tracking-normal text-foreground/80">
+                          <p className="text-base text-muted-foreground">
                             {item.contributors.join(", ")}
                           </p>
-                        </div>
+                        </EntryRowBody>
                       </EntryRow>
                     ))}
                   </div>
                 </div>
               ))}
             </div>
-          </div>
+          </section>
         ))}
       </div>
     </PageShell>

@@ -21,9 +21,9 @@ body:
         </div>
 
 
-        Please fill **every required** field. Optional fields can be left blank — we'll skip them in the JSON. The maintainer will create the entry, generate avatar variants, and open the PR.
+        Please fill **every required** field. Optional fields can be left blank — we'll skip them in the JSON. The automation creates the entry, generates avatar variants, and opens a draft PR for maintainer review.
 
-        Only `name`, `position`, `slug`, and `image` are required by the schema; everything else is optional.
+        This form also requires a cohort, biography, expertise, and portrait so the new profile is ready to review. Leave optional fields blank.
   - type: checkboxes
     id: checks
     attributes:
@@ -65,7 +65,7 @@ body:
     attributes:
       label: "Position"
       description: Short title shown under the name on listing and detail pages. Stored as the `position` field in `team.json`.
-      placeholder: 'e.g. "Ph. D. Computer science" or "Associate Professor, Department of Oncology"'
+      placeholder: 'e.g. "PhD Computer science" or "Associate Professor, Department of Oncology"'
     validations:
       required: true
   - type: input
@@ -101,8 +101,8 @@ body:
       description: |
         One per line, in the format `course | institution | year`. Most recent first.
       placeholder: |
-        Ph.D. Computer Science | Université de Sherbrooke | 2024
-        M.Sc. Medical Physics | McGill University | 2020
+        PhD Computer Science | Université de Sherbrooke | 2024
+        MSc Medical Physics | McGill University | 2020
     validations:
       required: false
   - type: input
@@ -111,6 +111,15 @@ body:
       label: "Special note"
       description: Shown as a small badge (e.g. "Director", "Co-supervised with …").
       placeholder: "Optional"
+    validations:
+      required: false
+  - type: textarea
+    id: affiliations
+    attributes:
+      label: "Affiliations"
+      description: Optional. One per line in the format `role | organization | official URL` (URL is optional). These appear on the member's profile.
+      placeholder: |
+        Associate Member | Dept. of Biomedical Engineering, McGill University | https://www.mcgill.ca/bme/
     validations:
       required: false
   - type: markdown
@@ -156,7 +165,7 @@ body:
     id: photo
     attributes:
       label: "Portrait photo"
-      description: Attach a square JPG, PNG, WebP, or AVIF image under 10 MB and at least 512×512px. Direct URLs must be stable and public. Responsive variants (80/128/160/256 × avif/webp/jpg) will be generated automatically.
+      description: Attach a square JPG, PNG, WebP, or AVIF image under 10 MB and at least 512×512px. Direct URLs must be stable and public. Responsive variants (80/128/160/256 × AVIF/WebP with JPG or PNG fallback) will be generated automatically.
     validations:
       required: true
   - type: textarea

@@ -8,7 +8,10 @@
     "required": ["year", "months"],
     "additionalProperties": false,
     "properties": {
-      "year": { "type": "string", "pattern": "^[0-9]{4}$" },
+      "year": {
+        "type": "string",
+        "pattern": "^[0-9]{4}$"
+      },
       "months": {
         "type": "array",
         "items": {
@@ -16,10 +19,29 @@
           "required": ["month", "items"],
           "additionalProperties": false,
           "properties": {
-            "month": { "type": "string", "minLength": 1 },
+            "month": {
+              "type": "string",
+              "description": "English month name; the site and the issue automation both order months chronologically.",
+              "enum": [
+                "January",
+                "February",
+                "March",
+                "April",
+                "May",
+                "June",
+                "July",
+                "August",
+                "September",
+                "October",
+                "November",
+                "December"
+              ]
+            },
             "items": {
               "type": "array",
-              "items": { "$ref": "#/definitions/communityItem" }
+              "items": {
+                "$ref": "#/definitions/communityItem"
+              }
             }
           }
         }
@@ -29,17 +51,72 @@
   "definitions": {
     "communityItem": {
       "type": "object",
-      "required": ["title", "slug", "contributors"],
+      "required": ["title", "slug", "category", "contributors"],
       "additionalProperties": false,
       "properties": {
-        "title": { "type": "string", "minLength": 1 },
-        "slug": { "type": "string", "pattern": "^[a-z0-9-]+$" },
+        "title": {
+          "type": "string",
+          "minLength": 1
+        },
+        "slug": {
+          "type": "string",
+          "pattern": "^[a-z0-9-]+$"
+        },
+        "category": {
+          "type": "string",
+          "description": "Drives the News page filter. Mirrors the category dropdown of the Add a news post issue form.",
+          "enum": [
+            "Publications",
+            "Thesis Defenses",
+            "Awards",
+            "Milestones",
+            "Conferences",
+            "Other"
+          ]
+        },
         "contributors": {
           "type": "array",
-          "items": { "type": "string", "minLength": 1 }
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
         },
-        "markdown": { "type": "string" },
-        "coverImage": { "$ref": "#/definitions/coverImage" }
+        "markdown": {
+          "type": "string"
+        },
+        "coverImage": {
+          "$ref": "#/definitions/coverImage"
+        },
+        "date": {
+          "type": "string",
+          "format": "date",
+          "description": "Optional exact publication or event date stated in the news text, title, or imagery."
+        },
+        "event": {
+          "type": "object",
+          "description": "Optional event details for a news post recapping or announcing an event. Displayed in the sidebar.",
+          "additionalProperties": false,
+          "minProperties": 1,
+          "dependencies": { "endDate": ["date"] },
+          "properties": {
+            "date": {
+              "type": "string",
+              "format": "date"
+            },
+            "endDate": {
+              "type": "string",
+              "format": "date"
+            },
+            "kind": {
+              "type": "string",
+              "minLength": 1
+            },
+            "venue": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        }
       }
     },
     "coverImage": {
@@ -47,8 +124,13 @@
       "required": ["url"],
       "additionalProperties": false,
       "properties": {
-        "url": { "type": "string", "minLength": 1 },
-        "alt": { "type": "string" }
+        "url": {
+          "type": "string",
+          "minLength": 1
+        },
+        "alt": {
+          "type": "string"
+        }
       }
     }
   }

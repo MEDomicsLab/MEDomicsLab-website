@@ -20,18 +20,6 @@ Completed (2021-2024)
 
 Master's
 
-## Team
-
-- [Maxence Larose](/team/maxence-larose)<sup>1,2,3</sup>(2021-aujourd'hui)
-- [Louis Archambault](https://www.crchudequebec.ulaval.ca/recherche/chercheurs/louis-archambault/)<sup>1,2</sup>(2021-aujourd'hui)
-- [Martin Vallières](/team/martin-vallieres)<sup>3</sup>(2021-aujourd'hui)
-
-<sup>1</sup> Physics, physics engineering and optics department, Université Laval, Québec (QC), Canada
-
-<sup>2</sup> CHU de Québec, Québec (QC), Canada
-
-<sup>3</sup> Computer science department, Université de Sherbrooke, Sherbrooke (QC), Canada
-
 ## Project goal
 
 **Objective**: To develop resilient predictive models based on quantitative imaging and clinical features to guide

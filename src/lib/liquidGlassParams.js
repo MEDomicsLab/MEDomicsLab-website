@@ -19,16 +19,6 @@ export const LIQUID_PARAMS = {
     mode: "prominent",
     overLight: false,
   },
-  playButton: {
-    displacementScale: 60,
-    blurAmount: 0.08,
-    saturation: 110,
-    aberrationIntensity: 2.5,
-    elasticity: 0.25,
-    cornerRadius: 999,
-    mode: "standard",
-    overLight: false,
-  },
   tabHighlight: {
     opacity: 0.5,
     blurAmount: 5,

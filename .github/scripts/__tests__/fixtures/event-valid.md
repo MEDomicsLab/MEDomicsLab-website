@@ -8,7 +8,7 @@ Test thesis defense
 
 ### Event kind
 
-Thesis defense (Ph.D.)
+Thesis defense (PhD)
 
 ### Start date
 
@@ -32,7 +32,7 @@ Test Person
 
 ### Short blurb
 
-Test Person's Ph.D. defense.
+Test Person's PhD defense.
 
 ### Full description (Markdown)
 
@@ -42,7 +42,7 @@ Body of the event description.
 
 _No response_
 
-### Poster / images / gallery
+### Images / attachments for maintainer review
 
 _No response_
 

@@ -3,13 +3,31 @@
     "year": "2026",
     "months": [
       {
-        "month": "February",
+        "month": "September",
         "items": [
           {
-            "title": "Publication of the article \"Optimizing renal mass histology prediction with artificial intelligence using handcrafted radiomics\"",
-            "slug": "2026-02-25-post-renal-mass-radiomics",
-            "contributors": ["Mahdi Loutfi", "Martin Vallières"],
-            "markdown": "community/news/2026-02-25-post-renal-mass-radiomics.md"
+            "title": "Participation in Mila's Community of Practice on Digital Health",
+            "slug": "2026-09-29-mila-digital-health",
+            "event": {
+              "date": "2026-09-29",
+              "kind": "Community of practice",
+              "venue": "Mila, Montréal"
+            },
+            "category": "Conferences",
+            "contributors": ["Steven Ravary", "Simon Provost"],
+            "markdown": "community/news/2026-09-29-mila-digital-health.md"
+          },
+          {
+            "title": "Mariem Kallel successfully defended her thesis",
+            "slug": "2026-09-22-mariem-msc",
+            "event": {
+              "date": "2026-08-27",
+              "kind": "Thesis defense (MSc)",
+              "venue": "Université de Sherbrooke, room D4-2011 (hybrid via Teams)"
+            },
+            "category": "Thesis Defenses",
+            "contributors": ["Mariem Kallel"],
+            "markdown": "community/news/2026-09-22-mariem-msc.md"
           }
         ]
       },
@@ -19,8 +37,22 @@
           {
             "title": "Publication of the article “Predictive performance precision analysis in medicine: identification of low-confidence predictions at patient and profile levels (MED3pa I)”",
             "slug": "2026-03-31-post-med3pa-article",
+            "category": "Publications",
             "contributors": ["Olivier Lefebvre", "Martin Vallières"],
-            "markdown": "community/news/2026-03-31-post-med3pa-article.md"
+            "markdown": "community/news/2026-03-31-post-med3pa-article.md",
+            "date": "2026-03-31"
+          }
+        ]
+      },
+      {
+        "month": "February",
+        "items": [
+          {
+            "title": "Publication of the article \"Optimizing renal mass histology prediction with artificial intelligence using handcrafted radiomics\"",
+            "slug": "2026-02-25-post-renal-mass-radiomics",
+            "category": "Publications",
+            "contributors": ["Mahdi Loutfi", "Martin Vallières"],
+            "markdown": "community/news/2026-02-25-post-renal-mass-radiomics.md"
           }
         ]
       }
@@ -35,8 +67,10 @@
           {
             "title": "Publication of the article “Leveraging patients’ longitudinal data to improve the Hospital One-year Mortality Risk”",
             "slug": "2025-03-04-post-longitudinal-oym-article",
+            "category": "Publications",
             "contributors": ["Hakima Laribi", "Nicolas Raymond", "Martin Vallières"],
-            "markdown": "community/news/2025-03-04-post-longitudinal-oym-article.md"
+            "markdown": "community/news/2025-03-04-post-longitudinal-oym-article.md",
+            "date": "2025-03-04"
           }
         ]
       }
@@ -51,8 +85,10 @@
           {
             "title": "Publication of the article “Multi-task Bayesian Model Combining FDG-PET/CT Imaging and Clinical Data for Interpretable High-Grade Prostate Cancer Prognosis”",
             "slug": "2024-11-06-post-prostate-models",
+            "category": "Publications",
             "contributors": ["Maxence Larose", "Nicolas Raymond", "Martin Vallières"],
-            "markdown": "community/news/2024-11-06-post-prostate-models.md"
+            "markdown": "community/news/2024-11-06-post-prostate-models.md",
+            "date": "2024-11-06"
           }
         ]
       },
@@ -62,8 +98,10 @@
           {
             "title": "Mahdi Loutfi successfully defended his thesis",
             "slug": "2024-08-20-mall-msc",
+            "category": "Thesis Defenses",
             "contributors": ["Mahdi Loutfi"],
-            "markdown": "community/news/2024-08-20-mall-msc.md"
+            "markdown": "community/news/2024-08-20-mall-msc.md",
+            "date": "2024-08-20"
           }
         ]
       },
@@ -73,14 +111,17 @@
           {
             "title": "Publication of the article “Leveraging patients’ longitudinal data to improve the Hospital One-year Mortality Risk” on medRxiv",
             "slug": "2024-07-26-post-arxiv",
+            "category": "Publications",
             "contributors": ["Hakima Laribi", "Nicolas Raymond", "Martin Vallières"],
             "markdown": "community/news/2024-07-26-post-arxiv.md"
           },
           {
             "title": "Publication of the article “Unraveling Radiomics Complexity: Strategies for Optimal Simplicity in Predictive Modeling” on arXiv",
             "slug": "2024-07-05-post-arxiv",
+            "category": "Publications",
             "contributors": ["Mahdi Loutfi", "Teodora Boblea Podasca", "Martin Vallières"],
-            "markdown": "community/news/2024-07-05-post-arxiv.md"
+            "markdown": "community/news/2024-07-05-post-arxiv.md",
+            "date": "2024-07-05"
           }
         ]
       },
@@ -90,6 +131,7 @@
           {
             "title": "Publication and presentation of the article “Development of Error Passing Network for Optimizing the Prediction of VO2 peak in Childhood Acute Leukemia Survivors”",
             "slug": "2024-06-27-post-chil",
+            "category": "Publications",
             "contributors": [
               "Nicolas Raymond",
               "Hakima Laribi",
@@ -111,6 +153,7 @@
           {
             "title": "Alexandre Ayotte successfully defended his thesis",
             "slug": "2023-04-20-aa-msc",
+            "category": "Thesis Defenses",
             "contributors": ["Alexandre Ayotte"],
             "markdown": "community/news/2023-04-20-aa-msc.md"
           }
@@ -122,6 +165,7 @@
           {
             "title": "Publication of the article “Electric Power Fuse Identification With Deep Learning”",
             "slug": "2023-02-16-post-energai",
+            "category": "Publications",
             "contributors": [
               "Simon Giard-Leroux",
               "Guillaume Cléroux",
@@ -143,8 +187,10 @@
           {
             "title": "Nicolas Raymond successfully defended his thesis",
             "slug": "2022-12-09-nr-msc",
+            "category": "Thesis Defenses",
             "contributors": ["Nicolas Raymond"],
-            "markdown": "community/news/2022-12-09-nr-msc.md"
+            "markdown": "community/news/2022-12-09-nr-msc.md",
+            "date": "2022-12-09"
           }
         ]
       },
@@ -154,8 +200,10 @@
           {
             "title": "Publication of the article “Machine learning strategies to predict late adverse effects in childhood acute lymphoblastic leukemia survivors” on arXiv",
             "slug": "2022-11-23-post-arxiv",
+            "category": "Publications",
             "contributors": ["Nicolas Raymond", "Martin Vallières"],
-            "markdown": "community/news/2022-11-23-post-arxiv.md"
+            "markdown": "community/news/2022-11-23-post-arxiv.md",
+            "date": "2022-11-23"
           }
         ]
       },
@@ -165,8 +213,10 @@
           {
             "title": "Several awards won at CIRIUS Science Day 2022",
             "slug": "2022-10-20-cirius",
+            "category": "Awards",
             "contributors": ["Hakima Laribi", "Olivier Lefebvre", "Mahdi Loutfi"],
-            "markdown": "community/news/2022-10-20-cirius.md"
+            "markdown": "community/news/2022-10-20-cirius.md",
+            "date": "2022-10-20"
           }
         ]
       },
@@ -176,12 +226,14 @@
           {
             "title": "Simon Giard-Leroux successfully defended his thesis",
             "slug": "2022-09-09-sgl-msc",
+            "category": "Thesis Defenses",
             "contributors": ["Simon Giard-Leroux"],
             "markdown": "community/news/2022-09-09-sgl-msc.md"
           },
           {
-            "title": "Ph. D. study permit received for Hakima",
+            "title": "PhD study permit received for Hakima",
             "slug": "2022-09-01-hakima-permis",
+            "category": "Milestones",
             "contributors": ["Hakima Laribi"],
             "markdown": "community/news/2022-09-01-hakima-permis.md"
           }
@@ -193,6 +245,7 @@
           {
             "title": "Olivier successfully defended his accelerated PhD proposal",
             "slug": "2022-08-29-phd-oli",
+            "category": "Milestones",
             "contributors": ["Olivier Lefebvre"],
             "markdown": "community/news/2022-08-29-phd-oli.md"
           }
@@ -204,8 +257,10 @@
           {
             "title": "Participation in the RBIQ 2022 Scientific Day",
             "slug": "2022-06-02-rbiq",
+            "category": "Conferences",
             "contributors": ["Mahdi Loutfi"],
-            "markdown": "community/news/2022-06-02-rbiq.md"
+            "markdown": "community/news/2022-06-02-rbiq.md",
+            "date": "2022-06-02"
           }
         ]
       },
@@ -215,6 +270,7 @@
           {
             "title": "Publication of a short article in the MIDL 2022 conference",
             "slug": "2022-04-22-midl",
+            "category": "Publications",
             "contributors": ["Maxence Larose", "Nicolas Raymond", "Martin Vallières"],
             "markdown": "community/news/2022-04-22-midl.md"
           }

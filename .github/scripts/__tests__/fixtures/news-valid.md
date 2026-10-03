@@ -6,6 +6,10 @@ Pipeline drafted news post
 
 2025-03-04-test-news-post
 
+### Category
+
+Publications
+
 ### Publish date
 
 2025-03-04
@@ -18,7 +22,7 @@ Hakima Laribi, Nicolas Raymond
 
 A test news post body that becomes the markdown file.
 
-### Images / attachments
+### Images / attachments for maintainer review
 
 _No response_
 

@@ -12,7 +12,8 @@ import { publication } from "../lib/handlers/publication.mjs";
 import { news } from "../lib/handlers/news.mjs";
 import { event } from "../lib/handlers/event.mjs";
 import { team } from "../lib/handlers/team.mjs";
-import { writeJson } from "../lib/data-store.mjs";
+import { validateAgainst } from "../lib/validate.mjs";
+import { writeJson, insertCommunityItem, communityOrderProblems } from "../lib/data-store.mjs";
 
 const __filename = fileURLToPath(import.meta.url);
 const here = path.dirname(__filename);
@@ -89,6 +90,7 @@ test("handlers reject impossible dates and empty normalized slugs", () => {
   const invalidNewsDate = news.buildPlan({
     Headline: "Example news",
     "Suggested slug": "example-news",
+    Category: "Other",
     "Publish date": "2026-02-31",
     "Contributors / people involved": "Example Person",
     "Full content (Markdown)": "Example body.",
@@ -196,16 +198,53 @@ test("news handler infers year/month from publish date", () => {
   assert.equal(plan.year, "2025");
   assert.equal(plan.month, "March");
   assert.equal(plan.entry.markdown, `community/news/${plan.slug}.md`);
+  assert.equal(plan.entry.category, "Publications");
 });
 
-test("event handler folds metadata into the markdown body", () => {
+test("event handler refuses a kind it has no filter category for", () => {
+  const plan = event.buildPlan({
+    "Event title": "Example event",
+    "Suggested slug": "example-event",
+    "Event kind": "Something new",
+    "Start date": "2026-09-02",
+    Location: "Example room",
+    "Contributors / speakers": "Example Person",
+    "Full description (Markdown)": "Example body.",
+  });
+  assert.equal(plan.ok, false);
+  assert.match(plan.errors.join("\n"), /Unknown event kind/);
+});
+
+test("event handler stores sidebar metadata separately from the markdown body", () => {
   const fields = parseIssueForm(fixture("event-valid.md"));
   const plan = event.buildPlan(fields);
   assert.equal(plan.ok, true, JSON.stringify(plan, null, 2));
   assert.equal(plan.year, "2026");
   assert.equal(plan.month, "May");
-  assert.match(plan.markdownBody, /\*\*Kind:\*\* Thesis defense \(Ph\.D\.\)/);
-  assert.match(plan.markdownBody, /\*\*Location:\*\*/);
+  assert.equal(plan.entry.kind, "Thesis defense (PhD)");
+  assert.equal(plan.entry.category, "Thesis Defenses");
+  assert.equal(plan.entry.date, "2026-05-01");
+  assert.equal(plan.entry.venue, "Université de Sherbrooke, room D7-1010");
+  assert.equal(plan.entry.time, undefined);
+  assert.equal(plan.entry.endDate, undefined);
+  assert.equal(plan.entry.registration, undefined);
+  assert.equal(
+    plan.markdownBody,
+    "Test Person's PhD defense.\n\n**Time:** 14:00–16:00 EDT\n\nBody of the event description."
+  );
+});
+
+test("event handler preserves multi-day logistics in sidebar data", () => {
+  const plan = event.buildPlan({
+    ...parseIssueForm(fixture("event-valid.md")),
+    "End date": "2026-05-03",
+    "Registration / RSVP link": "https://example.com/register",
+  });
+  assert.equal(plan.ok, true);
+  assert.equal(plan.entry.endDate, "2026-05-03");
+  assert.equal(plan.entry.registration, undefined);
+  assert.match(plan.markdownBody, /https:\/\/example.com\/register/);
+  assert.doesNotMatch(plan.markdownBody, /2026-05-03/);
 });
 
 test("event apply() generates a conventional PR title", async () => {
@@ -279,7 +318,7 @@ test("writeJson preserves unchanged hand-formatted entries", async () => {
   assert.match(updated, /"contributors": \["Existing Author", "Another Author"\]/);
 });
 
-test("team handler builds a plan with parsed expertise + education", () => {
+test("team handler builds a plan with parsed expertise, education, and affiliations", () => {
   const fields = parseIssueForm(fixture("team-valid.md"));
   const plan = team.buildPlan(fields);
   assert.equal(plan.ok, true, JSON.stringify(plan, null, 2));
@@ -291,8 +330,22 @@ test("team handler builds a plan with parsed expertise + education", () => {
     "Federated learning",
   ]);
   assert.equal(plan.member.education.length, 2);
+  assert.deepEqual(plan.member.affiliations, [
+    {
+      role: "Associate Member",
+      organization: "Dept. of Biomedical Engineering, McGill University",
+      url: "https://www.mcgill.ca/bme/",
+    },
+  ]);
   assert.equal(plan.member.socials.linkedin, "https://www.linkedin.com/in/test-member/");
   assert.equal(plan.photoSource, "team-photo.png");
+
+  const invalidAffiliation = team.buildPlan({
+    ...fields,
+    Affiliations: "Associate Member | Biomedical Engineering | javascript:alert(1)",
+  });
+  assert.equal(invalidAffiliation.ok, false);
+  assert.match(invalidAffiliation.errors.join("\n"), /absolute HTTP\(S\) URL/);
 });
 
 test("team apply() writes resized avatar variants and updates team.json", async () => {
@@ -318,6 +371,7 @@ test("team apply() writes resized avatar variants and updates team.json", async 
   const member = cohort.members.find((m) => m.slug === plan.slug);
   assert.ok(member, "expected new member in team.json");
   assert.equal(member.image, `/images/team/${plan.slug}/avatar.png`);
+  assert.deepEqual(member.affiliations, plan.member.affiliations);
   const teamSource = fs.readFileSync(path.join(dataDir, "team.json"), "utf8");
   assert.equal(
     await prettier.check(teamSource, { parser: "json", printWidth: 100 }),
@@ -331,5 +385,99 @@ test("team apply() writes resized avatar variants and updates team.json", async 
       const file = path.join(avatarDir, `avatar-${size}.${ext}`);
       assert.ok(fs.existsSync(file), `expected ${file}`);
     }
+  }
+});
+
+test("insertCommunityItem keeps years and months newest first regardless of insertion order", () => {
+  const item = (slug) => ({ title: slug, slug, contributors: [] });
+  let tree = [{ year: "2025", months: [{ month: "March", items: [item("a")] }] }];
+  tree = insertCommunityItem(tree, { year: "2025", month: "February", item: item("b") });
+  tree = insertCommunityItem(tree, { year: "2025", month: "November", item: item("c") });
+  tree = insertCommunityItem(tree, { year: "2026", month: "January", item: item("d") });
+  assert.deepEqual(
+    tree.map((y) => [y.year, y.months.map((m) => m.month)]),
+    [
+      ["2026", ["January"]],
+      ["2025", ["November", "March", "February"]],
+    ]
+  );
+  assert.deepEqual(communityOrderProblems(tree), []);
+});
+
+test("communityOrderProblems flags reversed months and non-month labels", () => {
+  const tree = [
+    {
+      year: "2024",
+      months: [
+        { month: "February", items: [] },
+        { month: "March", items: [] },
+        { month: "Symposium", items: [] },
+      ],
+    },
+  ];
+  assert.deepEqual(communityOrderProblems(tree), [
+    "2024: March must come before February",
+    '2024: "Symposium" is not a month name',
+  ]);
+  assert.throws(() => insertCommunityItem([], { year: "2024", month: "Symposium", item: {} }));
+});
+
+test("event submissions can omit an unknown day and venue without inventing metadata", () => {
+  const fields = parseIssueForm(fixture("event-valid.md"));
+  delete fields["Start date"];
+  delete fields.Location;
+  fields["Listing month"] = "2026-05";
+  const plan = event.buildPlan(fields);
+  assert.equal(plan.ok, true);
+  assert.equal(plan.year, "2026");
+  assert.equal(plan.month, "May");
+  assert.equal(plan.entry.date, undefined);
+  assert.equal(plan.entry.venue, undefined);
+  assert.equal(event.buildPlan({ ...fields, "Listing month": "2026-13" }).ok, false);
+  assert.equal(event.buildPlan({ ...fields, "Listing month": "" }).ok, false);
+  assert.equal(event.buildPlan({ ...fields, "End date": "2026-05-03" }).ok, false);
+  const dated = event.buildPlan({ ...fields, "Start date": "2026-06-01" });
+  assert.equal(dated.month, "June");
+  assert.equal(dated.entry.date, "2026-06-01");
+});
+
+test("news sidebar dates are independent of the timeline publish date", () => {
+  const fields = parseIssueForm(fixture("news-valid.md"));
+  const undated = news.buildPlan(fields);
+  assert.equal(undated.entry.date, undefined);
+  assert.equal(undated.entry.event, undefined);
+  const dated = news.buildPlan({ ...fields, "Date to display": "2025-02-27" });
+  assert.equal(dated.ok, true);
+  assert.equal(dated.month, "March");
+  assert.equal(dated.entry.date, "2025-02-27");
+  assert.equal(dated.entry.event, undefined);
+});
+
+test("news accepts partial event metadata and rejects invalid date ranges", () => {
+  const fields = parseIssueForm(fixture("news-valid.md"));
+  for (const details of [
+    { "Event kind": "Workshop" },
+    { "Event venue": "Mila, Montréal" },
+    { "Event kind": "Workshop", "Date to display": "2025-02-27" },
+    { "Date to display": "2025-02-27", "Event end date": "2025-02-28" },
+  ]) {
+    const plan = news.buildPlan({ ...fields, ...details });
+    assert.equal(plan.ok, true);
+    assert.equal(plan.entry.event.date, details["Date to display"]);
+    assert.equal(plan.entry.event.venue, details["Event venue"]);
+    assert.equal(plan.entry.event.kind, details["Event kind"]);
+    assert.equal(plan.entry.event.endDate, details["Event end date"]);
+    const result = validateAgainst("news.schema.json", [
+      { year: plan.year, months: [{ month: plan.month, items: [plan.entry] }] },
+    ]);
+    assert.equal(result.ok, true, JSON.stringify(result));
+  }
+  for (const details of [
+    { "Date to display": "2025-02-30" },
+    { "Event end date": "2025-02-28" },
+    { "Date to display": "2025-02-27", "Event end date": "2025-02-26" },
+    { "Date to display": "2025-02-27", "Event end date": "2025-02-30" },
+  ]) {
+    assert.equal(news.buildPlan({ ...fields, ...details }).ok, false);
   }
 });

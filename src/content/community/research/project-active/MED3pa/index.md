@@ -20,21 +20,6 @@ In progress (2021-today)
 
 Doctorate
 
-## Team
-
-- [Olivier Lefebvre](/team/olivier-lefebvre)<sup>1</sup> (2021-today)
-- [Félix Camirand Lemyre](https://www.usherbrooke.ca/mathematiques/nous-joindre/personnel/corps-professoral/professeurs/felix-camirand-lemyre)<sup>2</sup> (2021-2025)
-- [Jean-François Éthier](https://www.usherbrooke.ca/recherche/specialistes/details/jean-francois.ethier)<sup>3</sup> (2021-2025)
-- [Ludmila Amriou](/team/ludmila-amriou)<sup>1</sup> (2024-2025)
-- [Lyna Hiba Chikouche](/team/lyna-hiba-chikouche)<sup>1</sup> (2024-2025)
-- [Martin Vallières](/team/martin-vallieres)<sup>1</sup> (2021-today)
-
-<sup>1</sup> Computer science department, Université de Sherbrooke, Sherbrooke (QC), Canada
-
-<sup>2</sup> Mathematics department, Université de Sherbrooke, Sherbrooke (QC), Canada
-
-<sup>3</sup> Medicine department, Université de Sherbrooke, Sherbrooke (QC), Canada
-
 ## Description
 
 While predictive models are widely used in healthcare, they often fail to indicate when their predictions should not be trusted. This can lead to critical errors, especially when applied to diverse patient populations. Global performance metrics can mask important variations in reliability across individual patients or subgroups with shared attributes, called patient profiles.

@@ -18,13 +18,6 @@ Completed (2020-2023)
 
 Master's
 
-## Team
-
-- [Alexandre Ayotte](/team/alexandre-ayotte)<sup>1</sup> (2020-today)
-- [Martin Vallières](/team/martin-vallieres)<sup>1</sup> (2020-today)
-
-<sup>1</sup> Computer science department, Université de Sherbrooke, Sherbrooke (QC), Canada
-
 ## Data
 
 For this project, data from 1,082 patients from 5 institutions with clinical data such as age, sex and tumor size,

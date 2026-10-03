@@ -23,22 +23,6 @@ Completed (2020-2022)
 
 Master's
 
-## Team
-
-- [Simon Giard-Leroux](/team/simon-giard-leroux)<sup>1</sup> (2020-2022)
-- [Guillaume Cléroux](/team/guillaume-cleroux)<sup>1</sup> (summer 2021 and winter 2022)
-- [Alex Chorel-Campanozzi](/team/alex-chorel-campanozzi)<sup>1</sup> (summer 2021)
-- [Achille Lanctôt-Saumure](/team/achille-lanctot-saumure)<sup>1</sup> (fall 2021)
-- [Shreyas Sunil Kulkarni](/team/shreyas-sunil-kulkarni)<sup>2</sup> (2020-2021)
-- [François Bouffard](https://www.mcgill.ca/ece/francois-bouffard)<sup>3</sup> (2020-2022)
-- [Martin Vallières](/team/martin-vallieres)<sup>1</sup> (2020-2022)
-
-<sup>1</sup> Computer science department, Université de Sherbrooke, Sherbrooke (QC), Canada
-
-<sup>2</sup> Birla Institute of Technology and Science, Pilani, Inde
-
-<sup>3</sup> Electrical and computer engineering department, McGill University, Montreal (QC), Canada
-
 ## Note
 
 This project is not related to the field of medical informatics, but it involves object detection principles that will

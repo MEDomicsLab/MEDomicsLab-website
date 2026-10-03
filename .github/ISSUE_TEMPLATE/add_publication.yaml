@@ -1,5 +1,5 @@
 name: "Add a new publication"
-description: Request that a publication (paper, preprint, talk, poster…) be added to the lab's publications list.
+description: Request that a publication (journal paper, conference paper, or preprint) be added to the lab's publications list.
 title: "[PUB] - <publication title>"
 labels:
   - "content"
@@ -21,9 +21,9 @@ body:
         </div>
 
 
-        Publications are grouped by year. The maintainer derives the slug from the title and adds it explicitly to `publications.json` — you do not need to provide one.
+        Publications are grouped by year. The automation derives the slug from the title and display year and saves it in `publications.json` — you do not need to provide one.
 
-        See [`src/content/_templates/publication.md`](https://github.com/simonprovost/medomicslab/blob/main/src/content/_templates/publication.md) for the markdown skeleton.
+        See [`src/content/_templates/publication.md`](https://github.com/MEDomicsLab/MEDomicsLab-website/blob/main/src/content/_templates/publication.md) for the markdown skeleton.
   - type: checkboxes
     id: checks
     attributes:
@@ -62,12 +62,11 @@ body:
     id: type
     attributes:
       label: "Type"
-      description: Must be one of the four values supported by `publications.schema.json`.
+      description: Must be one of the three values supported by `publications.schema.json`. Talks and posters are events now; file them with the "Add an event" form instead.
       options:
         - "Journal Papers"
         - "Conference Papers"
         - "Preprints"
-        - "Presentations"
     validations:
       required: true
   - type: input
@@ -97,7 +96,7 @@ body:
     id: redirect
     attributes:
       label: "Direct redirect?"
-      description: If checked by the maintainer, the publication card links straight to the primary link instead of opening a detail page on the site. Leave blank for the default behaviour.
+      description: Enter yes to link the publication card directly to the primary link. Leave blank or enter no to open its detail page.
       placeholder: "yes / no — optional"
     validations:
       required: false
@@ -105,7 +104,7 @@ body:
     id: abstract
     attributes:
       label: "Abstract / summary (Markdown)"
-      description: Will be saved to `src/content/publications/<slug>.md` and referenced from `publications.json` via the `markdown` field. Follow the structure in [`src/content/_templates/publication.md`](https://github.com/simonprovost/medomicslab/blob/main/src/content/_templates/publication.md). Markdown image links remain externally hosted, so use stable, public URLs only; they are not copied or optimized by this form.
+      description: Will be saved to `src/content/publications/<slug>.md` and referenced from `publications.json` via the `markdown` field. Follow the structure in [`src/content/_templates/publication.md`](https://github.com/MEDomicsLab/MEDomicsLab-website/blob/main/src/content/_templates/publication.md). Markdown image links remain externally hosted, so use stable, public URLs only; they are not copied or optimized by this form.
       placeholder: "Paste the abstract or a short summary."
     validations:
       required: false
@@ -113,7 +112,7 @@ body:
     id: bibtex
     attributes:
       label: "BibTeX (optional)"
-      description: For maintainers who want to enrich the markdown page later.
+      description: Optional. Saved as a BibTeX section in the publication detail page.
       render: bibtex
     validations:
       required: false

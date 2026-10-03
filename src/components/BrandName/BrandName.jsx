@@ -1,10 +1,7 @@
-const BRAND = "MEDomicsLab";
-const BRAND_PATTERN = /medomicslab/gi;
+const BRANDS = ["MEDomicsLab", "MEDomics", "MEDprofiles", "MEDiml", "MED3pa", "MEDfl"];
+const CANONICAL = new Map(BRANDS.map((brand) => [brand.toLowerCase(), brand]));
+const BRAND_PATTERN = new RegExp(`\\b(${BRANDS.join("|")})\\b`, "gi");
 
-/**
- * Renders text with every occurrence of the lab name
- * pinned to its canonical ``MEDomicsLab''
- */
 export default function BrandName({ children }) {
   if (typeof children !== "string") return children;
 
@@ -15,7 +12,7 @@ export default function BrandName({ children }) {
     if (match.index > cursor) segments.push(children.slice(cursor, match.index));
     segments.push(
       <span key={match.index} className="normal-case">
-        {BRAND}
+        {CANONICAL.get(match[0].toLowerCase())}
       </span>
     );
     cursor = match.index + match[0].length;

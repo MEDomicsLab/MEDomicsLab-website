@@ -1,17 +1,29 @@
-const markdownFiles = import.meta.glob("/src/content/**/*.md", {
+const markdownFiles = import.meta.glob(["/src/content/**/*.md", "!/src/content/_templates/**"], {
   query: "?raw",
   import: "default",
 });
 
-export const getMarkdownContent = async (markdownPath) => {
-  if (!markdownPath) return null;
-
-  const normalizedPath = markdownPath.startsWith("/src/")
+const cache = new Map();
+const normalizePath = (markdownPath) =>
+  markdownPath.startsWith("/src/")
     ? markdownPath
     : `/src/content/${markdownPath.replace(/^\.\/?/, "")}`;
 
-  const loader = markdownFiles[normalizedPath];
+export const getCachedMarkdown = (markdownPath) =>
+  markdownPath ? cache.get(normalizePath(markdownPath)) : undefined;
+
+export const cacheMarkdown = (markdownPath, content) => {
+  cache.set(normalizePath(markdownPath), content);
+};
+
+export const getMarkdownContent = async (markdownPath) => {
+  if (!markdownPath) return null;
+  const cached = getCachedMarkdown(markdownPath);
+  if (cached !== undefined) return cached;
+  const loader = markdownFiles[normalizePath(markdownPath)];
   if (!loader) return null;
 
-  return loader();
+  const content = await loader();
+  cacheMarkdown(markdownPath, content);
+  return content;
 };

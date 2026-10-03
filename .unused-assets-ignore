@@ -1,11 +1,26 @@
-# Image paths (relative to public/, leading slash) intentionally kept
-# even though they aren't referenced from src/ yet.
+# Live image paths (relative to public/, leading slash) assembled at runtime.
 #
 # Used by: .github/scripts/check-unused-assets.mjs
 
-# MED3pa working diagrams kept for future content updates
-/images/albums/research-MED3pa/objectives.drawio.svg
-/images/albums/research-MED3pa/sl_tree.drawio.svg
+# homepageContent.js derives these from the ecosystem app names.
+/images/homepage-neue/ecosystem/medomics.webp
+/images/homepage-neue/ecosystem/med3pa.webp
+/images/homepage-neue/ecosystem/medfl.webp
+/images/homepage-neue/ecosystem/mediml.webp
+/images/homepage-neue/ecosystem/medprofiles.webp
 
-# MEDomics platform working asset (alternate hero)
-/images/albums/research-medomics_platform/medomicslab.jpg
+# homepageContent.js derives these from research project order and slugs.
+/images/homepage-neue/next/01-medomics-platform.webp
+/images/homepage-neue/next/02-mediml.webp
+/images/homepage-neue/next/03-med3pa.webp
+/images/homepage-neue/next/04-multilevel-graphs.webp
+/images/homepage-neue/next/05-medomicslab-optimization.webp
+/images/homepage-neue/next/06-distributed-learning-inference.webp
+/images/homepage-neue/next/07-distributed-random-forests.webp
+/images/homepage-neue/next/08-energai.webp
+/images/homepage-neue/next/09-kidney-small-tumors.webp
+/images/homepage-neue/next/10-multitask-classification.webp
+/images/homepage-neue/next/11-patient-mortality-prediction.webp
+/images/homepage-neue/next/12-prostate-models.webp
+/images/homepage-neue/next/13-radiomics-complexity.webp
+/images/homepage-neue/next/14-vo2max-obesity.webp

@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { Route, Routes } from "react-router-dom";
 import Lenis from "lenis";
+import { setLenis } from "./lib/lenis";
 import Layout from "./components/Layout/Layout.jsx";
 import HomePage from "./pages/HomePage/HomePage.jsx";
 import ResearchPage from "./pages/ResearchPage/ResearchPage.jsx";
@@ -9,7 +10,6 @@ import PublicationsPage from "./pages/PublicationsPage/PublicationsPage.jsx";
 import PublicationDetailPage from "./pages/PublicationDetailPage/PublicationDetailPage.jsx";
 import TeamPage from "./pages/TeamPage/TeamPage.jsx";
 import TeamMemberDetail from "./pages/TeamMemberDetail/TeamMemberDetail.jsx";
-import VisionsPage from "./pages/VisionsPage/VisionsPage.jsx";
 import NewsPage from "./pages/NewsPage/NewsPage.jsx";
 import EventsPage from "./pages/EventsPage/EventsPage.jsx";
 import CommunityContactPage from "./pages/CommunityContactPage/CommunityContactPage.jsx";
@@ -26,6 +26,7 @@ const App = () => {
       smoothTouch: false,
       lerp: 0.08,
     });
+    setLenis(lenis);
 
     let rafId = 0;
 
@@ -38,6 +39,7 @@ const App = () => {
 
     return () => {
       cancelAnimationFrame(rafId);
+      setLenis(null);
       lenis.destroy();
     };
   }, []);
@@ -46,7 +48,6 @@ const App = () => {
     <Routes>
       <Route element={<Layout />}>
         <Route index element={<HomePage />} />
-        <Route path="/visions" element={<VisionsPage />} />
         <Route path="/research" element={<ResearchPage />} />
         <Route path="/research/:slug" element={<ProjectDetail />} />
         <Route path="/publications" element={<PublicationsPage />} />

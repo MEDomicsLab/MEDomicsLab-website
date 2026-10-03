@@ -43,7 +43,7 @@ body:
     attributes:
       label: "Proposed solution"
       description: Describe the feature. Include user flow, UI ideas, accessibility considerations, and which files/components you think it touches.
-      placeholder: "Add a sticky year filter at the top of `/publications` using `MotionHighlight`. Affects `PublicationsPage.jsx`."
+      placeholder: "Add a sticky year filter at the top of `/publications` that stays accessible on mobile."
     validations:
       required: true
   - type: textarea
@@ -79,7 +79,6 @@ body:
         - "Community — News"
         - "Community — Events"
         - "Community — Courses"
-        - "Visions"
         - "Layout / navigation / footer"
         - "Theme / design tokens"
         - "Performance / accessibility / SEO"

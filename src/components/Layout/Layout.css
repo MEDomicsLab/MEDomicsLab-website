@@ -1,24 +1,12 @@
-.layout-glass-surface-dynamic {
-  background:
-    linear-gradient(180deg, var(--layout-surface-top) 0%, var(--layout-surface-bottom) 100%),
-    var(--layout-surface-base);
-  box-shadow:
-    inset 0 1px 0 var(--layout-surface-shadow-top),
-    inset 0 0 0 1px var(--layout-surface-shadow-ring);
-  backdrop-filter: blur(var(--layout-surface-blur)) saturate(var(--layout-surface-saturation));
-  -webkit-backdrop-filter: blur(var(--layout-surface-blur))
-    saturate(var(--layout-surface-saturation));
+.nav-dropdown-portal > * {
+  transition: none !important;
 }
 
-.layout-nav-text-dynamic {
-  color: var(--layout-nav-text-color);
+.nav-dropdown-content--in {
+  animation: nav-dropdown-text-in 180ms ease-out both;
 }
 
-.layout-dropdown-text-dynamic {
-  color: var(--layout-dropdown-text-color);
-}
-
-@keyframes liquid-fade-in {
+@keyframes nav-dropdown-text-in {
   from {
     opacity: 0;
   }
@@ -27,9 +15,183 @@
   }
 }
 
-/* The liquid-glass-react library transitions its inset highlight rings into
-   place ~200ms after the glass renders, producing a delayed "stroke" pop on
-   the community modal. Kill the transition so they appear in sync. */
-.community-modal-portal > span {
-  transition: none !important;
+@media (prefers-reduced-motion: reduce) {
+  .nav-dropdown-content--in {
+    animation: none;
+  }
+}
+
+.site-brand-wordmark {
+  font-weight: 600;
+  letter-spacing: -0.04em;
+  line-height: 0.8;
+  text-box-trim: trim-both;
+  text-box-edge: cap alphabetic;
+}
+.nav-action-link {
+  display: flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 8px 18px;
+  color: white;
+  line-height: 1;
+  white-space: nowrap;
+  touch-action: manipulation;
+  border-radius: 100px;
+}
+.nav-action-link:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 3px;
+}
+.nav-action-slide {
+  --shortcut-icon-space: 30px;
+  display: flex;
+  align-items: center;
+  position: relative;
+  padding-left: var(--shortcut-icon-space);
+}
+.nav-action-slide__icon {
+  position: absolute;
+  left: 0;
+  width: 23px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition:
+    transform 300ms ease,
+    opacity 300ms ease;
+}
+.nav-action-slide__text {
+  margin-right: -16px;
+  transition: transform 300ms ease;
+}
+.nav-action-slide__suffix {
+  display: inline-block;
+  max-width: 0;
+  overflow: hidden;
+  vertical-align: top;
+  white-space: pre;
+  opacity: 0;
+}
+.nav-action-slide__arrow {
+  display: inline-flex;
+  justify-content: flex-end;
+  width: 16px;
+  opacity: 0;
+  transform: translateX(100%);
+  transition:
+    transform 300ms ease,
+    opacity 300ms ease;
+}
+.nav-action-slide__arrow svg {
+  width: 15px;
+  height: 15px;
+}
+.nav-action-link:is(:hover, :focus-visible) .nav-action-slide__icon {
+  opacity: 0;
+  transform: translateX(var(--shortcut-icon-space));
+}
+.nav-action-link:is(:hover, :focus-visible) .nav-action-slide__text {
+  transform: translateX(calc(-1 * var(--shortcut-icon-space)));
+}
+.nav-action-link:is(:hover, :focus-visible) .nav-action-slide__arrow {
+  opacity: 1;
+  transform: translateX(0);
+}
+.nav-action-icon {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+}
+.nav-action-logo {
+  width: 23px;
+  height: 23px;
+  object-fit: contain;
+}
+.glass-frame.liquid-action-anchor > * {
+  transition: --glass-opacity var(--nav-action-fade-duration, 700ms) ease !important;
+}
+.liquid-action-anchor.is-idle {
+  --nav-action-fade-duration: 1800ms;
+  --glass-opacity: 0.4;
+}
+.liquid-action-anchor:has(:focus-visible) {
+  --nav-action-fade-duration: 400ms;
+  --glass-opacity: 1;
+}
+@media (hover: hover) {
+  .liquid-action-anchor:hover {
+    --nav-action-fade-duration: 400ms;
+    --glass-opacity: 1;
+  }
+}
+@media (max-width: 767px) {
+  .nav-action-link {
+    padding-inline: 14px;
+  }
+  .nav-action-slide {
+    --shortcut-icon-space: 27px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .glass-frame.liquid-action-anchor > * {
+    transition-duration: 0ms !important;
+  }
+  .nav-action-slide > span {
+    transition: none;
+  }
+}
+
+.liquid-action-anchor.is-in-hero {
+  --glass-opacity: 1;
+}
+.liquid-action-anchor.is-in-hero .nav-action-slide__suffix {
+  max-width: calc(var(--shortcut-suffix-width, 8em) * var(--shortcut-growth, 1));
+  opacity: var(--shortcut-growth, 1);
+}
+.liquid-action-anchor.is-in-hero .nav-action-link {
+  min-height: calc(44px + 20px * var(--shortcut-growth, 1));
+  padding: calc(8px + 6px * var(--shortcut-growth, 1)) calc(18px + 6px * var(--shortcut-growth, 1));
+  font-size: calc(13px + 5px * var(--shortcut-growth, 1));
+}
+.liquid-action-anchor.is-in-hero .nav-action-slide {
+  --shortcut-icon-space: calc(30px + 8px * var(--shortcut-growth, 1));
+}
+.liquid-action-anchor.is-in-hero .nav-action-slide__icon,
+.liquid-action-anchor.is-in-hero .nav-action-logo {
+  width: calc(23px + 7px * var(--shortcut-growth, 1));
+  height: calc(23px + 7px * var(--shortcut-growth, 1));
+}
+.liquid-action-anchor.is-in-hero svg.nav-action-icon {
+  width: calc(16px + 8px * var(--shortcut-growth, 1));
+  height: calc(16px + 8px * var(--shortcut-growth, 1));
+}
+@media (max-width: 767px) {
+  .liquid-action-anchor.is-in-hero .nav-action-link {
+    min-height: calc(44px + 10px * var(--shortcut-growth, 1));
+    font-size: calc(11px + (clamp(10px, 3vw, 12px) - 11px) * var(--shortcut-growth, 1));
+    padding: calc(8px + 2px * var(--shortcut-growth, 1))
+      calc(14px - 8px * var(--shortcut-growth, 1));
+  }
+  .liquid-action-anchor.is-in-hero .nav-action-slide {
+    --shortcut-icon-space: calc(27px - 5px * var(--shortcut-growth, 1));
+  }
+  .liquid-action-anchor.is-in-hero .nav-action-slide__icon,
+  .liquid-action-anchor.is-in-hero .nav-action-logo {
+    width: calc(23px - 3px * var(--shortcut-growth, 1));
+    height: calc(23px - 3px * var(--shortcut-growth, 1));
+  }
+  .liquid-action-anchor.is-in-hero svg.nav-action-icon {
+    width: calc(16px + 2px * var(--shortcut-growth, 1));
+    height: calc(16px + 2px * var(--shortcut-growth, 1));
+  }
+}
+@media (max-width: 359px) {
+  .liquid-action-anchor.is-in-hero .nav-action-link {
+    padding-inline: calc(14px - 10px * var(--shortcut-growth, 1));
+  }
+}
+
+.site-shortcuts {
+  display: contents;
 }

@@ -1,66 +1,48 @@
+import { existsSync, readFileSync, statSync } from "node:fs";
+import { resolve, sep } from "node:path";
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import tailwindcss from "@tailwindcss/vite";
-import Sitemap from "vite-plugin-sitemap";
-import courses from "./src/data/courses.json";
-import events from "./src/data/events.json";
-import news from "./src/data/news.json";
-import publications from "./src/data/publications.json";
-import researchProjects from "./src/data/research-projects.json";
-import team from "./src/data/team.json";
-
-const collectSlugs = (value) => {
-  if (Array.isArray(value)) return value.flatMap(collectSlugs);
-  if (!value || typeof value !== "object") return [];
-
-  return [
-    ...(typeof value.slug === "string" ? [value.slug] : []),
-    ...Object.values(value).flatMap(collectSlugs),
-  ];
-};
-
-const unique = (values) => [...new Set(values)];
-
-const staticRoutes = [
-  "/",
-  "/visions",
-  "/research",
-  "/publications",
-  "/team",
-  "/community/news",
-  "/community/events",
-  "/community/courses",
-  "/community/contact",
-];
-
-const dynamicRoutes = [
-  ...collectSlugs(researchProjects).map((slug) => `/research/${slug}`),
-  ...collectSlugs(publications).map((slug) => `/publications/${slug}`),
-  ...collectSlugs(team).map((slug) => `/team/${slug}`),
-  ...collectSlugs(news).map((slug) => `/community/news/${slug}`),
-  ...collectSlugs(events).map((slug) => `/community/events/${slug}`),
-  ...collectSlugs(courses).map((slug) => `/community/courses/${slug}`),
-];
+import { getSiteRoute } from "./src/lib/seo.js";
 
 export default defineConfig({
   plugins: [
     react(),
     tailwindcss(),
-    Sitemap({
-      hostname: "https://medomicslab.com",
-      dynamicRoutes: unique([...staticRoutes, ...dynamicRoutes]),
-      changefreq: {
-        "*": "monthly",
-        "/": "weekly",
-        "/community/news": "weekly",
+    {
+      name: "static-preview-routing",
+      configurePreviewServer(server) {
+        const directory = resolve(server.config.build.outDir);
+        server.middlewares.use((request, response, next) => {
+          if (!["GET", "HEAD"].includes(request.method)) return next();
+          const url = new URL(request.url, "http://localhost");
+          const route = getSiteRoute(url.pathname.replace(/\.html$/, ""));
+          if (route?.redirect || (route && route.path !== url.pathname)) {
+            response.writeHead(308, { Location: route.redirect || `${route.path}${url.search}` });
+            response.end();
+            return;
+          }
+          let pathname;
+          try {
+            pathname = decodeURI(url.pathname);
+          } catch (error) {
+            if (!(error instanceof URIError)) throw error;
+            response.writeHead(400, { "Content-Type": "text/plain; charset=utf-8" });
+            response.end(request.method === "HEAD" ? undefined : "Invalid URL encoding.");
+            return;
+          }
+          const file = resolve(directory, `.${pathname}`);
+          if (
+            route ||
+            (file.startsWith(`${directory}${sep}`) && existsSync(file) && statSync(file).isFile())
+          )
+            return next();
+          response.writeHead(404, { "Content-Type": "text/html; charset=utf-8" });
+          response.end(
+            request.method === "HEAD" ? undefined : readFileSync(resolve(directory, "404.html"))
+          );
+        });
       },
-      priority: {
-        "*": 0.7,
-        "/": 1,
-        "/research": 0.9,
-        "/publications": 0.9,
-      },
-      readable: true,
-    }),
+    },
   ],
 });

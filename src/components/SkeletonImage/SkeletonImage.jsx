@@ -1,17 +1,7 @@
 import { useMemo, useState } from "react";
 import { cn } from "../../lib/utils";
 import { Skeleton } from "../ui/skeleton";
-
-const buildVariant = (src, size, format) => {
-  if (!src) return src;
-  const dotIndex = src.lastIndexOf(".");
-  if (dotIndex === -1) return src;
-  const base = src.slice(0, dotIndex);
-  return `${base}-${size}.${format}`;
-};
-
-const buildSrcSet = (src, sizes, format) =>
-  sizes.map((size) => `${buildVariant(src, size, format)} ${size}w`).join(", ");
+import { imageSrcSet } from "../../lib/images";
 
 export default function SkeletonImage({
   src,
@@ -28,7 +18,7 @@ export default function SkeletonImage({
   fetchPriority,
   formats = ["avif", "webp"],
 }) {
-  const [isLoaded, setIsLoaded] = useState(false);
+  const [isLoaded, setIsLoaded] = useState(import.meta.env.SSR);
   const resolvedVariants = useMemo(
     () => (variantSizes?.length ? variantSizes : null),
     [variantSizes]
@@ -67,14 +57,14 @@ export default function SkeletonImage({
           {resolvedFormats.includes("avif") && (
             <source
               type="image/avif"
-              srcSet={buildSrcSet(src, resolvedVariants, "avif")}
+              srcSet={imageSrcSet(src, resolvedVariants, "avif")}
               sizes={sizes}
             />
           )}
           {resolvedFormats.includes("webp") && (
             <source
               type="image/webp"
-              srcSet={buildSrcSet(src, resolvedVariants, "webp")}
+              srcSet={imageSrcSet(src, resolvedVariants, "webp")}
               sizes={sizes}
             />
           )}

@@ -3,7 +3,6 @@ import AxeBuilder from "@axe-core/playwright";
 
 const routes = [
   "/",
-  "/visions",
   "/research",
   "/publications",
   "/team",

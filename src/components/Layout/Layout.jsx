@@ -1,52 +1,64 @@
-import { useEffect, useRef, useState } from "react";
-import { createPortal } from "react-dom";
+import { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
 import { Link, Outlet, useLocation } from "react-router-dom";
-import LiquidGlass from "liquid-glass-react";
-import { useTranslations } from "../../lib/translations";
+import { GlassFrame } from "../GlassSurface/GlassSurface.jsx";
 import { cn } from "../../lib/utils";
 import homeData from "../../data/home.json";
 import layoutData from "../../data/layout.json";
 import RollingText from "../RollingText/RollingText.jsx";
-import FlipWords from "../FlipWords/FlipWords.jsx";
 import { MotionHighlight, MotionHighlightItem } from "../MotionHighlight/MotionHighlight.jsx";
-import ShinyText from "../ShinyText/ShinyText.jsx";
 import SkeletonImage from "../SkeletonImage/SkeletonImage.jsx";
 import Seo from "../Seo/Seo.jsx";
 import { LIQUID_PARAMS } from "../../lib/liquidGlassParams";
+import SiteShortcuts from "./SiteShortcuts.jsx";
+import NavDropdown, {
+  NAV_MENU_ITEM_CLASS,
+  NAV_TEXT_CLASS,
+  NAV_TRIGGER_CLOSE_DELAY,
+  NAV_MENU_CLOSE_DELAY,
+} from "./NavDropdown.jsx";
+import { scrollToSection, scrollToTopNow } from "../../lib/lenis";
+import Footer from "../Footer/Footer.jsx";
 import "./Layout.css";
+import "./InteriorPages.css";
 
 export default function Layout() {
-  const { t } = useTranslations();
   const liquid = LIQUID_PARAMS;
   const location = useLocation();
+  const isHome = location.pathname === "/";
+  const [homeScrolled, setHomeScrolled] = useState(false);
+
+  useEffect(() => {
+    if (!isHome) return undefined;
+    const update = () => {
+      setHomeScrolled(window.scrollY > 80);
+      const lab = document.querySelector("#lab");
+      setHeroBehindNav(
+        !lab || lab.getBoundingClientRect().top > (window.innerWidth < 1100 ? 96 : 46)
+      );
+    };
+    update();
+    window.addEventListener("scroll", update, { passive: true });
+    return () => window.removeEventListener("scroll", update);
+  }, [isHome]);
   const [isCommunityOpen, setIsCommunityOpen] = useState(false);
   const communityTimeoutRef = useRef(null);
   const communityButtonRef = useRef(null);
   const communityMenuRef = useRef(null);
-  const [communityDropdownPos, setCommunityDropdownPos] = useState(null);
   const [shouldFocusCommunityMenu, setShouldFocusCommunityMenu] = useState(false);
+  const clearCommunityFocusRequest = useCallback(() => setShouldFocusCommunityMenu(false), []);
   const [rollingTextIndex, setRollingTextIndex] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
-  const [navLeft, setNavLeft] = useState(() =>
-    window.innerWidth <= 767 ? window.innerWidth / 2 : window.innerWidth - 200
-  );
+  const [navTop, setNavTop] = useState(46);
+  const [heroBehindNav, setHeroBehindNav] = useState(isHome);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const update = () => {
-      const el = document.querySelector(".liquid-nav-anchor");
-      const w = el?.getBoundingClientRect().width ?? 0;
-      setNavLeft(window.innerWidth <= 767 ? window.innerWidth / 2 : window.innerWidth - w / 2 - 32);
+      setIsMobile(window.innerWidth <= 767);
+      setNavTop(window.innerWidth < 1100 ? 96 : 46);
     };
-    const id = window.setTimeout(update, 0);
-    const ro = new ResizeObserver(update);
-    const el = document.querySelector(".liquid-nav-anchor");
-    if (el) ro.observe(el);
+    update();
     window.addEventListener("resize", update);
-    return () => {
-      window.clearTimeout(id);
-      ro.disconnect();
-      window.removeEventListener("resize", update);
-    };
+    return () => window.removeEventListener("resize", update);
   }, []);
 
   useEffect(() => {
@@ -58,24 +70,6 @@ export default function Layout() {
   }, []);
 
   useEffect(() => {
-    if (!isCommunityOpen || !communityButtonRef.current) return;
-    const rect = communityButtonRef.current.getBoundingClientRect();
-    const dropdownHalfH = 55;
-    const gap = 16;
-    setCommunityDropdownPos({
-      top: rect.bottom + gap + dropdownHalfH,
-      left: rect.left + rect.width / 2,
-    });
-  }, [isCommunityOpen]);
-
-  useEffect(() => {
-    if (!shouldFocusCommunityMenu || !isCommunityOpen || !communityDropdownPos) return;
-
-    communityMenuRef.current?.querySelector("a")?.focus();
-    setShouldFocusCommunityMenu(false);
-  }, [communityDropdownPos, isCommunityOpen, shouldFocusCommunityMenu]);
-
-  useEffect(() => {
     const interval = window.setInterval(() => {
       setRollingTextIndex((index) => index + 1);
     }, 2000);
@@ -83,39 +77,56 @@ export default function Layout() {
     return () => window.clearInterval(interval);
   }, []);
 
-  useEffect(() => {
-    const mediaQuery = window.matchMedia("(max-width: 767px)");
-    const handleChange = (event) => {
-      setIsMobile(event.matches);
-    };
+  // Reset every history entry, including back/forward. The next frame covers
+  // restoration and animation work queued during the route commit.
+  useLayoutEffect(() => {
+    if (location.hash) return undefined;
+    scrollToTopNow();
+    const frame = requestAnimationFrame(scrollToTopNow);
+    return () => cancelAnimationFrame(frame);
+  }, [location.key, location.hash]);
 
-    handleChange(mediaQuery);
-    mediaQuery.addEventListener("change", handleChange);
+  useEffect(() => {
+    if (!location.hash) return undefined;
+    let cancelled = false;
+    let frame;
+    document.fonts.ready.then(() => {
+      if (cancelled) return;
+      frame = requestAnimationFrame(() => {
+        const section = document.getElementById(location.hash.slice(1));
+        if (section) scrollToSection(section);
+      });
+    });
     return () => {
-      mediaQuery.removeEventListener("change", handleChange);
+      cancelled = true;
+      cancelAnimationFrame(frame);
     };
-  }, []);
-
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [location.pathname]);
+  }, [location.key, location.hash]);
 
   const navItems = layoutData.navItems;
-  const footer = layoutData.footer;
-  const footerAddress = footer.contact.addressLines.join("\n");
-  const getNavLabel = (item) =>
-    item.labelKey ? t(item.labelKey, item.defaultLabel) : item.defaultLabel;
 
   return (
-    <div className="min-h-screen bg-background text-foreground selection:bg-primary selection:text-primary-foreground font-sans">
+    <div
+      className={cn(
+        "min-h-screen bg-background text-foreground selection:bg-primary selection:text-primary-foreground font-sans",
+        isHome && "neue-home-layout",
+        !isHome && "neue-interior-layout"
+      )}
+    >
       <Seo />
-      <div className="fixed top-4 left-1/2 -translate-x-1/2 z-50 text-center md:top-8 md:left-8 md:translate-x-0 md:text-left text-white">
+      <div
+        className={cn(
+          "site-brand fixed top-4 left-1/2 -translate-x-1/2 z-50 md:top-8 md:left-8 md:translate-x-0 text-white",
+          isHome && "neue-home-brand",
+          isHome && !homeScrolled && "is-hidden"
+        )}
+      >
         <Link
           to="/"
           className="text-xl font-bold tracking-tighter group relative flex items-center gap-2 justify-center md:justify-start"
-          aria-label="MEDomicsLab homepage"
+          aria-label={`${homeData.brand.name} homepage`}
         >
-          {t("brand.name", "MEDomicsLab")}
+          <span className="site-brand-wordmark">{homeData.brand.name}</span>
           {homeData.brand?.logoUrl && (
             <>
               <span className="text-white/60 inline-block transition-transform duration-200 group-hover:rotate-[24deg]">
@@ -123,7 +134,7 @@ export default function Layout() {
               </span>
               <SkeletonImage
                 src={homeData.brand.logoUrl}
-                alt="MEDomicsLab logo"
+                alt={`${homeData.brand.name} logo`}
                 className="h-5 w-5"
                 imgClassName="h-full w-full object-contain"
                 skeletonClassName="rounded"
@@ -137,7 +148,7 @@ export default function Layout() {
         </Link>
       </div>
 
-      <LiquidGlass
+      <GlassFrame
         displacementScale={liquid.nav.displacementScale}
         blurAmount={liquid.nav.blurAmount}
         saturation={liquid.nav.saturation}
@@ -146,20 +157,17 @@ export default function Layout() {
         cornerRadius={liquid.nav.cornerRadius}
         mode={liquid.nav.mode}
         overLight={liquid.nav.overLight}
-        padding={isMobile ? "12px 16px" : "12px 24px"}
-        className="liquid-nav-anchor"
+        padding={isMobile ? (isHome ? "12px 8px" : "12px 16px") : "12px 24px"}
+        surfaceClassName="liquid-nav-anchor"
         style={{
           position: "fixed",
-          top: isMobile ? 96 : 46,
-          left: navLeft,
+          top: navTop,
+          left: "50%",
           zIndex: 50,
         }}
       >
         <nav aria-label="Main navigation">
           <MotionHighlight
-            mode="parent"
-            hover
-            controlledItems
             className="!bg-transparent overflow-hidden"
             style={{
               backdropFilter: `blur(${liquid.tabHighlight.blurAmount}px) saturate(${liquid.tabHighlight.saturation}%)`,
@@ -182,14 +190,9 @@ export default function Layout() {
             {navItems.map((item) =>
               item.children ? (
                 <MotionHighlightItem
-                  key={item.default}
+                  key={item.defaultLabel}
                   className="relative flex h-7 items-center md:h-8"
-                  disabled={
-                    location.pathname === "/community/news" ||
-                    location.pathname === "/community/events" ||
-                    location.pathname === "/community/courses" ||
-                    location.pathname === "/community/contact"
-                  }
+                  disabled={item.children.some((child) => location.pathname === child.path)}
                 >
                   <div
                     className="relative px-2 py-1 rounded-full"
@@ -206,14 +209,16 @@ export default function Layout() {
                       }
                       communityTimeoutRef.current = setTimeout(() => {
                         setIsCommunityOpen(false);
-                      }, 1000);
+                      }, NAV_TRIGGER_CLOSE_DELAY);
                     }}
                   >
                     <button
                       type="button"
                       ref={communityButtonRef}
                       className={cn(
-                        "inline-flex items-center text-[8px] md:text-xs font-semibold uppercase tracking-tighter whitespace-nowrap text-white hover:text-primary transition-colors leading-none p-0 bg-transparent border-0 align-middle relative -top-px"
+                        NAV_TEXT_CLASS,
+                        "inline-flex items-center uppercase whitespace-nowrap text-white transition-colors leading-none p-0 bg-transparent border-0 align-middle relative -top-px",
+                        !isHome && "hover:text-primary"
                       )}
                       aria-haspopup="true"
                       aria-expanded={isCommunityOpen}
@@ -244,10 +249,20 @@ export default function Layout() {
                         }
                       }}
                     >
-                      {getNavLabel(item)}
+                      {item.defaultLabel}
                     </button>
                   </div>
                 </MotionHighlightItem>
+              ) : item.disabled ? (
+                <button
+                  key={item.path}
+                  type="button"
+                  disabled
+                  aria-disabled="true"
+                  className={cn(NAV_TEXT_CLASS, "nav-disabled uppercase px-1.5 py-1")}
+                >
+                  {item.defaultLabel}
+                </button>
               ) : (
                 <MotionHighlightItem
                   key={item.path}
@@ -256,8 +271,11 @@ export default function Layout() {
                 >
                   <Link
                     to={item.path}
+                    aria-current={location.pathname === item.path ? "page" : undefined}
                     className={cn(
-                      "inline-flex items-center text-[8px] md:text-xs uppercase tracking-tighter whitespace-nowrap hover:text-primary transition-colors relative leading-none px-1.5 py-1 rounded-full",
+                      NAV_TEXT_CLASS,
+                      "inline-flex items-center uppercase whitespace-nowrap transition-colors relative leading-none px-1.5 py-1 rounded-full",
+                      !isHome && "hover:text-primary",
                       location.pathname === item.path
                         ? "text-primary font-bold"
                         : "text-white font-semibold"
@@ -265,18 +283,20 @@ export default function Layout() {
                     style={
                       location.pathname === item.path
                         ? {
-                            color: "var(--primary)",
+                            color: isHome && heroBehindNav ? "white" : "var(--primary)",
                             isolation: "isolate",
                             mixBlendMode: "normal",
                           }
                         : undefined
                     }
                   >
-                    {getNavLabel(item)}
+                    {item.defaultLabel}
                     {location.pathname === item.path && (
                       <span
                         className="absolute -bottom-1 left-0 right-0 h-[1px] bg-primary"
-                        style={{ backgroundColor: "var(--primary)" }}
+                        style={{
+                          backgroundColor: isHome && heroBehindNav ? "white" : "var(--primary)",
+                        }}
                       />
                     )}
                   </Link>
@@ -285,217 +305,81 @@ export default function Layout() {
             )}
           </MotionHighlight>
         </nav>
-      </LiquidGlass>
+      </GlassFrame>
+
+      <SiteShortcuts
+        href={
+          layoutData.footer.social.links.find((link) => link.href.startsWith("https://github.com/"))
+            .href
+        }
+        liquid={liquid}
+      />
 
       <main className={cn("min-h-screen md:pt-0", location.pathname === "/" ? "pt-0" : "pt-28")}>
         <Outlet />
       </main>
 
-      <footer className="border-t border-border mt-0 bg-background relative z-10">
-        <div className="container mx-auto px-4 md:px-8 py-12 md:py-20">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-12 text-center md:text-left justify-items-center md:justify-items-start">
-            <div className="col-span-1 md:col-span-2 flex flex-col items-center md:items-start">
-              <a
-                href={footer.unitLink.href}
-                target="_blank"
-                rel="noreferrer"
-                className="text-xs uppercase tracking-widest text-muted-foreground mb-3 inline-block hover:text-primary transition-colors"
-              >
-                {footer.unitLink.label}
-              </a>
-              <h2 className="text-4xl md:text-6xl font-bold tracking-tighter uppercase mb-6 leading-none">
-                <span className="block">Advancing</span>
-                <FlipWords
-                  words={[
-                    "precision",
-                    "multimodal",
-                    "imaging",
-                    "radiomics",
-                    "distributed",
-                    "privacy",
-                    "open-source",
-                  ]}
-                  className="px-0 text-primary"
-                  exitScale={1.15}
-                />
-                <span className="block">Medicine</span>
-              </h2>
-            </div>
-
-            <div className="space-y-4 flex flex-col items-center md:items-start">
-              <h3 className="text-xs uppercase tracking-widest text-muted-foreground">
-                {t(footer.contact.labelKey, footer.contact.labelDefault)}
-              </h3>
-              <p className="text-sm whitespace-pre-line">{footerAddress}</p>
-              <a
-                href={footer.contact.mapLink.href}
-                className="text-xs uppercase tracking-widest text-primary hover:text-white transition-colors"
-                target="_blank"
-                rel="noreferrer"
-              >
-                {footer.contact.mapLink.label}
-              </a>
-            </div>
-
-            <div className="space-y-4 flex flex-col items-center md:items-start">
-              <h3 className="text-xs uppercase tracking-widest text-muted-foreground">
-                {t(footer.social.labelKey, footer.social.labelDefault)}
-              </h3>
-              <div className="flex flex-col space-y-2 text-sm">
-                {footer.social.links.map((link) => (
-                  <a
-                    key={link.label}
-                    href={link.href}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="hover:text-primary transition-colors"
-                  >
-                    {link.label}
-                  </a>
-                ))}
-              </div>
-              <div className="pt-4 border-t border-border/60">
-                <h4 className="text-xs uppercase tracking-widest text-muted-foreground mb-2">
-                  {footer.social.reachOutLabel}
-                </h4>
-                <div className="flex flex-col space-y-2 text-sm">
-                  {footer.social.reachOutLinks.map((link) => (
-                    <a
-                      key={link.label}
-                      href={link.href}
-                      target={link.href.startsWith("mailto:") ? undefined : "_blank"}
-                      rel={link.href.startsWith("mailto:") ? undefined : "noreferrer"}
-                      className="hover:text-primary transition-colors"
-                    >
-                      {link.label}
-                    </a>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div className="mt-20 pt-8 border-t border-border/50 flex flex-col md:flex-row justify-between items-center text-xs text-muted-foreground uppercase tracking-widest">
-            <Link
-              to="/"
-              onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-              className="group flex items-center gap-2 normal-case transition-colors hover:text-foreground"
-              aria-label="Back to the MEDomicsLab homepage"
-            >
-              © {new Date().getFullYear()} MEDomicsLab
-              {homeData.brand?.logoUrl && (
-                <>
-                  <span className="inline-block text-white/30 transition-transform duration-200 group-hover:rotate-[24deg]">
-                    |
-                  </span>
-                  <SkeletonImage
-                    src={homeData.brand.logoUrl}
-                    alt="MEDomicsLab logo"
-                    className="h-4 w-4"
-                    imgClassName="h-full w-full object-contain"
-                    skeletonClassName="rounded"
-                    sizes="16px"
-                    formats={[]}
+      <Footer key={location.pathname} />
+      <NavDropdown
+        id="community-navigation-menu"
+        label="Community"
+        open={isCommunityOpen}
+        anchorRef={communityButtonRef}
+        liquid={liquid}
+        menuRef={communityMenuRef}
+        focusFirstItem={shouldFocusCommunityMenu}
+        onFocusedFirstItem={clearCommunityFocusRequest}
+        onMouseEnter={() => {
+          if (communityTimeoutRef.current) {
+            clearTimeout(communityTimeoutRef.current);
+            communityTimeoutRef.current = null;
+          }
+          setIsCommunityOpen(true);
+        }}
+        onMouseLeave={() => {
+          if (communityTimeoutRef.current) {
+            clearTimeout(communityTimeoutRef.current);
+          }
+          communityTimeoutRef.current = setTimeout(() => {
+            setIsCommunityOpen(false);
+          }, NAV_MENU_CLOSE_DELAY);
+        }}
+        onKeyDown={(event) => {
+          if (event.key === "Escape") {
+            setIsCommunityOpen(false);
+            setShouldFocusCommunityMenu(false);
+            communityButtonRef.current?.focus();
+          }
+        }}
+      >
+        {(layoutData.navItems.find((n) => n.children)?.children ?? []).map((child) => (
+          <Link
+            key={child.path}
+            to={child.path}
+            role="menuitem"
+            className={cn(NAV_MENU_ITEM_CLASS, "text-white")}
+          >
+            {child.rollingText?.length ? (
+              <span className="relative inline-flex items-center">
+                <span className="invisible">
+                  {child.rollingText.reduce((a, b) => (a.length >= b.length ? a : b))}
+                  {child.rollingSuffix ?? ""}
+                </span>
+                <span className="absolute inset-0 inline-flex items-center">
+                  <RollingText
+                    key={child.rollingText[rollingTextIndex % child.rollingText.length]}
+                    text={child.rollingText[rollingTextIndex % child.rollingText.length]}
+                    className="inline-flex"
                   />
-                </>
-              )}
-            </Link>
-            <a
-              className="text-[10px] md:text-[11px] tracking-widest uppercase opacity-65 transition-opacity hover:opacity-100"
-              href={footer.creditLink}
-              target="_blank"
-              rel="noreferrer"
-            >
-              <ShinyText text={footer.credit} color="#9ca3af" shineColor="#ffffff" speed={3} />
-            </a>
-          </div>
-        </div>
-      </footer>
-      {isCommunityOpen &&
-        communityDropdownPos &&
-        createPortal(
-          <div className="community-modal-portal">
-            <LiquidGlass
-              displacementScale={liquid.communityModal.displacementScale}
-              blurAmount={liquid.communityModal.blurAmount}
-              saturation={liquid.communityModal.saturation}
-              aberrationIntensity={liquid.communityModal.aberrationIntensity}
-              elasticity={liquid.communityModal.elasticity}
-              cornerRadius={liquid.communityModal.cornerRadius}
-              mode={liquid.communityModal.mode}
-              overLight={liquid.communityModal.overLight}
-              padding="12px 24px"
-              className="community-modal-glass"
-              style={{
-                position: "fixed",
-                top: communityDropdownPos.top,
-                left: communityDropdownPos.left,
-                zIndex: 60,
-              }}
-            >
-              <div
-                id="community-navigation-menu"
-                ref={communityMenuRef}
-                role="menu"
-                tabIndex={-1}
-                className="flex flex-col gap-2"
-                onMouseEnter={() => {
-                  if (communityTimeoutRef.current) {
-                    clearTimeout(communityTimeoutRef.current);
-                    communityTimeoutRef.current = null;
-                  }
-                  setIsCommunityOpen(true);
-                }}
-                onMouseLeave={() => {
-                  if (communityTimeoutRef.current) {
-                    clearTimeout(communityTimeoutRef.current);
-                  }
-                  communityTimeoutRef.current = setTimeout(() => {
-                    setIsCommunityOpen(false);
-                  }, 400);
-                }}
-                onKeyDown={(event) => {
-                  if (event.key === "Escape") {
-                    setIsCommunityOpen(false);
-                    setShouldFocusCommunityMenu(false);
-                    communityButtonRef.current?.focus();
-                  }
-                }}
-              >
-                {(layoutData.navItems.find((n) => n.children)?.children ?? []).map((child) => (
-                  <Link
-                    key={child.path}
-                    to={child.path}
-                    role="menuitem"
-                    className="inline-flex items-center whitespace-nowrap text-[10px] md:text-xs uppercase tracking-tighter text-white hover:text-primary transition-colors leading-none"
-                  >
-                    {child.rollingText?.length ? (
-                      <span className="relative inline-flex items-center">
-                        <span className="invisible">
-                          {child.rollingText.reduce((a, b) => (a.length >= b.length ? a : b))}
-                          {child.rollingSuffix ?? ""}
-                        </span>
-                        <span className="absolute inset-0 inline-flex items-center">
-                          <RollingText
-                            key={child.rollingText[rollingTextIndex % child.rollingText.length]}
-                            text={child.rollingText[rollingTextIndex % child.rollingText.length]}
-                            className="inline-flex"
-                          />
-                          {child.rollingSuffix ? (
-                            <span className="ml-1">{child.rollingSuffix}</span>
-                          ) : null}
-                        </span>
-                      </span>
-                    ) : (
-                      child.label
-                    )}
-                  </Link>
-                ))}
-              </div>
-            </LiquidGlass>
-          </div>,
-          document.body
-        )}
+                  {child.rollingSuffix ? <span className="ml-1">{child.rollingSuffix}</span> : null}
+                </span>
+              </span>
+            ) : (
+              child.label
+            )}
+          </Link>
+        ))}
+      </NavDropdown>
     </div>
   );
 }
