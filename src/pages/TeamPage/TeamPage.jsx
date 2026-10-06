@@ -58,7 +58,7 @@ export default function TeamPage() {
     >
       <PageTitle className="mb-12">The Team</PageTitle>
 
-      <div className="space-y-32 pb-32">
+      <div className="space-y-12 md:space-y-16">
         {data.map((group, groupIndex) => (
           <div
             key={group.year}
@@ -68,7 +68,7 @@ export default function TeamPage() {
             }}
             className="scroll-mt-32"
           >
-            <SectionDivider label={group.year} className="team-divider mb-12" />
+            <SectionDivider label={group.year} className="team-divider mb-6 md:mb-8" />
 
             <div
               className={cn(
@@ -140,12 +140,25 @@ export default function TeamPage() {
                       </h2>
                       <p
                         className={cn(
-                          "text-muted-foreground leading-snug",
+                          "team-position text-muted-foreground leading-snug",
                           isLarge ? "text-base" : "text-sm",
-                          group.year !== "Lab Principal Investigator" && "line-clamp-2"
+                          group.year === "Lab Principal Investigator"
+                            ? "whitespace-pre-line"
+                            : "line-clamp-2"
                         )}
                       >
-                        {member.position}
+                        {group.year === "Lab Principal Investigator" ? (
+                          <>
+                            <span className="hidden md:inline">
+                              {member.position.replace(", ", "\n")}
+                            </span>
+                            <span className="md:hidden">
+                              {member.position.replace(" | ", "\n\n").replaceAll(", ", ",\n")}
+                            </span>
+                          </>
+                        ) : (
+                          member.position
+                        )}
                       </p>
                       {member.note && (
                         <p className={cn("text-primary", isLarge ? "text-base" : "text-sm")}>

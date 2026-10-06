@@ -152,14 +152,13 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 24px;
+  gap: 12px;
   min-width: 0;
 }
 .team-card-pi {
   flex-direction: row;
   align-items: center;
   gap: clamp(28px, 4vw, 64px);
-  padding-bottom: 24px;
 }
 .neue-interior-layout .team-portrait,
 .neue-interior-layout .team-avatar,
@@ -170,7 +169,7 @@
 .team-card-copy {
   width: 100%;
   border-top: 1px solid var(--border);
-  padding-top: 16px;
+  padding-top: 8px;
 }
 .team-profile-link {
   display: flex;
@@ -455,6 +454,9 @@
   }
   .neue-interior-layout .team-card-pi .team-card-copy {
     padding-top: 0;
+  }
+  .team-card-pi .team-position {
+    margin-bottom: 1lh;
   }
   .project-heading-grid {
     grid-template-columns: 1fr;
