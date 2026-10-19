@@ -22,6 +22,7 @@ export default function NextSteps({ paused }) {
         </div>
       </div>
       <LoopingMarquee
+        pauseOffscreenOnMobile
         className={`neue-marquee ${paused ? "is-paused" : ""}`}
         trackClassName="neue-marquee-track"
         setClassName="neue-marquee-set"

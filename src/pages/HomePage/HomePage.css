@@ -2018,20 +2018,15 @@ body:has(.neue-home-layout) .nav-dropdown-portal {
   .neue-institute-set {
     flex-wrap: wrap;
   }
-  .neue-institute-set[aria-hidden="true"],
-  .neue-marquee-set[aria-hidden="true"] {
+  .neue-institute-set[aria-hidden="true"] {
     display: none;
   }
   .neue-marquee {
-    overflow-x: auto;
-    padding: 12px 20px 24px;
-    scroll-snap-type: x proximity;
+    overflow: hidden;
+    padding-block: 12px 24px;
   }
-  .neue-marquee-track {
-    animation: none;
-  }
-  .neue-next-card {
-    scroll-snap-align: start;
+  .neue-marquee:is([data-in-view="false"], .is-paused, :focus-within) .neue-marquee-track {
+    animation-play-state: paused;
   }
   .neue-next-card:hover {
     transform: none;
@@ -2051,5 +2046,11 @@ body:has(.neue-home-layout) .nav-dropdown-portal {
     display: block;
     font-size: clamp(26px, 7vw, 48px);
     letter-spacing: -0.04em;
+  }
+}
+
+@media (max-width: 767px) and (prefers-reduced-motion: reduce) {
+  .neue-marquee {
+    overflow-x: auto;
   }
 }
