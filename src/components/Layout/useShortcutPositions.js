@@ -29,9 +29,11 @@ export default function useShortcutPositions(isHome) {
       const progress =
         !isHome || !hero
           ? 1
-          : reducedMotion.matches
-            ? Number(scroll > 8)
-            : Math.min(1, scroll / (hero.offsetHeight * 0.38));
+          : mobile
+            ? Number(scroll >= hero.offsetHeight)
+            : reducedMotion.matches
+              ? Number(scroll > 8)
+              : Math.min(1, scroll / (hero.offsetHeight * 0.38));
       const eased = progress * progress * (3 - 2 * progress);
       if (dockWidth === undefined || measuredViewport !== window.innerWidth) {
         host.style.setProperty("--shortcut-growth", "0");

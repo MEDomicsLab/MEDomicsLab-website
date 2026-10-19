@@ -578,7 +578,7 @@ test("dropdown links underline and the navbar stays centred on other routes", as
   await expect(page.locator('[aria-current="page"]')).toHaveCSS("color", "rgb(240, 231, 212)");
 });
 
-for (const width of [390, 1440]) {
+for (const width of [1440]) {
   test(`the hero wordmark travels into the header and reverses cleanly at ${width}px`, async ({
     page,
   }) => {

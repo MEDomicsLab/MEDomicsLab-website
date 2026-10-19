@@ -24,22 +24,27 @@ export default function useHeroLayout(root, paused) {
       frame = undefined;
       const animated = !paused && !query.matches;
       const scroll = Math.max(0, window.scrollY);
-      const boundedScroll = animated ? Math.min(scroll, heroHeight * 0.38) : 0;
+      const mobile = window.innerWidth <= 767;
+      const mobileDocked = Number(scroll >= heroHeight);
+      const boundedScroll = mobile
+        ? mobileDocked
+        : animated
+          ? Math.min(scroll, heroHeight * 0.38)
+          : 0;
       if (boundedScroll === previousScroll) return;
       previousScroll = boundedScroll;
-      const progress =
-        animated && window.innerWidth > 767 ? Math.min(1, scroll / (heroHeight * 0.32)) : 0;
+      const progress = animated && !mobile ? Math.min(1, scroll / (heroHeight * 0.32)) : 0;
       hero.style.setProperty("--hero-expand", String(progress));
       hero.style.setProperty("--hero-copy-opacity", String(Math.max(0, 1 - progress * 3)));
 
-      const travel = animated ? Math.min(1, scroll / (heroHeight * 0.38)) : 0;
+      const travel = animated && !mobile ? Math.min(1, scroll / (heroHeight * 0.38)) : 0;
       const eased = travel * travel * (3 - 2 * travel);
-      const handover = Math.max(0, (travel - 0.88) / 0.12);
+      const handover = mobile ? mobileDocked : Math.max(0, (travel - 0.88) / 0.12);
       hero.style.setProperty("--hero-brand-x", `${destination.x * eased}px`);
       hero.style.setProperty("--hero-brand-y", `${destination.y * eased}px`);
       hero.style.setProperty("--hero-brand-scale", String(1 + (destination.scale - 1) * eased));
       hero.style.setProperty("--hero-word-opacity", String(1 - handover));
-      if (animated) {
+      if (mobile || animated) {
         layout.dataset.brandMotion = "true";
         layout.style.setProperty("--home-brand-opacity", String(handover));
         layout.style.setProperty("--home-brand-visibility", handover > 0 ? "visible" : "hidden");

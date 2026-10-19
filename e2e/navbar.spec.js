@@ -67,7 +67,10 @@ test.describe("main navigation", () => {
       await page.setViewportSize({ width, height: 667 });
       await page.goto("/");
 
-      await page.evaluate(() => window.scrollTo(0, 400));
+      await page.evaluate(() => document.fonts.ready);
+      await page.evaluate(() =>
+        window.scrollTo(0, document.querySelector(".neue-hero").offsetHeight)
+      );
 
       const navigation = page.getByRole("navigation", { name: "Main navigation" });
       const brand = page.getByRole("link", { name: "MEDomicsLab homepage", exact: true });
@@ -358,7 +361,7 @@ test("both shortcuts use the same icon, label and arrow hover animation", async 
   }
 });
 
-for (const width of [390, 1100, 1440]) {
+for (const width of [1100, 1440]) {
   test(`hero shortcuts stay visible, dock on scroll and return to the film at ${width}px`, async ({
     page,
   }) => {
