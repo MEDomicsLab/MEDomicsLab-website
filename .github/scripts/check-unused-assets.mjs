@@ -93,7 +93,7 @@ for (const filePath of publicImages) {
     let found = false;
     for (const candidateExt of candidates) {
       const canonical = `${dir}/${canonicalBase}${candidateExt}`;
-      if (haystack.includes(canonical)) {
+      if (haystack.includes(canonical) || allowList.has(canonical)) {
         found = true;
         break;
       }
