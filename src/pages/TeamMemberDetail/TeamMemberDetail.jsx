@@ -1,6 +1,7 @@
 import { useMemo, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Mail, Award, BookOpen, Copy, Activity, Building2 } from "lucide-react";
+import ReactMarkdown from "react-markdown";
 import teamData from "../../data/team.json";
 import BackLink from "../../components/BackLink/BackLink.jsx";
 import DetailNotFound from "../../components/DetailNotFound/DetailNotFound.jsx";
@@ -161,7 +162,7 @@ export default function TeamMemberDetail() {
 
             {member.bio && (
               <div className="prose prose-invert prose-lg max-w-none">
-                <p>{member.bio}</p>
+                <ReactMarkdown>{member.bio}</ReactMarkdown>
               </div>
             )}
 

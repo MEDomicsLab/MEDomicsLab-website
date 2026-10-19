@@ -145,6 +145,11 @@
               "type": "object",
               "additionalProperties": false,
               "properties": {
+                "website": {
+                  "type": "string",
+                  "format": "uri",
+                  "pattern": "^https?://"
+                },
                 "linkedin": {
                   "type": "string"
                 },

@@ -12,11 +12,31 @@ const IN_COLOUR = new Set(["Lab Principal Investigator", "Current"]);
 
 const getTimelineLabel = (year) => (year === "Lab Principal Investigator" ? "Lab PI" : year);
 
-const data = [...teamData].sort((a, b) => {
-  const rank = (group) =>
-    group.year === "Lab Principal Investigator" ? 0 : group.year === "Current" ? 1 : 2;
-  return rank(a) - rank(b);
-});
+const ROLE_ORDER = [
+  /\bpost[-\s]?doc(?:toral)?\b/i,
+  /\bph\.?\s*d\b/i,
+  /\bm\.?\s*sc\b/i,
+  /\bb\.?\s*sc\b/i,
+];
+const nameOrder = new Intl.Collator("en", { sensitivity: "base" });
+
+const roleRank = (member) => {
+  const rank = ROLE_ORDER.findIndex((role) => role.test(member.position));
+  return rank === -1 ? ROLE_ORDER.length : rank;
+};
+
+const data = teamData
+  .map((group) => ({
+    ...group,
+    members: [...group.members].sort(
+      (a, b) => roleRank(a) - roleRank(b) || nameOrder.compare(a.name, b.name)
+    ),
+  }))
+  .sort((a, b) => {
+    const rank = (group) =>
+      group.year === "Lab Principal Investigator" ? 0 : group.year === "Current" ? 1 : 2;
+    return rank(a) - rank(b);
+  });
 
 export default function TeamPage() {
   const [activeYear, setActiveYear] = useState(data[0]?.year ?? "");

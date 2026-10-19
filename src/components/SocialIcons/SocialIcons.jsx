@@ -1,4 +1,5 @@
 import { cn } from "../../lib/utils";
+import { Globe } from "lucide-react";
 import {
   EnvelopeIcon,
   GithubIcon,
@@ -6,11 +7,14 @@ import {
   LinkedinIcon,
   CvIcon,
   ResearchGateIcon,
+  OrcidIcon,
 } from "../Icons/Icons.jsx";
 
 const SOCIAL_ITEMS = [
+  { key: "website", label: "Website", Icon: Globe, optional: true },
   { key: "github", label: "GitHub", Icon: GithubIcon },
   { key: "scholar", label: "Google Scholar", Icon: GoogleScholarIcon },
+  { key: "orcid", label: "ORCID", Icon: OrcidIcon, optional: true },
   { key: "researchgate", label: "ResearchGate", Icon: ResearchGateIcon },
   { key: "cv", label: "CV", Icon: CvIcon },
   { key: "linkedin", label: "LinkedIn", Icon: LinkedinIcon },
@@ -30,7 +34,9 @@ export default function SocialIcons({
   iconClassName = "h-5 w-5",
   stopPropagation = false,
 }) {
-  const items = keys ? SOCIAL_ITEMS.filter((item) => keys.includes(item.key)) : SOCIAL_ITEMS;
+  const items = keys
+    ? SOCIAL_ITEMS.filter((item) => keys.includes(item.key))
+    : SOCIAL_ITEMS.filter((item) => !item.optional || hrefFor(member, item.key));
   const ordered = keys ? keys.map((key) => items.find((item) => item.key === key)) : items;
 
   return (
