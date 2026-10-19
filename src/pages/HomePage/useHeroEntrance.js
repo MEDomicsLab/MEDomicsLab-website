@@ -17,7 +17,7 @@ export default function useHeroEntrance(root, paused) {
     const page = root.current;
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
     if (reducedMotion.matches) return undefined;
-    if (window.location.hash) {
+    if (window.location.hash || window.matchMedia("(max-width: 767px)").matches) {
       page.dataset.heroIntro = "skipped";
       return () => delete page.dataset.heroIntro;
     }

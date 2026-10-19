@@ -322,6 +322,17 @@ body:has(.neue-home-layout) .nav-dropdown-portal {
 .neue-video-frame[data-ready="true"] {
   opacity: 1;
 }
+.neue-film-player {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+.neue-hero-logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
 .neue-video-source {
   position: fixed;
   left: -200vw;
@@ -1987,5 +1998,58 @@ body:has(.neue-home-layout) .nav-dropdown-portal {
   }
   .neue-appointments .neue-university-logo {
     display: none;
+  }
+}
+
+@media (max-width: 767px) {
+  .neue-motion-toggle {
+    opacity: 1;
+    width: 44px;
+    height: 44px;
+  }
+  .neue-institutes {
+    overflow: visible;
+    mask-image: none;
+  }
+  .neue-institute-track {
+    width: 100%;
+    animation: none;
+  }
+  .neue-institute-set {
+    flex-wrap: wrap;
+  }
+  .neue-institute-set[aria-hidden="true"],
+  .neue-marquee-set[aria-hidden="true"] {
+    display: none;
+  }
+  .neue-marquee {
+    overflow-x: auto;
+    padding: 12px 20px 24px;
+    scroll-snap-type: x proximity;
+  }
+  .neue-marquee-track {
+    animation: none;
+  }
+  .neue-next-card {
+    scroll-snap-align: start;
+  }
+  .neue-next-card:hover {
+    transform: none;
+  }
+  .neue-reel {
+    height: auto;
+  }
+  .neue-reel-stage {
+    position: relative;
+    height: 65svh;
+    min-height: 400px;
+  }
+  .neue-reel-words {
+    display: none;
+  }
+  .neue-reel-reduced {
+    display: block;
+    font-size: clamp(26px, 7vw, 48px);
+    letter-spacing: -0.04em;
   }
 }

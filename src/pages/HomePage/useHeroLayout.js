@@ -16,17 +16,23 @@ export default function useHeroLayout(root, paused) {
     let frame;
     let fitFrame;
     let disposed = false;
+    let heroHeight = hero.offsetHeight;
+    let previousScroll;
     let destination = { x: 0, y: 0, scale: 1 };
 
     const update = () => {
       frame = undefined;
       const animated = !paused && !query.matches;
       const scroll = Math.max(0, window.scrollY);
-      const progress = animated ? Math.min(1, scroll / (hero.offsetHeight * 0.32)) : 0;
+      const boundedScroll = animated ? Math.min(scroll, heroHeight * 0.38) : 0;
+      if (boundedScroll === previousScroll) return;
+      previousScroll = boundedScroll;
+      const progress =
+        animated && window.innerWidth > 767 ? Math.min(1, scroll / (heroHeight * 0.32)) : 0;
       hero.style.setProperty("--hero-expand", String(progress));
       hero.style.setProperty("--hero-copy-opacity", String(Math.max(0, 1 - progress * 3)));
 
-      const travel = animated ? Math.min(1, scroll / (hero.offsetHeight * 0.38)) : 0;
+      const travel = animated ? Math.min(1, scroll / (heroHeight * 0.38)) : 0;
       const eased = travel * travel * (3 - 2 * travel);
       const handover = Math.max(0, (travel - 0.88) / 0.12);
       hero.style.setProperty("--hero-brand-x", `${destination.x * eased}px`);
@@ -45,6 +51,8 @@ export default function useHeroLayout(root, paused) {
 
     const fit = () => {
       if (disposed) return;
+      heroHeight = hero.offsetHeight;
+      previousScroll = undefined;
       if (window.innerWidth <= 767) {
         hero.style.removeProperty("--hero-centre-y");
         hero.style.removeProperty("--hero-available-height");

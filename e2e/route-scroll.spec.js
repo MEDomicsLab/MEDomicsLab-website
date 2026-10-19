@@ -9,9 +9,13 @@ test.beforeEach(async ({ page }) => {
 async function openHome(page) {
   await page.goto("/");
   await page.evaluate(() => document.fonts.ready);
-  await expect(page.locator(".neue-home")).toHaveAttribute("data-hero-intro", "complete", {
-    timeout: 8000,
-  });
+  await expect(page.locator(".neue-home")).toHaveAttribute(
+    "data-hero-intro",
+    /^(complete|skipped)$/,
+    {
+      timeout: 8000,
+    }
+  );
 }
 
 async function scrollToBottom(page) {

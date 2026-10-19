@@ -1,3 +1,4 @@
+import { imageSrcSet } from "../../lib/images.js";
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { GitFork, Star } from "lucide-react";
@@ -153,6 +154,8 @@ export default function Ecosystem() {
             >
               <img
                 src={item.card}
+                srcSet={imageSrcSet(item.card, [360, 720], "webp")}
+                sizes="(max-width: 767px) 29vw, 280px"
                 alt=""
                 width="1080"
                 height="1350"

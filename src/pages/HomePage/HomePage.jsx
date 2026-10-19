@@ -15,7 +15,10 @@ import "./HomePage.css";
 
 export default function HomePage() {
   const root = useRef(null);
-  const [paused, setPaused] = useState(false);
+  const [paused, setPaused] = useState(
+    () =>
+      typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches
+  );
 
   useHeroLayout(root, paused);
   useHeroEntrance(root, paused);

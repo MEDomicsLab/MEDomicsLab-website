@@ -1,3 +1,4 @@
+import { imageSrcSet } from "../../lib/images.js";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { GithubIcon } from "../Icons/Icons.jsx";
@@ -46,7 +47,15 @@ export default function SiteShortcuts({ href, liquid }) {
       />
       <AnimatedShortcut
         label="MEDomics Ecosystem"
-        icon={<img className="nav-action-icon nav-action-logo" src={medomics.logo} alt="" />}
+        icon={
+          <img
+            className="nav-action-icon nav-action-logo"
+            src={medomics.logo}
+            srcSet={imageSrcSet(medomics.logo, [80, 160], "webp")}
+            sizes="20px"
+            alt=""
+          />
+        }
         to="/#ecosystem"
         liquid={liquid}
         className={cn(docked && idle && "is-idle", !docked && "is-in-hero")}

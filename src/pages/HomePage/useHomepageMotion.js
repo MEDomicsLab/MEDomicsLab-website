@@ -6,7 +6,7 @@ gsap.registerPlugin(ScrollTrigger);
 export default function useHomepageMotion(root) {
   useLayoutEffect(() => {
     const media = gsap.matchMedia();
-    media.add("(prefers-reduced-motion: no-preference)", () => {
+    media.add("(min-width: 768px) and (prefers-reduced-motion: no-preference)", () => {
       const context = gsap.context(() => {
         gsap.from("[data-neue-reveal]", {
           y: 45,

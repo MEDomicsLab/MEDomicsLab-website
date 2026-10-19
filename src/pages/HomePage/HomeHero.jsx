@@ -1,3 +1,4 @@
+import { imageSrcSet } from "../../lib/images.js";
 import { ArrowDown, Pause, Play } from "lucide-react";
 import LabVideo from "./LabVideo.jsx";
 import homeData from "../../data/home.json";
@@ -13,7 +14,7 @@ export default function HomeHero({ paused, onTogglePause }) {
         </h1>
         <div className="neue-hero-film-origin" aria-hidden="true" />
         <div className="neue-hero-film">
-          <LabVideo />
+          <LabVideo priority />
           <button
             type="button"
             className="neue-motion-toggle"
@@ -34,11 +35,14 @@ export default function HomeHero({ paused, onTogglePause }) {
           The MEDomicsLab research laboratory focuses on the development of predictive models with
           heterogeneous medical data.
         </p>
-        <img
-          className="neue-hero-logo"
-          src={homeData.brand.lightLogoUrl}
-          alt={`${homeData.brand.name} logo`}
-        />
+        <picture className="neue-hero-logo">
+          <source
+            type="image/webp"
+            srcSet={imageSrcSet(homeData.brand.lightLogoUrl, [160, 320], "webp")}
+            sizes="(max-width: 767px) 74px, 145px"
+          />
+          <img src={homeData.brand.lightLogoUrl} alt={`${homeData.brand.name} logo`} />
+        </picture>
         <a
           className="neue-hero-credit group"
           href="#lab"

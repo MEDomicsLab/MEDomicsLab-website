@@ -1,17 +1,26 @@
 import PageLink from "../../components/PageLink/PageLink.jsx";
-import { lazy, Suspense } from "react";
-import { RotateCw } from "lucide-react";
 import homeData from "../../data/home.json";
-import { imageVariant } from "../../lib/images";
+import { imageSrcSet, imageVariant } from "../../lib/images";
 import { investigatorName, principalInvestigator as pi } from "./homepageContent";
 import SocialIcons from "../../components/SocialIcons/SocialIcons.jsx";
 import PartnerLogos from "./PartnerLogos.jsx";
+import { lazy, Suspense } from "react";
+import { RotateCw } from "lucide-react";
 const LabPostcard = lazy(() => import("./LabPostcard.jsx"));
 
 function UniversityLogo({ href, logo, university }) {
   return (
     <a className="neue-university-logo" href={href} target="_blank" rel="noreferrer">
-      <img src={logo} alt={university} />
+      <picture>
+        {!logo.endsWith(".svg") && (
+          <source
+            type="image/webp"
+            srcSet={imageSrcSet(logo, [128, 256], "webp")}
+            sizes="(max-width: 767px) 38px, 120px"
+          />
+        )}
+        <img src={logo} alt={university} loading="lazy" decoding="async" />
+      </picture>
     </a>
   );
 }

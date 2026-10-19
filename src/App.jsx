@@ -21,26 +21,46 @@ import NotFoundPage from "./pages/NotFoundPage/NotFoundPage.jsx";
 
 const App = () => {
   useEffect(() => {
-    const lenis = new Lenis({
-      smoothWheel: true,
-      smoothTouch: false,
-      lerp: 0.08,
-    });
-    setLenis(lenis);
+    const media = window.matchMedia(
+      "(min-width: 768px) and (pointer: fine) and (prefers-reduced-motion: no-preference)"
+    );
+    let dispose = () => {};
+    const update = () => {
+      dispose();
+      dispose = () => {};
+      if (!media.matches) return;
+      const lenis = new Lenis({
+        smoothWheel: true,
+        smoothTouch: false,
+        lerp: 0.08,
+      });
+      setLenis(lenis);
 
-    let rafId = 0;
+      let rafId = 0;
 
-    const onFrame = (time) => {
-      lenis.raf(time);
-      rafId = requestAnimationFrame(onFrame);
+      const onFrame = (time) => {
+        lenis.raf(time);
+        rafId = requestAnimationFrame(onFrame);
+      };
+
+      const visibility = () => {
+        cancelAnimationFrame(rafId);
+        if (!document.hidden) rafId = requestAnimationFrame(onFrame);
+      };
+      visibility();
+      document.addEventListener("visibilitychange", visibility);
+      dispose = () => {
+        cancelAnimationFrame(rafId);
+        document.removeEventListener("visibilitychange", visibility);
+        setLenis(null);
+        lenis.destroy();
+      };
     };
-
-    rafId = requestAnimationFrame(onFrame);
-
+    update();
+    media.addEventListener("change", update);
     return () => {
-      cancelAnimationFrame(rafId);
-      setLenis(null);
-      lenis.destroy();
+      dispose();
+      media.removeEventListener("change", update);
     };
   }, []);
 

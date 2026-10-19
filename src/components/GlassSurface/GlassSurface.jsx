@@ -50,15 +50,26 @@ export function GlassFrame({ className, surfaceClassName, children, ...glass }) 
   const frame = useRef(null);
   useLayoutEffect(() => {
     const host = frame.current;
-    const surface = host.querySelector(":scope > .glass-frame__surface");
+    let surface;
     const fit = () => {
       host.style.setProperty("--glass-width", `${surface.offsetWidth}px`);
       host.style.setProperty("--glass-height", `${surface.offsetHeight}px`);
     };
-    fit();
     const observer = new ResizeObserver(fit);
-    observer.observe(surface);
-    return () => observer.disconnect();
+    const observe = () => {
+      observer.disconnect();
+      surface = host.querySelector(":scope > .glass-frame__surface");
+      if (!surface) return;
+      fit();
+      observer.observe(surface);
+    };
+    observe();
+    const changes = new MutationObserver(observe);
+    changes.observe(host, { childList: true });
+    return () => {
+      observer.disconnect();
+      changes.disconnect();
+    };
   }, []);
   return (
     <div ref={frame} className={cn("glass-frame", className)}>

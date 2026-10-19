@@ -1,3 +1,4 @@
+import { imageSrcSet } from "../../lib/images.js";
 import LoopingMarquee from "./LoopingMarquee.jsx";
 import PageLink from "../../components/PageLink/PageLink.jsx";
 import { Link } from "react-router-dom";
@@ -33,7 +34,14 @@ export default function NextSteps({ paused }) {
               tabIndex={duplicate ? -1 : undefined}
               className="neue-next-card group"
             >
-              <img src={card.image} alt={card.title} loading="lazy" />
+              <img
+                src={card.image}
+                srcSet={imageSrcSet(card.image, [480, 880], "webp")}
+                sizes="(max-width: 767px) 72vw, 26vw"
+                decoding="async"
+                alt={card.title}
+                loading="lazy"
+              />
             </Link>
           ))
         }

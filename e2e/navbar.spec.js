@@ -386,7 +386,14 @@ for (const width of [390, 1100, 1440]) {
     await page.evaluate(() =>
       window.scrollTo(0, document.querySelector(".neue-hero").offsetHeight * 0.38 - 1)
     );
-    await page.clock.runFor(100);
+    await expect
+      .poll(async () => {
+        await page.clock.runFor(100);
+        return page
+          .locator(".site-shortcuts")
+          .evaluate((el) => Number(getComputedStyle(el).getPropertyValue("--shortcut-growth")));
+      })
+      .toBeLessThan(0.001);
     const arriving = await page.locator(".liquid-github-anchor").boundingBox();
     expect(arriving.height).toBeLessThan(initial.height);
     await page.evaluate(() => window.scrollTo(0, 400));

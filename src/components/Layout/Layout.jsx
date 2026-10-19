@@ -70,12 +70,13 @@ export default function Layout() {
   }, []);
 
   useEffect(() => {
+    if (!isCommunityOpen || isMobile) return undefined;
     const interval = window.setInterval(() => {
       setRollingTextIndex((index) => index + 1);
     }, 2000);
 
     return () => window.clearInterval(interval);
-  }, []);
+  }, [isCommunityOpen, isMobile]);
 
   // Reset every history entry, including back/forward. The next frame covers
   // restoration and animation work queued during the route commit.
@@ -141,7 +142,7 @@ export default function Layout() {
                 sizes="20px"
                 variantSizes={[80, 128]}
                 fallbackSrc={homeData.brand.logoUrl}
-                formats={[]}
+                formats={["webp"]}
               />
             </>
           )}

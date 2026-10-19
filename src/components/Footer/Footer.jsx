@@ -1,3 +1,5 @@
+import { imageSrcSet } from "../../lib/images.js";
+import useMediaQuery from "../../lib/useMediaQuery.js";
 import PageLink from "../PageLink/PageLink.jsx";
 import { useLayoutEffect, useRef } from "react";
 import { gsap } from "gsap";
@@ -11,6 +13,9 @@ import { scrollToTopNow } from "../../lib/lenis";
 gsap.registerPlugin(ScrollTrigger);
 
 export default function Footer() {
+  const animateCredit = useMediaQuery(
+    "(min-width: 768px) and (prefers-reduced-motion: no-preference)"
+  );
   const { footer, navItems } = layoutData;
   const element = useRef(null);
   useLayoutEffect(() => {
@@ -46,7 +51,7 @@ export default function Footer() {
   }, []);
   useLayoutEffect(() => {
     const media = gsap.matchMedia();
-    media.add("(prefers-reduced-motion: no-preference)", () => {
+    media.add("(min-width: 768px) and (prefers-reduced-motion: no-preference)", () => {
       const footerElement = element.current;
       const timeline = gsap.timeline({
         scrollTrigger: {
@@ -93,7 +98,14 @@ export default function Footer() {
           aria-label={`${homeData.brand.name}, back to top`}
           className="neue-footer-logo"
         >
-          <img src={homeData.brand.lightLogoUrl} alt="" />
+          <picture>
+            <source
+              type="image/webp"
+              srcSet={imageSrcSet(homeData.brand.lightLogoUrl, [160, 320], "webp")}
+              sizes="145px"
+            />
+            <img src={homeData.brand.lightLogoUrl} alt="" loading="lazy" decoding="async" />
+          </picture>
         </Link>
         <div className="neue-footer-column">
           <h2>Navigation</h2>
@@ -181,7 +193,22 @@ export default function Footer() {
           Maintained by Lab members
         </a>
         <a href={footer.creditLink} target="_blank" rel="noreferrer">
-          <ShinyText text={footer.credit} color="#1a1a1a" shineColor="#ffffff" speed={3} />
+          {animateCredit ? (
+            <ShinyText text={footer.credit} color="#1a1a1a" shineColor="#ffffff" speed={3} />
+          ) : (
+            <span
+              className="shiny-text"
+              style={{
+                backgroundClip: "text",
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+                backgroundSize: "200% auto",
+                backgroundPosition: "150% center",
+              }}
+            >
+              {footer.credit}
+            </span>
+          )}
         </a>
       </div>
     </footer>
