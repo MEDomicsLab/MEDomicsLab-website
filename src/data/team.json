@@ -135,6 +135,57 @@
     "year": "Current",
     "members": [
       {
+        "name": "Simon Provost",
+        "position": "Postdoctoral Researcher ML4Health",
+        "slug": "simon-provost",
+        "email": "simon.g.provost@mcgill.ca",
+        "image": "/images/team/simon-provost/avatar.png",
+        "expertise": [
+          "Longitudinal-data-aware machine learning",
+          "Automated machine learning (AutoML)",
+          "Agentic artificial intelligence"
+        ],
+        "education": [
+          {
+            "course": "PhD Computer Science",
+            "institution": "University of Kent, England",
+            "year": "2022-2026"
+          },
+          {
+            "course": "MSc Computer Science",
+            "institution": "EPITECH, France",
+            "year": "2020-2022"
+          },
+          {
+            "course": "MSc Computational Intelligence",
+            "institution": "University of Kent, England",
+            "year": "2020-2021"
+          },
+          {
+            "course": "BSc Computer Science",
+            "institution": "EPITECH, France",
+            "year": "2017-2020"
+          }
+        ],
+        "bio": "Simon Provost is a postdoctoral researcher in machine learning for healthcare at McGill University and a member of MEDomicsLab. His research aims to make predictive modelling more responsive to changes in patients' health over time and more accessible to researchers without specialist machine learning expertise.\n\nSimon's research focuses on three complementary areas of machine learning for healthcare. First, longitudinal-data-aware machine learning incorporates observations collected over time (e.g., repeated patient assessments) into predictive modelling. Another of his research focuses is automated machine learning (AutoML), which uses a search strategy to select modelling components (e.g., learning algorithms) for a given dataset, with the aim of maximising the chance of higher predictive performance, whilst reducing the need for manual selection by non-ML experts. Finally, agentic artificial intelligence (AI) uses software systems that plan and carry out sequences of tasks using tools, with the aim of making advanced machine learning workflows more accessible to non-specialists.\n\nAt MEDomicsLab, for now, Simon brings these three research interests together through the development of the second version of [MEDomics](https://medomics.app/), a collaborative, open-source platform for AI and data modelling. By incorporating agentic AI into the platform, he aims to help clinicians and computer scientists jointly manage heterogeneous medical datasets (different sources and data types), design experiments and build predictive models for precision medicine (patient-specific care).\n\nBefore joining MEDomicsLab, Simon completed his PhD in Computer Science at the University of Kent (England), under the supervision of [Prof. Alex Freitas](https://scholar.google.com/citations?hl=en&user=NEP3RPYAAAAJ&view_op=list_works&sortby=pubdate). He also undertook a research visit to the University of Edinburgh's Centre for Clinical Brain Sciences (LEAP lab), supervised by [Dr. Alex Kwong](https://edwebprofiles.ed.ac.uk/profile/dr-alex-kwong), and a research internship at New York University's Tandon School of Engineering (VIDA lab), supervised by [Prof. Juliana Freire](https://engineering.nyu.edu/faculty/juliana-freire) and [Prof. Claudio Silva](https://engineering.nyu.edu/faculty/claudio-silva).\n\nSimon is the author and maintainer of the following open-source software (OSS) projects:\n\n- [Scikit-Longitudinal](https://github.com/simonprovost/scikit-longitudinal)\n- [Auto-Sklong](https://github.com/simonprovost/auto-sklong)\n- [MCP-Stack](https://mcpstack.readthedocs.io/en/latest/)\n- [Long-Toolkit](https://long-toolkit.readthedocs.io/en/latest/)\n- [UrbanMapper](https://github.com/VIDA-NYU/UrbanMapper) (for geospatial health intelligence)\n\nOutside research, Simon is passionate about open-source software, open science, music and riding his fixed-gear bicycle. He is also a design enthusiast.",
+        "note": "Postdoctoral Researcher",
+        "affiliations": [
+          {
+            "role": "Affiliate Member",
+            "organization": "Mila - Quebec Artificial Intelligence Institute",
+            "url": "https://mila.quebec/en/directory/simon-provost"
+          }
+        ],
+        "socials": {
+          "website": "https://simonprovost.xyz/",
+          "linkedin": "https://www.linkedin.com/in/simonprovostdev/",
+          "orcid": "https://orcid.org/0000-0001-8402-5464",
+          "scholar": "https://scholar.google.com/citations?user=Lv_LddYAAAAJ&hl=en&oi=ao",
+          "github": "https://github.com/simonprovost",
+          "cv": "https://drive.google.com/file/d/1ME-qCkbAtHN2YJzCIxuVWzimSSppg9pp/view?usp=sharing"
+        }
+      },
+      {
         "name": "Hakima Laribi",
         "position": "PhD Computer science",
         "slug": "hakima-laribi",
