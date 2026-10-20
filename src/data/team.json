@@ -519,6 +519,37 @@
           "linkedin": "https://www.linkedin.com/in/alexanderchum",
           "github": "https://github.com/alexchum"
         }
+      },
+      {
+        "name": "Ben Coull-Neveu",
+        "position": "MSc Medical Physics",
+        "slug": "ben-coull-neveu",
+        "image": "/images/team/ben-coull-neveu/avatar.jpg",
+        "bio": "Ben Coull-Neveu is a MSc1 medical physics student at McGill university who started working in the MEDomics lab in late 2026. His previous research experience involved exoplanetary science, and more recently involved federated learning for lung lesion autosegmentation models.",
+        "expertise": ["Machine learning", "Federated learning", "Medical physics"],
+        "email": "benjamin.coull-neveu@mail.mcgill.ca",
+        "note": "Co-supervised by Martin Vallières and Jérémy Dana",
+        "education": [
+          {
+            "course": "MSc Medical Physics",
+            "institution": "McGill University",
+            "year": "Current"
+          },
+          {
+            "course": "BSc Physics and Computer Science",
+            "institution": "McGill University",
+            "year": "2026"
+          }
+        ],
+        "affiliations": [
+          {
+            "role": "MSc Student",
+            "organization": "Medical Physics Unit, McGill University"
+          }
+        ],
+        "socials": {
+          "github": "https://github.com/BenCoullNeveu"
+        }
       }
     ]
   },
