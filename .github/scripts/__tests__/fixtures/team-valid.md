@@ -43,6 +43,10 @@ M.Sc. Medical Physics | McGill University | 2020
 
 PhD Student
 
+### Website
+
+https://example.com/test-member
+
 ### LinkedIn
 
 https://www.linkedin.com/in/test-member/
@@ -62,10 +66,6 @@ _No response_
 ### GitHub
 
 https://github.com/test-member
-
-### Stack Overflow
-
-_No response_
 
 ### CV (URL)
 

@@ -126,6 +126,12 @@ body:
     attributes:
       value: "### Social / academic links (all optional)"
   - type: input
+    id: website
+    attributes:
+      label: "Website"
+      description: Personal website or institutional profile. Use a full HTTP(S) URL.
+      placeholder: "https://example.com/"
+  - type: input
     id: linkedin
     attributes:
       label: "LinkedIn"
@@ -150,11 +156,6 @@ body:
     attributes:
       label: "GitHub"
       placeholder: "https://github.com/…"
-  - type: input
-    id: stackoverflow
-    attributes:
-      label: "Stack Overflow"
-      placeholder: "https://stackoverflow.com/users/…"
   - type: input
     id: cv
     attributes:
