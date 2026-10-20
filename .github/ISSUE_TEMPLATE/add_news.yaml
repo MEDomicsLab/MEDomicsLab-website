@@ -129,17 +129,14 @@ body:
       description: Attach files a maintainer should review. They are not automatically copied to the repository or published; a maintainer will add approved assets to the PR.
     validations:
       required: false
-  - type: dropdown
+  - type: textarea
     id: related
     attributes:
-      label: "Related content to publish alongside?"
-      description: For maintainer review. Submit a separate form for each companion entry; these selections do not create it automatically.
-      multiple: true
-      options:
-        - "New publication entry"
-        - "New event entry"
-        - "New course entry"
-        - "Update an existing team member"
+      label: "Related issues / PRs and publication order"
+      description: Optional. Link any related issues or PRs. If something must be merged or published before this entry, explain what and why. These notes appear in the generated PR for maintainer review, not on the website; they do not create companion entries or enforce merge order.
+      placeholder: "Publish the member profile in #123 first so this announcement links to it."
+    validations:
+      required: false
   - type: textarea
     id: additional
     attributes:

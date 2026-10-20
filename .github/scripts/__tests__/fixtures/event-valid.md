@@ -46,7 +46,7 @@ _No response_
 
 _No response_
 
-### Companion content to publish?
+### Related issues / PRs and publication order
 
 _No response_
 

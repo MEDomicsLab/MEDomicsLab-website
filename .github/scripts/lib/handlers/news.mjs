@@ -22,6 +22,7 @@ const FIELD = {
   venue: "Event venue",
   contributors: "Contributors / people involved",
   body: "Full content (Markdown)",
+  related: "Related issues / PRs and publication order",
   additional: "Additional context",
 };
 
@@ -93,7 +94,8 @@ export const news = {
       ? `${body}\n\n<!-- Additional context\n${additional}\n-->`
       : body;
 
-    return { ok: true, year, month, slug, entry, markdownRel, markdownBody };
+    const related = (fields[FIELD.related] || "").trim();
+    return { ok: true, year, month, slug, entry, markdownRel, markdownBody, related };
   },
   async apply(root, plan) {
     const dataFile = path.join(root, "src/data/news.json");
@@ -119,6 +121,7 @@ export const news = {
         `**Slug:** \`${plan.slug}\``,
         `**Category:** ${plan.entry.category}`,
         `**Contributors:** ${plan.entry.contributors.join(", ") || "(none)"}`,
+        ...(plan.related ? ["", `### ${FIELD.related}`, "", plan.related] : []),
       ].join("\n"),
     };
   },

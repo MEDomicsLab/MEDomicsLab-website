@@ -296,6 +296,45 @@ test("apply() writes JSON + markdown into a sandbox repo", async () => {
   );
 });
 
+test("publication-order notes reach news and event PRs without entering website content", async () => {
+  const label = "Related issues / PRs and publication order";
+  const notes = "Merge #123 first so the announcement links to the new profile.";
+  for (const handler of [news, event]) {
+    const sandbox = fs.mkdtempSync(path.join(os.tmpdir(), "issue-to-pr-related-"));
+    try {
+      const dataDir = path.join(sandbox, "src/data");
+      fs.mkdirSync(dataDir, { recursive: true });
+      const dataName = handler === news ? "news" : "events";
+      fs.copyFileSync(
+        path.join(repoRoot, `src/data/${dataName}.json`),
+        path.join(dataDir, `${dataName}.json`)
+      );
+      const body = fixture(`${handler.label}-valid.md`).replace(
+        `### ${label}\n\n_No response_`,
+        `### ${label}\n\n${notes}`
+      );
+      const plan = handler.buildPlan(parseIssueForm(body));
+      assert.equal(plan.ok, true);
+      const result = await handler.apply(sandbox, plan);
+      assert.equal(result.ok, true, JSON.stringify(result));
+      assert.ok(result.summary.includes(`### ${label}\n\n${notes}`));
+      for (const file of result.paths) {
+        assert.ok(!fs.readFileSync(file, "utf8").includes(notes), `${file} contains review notes`);
+      }
+
+      const withoutNotes = handler.buildPlan({
+        ...parseIssueForm(fixture(`${handler.label}-valid.md`)),
+        "Suggested slug": `${plan.slug}-without-notes`,
+      });
+      const withoutNotesResult = await handler.apply(sandbox, withoutNotes);
+      assert.equal(withoutNotesResult.ok, true);
+      assert.ok(!withoutNotesResult.summary.includes(label));
+    } finally {
+      fs.rmSync(sandbox, { recursive: true, force: true });
+    }
+  }
+});
+
 test("writeJson preserves unchanged hand-formatted entries", async () => {
   const sandbox = fs.mkdtempSync(path.join(os.tmpdir(), "issue-to-pr-json-"));
   const file = path.join(sandbox, "data.json");

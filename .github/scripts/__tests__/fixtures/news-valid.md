@@ -26,7 +26,7 @@ A test news post body that becomes the markdown file.
 
 _No response_
 
-### Related content to publish alongside?
+### Related issues / PRs and publication order
 
 _No response_
 

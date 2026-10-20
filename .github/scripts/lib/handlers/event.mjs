@@ -24,6 +24,7 @@ const FIELD = {
   blurb: "Short blurb",
   body: "Full description (Markdown)",
   registration: "Registration / RSVP link",
+  related: "Related issues / PRs and publication order",
   additional: "Additional context",
 };
 
@@ -127,6 +128,7 @@ export const event = {
       entry,
       markdownRel,
       markdownBody: lines.join("\n"),
+      related: (fields[FIELD.related] || "").trim(),
     };
   },
   async apply(root, plan) {
@@ -153,6 +155,7 @@ export const event = {
         `**Slug:** \`${plan.slug}\``,
         `**Category:** ${plan.entry.category}`,
         `**Contributors:** ${plan.entry.contributors.join(", ") || "(none)"}`,
+        ...(plan.related ? ["", `### ${FIELD.related}`, "", plan.related] : []),
       ].join("\n"),
     };
   },
