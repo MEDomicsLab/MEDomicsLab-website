@@ -82,6 +82,7 @@
     "eslint-plugin-react-hooks": "^5.1.0",
     "eslint-plugin-react-refresh": "^0.4.16",
     "globals": "^15.14.0",
+    "js-yaml": "^4.1.1",
     "knip": "^6.6.2",
     "license-checker-rseidelsohn": "^4.4.2",
     "markdownlint-cli2": "^0.22.1",

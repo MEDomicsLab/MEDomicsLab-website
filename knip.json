@@ -1,6 +1,6 @@
 {
   "$schema": "https://unpkg.com/knip@6/schema.json",
   "entry": ["src/prerender.jsx", "src/index.css"],
-  "project": ["src/**/*.{js,jsx}"],
+  "project": ["src/**/*.{js,jsx}", ".github/scripts/**/*.mjs"],
   "ignoreExportsUsedInFile": true
 }

@@ -43,6 +43,10 @@ M.Sc. Medical Physics | McGill University | 2020
 
 PhD Student
 
+### Affiliations
+
+Associate Member | Dept. of Biomedical Engineering, McGill University | https://www.mcgill.ca/bme/
+
 ### Website
 
 https://example.com/test-member
@@ -78,7 +82,3 @@ _No response_
 ### Anything else?
 
 _No response_
-
-### Affiliations
-
-Associate Member | Dept. of Biomedical Engineering, McGill University | https://www.mcgill.ca/bme/

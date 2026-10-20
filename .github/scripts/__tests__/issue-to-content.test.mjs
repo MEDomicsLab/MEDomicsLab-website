@@ -7,6 +7,7 @@ import { fileURLToPath } from "node:url";
 import prettier from "prettier";
 
 import { parseIssueForm, splitList, parseChecklist } from "../lib/issue-form-parser.mjs";
+import { getIssueFormFields } from "../lib/issue-form-template.mjs";
 import { slugify } from "../lib/slug.mjs";
 import { publication } from "../lib/handlers/publication.mjs";
 import { news } from "../lib/handlers/news.mjs";
@@ -21,6 +22,8 @@ const repoRoot = path.resolve(here, "..", "..", "..");
 const fixtures = path.join(here, "fixtures");
 
 const fixture = (name) => fs.readFileSync(path.join(fixtures, name), "utf8");
+const parseFixture = (name) =>
+  parseIssueForm(fixture(name), getIssueFormFields(name.split("-")[0]));
 
 test("slugify normalises punctuation, accents, and whitespace", () => {
   assert.equal(slugify("Hello, World!"), "hello-world");
@@ -43,7 +46,7 @@ test("parseIssueForm splits a body into label/value pairs", () => {
     "",
     "_No response_",
   ].join("\n");
-  const fields = parseIssueForm(body);
+  const fields = parseIssueForm(body, ["Title", "Authors", "Notes"]);
   assert.equal(fields.Title, "Hello");
   assert.equal(fields.Authors, "Alice, Bob");
   assert.equal(fields.Notes, "");
@@ -60,7 +63,7 @@ test("parseChecklist returns only checked options", () => {
 });
 
 test("publication handler builds a valid plan from a fixture", () => {
-  const fields = parseIssueForm(fixture("publication-valid.md"));
+  const fields = parseFixture("publication-valid.md");
   const plan = publication.buildPlan(fields);
   assert.equal(plan.ok, true, JSON.stringify(plan, null, 2));
   assert.equal(plan.year, "2025");
@@ -79,7 +82,7 @@ test("publication handler builds a valid plan from a fixture", () => {
 });
 
 test("publication handler reports missing required fields", () => {
-  const fields = parseIssueForm(fixture("publication-missing-required.md"));
+  const fields = parseFixture("publication-missing-required.md");
   const plan = publication.buildPlan(fields);
   assert.equal(plan.ok, false);
   assert.ok(plan.errors.some((e) => e.includes("Title")));
@@ -192,7 +195,7 @@ test("publication handler normalises GitHub-form BibTeX fences", async () => {
 });
 
 test("news handler infers year/month from publish date", () => {
-  const fields = parseIssueForm(fixture("news-valid.md"));
+  const fields = parseFixture("news-valid.md");
   const plan = news.buildPlan(fields);
   assert.equal(plan.ok, true, JSON.stringify(plan, null, 2));
   assert.equal(plan.year, "2025");
@@ -216,7 +219,7 @@ test("event handler refuses a kind it has no filter category for", () => {
 });
 
 test("event handler stores sidebar metadata separately from the markdown body", () => {
-  const fields = parseIssueForm(fixture("event-valid.md"));
+  const fields = parseFixture("event-valid.md");
   const plan = event.buildPlan(fields);
   assert.equal(plan.ok, true, JSON.stringify(plan, null, 2));
   assert.equal(plan.year, "2026");
@@ -236,7 +239,7 @@ test("event handler stores sidebar metadata separately from the markdown body", 
 
 test("event handler preserves multi-day logistics in sidebar data", () => {
   const plan = event.buildPlan({
-    ...parseIssueForm(fixture("event-valid.md")),
+    ...parseFixture("event-valid.md"),
     "End date": "2026-05-03",
     "Registration / RSVP link": "https://example.com/register",
   });
@@ -258,7 +261,7 @@ test("event apply() generates a conventional PR title", async () => {
   );
   fs.copyFileSync(path.join(repoRoot, "src/data/events.json"), path.join(dataDir, "events.json"));
 
-  const plan = event.buildPlan(parseIssueForm(fixture("event-valid.md")));
+  const plan = event.buildPlan(parseFixture("event-valid.md"));
   assert.equal(plan.ok, true);
   const result = await event.apply(sandbox, plan);
   assert.equal(result.ok, true, JSON.stringify(result, null, 2));
@@ -279,7 +282,7 @@ test("apply() writes JSON + markdown into a sandbox repo", async () => {
   );
   fs.copyFileSync(path.join(repoRoot, "src/data/news.json"), path.join(dataDir, "news.json"));
 
-  const fields = parseIssueForm(fixture("news-valid.md"));
+  const fields = parseFixture("news-valid.md");
   const plan = news.buildPlan(fields);
   assert.equal(plan.ok, true);
   const result = await news.apply(sandbox, plan);
@@ -313,7 +316,7 @@ test("publication-order notes reach news and event PRs without entering website 
         `### ${label}\n\n_No response_`,
         `### ${label}\n\n${notes}`
       );
-      const plan = handler.buildPlan(parseIssueForm(body));
+      const plan = handler.buildPlan(parseIssueForm(body, getIssueFormFields(handler.label)));
       assert.equal(plan.ok, true);
       const result = await handler.apply(sandbox, plan);
       assert.equal(result.ok, true, JSON.stringify(result));
@@ -323,7 +326,7 @@ test("publication-order notes reach news and event PRs without entering website 
       }
 
       const withoutNotes = handler.buildPlan({
-        ...parseIssueForm(fixture(`${handler.label}-valid.md`)),
+        ...parseFixture(`${handler.label}-valid.md`),
         "Suggested slug": `${plan.slug}-without-notes`,
       });
       const withoutNotesResult = await handler.apply(sandbox, withoutNotes);
@@ -358,7 +361,7 @@ test("writeJson preserves unchanged hand-formatted entries", async () => {
 });
 
 test("team handler builds a plan with parsed expertise, education, and affiliations", () => {
-  const fields = parseIssueForm(fixture("team-valid.md"));
+  const fields = parseFixture("team-valid.md");
   const plan = team.buildPlan(fields);
   assert.equal(plan.ok, true, JSON.stringify(plan, null, 2));
   assert.equal(plan.cohort, "Current");
@@ -399,7 +402,7 @@ test("team apply() writes resized avatar variants and updates team.json", async 
   );
   fs.copyFileSync(path.join(repoRoot, "src/data/team.json"), path.join(dataDir, "team.json"));
 
-  const fields = parseIssueForm(fixture("team-valid.md"));
+  const fields = parseFixture("team-valid.md");
   const plan = team.buildPlan(fields);
   assert.equal(plan.ok, true);
   const result = await team.apply(sandbox, plan, { fixtureRoot: fixtures });
@@ -464,7 +467,7 @@ test("communityOrderProblems flags reversed months and non-month labels", () => 
 });
 
 test("event submissions can omit an unknown day and venue without inventing metadata", () => {
-  const fields = parseIssueForm(fixture("event-valid.md"));
+  const fields = parseFixture("event-valid.md");
   delete fields["Start date"];
   delete fields.Location;
   fields["Listing month"] = "2026-05";
@@ -483,7 +486,7 @@ test("event submissions can omit an unknown day and venue without inventing meta
 });
 
 test("news sidebar dates are independent of the timeline publish date", () => {
-  const fields = parseIssueForm(fixture("news-valid.md"));
+  const fields = parseFixture("news-valid.md");
   const undated = news.buildPlan(fields);
   assert.equal(undated.entry.date, undefined);
   assert.equal(undated.entry.event, undefined);
@@ -495,7 +498,7 @@ test("news sidebar dates are independent of the timeline publish date", () => {
 });
 
 test("news accepts partial event metadata and rejects invalid date ranges", () => {
-  const fields = parseIssueForm(fixture("news-valid.md"));
+  const fields = parseFixture("news-valid.md");
   for (const details of [
     { "Event kind": "Workshop" },
     { "Event venue": "Mila, Montréal" },

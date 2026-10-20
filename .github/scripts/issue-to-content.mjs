@@ -26,7 +26,8 @@
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import { parseIssueForm } from "./lib/issue-form-parser.mjs";
+import { IssueFormParseError, parseIssueForm } from "./lib/issue-form-parser.mjs";
+import { getIssueFormFields } from "./lib/issue-form-template.mjs";
 import { publication } from "./lib/handlers/publication.mjs";
 import { news } from "./lib/handlers/news.mjs";
 import { event } from "./lib/handlers/event.mjs";
@@ -102,7 +103,17 @@ async function main() {
     return;
   }
 
-  const fields = parseIssueForm(body);
+  let fields;
+  try {
+    fields = parseIssueForm(body, getIssueFormFields(handler.label));
+  } catch (err) {
+    if (!(err instanceof IssueFormParseError)) throw err;
+    logErrors(handler, [err.message]);
+    setOutput("status", "invalid");
+    setOutput("errors", `- ${err.message}`);
+    setOutput("kind", handler.label);
+    process.exit(2);
+  }
   const plan = handler.buildPlan(fields);
   if (!plan.ok) {
     logErrors(handler, plan.errors);
