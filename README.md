@@ -16,20 +16,20 @@
 <div align="center">
 
 <a href="https://medomicslab.com/">
-   <img alt="Live" src="https://img.shields.io/static/v1?label=Site&message=medomicslab.com&color=472727&labelColor=FF8C00&style=for-the-badge&logo=googlechrome&logoColor=white">
+   <img alt="Live" src="https://img.shields.io/static/v1?label=Site&message=medomicslab.com&color=1a1a1a&labelColor=3c5280&style=for-the-badge&logo=googlechrome&logoColor=white">
 </a>
 
-<img alt="React" src="https://img.shields.io/static/v1?label=React&message=18&color=472727&labelColor=FF8C00&style=for-the-badge&logo=react&logoColor=white">
+<img alt="React" src="https://img.shields.io/static/v1?label=React&message=18&color=1a1a1a&labelColor=3c5280&style=for-the-badge&logo=react&logoColor=white">
 
-<img alt="Vite" src="https://img.shields.io/static/v1?label=Vite&message=7&color=472727&labelColor=FF8C00&style=for-the-badge&logo=vite&logoColor=white">
+<img alt="Vite" src="https://img.shields.io/static/v1?label=Vite&message=7&color=1a1a1a&labelColor=3c5280&style=for-the-badge&logo=vite&logoColor=white">
 
-<img alt="Tailwind" src="https://img.shields.io/static/v1?label=Tailwind&message=v4&color=472727&labelColor=FF8C00&style=for-the-badge&logo=tailwindcss&logoColor=white">
+<img alt="Tailwind" src="https://img.shields.io/static/v1?label=Tailwind&message=v4&color=1a1a1a&labelColor=3c5280&style=for-the-badge&logo=tailwindcss&logoColor=white">
 
-<img alt="ESLint" src="https://img.shields.io/static/v1?label=ESLint&message=passing&color=472727&labelColor=FF8C00&style=for-the-badge&logo=eslint&logoColor=white">
+<img alt="ESLint" src="https://img.shields.io/static/v1?label=ESLint&message=passing&color=1a1a1a&labelColor=3c5280&style=for-the-badge&logo=eslint&logoColor=white">
 
-<img alt="Playwright" src="https://img.shields.io/static/v1?label=Playwright&message=e2e&color=472727&labelColor=FF8C00&style=for-the-badge&logo=playwright&logoColor=white">
+<img alt="Playwright" src="https://img.shields.io/static/v1?label=Playwright&message=e2e&color=1a1a1a&labelColor=3c5280&style=for-the-badge&logo=playwright&logoColor=white">
 
-<img alt="License" src="https://img.shields.io/static/v1?label=License&message=MIT&color=472727&labelColor=FF8C00&style=for-the-badge&logo=opensourceinitiative&logoColor=white">
+<img alt="License" src="https://img.shields.io/static/v1?label=License&message=MIT&color=1a1a1a&labelColor=3c5280&style=for-the-badge&logo=opensourceinitiative&logoColor=white">
 
 </div>
 
@@ -267,7 +267,7 @@ Navbar items, footer columns, contact block, social links. Adding or reordering 
 
 - **Schema:** [`src/data/_schemas/theme.schema.json`](./src/data/_schemas/theme.schema.json)
 
-CSS custom properties consumed by Tailwind v4 and the design tokens. The brand orange used throughout the site (and on these badges) is `oklch(0.7505 0.1791 58.28)` ≈ `#FF8C00`. Change `--primary` here to retheme the entire site.
+CSS custom properties consumed by Tailwind v4 and the design tokens. The website's blue is `--tertiary: #3c5280`, also used for these badges. The primary accent uses `var(--neue-paper)`, while the dark background is `#1a1a1a`. Edit the corresponding variables here to adjust the theme.
 
 </details>
 
