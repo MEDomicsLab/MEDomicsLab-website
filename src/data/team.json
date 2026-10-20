@@ -494,6 +494,31 @@
           "linkedin": "https://www.linkedin.com/in/steven-ravary-a2853717/",
           "github": "https://github.com/StRavary"
         }
+      },
+      {
+        "name": "Alexander Chum",
+        "position": "Research Assistant",
+        "slug": "alexander-chum",
+        "image": "/images/team/alexander-chum/avatar.jpg",
+        "bio": "Alexander is a research assistant in the MEDomics Lab since 2026. A former software developer, he previously worked at Meta on improving user facing products including Instagram, Messenger, Facebook, and Oculus. He also worked on automation for cancer treatment planning. He is an aspiring medical physicists and currently contributing to MEDiml and MEDomics Lab through various projects.",
+        "expertise": ["Product UX", "Mobile Development", "ESAPI Scripting"],
+        "email": "Alexander.Chum@rimuhc.ca",
+        "education": [
+          {
+            "course": "BSc Medical and Biological Physics",
+            "institution": "McMaster University",
+            "year": "2024-2026"
+          },
+          {
+            "course": "BSc Computer Science",
+            "institution": "University of Toronto, St-George",
+            "year": "2016-2019"
+          }
+        ],
+        "socials": {
+          "linkedin": "https://www.linkedin.com/in/alexanderchum",
+          "github": "https://github.com/alexchum"
+        }
       }
     ]
   },
