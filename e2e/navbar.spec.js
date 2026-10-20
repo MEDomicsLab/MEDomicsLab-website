@@ -373,6 +373,7 @@ for (const width of [1100, 1440]) {
     await page.clock.install({ time: new Date("2026-10-02T12:00:00Z") });
     await page.clock.pauseAt(new Date("2026-10-02T12:00:01Z"));
     const shortcuts = page.locator(".liquid-action-anchor");
+    const github = page.locator(".liquid-github-anchor a");
     await page.clock.fastForward(8000);
     for (const shortcut of await shortcuts.all()) {
       await expect(shortcut).not.toHaveClass(/is-idle/);
@@ -399,8 +400,15 @@ for (const width of [1100, 1440]) {
       .toBeLessThan(0.001);
     const arriving = await page.locator(".liquid-github-anchor").boundingBox();
     expect(arriving.height).toBeLessThan(initial.height);
-    await page.evaluate(() => window.scrollTo(0, 400));
-    await page.clock.runFor(100);
+    await page.evaluate(() =>
+      window.scrollTo(0, Math.ceil(document.querySelector(".neue-hero").offsetHeight * 0.38) + 2)
+    );
+    await expect
+      .poll(async () => {
+        await page.clock.runFor(100);
+        return github.getAttribute("aria-label");
+      })
+      .toBe("GitHub");
     await expect(page.getByRole("link", { name: "GitHub", exact: true })).toBeVisible();
     const first = await page.locator(".liquid-github-anchor").boundingBox();
     const last = await page.locator(".liquid-ecosystem-anchor").boundingBox();
@@ -417,7 +425,12 @@ for (const width of [1100, 1440]) {
     await page.clock.fastForward(5100);
     for (const shortcut of await shortcuts.all()) await expect(shortcut).toHaveClass(/is-idle/);
     await page.evaluate(() => window.scrollTo(0, 0));
-    await page.clock.runFor(200);
+    await expect
+      .poll(async () => {
+        await page.clock.runFor(100);
+        return github.getAttribute("aria-label");
+      })
+      .toBe("GitHub Organization");
     await expect(
       page
         .locator(".site-shortcuts")
