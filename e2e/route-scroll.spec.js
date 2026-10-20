@@ -79,6 +79,36 @@ for (const reducedMotion of ["no-preference", "reduce"]) {
       });
     }
 
+    test("a mobile footer resize preserves the current scroll position", async ({ page }) => {
+      await page.setViewportSize({ width: 375, height: 900 });
+      await page.goto("/research");
+      await page.evaluate(() => document.fonts.ready);
+      await expectAtTop(page, "/research");
+
+      await page.evaluate(() => window.scrollTo(0, 1000));
+      await expect.poll(() => page.evaluate(() => window.scrollY)).toBe(1000);
+
+      const positions = await page.evaluate(async () => {
+        const positions = [];
+        const scrollTo = window.scrollTo;
+        window.scrollTo = function (...args) {
+          scrollTo.apply(this, args);
+          positions.push(window.scrollY);
+        };
+        try {
+          document.querySelector("footer").style.width = "calc(100% - 20px)";
+          await new Promise((resolve) =>
+            requestAnimationFrame(() => requestAnimationFrame(resolve))
+          );
+          return positions;
+        } finally {
+          window.scrollTo = scrollTo;
+        }
+      });
+      expect(positions).not.toContain(0);
+      expect(await page.evaluate(() => window.scrollY)).toBe(1000);
+    });
+
     test("navigation interrupts a smooth scroll without dragging the next page down", async ({
       page,
     }) => {

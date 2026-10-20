@@ -66,7 +66,9 @@ export default function useHomepageMotion(root) {
       }, root);
       return () => context.revert();
     });
-    document.fonts.ready.then(() => ScrollTrigger.refresh());
+    document.fonts.ready.then(() => {
+      if (ScrollTrigger.getAll().length) ScrollTrigger.refresh();
+    });
     return () => media.revert();
   }, [root]);
 }

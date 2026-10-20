@@ -38,7 +38,7 @@ export default function Footer() {
         "--footer-ink-left",
         `${context.measureText(homeData.brand.name).actualBoundingBoxLeft}px`
       );
-      ScrollTrigger.refresh();
+      if (ScrollTrigger.getAll().length) ScrollTrigger.refresh();
     };
     fit();
     document.fonts.ready.then(fit);
