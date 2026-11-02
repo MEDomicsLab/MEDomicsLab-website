@@ -10,6 +10,7 @@ import SkeletonImage from "../SkeletonImage/SkeletonImage.jsx";
 import Seo from "../Seo/Seo.jsx";
 import { LIQUID_PARAMS } from "../../lib/liquidGlassParams";
 import SiteShortcuts from "./SiteShortcuts.jsx";
+import MobileNav from "./MobileNav.jsx";
 import NavDropdown, {
   NAV_MENU_ITEM_CLASS,
   NAV_TEXT_CLASS,
@@ -105,6 +106,9 @@ export default function Layout() {
   }, [location.key, location.hash]);
 
   const navItems = layoutData.navItems;
+  const githubHref = layoutData.footer.social.links.find((link) =>
+    link.href.startsWith("https://github.com/")
+  ).href;
 
   return (
     <div
@@ -117,7 +121,7 @@ export default function Layout() {
       <Seo />
       <div
         className={cn(
-          "site-brand fixed top-4 left-1/2 -translate-x-1/2 z-50 md:top-8 md:left-8 md:translate-x-0 text-white",
+          "site-brand fixed top-5 left-3 z-50 flex h-16 items-center pl-[18px] md:top-8 md:left-8 md:block md:h-auto md:pl-0 text-white",
           isHome && "neue-home-brand",
           isHome && !homeScrolled && "is-hidden"
         )}
@@ -127,19 +131,19 @@ export default function Layout() {
           className="text-xl font-bold tracking-tighter group relative flex items-center gap-2 justify-center md:justify-start"
           aria-label={`${homeData.brand.name} homepage`}
         >
-          <span className="site-brand-wordmark">{homeData.brand.name}</span>
+          <span className="site-brand-wordmark max-md:hidden">{homeData.brand.name}</span>
           {homeData.brand?.logoUrl && (
             <>
-              <span className="text-white/60 inline-block transition-transform duration-200 group-hover:rotate-[24deg]">
+              <span className="text-white/60 inline-block transition-transform duration-200 group-hover:rotate-[24deg] max-md:hidden">
                 |
               </span>
               <SkeletonImage
                 src={homeData.brand.logoUrl}
                 alt={`${homeData.brand.name} logo`}
-                className="h-5 w-5"
+                className="h-14 w-14 md:h-5 md:w-5"
                 imgClassName="h-full w-full object-contain"
                 skeletonClassName="rounded"
-                sizes="20px"
+                sizes="(max-width: 767px) 56px, 20px"
                 variantSizes={[80, 128]}
                 fallbackSrc={homeData.brand.logoUrl}
                 formats={["webp"]}
@@ -308,13 +312,9 @@ export default function Layout() {
         </nav>
       </GlassFrame>
 
-      <SiteShortcuts
-        href={
-          layoutData.footer.social.links.find((link) => link.href.startsWith("https://github.com/"))
-            .href
-        }
-        liquid={liquid}
-      />
+      <MobileNav githubHref={githubHref} />
+
+      <SiteShortcuts href={githubHref} liquid={liquid} />
 
       <main className={cn("min-h-screen md:pt-0", location.pathname === "/" ? "pt-0" : "pt-28")}>
         <Outlet />

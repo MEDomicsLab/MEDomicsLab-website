@@ -42,7 +42,7 @@ function Appointment({ start, end, title, department, university, href, logo }) 
 
 export default function PrincipalInvestigator({ paused }) {
   return (
-    <section id="lab" className="neue-lab" aria-labelledby="lab-heading">
+    <section id="lab" className="neue-lab" aria-labelledby="lab-heading" data-nav-release>
       <div className="neue-profile">
         <div className="neue-profile-top">
           <div className="neue-profile-portrait">

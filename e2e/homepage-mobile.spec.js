@@ -64,12 +64,14 @@ test("mobile shares a native 540p player, pauses offscreen, and resumes without 
       .toBe(true);
     await expect(player).toHaveCount(1);
   }
+  await page.getByRole("button", { name: "Open menu" }).tap();
   await page
     .getByRole("navigation", { name: "Main navigation" })
     .getByRole("link", { name: "Research", exact: true })
     .tap();
   await expect(page).toHaveURL(/\/research$/);
   await expect(player).toHaveCount(0);
+  await page.getByRole("button", { name: "Open menu" }).tap();
   await page
     .getByRole("navigation", { name: "Main navigation" })
     .getByRole("link", { name: "Home", exact: true })
@@ -123,7 +125,7 @@ test("mobile reduced motion does not autoplay and can be explicitly enabled", as
 });
 
 for (const reducedMotion of ["no-preference", "reduce"]) {
-  test(`mobile title and shortcuts switch instantly after the first screen with ${reducedMotion} motion`, async ({
+  test(`mobile title switches instantly after the first screen with ${reducedMotion} motion`, async ({
     page,
   }) => {
     await page.emulateMedia({ reducedMotion });
@@ -131,54 +133,26 @@ for (const reducedMotion of ["no-preference", "reduce"]) {
     await page.evaluate(() => document.fonts.ready);
     const title = page.locator("#home-heading");
     const brand = page.getByRole("link", { name: "MEDomicsLab homepage", exact: true });
-    const github = page.locator(".liquid-github-anchor");
-    const ecosystem = page.locator(".liquid-ecosystem-anchor");
     const firstScreen = await page.locator(".neue-hero").evaluate((el) => el.offsetHeight);
     const start = await title.boundingBox();
     const titleTransform = await title.evaluate((el) => getComputedStyle(el).transform);
-    const shortcutStart = await github.boundingBox();
+    await expect(brand).toBeVisible();
 
     for (const y of [160, Math.floor(firstScreen / 2), firstScreen - 1]) {
       await page.evaluate((y) => window.scrollTo(0, y), y);
-      await expect(brand).toBeHidden();
+      await expect(brand).toBeVisible();
       await expect.poll(async () => (await title.boundingBox()).width).toBeCloseTo(start.width, 0);
       await expect(title).toHaveCSS("transform", titleTransform);
-      await expect.poll(async () => (await github.boundingBox()).x).toBeCloseTo(shortcutStart.x, 0);
-      await expect
-        .poll(async () => (await github.boundingBox()).y)
-        .toBeCloseTo(reducedMotion === "reduce" ? shortcutStart.y - y : shortcutStart.y, 0);
-      await expect(page.locator(".liquid-action-anchor").first()).toHaveClass(/is-in-hero/);
     }
 
     await page.evaluate((y) => window.scrollTo(0, y), firstScreen);
     await expect(brand).toBeVisible();
     await expect(page.locator(".neue-home-brand")).toHaveCSS("opacity", "1");
     await expect(title.locator("span").first()).toHaveCSS("opacity", "0");
-    await expect(page.locator(".liquid-action-anchor").first()).not.toHaveClass(/is-in-hero/);
-    await expect
-      .poll(async () => {
-        const box = await github.boundingBox();
-        return box.x + box.width / 2;
-      })
-      .toBeCloseTo(195, 0);
-    await expect
-      .poll(async () => {
-        const box = await ecosystem.boundingBox();
-        return box.y + box.height;
-      })
-      .toBeCloseTo(844 - 16, 0);
-    await expect(page.locator(".liquid-github-anchor .glass__warp")).toHaveCount(1);
 
     await page.evaluate((y) => window.scrollTo(0, y), firstScreen - 1);
-    await expect(brand).toBeHidden();
+    await expect(brand).toBeVisible();
     await expect(title.locator("span").first()).toHaveCSS("opacity", "1");
-    await expect.poll(async () => (await github.boundingBox()).x).toBeCloseTo(shortcutStart.x, 0);
-    await expect
-      .poll(async () => (await github.boundingBox()).y)
-      .toBeCloseTo(
-        reducedMotion === "reduce" ? shortcutStart.y - (firstScreen - 1) : shortcutStart.y,
-        0
-      );
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(
       true
     );

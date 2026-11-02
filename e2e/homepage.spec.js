@@ -118,7 +118,10 @@ test("the hero stays pinned while the profile covers it; navigation is centred i
     "src",
     "/images/team/martin-vallieres/avatar-256.avif"
   );
-  await expect(page.locator('[aria-current="page"]')).toHaveCSS("color", "rgb(255, 255, 255)");
+  await expect(page.locator('.liquid-nav-anchor [aria-current="page"]')).toHaveCSS(
+    "color",
+    "rgb(255, 255, 255)"
+  );
   await page.evaluate(() => window.scrollTo(0, 400));
   await expect(page.getByRole("link", { name: "MEDomicsLab homepage" })).toBeVisible();
   const hero = await page.locator(".neue-hero").boundingBox();
@@ -233,18 +236,25 @@ for (const width of [320, 390, 768]) {
     await page.goto("/");
     await page.evaluate(() => document.fonts.ready);
     await expect.poll(() => page.evaluate(() => document.documentElement.scrollWidth)).toBe(width);
-    await expect
-      .poll(async () => {
-        const bounds = await page.locator(".liquid-github-anchor").boundingBox();
-        return bounds.x + bounds.width;
-      })
-      .toBeLessThanOrEqual(width);
-    const nav = await page.locator(".liquid-nav-anchor").boundingBox();
-    const github = await page.locator(".liquid-github-anchor").boundingBox();
-    expect(nav.x).toBeGreaterThanOrEqual(0);
-    expect(github.x + github.width).toBeLessThanOrEqual(width);
-    expect(Math.abs(nav.x + nav.width / 2 - width / 2)).toBeLessThan(2);
-    expect(github.x >= nav.x + nav.width || github.y >= nav.y + nav.height).toBe(true);
+    if (width < 768) {
+      const bar = await page.locator(".mobile-nav-bar").boundingBox();
+      expect(bar.x).toBeGreaterThanOrEqual(0);
+      expect(bar.x + bar.width).toBeLessThanOrEqual(width);
+      await expect(page.getByRole("button", { name: "Open menu" })).toBeVisible();
+    } else {
+      await expect
+        .poll(async () => {
+          const bounds = await page.locator(".liquid-github-anchor").boundingBox();
+          return bounds.x + bounds.width;
+        })
+        .toBeLessThanOrEqual(width);
+      const nav = await page.locator(".liquid-nav-anchor").boundingBox();
+      const github = await page.locator(".liquid-github-anchor").boundingBox();
+      expect(nav.x).toBeGreaterThanOrEqual(0);
+      expect(github.x + github.width).toBeLessThanOrEqual(width);
+      expect(Math.abs(nav.x + nav.width / 2 - width / 2)).toBeLessThan(2);
+      expect(github.x >= nav.x + nav.width || github.y >= nav.y + nav.height).toBe(true);
+    }
     await page.locator(".neue-ecosystem").scrollIntoViewIfNeeded();
     if (width < 768) {
       for (const app of await page.locator(".neue-ecosystem-app").all()) {
@@ -573,9 +583,15 @@ test("dropdown links underline and the navbar stays centred on other routes", as
   await expect(page.getByRole("menu", { name: "MEDomicsLab apps" })).toHaveCount(0);
   await page.goto("/");
   await page.keyboard.press("Escape");
-  await expect(page.locator('[aria-current="page"]')).toHaveCSS("color", "rgb(255, 255, 255)");
+  await expect(page.locator('.liquid-nav-anchor [aria-current="page"]')).toHaveCSS(
+    "color",
+    "rgb(255, 255, 255)"
+  );
   await page.locator("#lab").evaluate((el) => el.scrollIntoView());
-  await expect(page.locator('[aria-current="page"]')).toHaveCSS("color", "rgb(240, 231, 212)");
+  await expect(page.locator('.liquid-nav-anchor [aria-current="page"]')).toHaveCSS(
+    "color",
+    "rgb(240, 231, 212)"
+  );
 });
 
 for (const width of [1440]) {

@@ -60,7 +60,7 @@ test.describe("main navigation", () => {
     await expect(teamLink.locator("span")).toBeVisible();
   });
 
-  test("keeps every compact navigation control centred on common mobile widths", async ({
+  test("phones swap the link bar for a menu holding every link and both shortcuts", async ({
     page,
   }) => {
     for (const width of [320, 375, 390, 414, 430]) {
@@ -68,30 +68,70 @@ test.describe("main navigation", () => {
       await page.goto("/");
 
       await page.evaluate(() => document.fonts.ready);
-      await page.evaluate(() =>
-        window.scrollTo(0, document.querySelector(".neue-hero").offsetHeight)
-      );
 
-      const navigation = page.getByRole("navigation", { name: "Main navigation" });
+      const toggle = page.getByRole("button", { name: "Open menu" });
       const brand = page.getByRole("link", { name: "MEDomicsLab homepage", exact: true });
-      await expect(navigation).toBeVisible();
+      await expect(toggle).toBeVisible();
       await expect(brand).toBeVisible();
-      for (const [label] of mainLinks) {
-        await expect(navigation.getByRole("link", { name: label })).toBeVisible();
+      await expect(page.locator(".site-brand-wordmark")).toBeHidden();
+      await expect(page.locator(".liquid-nav-anchor")).toBeHidden();
+      for (const shortcut of await page.locator(".liquid-action-anchor").all()) {
+        await expect(shortcut).toBeHidden();
       }
-      await expect(page.getByRole("button", { name: "Community" })).toBeVisible();
-      await expect.poll(async () => (await brand.boundingBox())?.y).toBeCloseTo(16, 1);
 
-      const navBox = await navigation.boundingBox();
+      const barBox = await page.locator(".mobile-nav-bar").boundingBox();
       const brandBox = await brand.boundingBox();
-      expect(navBox).not.toBeNull();
-      expect(brandBox).not.toBeNull();
-      expect(navBox.x + navBox.width / 2).toBeCloseTo(width / 2, 1);
-      expect(brandBox.x + brandBox.width / 2).toBeCloseTo(width / 2, 0);
-      expect(brandBox.y + brandBox.height).toBeLessThanOrEqual(navBox.y);
+      const toggleBox = await toggle.boundingBox();
+      expect(barBox.x).toBeCloseTo(12, 0);
+      expect(barBox.x + barBox.width).toBeCloseTo(width - 12, 0);
+      expect(brandBox.height).toBeGreaterThanOrEqual(48);
+      expect(
+        Math.abs(brandBox.y + brandBox.height / 2 - (barBox.y + barBox.height / 2))
+      ).toBeLessThan(2);
+      expect(brandBox.x + brandBox.width).toBeLessThan(toggleBox.x);
+      expect(toggleBox.x + toggleBox.width).toBeLessThanOrEqual(barBox.x + barBox.width);
 
+      await toggle.click();
+      const navigation = page.getByRole("navigation", { name: "Main navigation" });
+      await expect(navigation).toBeVisible();
+      for (const [label, href] of mainLinks) {
+        await expect(navigation.getByRole("link", { name: label, exact: true })).toHaveAttribute(
+          "href",
+          href
+        );
+      }
+      await expect(navigation.getByRole("button", { name: "Visions" })).toBeDisabled();
+      await navigation.getByRole("button", { name: "Community" }).click();
+      for (const [label, href] of communityLinks) {
+        await expect(navigation.getByRole("link", { name: label, exact: true })).toHaveAttribute(
+          "href",
+          href
+        );
+      }
+      await expect(navigation.getByRole("link", { name: "GitHub Organization" })).toHaveAttribute(
+        "href",
+        "https://github.com/MEDomicsLab"
+      );
+      await expect(navigation.getByRole("link", { name: "MEDomics Ecosystem" })).toHaveAttribute(
+        "href",
+        "/#ecosystem"
+      );
+      expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBe(width);
+
+      await page.keyboard.press("Escape");
+      await expect(navigation).toBeHidden();
+      await expect(page.getByRole("button", { name: "Open menu" })).toBeFocused();
+
+      await page.evaluate(() => document.activeElement.blur());
       await page.evaluate(() => window.scrollTo(0, document.body.scrollHeight));
-      await expect.poll(async () => (await brand.boundingBox())?.y).toBeCloseTo(brandBox.y, 1);
+      for (const element of [brand, page.locator(".mobile-nav-bar")]) {
+        await expect.poll(async () => (await element.boundingBox()).y + 64).toBeLessThan(0);
+      }
+      await page.evaluate(() => window.scrollBy(0, -40));
+      await expect.poll(async () => (await brand.boundingBox()).y).toBeCloseTo(brandBox.y, 1);
+      await expect
+        .poll(async () => (await page.locator(".mobile-nav-bar").boundingBox()).y)
+        .toBeCloseTo(barBox.y, 1);
     }
   });
 
@@ -197,7 +237,7 @@ test.describe("main navigation", () => {
 test.describe("navigation shortcuts", () => {
   test.use({ reducedMotion: "reduce" });
 
-  for (const width of [320, 390, 768, 1200, 1440]) {
+  for (const width of [768, 1200, 1440]) {
     test(`both shortcuts fit and GitHub opens on the first press at ${width}px`, async ({
       page,
       context,
@@ -234,22 +274,10 @@ test.describe("navigation shortcuts", () => {
           expect((first.x + last.x + last.width) / 2).toBeCloseTo(film.x + film.width / 2, 0);
           expect(last.y).toBeCloseTo(first.y, 0);
           expect(first.x + first.width).toBeLessThan(last.x);
-          if (width <= 767) {
-            expect(first.y).toBeCloseTo(film.y + film.height + 16, 0);
-            expect(first.x).toBeGreaterThan(0);
-            expect(first.height).toBeGreaterThanOrEqual(54);
-          } else {
-            expect(first.y + first.height / 2).toBeCloseTo(film.y + film.height / 2, 0);
-            expect(first.x).toBeGreaterThan(film.x);
-            expect(last.x + last.width).toBeLessThan(film.x + film.width);
-            expect(first.height).toBeGreaterThanOrEqual(64);
-          }
-        } else if (width <= 767) {
-          expect(first.x + first.width / 2).toBeCloseTo(width / 2, 0);
-          expect(last.x + last.width / 2).toBeCloseTo(width / 2, 0);
-          expect(last.y + last.height).toBeCloseTo(900 - 16, 0);
-          expect(last.y - first.y - first.height).toBeCloseTo(8, 0);
-          expect(first.width).toBeLessThan(95);
+          expect(first.y + first.height / 2).toBeCloseTo(film.y + film.height / 2, 0);
+          expect(first.x).toBeGreaterThan(film.x);
+          expect(last.x + last.width).toBeLessThan(film.x + film.width);
+          expect(first.height).toBeGreaterThanOrEqual(64);
         } else {
           expect(first.x + first.width).toBeCloseTo(width - 24, 0);
           expect(last.x + last.width).toBeCloseTo(width - 24, 0);
@@ -267,66 +295,39 @@ test.describe("navigation shortcuts", () => {
   }
 });
 
-test.describe("phone shortcut activity", () => {
+test.describe("phone menu shortcuts", () => {
   test.use({ viewport: { width: 390, height: 844 }, hasTouch: true });
 
-  test("fades both shortcuts to 40% when idle and restores them on scroll or focus", async ({
+  test("the menu opens the GitHub organisation and reaches the ecosystem section", async ({
     page,
     context,
   }) => {
     await context.route("https://github.com/**", (route) =>
       route.fulfill({ contentType: "text/html", body: "GitHub organization" })
     );
-    test.setTimeout(60_000);
     await page.goto("/research");
-    const shortcuts = page.locator(".liquid-action-anchor");
-    for (const shortcut of await shortcuts.all()) {
-      await expect(shortcut).toHaveCSS("--glass-opacity", "0.4", { timeout: 8000 });
-    }
-    await page.evaluate(() => window.scrollTo(0, 300));
-    for (const shortcut of await shortcuts.all())
-      await expect(shortcut).toHaveCSS("--glass-opacity", "1");
-    for (const shortcut of await shortcuts.all()) {
-      await expect(shortcut).toHaveCSS("--glass-opacity", "0.4", { timeout: 8000 });
-    }
-    const ecosystem = page.getByRole("link", { name: "MEDomics Ecosystem", exact: true });
-    await ecosystem.focus();
-    await expect(page.locator(".liquid-action-anchor:has(.liquid-ecosystem-anchor)")).toHaveCSS(
-      "--glass-opacity",
-      "1"
-    );
-    await page.waitForTimeout(7100);
-    await expect(page.locator(".liquid-action-anchor:has(.liquid-ecosystem-anchor)")).toHaveCSS(
-      "--glass-opacity",
-      "1"
-    );
-    await ecosystem.blur();
-    await expect(page.locator(".liquid-action-anchor:has(.liquid-github-anchor)")).toHaveCSS(
-      "--glass-opacity",
-      "0.4",
-      {
-        timeout: 8000,
-      }
-    );
+    const toggle = page.locator(".mobile-nav-burger");
+    const menu = page.getByRole("navigation", { name: "Main navigation" });
+    await toggle.tap();
     const popupPromise = page.waitForEvent("popup");
-    await page.getByRole("link", { name: "GitHub", exact: true }).tap();
+    await menu.getByRole("link", { name: "GitHub Organization", exact: true }).tap();
     const popup = await popupPromise;
     await expect(popup).toHaveURL("https://github.com/MEDomicsLab");
     await popup.close();
-    await ecosystem.tap();
+    await expect(toggle).toHaveAttribute("aria-expanded", "false");
+    await toggle.tap();
+    await menu.getByRole("link", { name: "MEDomics Ecosystem", exact: true }).tap();
     await expect(page).toHaveURL(/\/#ecosystem$/);
+    await expect(toggle).toHaveAttribute("aria-expanded", "false");
     await expect
       .poll(() =>
         page.locator("#ecosystem").evaluate((el) => Math.abs(el.getBoundingClientRect().top))
       )
       .toBeLessThan(2);
-    for (const shortcut of await shortcuts.all()) {
-      await expect(shortcut).toHaveCSS("--glass-opacity", "0.4", { timeout: 8000 });
-    }
   });
 });
 
-for (const width of [390, 768, 1440]) {
+for (const width of [768, 1440]) {
   test(`shortcuts wait five seconds before fading at ${width}px`, async ({ page }) => {
     await page.setViewportSize({ width, height: 900 });
     await page.emulateMedia({ reducedMotion: "reduce" });

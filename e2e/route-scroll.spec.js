@@ -63,6 +63,10 @@ for (const reducedMotion of ["no-preference", "reduce"]) {
           ["Team", "/team"],
         ]) {
           await scrollToBottom(page);
+          if (width < 768) {
+            await page.evaluate(() => window.scrollBy(0, -40));
+            await page.getByRole("button", { name: "Open menu" }).click();
+          }
           await navigation.getByRole("link", { name: label, exact: true }).click();
           await expectAtTop(page, path);
         }

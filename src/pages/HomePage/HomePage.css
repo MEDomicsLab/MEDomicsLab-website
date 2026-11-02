@@ -1500,6 +1500,12 @@ body:has(.neue-home-layout) .nav-dropdown-portal {
     font-size: 8px;
     padding-inline: 4px;
   }
+  .neue-home-brand.is-hidden,
+  .neue-home-layout[data-brand-motion] .neue-home-brand {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+  }
   .neue-hero {
     --hero-film-width: 86vw;
     --hero-film-height: calc(var(--hero-film-width) * 0.66);

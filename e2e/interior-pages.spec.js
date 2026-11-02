@@ -211,6 +211,7 @@ test("shared footer, disabled Vision and narrow layouts work across routes", asy
     await page.goto(path);
     await expect(page.locator("footer")).toHaveCount(1);
     await expect(page.locator("footer")).toHaveClass(/neue-footer/);
+    await page.getByRole("button", { name: "Open menu" }).click();
     await expect(page.getByRole("button", { name: "Visions", exact: true })).toBeDisabled();
     await expect(page.locator('a[href="/visions"]')).toHaveCount(0);
     await expect
