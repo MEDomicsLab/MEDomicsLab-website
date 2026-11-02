@@ -10,7 +10,6 @@ const PUBLICATION_TYPES = ["Journal Papers", "Conference Papers", "Preprints"];
 const TYPE_COUNTS = pubData
   .flatMap((group) => group.items)
   .reduce((counts, item) => ({ ...counts, [item.type]: (counts[item.type] ?? 0) + 1 }), {});
-const typeOrder = Object.fromEntries(PUBLICATION_TYPES.map((type, index) => [type, index]));
 
 const TOTAL = Object.values(TYPE_COUNTS).reduce((sum, count) => sum + count, 0);
 
@@ -27,11 +26,7 @@ export default function PublicationsPage() {
       .map((group) => {
         const items = [...group.items]
           .filter((item) => activeTypes.includes(item.type))
-          .sort((a, b) => {
-            const typeDelta = (typeOrder[a.type] ?? 0) - (typeOrder[b.type] ?? 0);
-            if (typeDelta !== 0) return typeDelta;
-            return new Date(b.date) - new Date(a.date);
-          });
+          .sort((a, b) => new Date(b.date) - new Date(a.date));
         return { ...group, items };
       })
       .filter((group) => group.items.length > 0)

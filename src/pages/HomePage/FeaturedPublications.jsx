@@ -7,6 +7,7 @@ import { getMarkdownContent } from "../../lib/markdown";
 
 const papers = publicationsData
   .flatMap((group) => group.items.map((paper) => ({ ...paper, year: group.year })))
+  .filter((paper) => paper.markdown)
   .sort((a, b) => (b.date || b.year).localeCompare(a.date || a.year))
   .slice(0, 4)
   .map((paper) => ({

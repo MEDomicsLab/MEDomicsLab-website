@@ -3,6 +3,115 @@
     "year": "2026",
     "items": [
       {
+        "title": "Medical Image Analysis with Machine Learning (MEDiml): Strategies for Simpler Radiomics",
+        "slug": "medical-image-analysis-with-machine-learning-mediml-strategies-for-simpler-radiomics-2026",
+        "contributors": [
+          "Mahdi Loutfi",
+          "Simon Provost",
+          "Elodie Gillard",
+          "Moustafa Amine Bezzahi",
+          "Alexander Chum",
+          "Ben Coull-Neveu",
+          "Juan Duran",
+          "Mariem Kallel",
+          "Hakima Laribi",
+          "Olivier Lefebvre",
+          "Nicolas Longchamps",
+          "Thanh-Tri Nguyen",
+          "Steven Ravary",
+          "Ouael Nedjem Eddine Sahbi",
+          "Jérémy Dana",
+          "Martin Vallières"
+        ],
+        "journal": "arXiv",
+        "link": "https://arxiv.org/abs/2610.37715",
+        "type": "Preprints",
+        "date": "2026-10-27",
+        "redirect": true
+      },
+      {
+        "title": "DIGOM: Disentangled Interaction Graphs for Outcome prediction in Multimodal healthcare",
+        "slug": "digom-disentangled-interaction-graphs-for-outcome-prediction-in-multimodal-healthcare-2026",
+        "contributors": ["Hakima Laribi", "Olivier Lefebvre", "Dan Poenaru", "Martin Vallières"],
+        "journal": "arXiv",
+        "link": "https://arxiv.org/abs/2610.32451",
+        "type": "Preprints",
+        "date": "2026-10-23",
+        "redirect": true
+      },
+      {
+        "title": "Every Edge Needs a Quote: Building a Quote-Grounded Knowledge Graph of Healthcare Software Adoption with Language-Model Agents",
+        "slug": "every-edge-needs-a-quote-building-a-quote-grounded-knowledge-graph-of-healthcare-software-adoption-with-language-model-agents-2026",
+        "contributors": ["Juan Duran", "Arthur Tobler", "Martin Vallières"],
+        "journal": "arXiv",
+        "link": "https://arxiv.org/abs/2610.32781",
+        "type": "Preprints",
+        "date": "2026-10-23",
+        "redirect": true
+      },
+      {
+        "title": "Reference Manual of MEDiml",
+        "slug": "reference-manual-of-mediml-2026",
+        "contributors": [
+          "Mahdi Loutfi",
+          "Simon Provost",
+          "Elodie Gillard",
+          "Moustafa Amine Bezzahi",
+          "Alexander Chum",
+          "Ben Coull-Neveu",
+          "Juan Duran",
+          "Mariem Kallel",
+          "Hakima Laribi",
+          "Olivier Lefebvre",
+          "Nicolas Longchamps",
+          "Thanh-Tri Nguyen",
+          "Steven Ravary",
+          "Ouael Nedjem Eddine Sahbi",
+          "Jérémy Dana",
+          "Martin Vallières"
+        ],
+        "journal": "arXiv",
+        "link": "https://arxiv.org/abs/2610.29666",
+        "type": "Preprints",
+        "date": "2026-10-21",
+        "redirect": true
+      },
+      {
+        "title": "Diagnosing Low-Confidence Patient Profiles via Localized Harmful Covariate Shift Detection",
+        "slug": "diagnosing-low-confidence-patient-profiles-via-localized-harmful-covariate-shift-detection-2026",
+        "contributors": ["Olivier Lefebvre", "Hakima Laribi", "Dan Poenaru", "Martin Vallières"],
+        "journal": "arXiv",
+        "link": "https://arxiv.org/abs/2610.19178",
+        "type": "Preprints",
+        "date": "2026-10-13",
+        "redirect": true
+      },
+      {
+        "title": "An Agentic Framework for Interrogatable and Interpretable Survival Analysis",
+        "slug": "an-agentic-framework-for-interrogatable-and-interpretable-survival-analysis-2026",
+        "contributors": ["Juan Duran", "Shirin A. Enger", "Martin Vallières"],
+        "journal": "Radiotherapy and Oncology (CARO ASM 2026)",
+        "link": "https://doi.org/10.1016/S0167-8140(26)00891-1",
+        "type": "Conference Papers",
+        "date": "2026-09-01",
+        "redirect": true
+      },
+      {
+        "title": "Predictive performance precision analysis in medicine: identification of low-confidence predictions at patient and profile levels (MED3pa I)",
+        "slug": "predictive-performance-precision-analysis-in-medicine-identification-of-low-confidence-predictions-at-patient-and-profile-levels-med3pa-i-2026",
+        "contributors": [
+          "Olivier Lefebvre",
+          "Ludmila Amriou",
+          "Lyna Hiba Chikouche",
+          "Martin Vallières"
+        ],
+        "journal": "Journal of the American Medical Informatics Association (JAMIA)",
+        "link": "https://doi.org/10.1093/jamia/ocag034",
+        "markdown": "publications/predictive-performance-precision-analysis-in-medicine-identification-of-low-confidence-predictions-at-patient-and-profile-levels-med3pa-i-2026.md",
+        "type": "Journal Papers",
+        "date": "2026-03-31"
+      },
+      {
         "title": "Optimizing renal mass histology prediction with artificial intelligence using handcrafted radiomics",
         "slug": "optimizing-renal-mass-histology-prediction-with-artificial-intelligence-using-handcrafted-radiomics-2026",
         "contributors": [
@@ -19,21 +128,6 @@
         "markdown": "publications/optimizing-renal-mass-histology-prediction-with-artificial-intelligence-using-handcrafted-radiomics-2026.md",
         "type": "Journal Papers",
         "date": "2026-02-25"
-      },
-      {
-        "title": "Predictive performance precision analysis in medicine: identification of low-confidence predictions at patient and profile levels (MED3pa I)",
-        "slug": "predictive-performance-precision-analysis-in-medicine-identification-of-low-confidence-predictions-at-patient-and-profile-levels-med3pa-i-2026",
-        "contributors": [
-          "Olivier Lefebvre",
-          "Ludmila Amriou",
-          "Lyna Hiba Chikouche",
-          "Martin Vallières"
-        ],
-        "journal": "Journal of the American Medical Informatics Association (JAMIA)",
-        "link": "https://doi.org/10.1093/jamia/ocag034",
-        "markdown": "publications/predictive-performance-precision-analysis-in-medicine-identification-of-low-confidence-predictions-at-patient-and-profile-levels-med3pa-i-2026.md",
-        "type": "Journal Papers",
-        "date": "2026-03-31"
       }
     ]
   },
