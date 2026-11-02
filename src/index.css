@@ -2,7 +2,7 @@
 @plugin "@tailwindcss/typography";
 
 :root {
-  font-family: "Homepage Neue Montreal", sans-serif;
+  font-family: "PPnMTL", sans-serif;
   line-height: 1.5;
   font-weight: 400;
   color-scheme: dark;
@@ -20,7 +20,7 @@
   --color-muted-foreground: var(--muted-foreground);
   --color-border: var(--border);
   --color-ring: var(--ring);
-  --font-sans: "Homepage Neue Montreal", sans-serif;
+  --font-sans: "PPnMTL", sans-serif;
 }
 
 @theme {

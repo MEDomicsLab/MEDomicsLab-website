@@ -7,7 +7,7 @@ import { wavyFramePath } from "../../components/WavyFrame/wavyFramePath.js";
 
 const WIDTH = 1500;
 const HEIGHT = 1000;
-const FONT = '"Homepage Neue Montreal"';
+const FONT = '"PPnMTL"';
 const PHOTO = "/images/albums/2024-08-20-mall-msc/team.jpg";
 const loadImage = (src) =>
   new Promise((resolve, reject) => {

@@ -13,7 +13,7 @@ export default function NotFoundPage() {
           <Suspense fallback={null}>
             <TextTrail
               text="404"
-              fontFamily="Homepage Neue Montreal"
+              fontFamily="PPnMTL"
               fontWeight="600"
               textColor={theme.cssVars["--tertiary"]}
               backgroundColor={theme.cssVars["--background"]}

@@ -36,7 +36,7 @@ test("minimal contact page keeps the welcome, email, address and map in the new 
   );
   await expect(page.getByRole("heading", { level: 1 })).toHaveCSS(
     "font-family",
-    '"Homepage Neue Montreal", sans-serif'
+    "PPnMTL, sans-serif"
   );
   await expect(
     page.locator(".contact-page").getByRole("link", { name: email, exact: true })

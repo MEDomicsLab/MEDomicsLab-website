@@ -1,41 +1,41 @@
 @font-face {
-  font-family: "Homepage Neue Montreal";
-  src: url("/fonts/NeueMontreal/PPNeueMontreal-Hairline.otf") format("opentype");
+  font-family: "PPnMTL";
+  src: url("/fonts/PPnMTL/PPnMTL-Hairline.otf") format("opentype");
   font-weight: 100;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
-  font-family: "Homepage Neue Montreal";
-  src: url("/fonts/NeueMontreal/PPNeueMontreal-Regular.otf") format("opentype");
+  font-family: "PPnMTL";
+  src: url("/fonts/PPnMTL/PPnMTL-Regular.otf") format("opentype");
   font-weight: 400;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
-  font-family: "Homepage Neue Montreal";
-  src: url("/fonts/NeueMontreal/PPNeueMontreal-Semibold.otf") format("opentype");
+  font-family: "PPnMTL";
+  src: url("/fonts/PPnMTL/PPnMTL-Semibold.otf") format("opentype");
   font-weight: 600;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
-  font-family: "Homepage Neue Montreal";
-  src: url("/fonts/NeueMontreal/PPNeueMontreal-Extrabold.otf") format("opentype");
+  font-family: "PPnMTL";
+  src: url("/fonts/PPnMTL/PPnMTL-Extrabold.otf") format("opentype");
   font-weight: 800;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
-  font-family: "Homepage Neue Montreal";
-  src: url("/fonts/NeueMontreal/PPNeueMontreal-Light.otf") format("opentype");
+  font-family: "PPnMTL";
+  src: url("/fonts/PPnMTL/PPnMTL-Light.otf") format("opentype");
   font-weight: 300;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
-  font-family: "Homepage Neue Montreal";
-  src: url("/fonts/NeueMontreal/PPNeueMontreal-LightItalic.otf") format("opentype");
+  font-family: "PPnMTL";
+  src: url("/fonts/PPnMTL/PPnMTL-LightItalic.otf") format("opentype");
   font-weight: 300;
   font-style: italic;
   font-display: swap;
@@ -48,7 +48,7 @@
   --neue-accent: var(--blue-paper-color);
   --primary: var(--neue-paper);
   background: var(--neue-ink);
-  font-family: "Homepage Neue Montreal", sans-serif;
+  font-family: "PPnMTL", sans-serif;
 }
 .neue-home-layout > main {
   position: relative;
@@ -58,14 +58,14 @@
 .neue-home-layout .liquid-nav-anchor,
 .neue-home-layout .liquid-action-anchor,
 .neue-home-layout .neue-home-brand {
-  font-family: "Homepage Neue Montreal", sans-serif;
+  font-family: "PPnMTL", sans-serif;
 }
 body:has(.neue-home-layout) .nav-dropdown-portal {
-  font-family: "Homepage Neue Montreal", sans-serif;
+  font-family: "PPnMTL", sans-serif;
 }
 .neue-home,
 .neue-footer {
-  font-family: "Homepage Neue Montreal", sans-serif;
+  font-family: "PPnMTL", sans-serif;
   font-weight: 400;
   line-height: 1.12;
   color: var(--neue-white);
@@ -830,7 +830,7 @@ body:has(.neue-home-layout) .nav-dropdown-portal {
   width: min(29vw, 64svh);
   aspect-ratio: 1.42;
   display: grid;
-  font-family: "Homepage Neue Montreal", sans-serif;
+  font-family: "PPnMTL", sans-serif;
   font-weight: 400;
   line-height: 1.12;
   grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.45fr);

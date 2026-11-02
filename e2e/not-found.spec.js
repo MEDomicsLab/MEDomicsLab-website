@@ -20,7 +20,7 @@ test("404 keeps the full-screen pointer trail with homepage-blue digits", async 
   );
   await expect(page.getByRole("heading", { level: 1 })).toHaveCSS(
     "font-family",
-    '"Homepage Neue Montreal", sans-serif'
+    "PPnMTL, sans-serif"
   );
   await expect(page.getByRole("link", { name: "Return home" })).toHaveCSS(
     "color",
@@ -140,7 +140,7 @@ test("leaving before font loading finishes does not revive a disposed WebGL canv
     const load = document.fonts.load.bind(document.fonts);
     window.finishTrailFont = () => {};
     document.fonts.load = (font, text) => {
-      if (font === '600 64px "Homepage Neue Montreal"') {
+      if (font === '600 64px "PPnMTL"') {
         return new Promise((resolve) => {
           window.finishTrailFont = () => load(font, text).then(resolve);
         });

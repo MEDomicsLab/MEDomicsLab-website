@@ -21,7 +21,7 @@ for (const { title, path, data } of timelines) {
     await page.goto(path);
     await expect(page.getByRole("heading", { name: title, exact: true })).toHaveCSS(
       "font-family",
-      '"Homepage Neue Montreal", sans-serif'
+      "PPnMTL, sans-serif"
     );
     await expect(page.locator(".neue-interior-layout")).toHaveCSS(
       "background-color",
