@@ -78,7 +78,6 @@ export default function FeaturedPublications() {
               id={`paper-content-${index}`}
               role="region"
               aria-labelledby={`paper-tab-${index}`}
-              hidden={active !== index}
             >
               <div className="neue-publication-venue">
                 <p title={paper.journal}>{paper.venue}</p>

@@ -963,14 +963,15 @@ body:has(.neue-home-layout) .nav-dropdown-portal {
   display: flex;
   flex: 1;
   min-width: 0;
+  container-type: inline-size;
 }
 .neue-publication-panel {
   display: flex;
   position: relative;
-  flex: 0 0 7%;
+  flex: 0 1 7%;
   min-width: 75px;
   overflow: hidden;
-  transition: flex-basis 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+  transition: flex-basis 0.75s cubic-bezier(0.65, 0, 0.15, 1);
 }
 .neue-publication-panel.is-open {
   flex: 1 1 79%;
@@ -1013,16 +1014,22 @@ body:has(.neue-home-layout) .nav-dropdown-portal {
   line-height: 0.9;
 }
 .neue-publication-content {
-  flex: 1;
+  flex: none;
+  width: calc(100cqw - 3 * max(7cqw, 75px) - 75px);
   min-width: 0;
   padding: 90px 26px 24px;
   display: flex;
   flex-direction: column;
   gap: 24px;
-  animation: neue-panel-in 0.6s ease both;
+  transition:
+    opacity 0.75s cubic-bezier(0.65, 0, 0.15, 1),
+    transform 0.75s cubic-bezier(0.65, 0, 0.15, 1),
+    visibility 0.75s;
 }
-.neue-publication-content[hidden] {
-  display: none;
+.neue-publication-panel:not(.is-open) .neue-publication-content {
+  visibility: hidden;
+  opacity: 0;
+  transform: translateX(80px);
 }
 .neue-publication-venue {
   display: flex;
@@ -1394,6 +1401,7 @@ body:has(.neue-home-layout) .nav-dropdown-portal {
     min-width: 100px;
   }
   .neue-publication-content {
+    width: calc(100cqw - 3 * max(7cqw, 100px) - 100px);
     padding: 90px 30px 30px;
   }
 }
@@ -1457,6 +1465,7 @@ body:has(.neue-home-layout) .nav-dropdown-portal {
     min-width: 56px;
   }
   .neue-publication-content {
+    width: calc(100cqw - 3 * max(7cqw, 56px) - 56px);
     padding: 90px 18px 24px;
     gap: 18px;
   }
@@ -1693,9 +1702,14 @@ body:has(.neue-home-layout) .nav-dropdown-portal {
     font-size: 44px;
   }
   .neue-publication-content {
+    width: auto;
     padding: 12px 20px 30px;
     min-height: 540px;
     gap: 28px;
+    animation: neue-panel-in 0.6s ease both;
+  }
+  .neue-publication-panel:not(.is-open) .neue-publication-content {
+    display: none;
   }
   .neue-publication-venue {
     font-size: 25px;
