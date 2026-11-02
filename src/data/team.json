@@ -550,6 +550,18 @@
         "socials": {
           "github": "https://github.com/BenCoullNeveu"
         }
+      },
+      {
+        "name": "Thanh-Tri Nguyen",
+        "position": "Undergraduate in Bioengineering",
+        "slug": "thanhtri-nguyen",
+        "image": "/images/team/thanhtri-nguyen/avatar.jpg",
+        "bio": "Thanh-Tri Nguyen is a Bioengineering undergraduate at McGill University and a student researcher in the Medical Physics Unit at the McGill University Health Centre, supervised by Prof. Martin Vallières. His current focus is integrating MED3pa, a Python package for confidence-aware evaluation of predictive models, into MEDomicsLab, a no-code medical AI platform built on Electron, React/TypeScript, Go and Python. His work spans the full stack, from the user interface for exploring model confidence and uncertainty to the backend that runs the experiments. He is broadly interested in software development, data science, protein development, medical device engineering and making trustworthy medical AI accessible to clinicians and researchers.",
+        "expertise": ["Medical AI", "Confidence-aware model evaluation", "Machine learning"],
+        "email": "thanh-tri.nguyen@mail.mcgill.ca",
+        "socials": {
+          "linkedin": "www.linkedin.com/in/thanh-tri-nguyen-18b022281"
+        }
       }
     ]
   },
