@@ -173,8 +173,9 @@ test("project focus reveals statistics and publications expose four readable, li
     await tabs.nth(i).focus();
     await tabs.nth(i).press("Enter");
     await expect(tabs.nth(i)).toHaveAttribute("aria-expanded", "true");
-    const panel = page.locator(".neue-publication-content:visible");
-    await expect(panel).toHaveCount(1);
+    const panel = page.locator(`#paper-content-${i}`);
+    await expect(panel).toBeVisible();
+    await expect(page.locator(".neue-publication-content:visible")).toHaveCount(1);
     await expect(panel.locator(".neue-publication-abstract")).not.toContainText("Loading abstract");
     expect(
       (await panel.locator(".neue-publication-abstract").textContent()).length

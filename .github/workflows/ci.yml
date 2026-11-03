@@ -16,7 +16,7 @@ env:
 jobs:
   install:
     name: Install + cache
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -27,7 +27,7 @@ jobs:
 
   lint:
     name: Lint & static checks
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     needs: install
     steps:
       - uses: actions/checkout@v4
@@ -48,7 +48,7 @@ jobs:
 
   build:
     name: Build (production)
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     needs: install
     steps:
       - uses: actions/checkout@v4
@@ -86,7 +86,8 @@ jobs:
 
   e2e:
     name: Playwright smoke
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
+    container: mcr.microsoft.com/playwright:v1.59.1-noble
     needs: build
     steps:
       - uses: actions/checkout@v4
@@ -99,8 +100,10 @@ jobs:
         with:
           name: dist
           path: dist
-      - name: Install Playwright browsers
-        run: npx playwright install --with-deps chromium
+      - name: Check the Playwright image matches @playwright/test
+        run: |
+          installed=$(node -p 'require("@playwright/test/package.json").version')
+          test "$installed" = "1.59.1" || { echo "::error::@playwright/test is $installed; update the container image tag in ci.yml"; exit 1; }
       - name: Run smoke tests
         run: npm run test:e2e
       - if: failure()
@@ -112,7 +115,8 @@ jobs:
 
   a11y:
     name: Accessibility (axe)
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
+    container: mcr.microsoft.com/playwright:v1.59.1-noble
     needs: build
     steps:
       - uses: actions/checkout@v4
@@ -125,7 +129,10 @@ jobs:
         with:
           name: dist
           path: dist
-      - run: npx playwright install --with-deps chromium
+      - name: Check the Playwright image matches @playwright/test
+        run: |
+          installed=$(node -p 'require("@playwright/test/package.json").version')
+          test "$installed" = "1.59.1" || { echo "::error::@playwright/test is $installed; update the container image tag in ci.yml"; exit 1; }
       - run: npm run test:a11y
       - if: failure()
         uses: actions/upload-artifact@v7
@@ -136,7 +143,7 @@ jobs:
 
   lighthouse:
     name: Lighthouse CI
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     needs: build
     steps:
       - uses: actions/checkout@v4
@@ -155,7 +162,7 @@ jobs:
 
   actionlint:
     name: Lint workflows
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v4
       - uses: raven-actions/actionlint@v2
