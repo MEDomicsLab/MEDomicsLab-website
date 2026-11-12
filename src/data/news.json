@@ -32,6 +32,23 @@
         ]
       },
       {
+        "month": "August",
+        "items": [
+          {
+            "title": "Poster presentations at the RI-MUHC 2026 Summer Student Research Day",
+            "slug": "2026-08-13-ri-muhc-summer-student-research-day",
+            "category": "Publications",
+            "event": {
+              "date": "2026-08-13",
+              "kind": "Poster presentation",
+              "venue": "Research Institute of the McGill University Health Centre (RI-MUHC) - Montreal General Hospital, Montréal"
+            },
+            "contributors": ["Steven Ravary", "Thanh-Tri Nguyen"],
+            "markdown": "community/news/2026-08-13-ri-muhc-summer-student-research-day.md"
+          }
+        ]
+      },
+      {
         "month": "March",
         "items": [
           {
