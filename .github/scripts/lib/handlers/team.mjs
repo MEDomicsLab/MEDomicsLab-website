@@ -3,6 +3,7 @@ import path from "node:path";
 import sharp from "sharp";
 
 import { slugify } from "../slug.mjs";
+import { GITHUB_ATTACHMENT_RE, resolveSignedAttachmentUrl } from "../attachments.mjs";
 import { ensureDir, readJson, writeJson, insertTeamMember } from "../data-store.mjs";
 import { validateAgainst } from "../validate.mjs";
 
@@ -107,46 +108,6 @@ function buildSocials(fields) {
     if (value) socials[key] = value;
   }
   return socials;
-}
-
-const GITHUB_ATTACHMENT_RE =
-  /^https?:\/\/(?:github\.com\/user-attachments\/|user-images\.githubusercontent\.com\/|private-user-images\.githubusercontent\.com\/)/i;
-
-async function resolveSignedAttachmentUrl(rawUrl) {
-  const token = process.env.GITHUB_TOKEN;
-  if (!token) {
-    throw new Error(
-      "GitHub user-attachment URLs require GITHUB_TOKEN to be exposed to the workflow step."
-    );
-  }
-  const repo = process.env.GITHUB_REPOSITORY || "";
-  const apiBase = process.env.GITHUB_API_URL || "https://api.github.com";
-  const res = await fetch(`${apiBase}/markdown`, {
-    method: "POST",
-    headers: {
-      authorization: `Bearer ${token}`,
-      accept: "application/vnd.github+json",
-      "x-github-api-version": "2022-11-28",
-      "content-type": "application/json",
-      "user-agent": "medomicslab-issue-to-pr",
-    },
-    body: JSON.stringify({
-      text: `![portrait](${rawUrl})`,
-      mode: repo ? "gfm" : "markdown",
-      context: repo || undefined,
-    }),
-  });
-  if (!res.ok) {
-    throw new Error(
-      `Could not resolve user-attachment URL via Markdown API (${res.status} ${res.statusText}).`
-    );
-  }
-  const html = await res.text();
-  const match = /<img[^>]+src=["']([^"']+)["']/i.exec(html);
-  if (!match) {
-    throw new Error("Markdown API did not return a signed URL for the portrait.");
-  }
-  return match[1];
 }
 
 async function loadPhotoBuffer(source, { fixtureRoot } = {}) {

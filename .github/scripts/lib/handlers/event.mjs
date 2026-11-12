@@ -10,6 +10,7 @@ import {
   monthName,
 } from "../data-store.mjs";
 import { validateAgainst } from "../validate.mjs";
+import { mirrorAttachments } from "../attachments.mjs";
 
 const FIELD = {
   title: "Event title",
@@ -141,12 +142,14 @@ export const event = {
     });
     const result = validateAgainst("events.schema.json", next);
     if (!result.ok) return { ok: false, errors: result.errors };
+    const attachments = await mirrorAttachments(root, plan.markdownBody, { slug: plan.slug });
+    if (!attachments.ok) return attachments;
     await writeJson(dataFile, next);
     const mdPath = path.join(root, "src/content", plan.markdownRel);
-    await writeMarkdown(mdPath, plan.markdownBody);
+    await writeMarkdown(mdPath, attachments.text);
     return {
       ok: true,
-      paths: [dataFile, mdPath],
+      paths: [dataFile, mdPath, ...attachments.paths],
       branch: `content/event-${plan.slug}`,
       commit: `feat(events): add ${plan.entry.title}`,
       prTitle: `feat(events): add ${plan.entry.title}`,
@@ -155,6 +158,7 @@ export const event = {
         `**Slug:** \`${plan.slug}\``,
         `**Category:** ${plan.entry.category}`,
         `**Contributors:** ${plan.entry.contributors.join(", ") || "(none)"}`,
+        ...(attachments.summary.length ? ["", "### Attachments", "", ...attachments.summary] : []),
         ...(plan.related ? ["", `### ${FIELD.related}`, "", plan.related] : []),
       ].join("\n"),
     };
