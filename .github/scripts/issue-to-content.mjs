@@ -128,7 +128,7 @@ async function main() {
   if (!result.ok) {
     logErrors(handler, result.errors);
     setOutput("status", "invalid");
-    setOutput("errors", result.errors.map((e) => `- schema: ${e}`).join("\n"));
+    setOutput("errors", result.errors.map((e) => `- ${e}`).join("\n"));
     setOutput("kind", handler.label);
     process.exit(2);
   }

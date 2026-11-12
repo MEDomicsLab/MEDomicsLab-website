@@ -121,7 +121,7 @@ You'll need:
 
 The automation adds the entry to [`src/data/news.json`](./src/data/news.json) and writes the body to `src/content/community/news/<slug>.md`.
 
-Important to recall: drag and drop images straight into the issue form. They become GitHub user attachments; the maintainer can move them under `public/images/` during review.
+Important to recall: drag and drop images (PNG, JPG, GIF, WebP) and PDFs straight into the content field, at most 10 MB each. The automation copies them into the PR, images under `public/images/albums/<slug>/` and PDFs under `public/publications/<slug>/`, and rewrites the links to point at those copies. The same applies to events and publications. Files in the "Images / attachments for maintainer review" field are not copied.
 
 </details>
 

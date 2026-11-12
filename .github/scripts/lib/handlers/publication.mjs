@@ -9,6 +9,7 @@ import {
   insertPublication,
 } from "../data-store.mjs";
 import { validateAgainst } from "../validate.mjs";
+import { mirrorAttachments } from "../attachments.mjs";
 
 const FIELD = {
   title: "Title",
@@ -102,19 +103,33 @@ export const publication = {
   async apply(root, plan) {
     const dataFile = path.join(root, "src/data/publications.json");
     const current = readJson(dataFile);
-    const next = insertPublication(current, plan.year, plan.entry);
-    const result = validateAgainst("publications.schema.json", next);
-    if (!result.ok) return { ok: false, errors: result.errors };
-    await writeJson(dataFile, next);
+    const validation = validateAgainst(
+      "publications.schema.json",
+      insertPublication(current, plan.year, plan.entry)
+    );
+    if (!validation.ok) return { ok: false, errors: validation.errors };
     const team = readJson(path.join(root, "src/data/team.json"));
     const teamSlugs = new Set(
       team.flatMap((cohort) => cohort.members ?? []).map((member) => member.slug)
     );
+    // The rendered Markdown includes the primary link, so a PDF dropped into
+    // that field is mirrored too and the JSON entry follows the local copy.
+    const attachments = await mirrorAttachments(
+      root,
+      renderMarkdown(plan.markdownInput, teamSlugs),
+      { slug: plan.slug }
+    );
+    if (!attachments.ok) return { ok: false, errors: attachments.errors };
+    const entry = {
+      ...plan.entry,
+      link: attachments.urlMap.get(plan.entry.link) ?? plan.entry.link,
+    };
+    await writeJson(dataFile, insertPublication(current, plan.year, entry));
     const mdPath = path.join(root, "src/content", plan.markdownRel);
-    await writeMarkdown(mdPath, renderMarkdown(plan.markdownInput, teamSlugs));
+    await writeMarkdown(mdPath, attachments.text);
     return {
       ok: true,
-      paths: [dataFile, mdPath],
+      paths: [dataFile, mdPath, ...attachments.paths],
       branch: `content/publication-${plan.slug}`,
       commit: `feat(publications): add ${plan.entry.title}`,
       prTitle: `feat(publications): add ${plan.entry.title}`,
@@ -123,7 +138,8 @@ export const publication = {
         `**Type:** ${plan.entry.type}`,
         `**Slug:** \`${plan.slug}\``,
         `**Contributors:** ${plan.entry.contributors.join(", ")}`,
-        `**Link:** ${plan.entry.link}`,
+        `**Link:** ${entry.link}`,
+        ...(attachments.summary.length ? ["", "### Attachments", "", ...attachments.summary] : []),
       ].join("\n"),
     };
   },
