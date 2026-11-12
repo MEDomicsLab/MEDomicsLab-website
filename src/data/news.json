@@ -3,6 +3,18 @@
     "year": "2026",
     "months": [
       {
+        "month": "November",
+        "items": [
+          {
+            "title": "Dummy Try w/ Attachment",
+            "slug": "2026-11-12-dummy-try-attachment-final",
+            "category": "Publications",
+            "contributors": ["Simon Provost"],
+            "markdown": "community/news/2026-11-12-dummy-try-attachment-final.md"
+          }
+        ]
+      },
+      {
         "month": "September",
         "items": [
           {
