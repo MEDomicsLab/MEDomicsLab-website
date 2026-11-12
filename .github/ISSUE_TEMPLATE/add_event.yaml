@@ -128,7 +128,8 @@ body:
       label: "Full description (Markdown)"
       description: |
         Saved to `src/content/community/events/<slug>.md`. Supports inline HTML and standard Markdown images. Put each photo in its own paragraph for full-width images with rounded corners.
-        Markdown image links such as `![description](https://example.com/image.jpg)` remain externally hosted: use stable, public URLs only. They are not copied or optimized by this form.
+        Drag images (PNG, JPG, GIF, WebP) or PDFs straight into this field, at most 10 MB each. The automation copies them into the repository and links the post to those copies.
+        Image links to other sites, such as `![description](https://example.com/image.jpg)`, remain externally hosted: use stable, public URLs only.
       placeholder: "Abstract, agenda, speaker bios, etc. Available date, type, venue, and contributors appear automatically in the sidebar."
     validations:
       required: true
@@ -144,7 +145,7 @@ body:
     attributes:
       label: "Images / attachments for maintainer review"
       description: |
-        Attach files a maintainer should review. They are not automatically copied to the repository or published; a maintainer will add approved assets to the PR. Include descriptive alt text and the intended photo order.
+        Attach files a maintainer should review but that should not appear on the website as they are. Files here are not copied or published; put anything readers should see in the content field instead. Include descriptive alt text and the intended photo order.
     validations:
       required: false
   - type: textarea
