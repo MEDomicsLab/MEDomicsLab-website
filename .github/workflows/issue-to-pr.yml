@@ -29,6 +29,18 @@ jobs:
       contains(github.event.issue.labels.*.name, 'team')
     runs-on: ubuntu-24.04
     steps:
+      # Must stay first: a comment is what makes GitHub publish PDFs attached next to an image.
+      - name: Acknowledge submission
+        uses: actions/github-script@v7
+        with:
+          script: |
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              body: ':hourglass_flowing_sand: Processing your submission… I will comment here again when the draft PR is ready or if something needs fixing.',
+            });
+
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
@@ -54,6 +66,7 @@ jobs:
           ISSUE_NUMBER: ${{ github.event.issue.number }}
           ISSUE_AUTHOR: ${{ github.event.issue.user.login }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          ATTACHMENTS_TOKEN: ${{ secrets.ATTACHMENTS_TOKEN }}
         continue-on-error: true
         run: node .github/scripts/issue-to-content.mjs
 
@@ -64,11 +77,14 @@ jobs:
           PLAN_STATUS: ${{ steps.plan.outputs.status }}
           PLAN_ERRORS: ${{ steps.plan.outputs.errors }}
           PLAN_KIND: ${{ steps.plan.outputs.kind }}
+          PLAN_INVESTIGATE: ${{ steps.plan.outputs.investigate }}
+          ATTACHMENT_MAINTAINER: simonprovost
         with:
           script: |
             const status = process.env.PLAN_STATUS;
             const errors = process.env.PLAN_ERRORS;
             const kind = process.env.PLAN_KIND || 'content';
+            const runUrl = `${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`;
             const body = status === 'invalid'
               ? [
                   `:warning: I could not turn this **${kind}** submission into a PR yet:`,
@@ -76,11 +92,17 @@ jobs:
                   errors || '- The submission could not be validated.',
                   '',
                   'Edit the issue to fix these and the workflow will rerun automatically.',
+                  ...(process.env.PLAN_INVESTIGATE === 'true'
+                    ? [
+                        '',
+                        `@${process.env.ATTACHMENT_MAINTAINER} an attachment still failed to download after every retry, which suggests a problem on GitHub's side or in the pipeline rather than in the submission. Could you investigate? Workflow logs: ${runUrl}`,
+                      ]
+                    : []),
                 ].join('\n')
               : [
                   `:warning: I could not process this **${kind}** submission because the automation encountered an unexpected error.`,
                   '',
-                  `View the workflow logs: ${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`,
+                  `View the workflow logs: ${runUrl}`,
                 ].join('\n');
             await github.rest.issues.createComment({
               owner: context.repo.owner,

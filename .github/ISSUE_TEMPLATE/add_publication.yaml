@@ -104,7 +104,7 @@ body:
     id: abstract
     attributes:
       label: "Abstract / summary (Markdown)"
-      description: Will be saved to `src/content/publications/<slug>.md` and referenced from `publications.json` via the `markdown` field. Follow the structure in [`src/content/_templates/publication.md`](https://github.com/MEDomicsLab/MEDomicsLab-website/blob/main/src/content/_templates/publication.md). Markdown image links remain externally hosted, so use stable, public URLs only; they are not copied or optimized by this form.
+      description: Will be saved to `src/content/publications/<slug>.md` and referenced from `publications.json` via the `markdown` field. Follow the structure in [`src/content/_templates/publication.md`](https://github.com/MEDomicsLab/MEDomicsLab-website/blob/main/src/content/_templates/publication.md). Drag images (PNG, JPG, GIF, WebP) or PDFs straight into this field, at most 10 MB each. The automation copies them into the repository and links the post to those copies. Image links to other sites remain externally hosted, so use stable, public URLs only.
       placeholder: "Paste the abstract or a short summary."
     validations:
       required: false
@@ -120,7 +120,7 @@ body:
     id: assets
     attributes:
       label: "Images / attachments for maintainer review"
-      description: Attach files a maintainer should review. They are not automatically copied to the repository or published; a maintainer will add approved assets to the PR.
+      description: Attach files a maintainer should review but that should not appear on the website as they are. Files here are not copied or published; put anything readers should see in the content field instead.
     validations:
       required: false
   - type: textarea
