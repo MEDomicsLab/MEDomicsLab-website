@@ -13,6 +13,11 @@ const REDUCED_MOTION_QUERY = "(prefers-reduced-motion: reduce)";
 
 const shortestTurn = (degrees) => ((((degrees + 180) % 360) + 360) % 360) - 180;
 
+function orbitScale(orbit) {
+  const value = parseFloat(getComputedStyle(orbit).getPropertyValue("--orbit-progress"));
+  return Number.isNaN(value) ? 1 : 0.1 + 0.9 * value;
+}
+
 function slotPose({ stage, orbit, slot, card }, index) {
   const stageBox = stage.getBoundingClientRect();
   const slotBox = slot.getBoundingClientRect();
@@ -21,7 +26,7 @@ function slotPose({ stage, orbit, slot, card }, index) {
     x: slotBox.left + slotBox.width / 2 - stageBox.left,
     y: slotBox.top + slotBox.height / 2 - stageBox.top,
     rotation: shortestTurn((Math.atan2(b, a) * 180) / Math.PI + index * 72),
-    scale: slot.offsetWidth / card.offsetWidth,
+    scale: (slot.offsetWidth / card.offsetWidth) * orbitScale(orbit),
   };
 }
 

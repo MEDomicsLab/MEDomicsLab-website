@@ -682,7 +682,8 @@ body:has(.neue-home-layout) .nav-dropdown-portal {
   aspect-ratio: 4 / 5;
   display: block;
   transform: translate(-50%, -50%) rotate(var(--orbit-angle))
-    translateY(calc(-1 * var(--orbit-radius)));
+    translateY(calc(-1 * var(--orbit-radius) * var(--orbit-progress, 1)))
+    scale(calc(0.1 + 0.9 * var(--orbit-progress, 1)));
 }
 .neue-ecosystem-app img {
   display: block;

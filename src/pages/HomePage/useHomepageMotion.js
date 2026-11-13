@@ -15,6 +15,16 @@ export default function useHomepageMotion(root) {
           stagger: 0.08,
           scrollTrigger: { trigger: ".neue-next-intro", start: "top 85%" },
         });
+        gsap.fromTo(
+          ".neue-ecosystem-orbit",
+          { "--orbit-progress": 0 },
+          {
+            "--orbit-progress": 1,
+            duration: 1.2,
+            ease: "power3.out",
+            scrollTrigger: { trigger: ".neue-ecosystem-stage", start: "center 75%" },
+          }
+        );
         gsap.from(".ecosystem-line-last", {
           yPercent: 112,
           ease: "none",
