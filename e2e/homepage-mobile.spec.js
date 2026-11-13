@@ -79,9 +79,7 @@ test("mobile shares a native 540p player, pauses offscreen, and resumes without 
   await expect(page.locator(".neue-hero-film mux-player")).toHaveCount(1);
 });
 
-test("mobile keeps the film stable during scroll and restores the original WebGL postcard", async ({
-  page,
-}) => {
+test("mobile keeps the film stable during scroll", async ({ page }) => {
   const scripts = [];
   page.on("request", (request) => {
     if (request.resourceType() === "script") scripts.push(request.url());
@@ -93,19 +91,10 @@ test("mobile keeps the film stable during scroll and restores the original WebGL
   await page.evaluate(() => window.scrollTo(0, 160));
   await expect.poll(async () => (await film.boundingBox()).width).toBeCloseTo(original.width, 0);
   await expect.poll(async () => (await film.boundingBox()).height).toBeCloseTo(original.height, 0);
-  const postcard = page.getByRole("button", { name: "Turn postcard to read our mission" });
-  await expect(page.locator(".neue-postcard")).toHaveClass(/is-ready/);
-  await expect(page.locator(".neue-postcard canvas")).toHaveCount(1);
-  await postcard.tap();
-  await expect(page.locator(".neue-postcard")).toHaveAttribute("aria-pressed", "true");
-  await expect(page.locator(".neue-postcard-fallback-back")).toContainText(
-    "We advance precision medicine"
-  );
   await page.locator("#ecosystem").scrollIntoViewIfNeeded();
   const image = page.locator(".neue-ecosystem-app img").first();
   await expect.poll(() => image.evaluate((el) => el.currentSrc)).toMatch(/-(360|720)\.webp$/);
   await expect(page.locator(".neue-reel-reduced")).toBeVisible();
-  expect(scripts.some((url) => /LabPostcard/.test(url))).toBe(true);
   expect(scripts.some((url) => /TextTrail/.test(url))).toBe(false);
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
 });

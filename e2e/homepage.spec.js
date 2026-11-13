@@ -191,17 +191,8 @@ test("project focus reveals statistics and publications expose four readable, li
   }
 });
 
-test("postcard, footer and route changes preserve their interactions", async ({ page }) => {
+test("footer and route changes preserve their interactions", async ({ page }) => {
   await page.goto("/");
-  const postcard = page.getByRole("button", { name: "Turn postcard to read our mission" });
-  await postcard.scrollIntoViewIfNeeded();
-  await expect(postcard).toBeVisible();
-  await postcard.click();
-  await expect(
-    page.getByRole("button", { name: "Turn postcard to the team photograph" })
-  ).toHaveAttribute("aria-pressed", "true");
-  await page.getByRole("button", { name: "Turn the postcard", exact: true }).click();
-  await expect(postcard).toHaveAttribute("aria-pressed", "false");
   const footer = page.locator(".neue-footer");
   await footer.scrollIntoViewIfNeeded();
   await expect(footer.getByRole("link", { name: "Contact us", exact: true })).toHaveAttribute(
