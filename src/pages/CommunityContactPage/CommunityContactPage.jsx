@@ -1,8 +1,16 @@
 import { useState } from "react";
-import { Check, Copy } from "lucide-react";
+import { Check, Copy, Lightbulb, Mail, MessageCircleQuestion } from "lucide-react";
 import layoutData from "../../data/layout.json";
 import PageLink from "../../components/PageLink/PageLink.jsx";
+import { DiscordIcon } from "../../components/Icons/Icons.jsx";
 import "./CommunityContactPage.css";
+
+const CHANNEL_ICONS = {
+  question: MessageCircleQuestion,
+  feedback: Lightbulb,
+  email: Mail,
+  discord: DiscordIcon,
+};
 
 export default function CommunityContactPage() {
   const { contact, social } = layoutData.footer;
@@ -43,6 +51,29 @@ export default function CommunityContactPage() {
 
       <div className="contact-details">
         <div className="contact-info">
+          <div>
+            <h2>Get in touch</h2>
+            <ul className="contact-channels">
+              {contact.channels.map(({ label, href, description, icon }) => {
+                const Icon = CHANNEL_ICONS[icon];
+                const external = !href.startsWith("mailto:");
+                return (
+                  <li key={label}>
+                    <Icon className="contact-channel-icon" aria-hidden="true" />
+                    <PageLink
+                      href={href}
+                      arrowSize="md"
+                      {...(external && { target: "_blank", rel: "noreferrer" })}
+                    >
+                      {label}
+                    </PageLink>
+                    <span>{description}</span>
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
+
           <div>
             <h2>Write to us</h2>
             <a className="contact-email" href={emailLink.href}>

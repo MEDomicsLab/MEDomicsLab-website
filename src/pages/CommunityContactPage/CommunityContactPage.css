@@ -30,6 +30,41 @@
   letter-spacing: 0;
   color: var(--muted-foreground);
 }
+.contact-channels {
+  display: grid;
+  gap: 14px;
+}
+.contact-channels li {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px 14px;
+}
+.contact-channel-icon {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  color: var(--primary);
+}
+.contact-channels a {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 44px;
+  font-size: clamp(19px, 1.6vw, 23px);
+  letter-spacing: -0.02em;
+}
+.contact-channels a:hover {
+  color: var(--primary);
+}
+.contact-channels span {
+  flex-basis: 100%;
+  margin-top: -10px;
+  padding-left: 34px;
+  font-size: 15px;
+  line-height: 1.4;
+  color: var(--muted-foreground);
+}
 .contact-email {
   display: block;
   width: fit-content;

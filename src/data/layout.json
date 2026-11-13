@@ -60,7 +60,33 @@
       "mapLink": {
         "href": "https://maps.app.goo.gl/99cgW7YVyFUdVWz98",
         "label": "Open Maps"
-      }
+      },
+      "channels": [
+        {
+          "label": "Questions",
+          "href": "https://github.com/orgs/MEDomicsLab/discussions/categories/questions",
+          "description": "on our papers, projects, and more",
+          "icon": "question"
+        },
+        {
+          "label": "Feedback",
+          "href": "https://github.com/orgs/MEDomicsLab/discussions/categories/feedback",
+          "description": "on our papers, projects, and more",
+          "icon": "feedback"
+        },
+        {
+          "label": "Email",
+          "href": "mailto:medomics.info@gmail.com",
+          "description": "specific or private requests: Bachelor, Master, PhD, and open positions",
+          "icon": "email"
+        },
+        {
+          "label": "Discord",
+          "href": "https://discord.gg/ZbaGj8E6mP",
+          "description": "chat with us",
+          "icon": "discord"
+        }
+      ]
     },
     "social": {
       "links": [
