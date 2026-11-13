@@ -8,6 +8,7 @@ import useRepoStats from "../../lib/useRepoStats";
 import { ecosystemApps } from "./homepageContent";
 
 const LEAVE_DELAY_MS = 220;
+const SCROLL_SETTLE_MS = 150;
 const SPOTLIGHT_QUERY = "(hover: hover) and (min-width: 768px)";
 const REDUCED_MOTION_QUERY = "(prefers-reduced-motion: reduce)";
 
@@ -45,6 +46,7 @@ export default function Ecosystem() {
   const card = useRef(null);
   const shown = useRef(null);
   const leaveTimer = useRef(null);
+  const scrolling = useRef(false);
   const stats = useRepoStats(
     ecosystemApps.map((app) => app.repo),
     Object.fromEntries(ecosystemApps.map((app) => [app.repo, app.statsSnapshot]))
@@ -88,6 +90,22 @@ export default function Ecosystem() {
   }, [spotlight]);
 
   useEffect(() => () => clearTimeout(leaveTimer.current), []);
+
+  useEffect(() => {
+    let settle;
+    const onScroll = () => {
+      scrolling.current = true;
+      clearTimeout(settle);
+      settle = setTimeout(() => {
+        scrolling.current = false;
+      }, SCROLL_SETTLE_MS);
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      clearTimeout(settle);
+    };
+  }, []);
 
   const stay = () => clearTimeout(leaveTimer.current);
   const leave = (delay = LEAVE_DELAY_MS) => {
@@ -151,7 +169,12 @@ export default function Ecosystem() {
               href={item.website || item.repo}
               target="_blank"
               rel="noreferrer"
-              onMouseEnter={() => enter(index)}
+              onMouseEnter={() => !scrolling.current && enter(index)}
+              onMouseMove={(event) =>
+                (event.movementX || event.movementY) &&
+                !(spotlight.open && spotlight.index === index) &&
+                enter(index)
+              }
               onMouseLeave={() => leave()}
               onFocus={() => enter(index)}
               onBlur={() => leave(0)}
