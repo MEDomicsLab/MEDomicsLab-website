@@ -197,3 +197,8 @@ export const splitEventMarkdown = (raw) => {
     });
   return { links, body: body.replace(/\n{3,}/g, "\n\n").trim() };
 };
+
+const isoDay = (date) => `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())}`;
+
+export const upcomingEvents = (from = isoDay(new Date())) =>
+  calendarEvents.filter((event) => event.date && (event.endDate ?? event.date) >= from);

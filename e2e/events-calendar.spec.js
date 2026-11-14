@@ -195,3 +195,22 @@ test.describe("on a phone", () => {
     );
   });
 });
+
+test("the homepage stacks the upcoming events above its link to the calendar", async ({ page }) => {
+  const now = new Date();
+  const today = [now.getFullYear(), now.getMonth() + 1, now.getDate()]
+    .map((part) => String(part).padStart(2, "0"))
+    .join("-");
+  const upcoming = items
+    .filter((item) => item.date && (item.endDate ?? item.date) >= today)
+    .sort((a, b) => a.date.localeCompare(b.date));
+  await page.goto("/");
+  const stack = page.locator(".neue-upcoming");
+  if (!upcoming.length) {
+    await expect(stack).toHaveCount(0);
+    return;
+  }
+  await expect(stack).toHaveAttribute("href", `/community/events/${upcoming[0].slug}`);
+  await expect(stack.locator(".neue-upcoming-card")).toHaveCount(Math.min(upcoming.length, 3));
+  await expect(stack.locator('[data-depth="0"]')).toContainText(upcoming[0].title);
+});

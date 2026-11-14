@@ -14,7 +14,7 @@ const SPREAD_SPRING = { type: "spring", stiffness: 150, damping: 22, mass: 0.9 }
 
 const lastSpans = new Map();
 
-function PersonAvatar({ person }) {
+export function PersonAvatar({ person }) {
   if (person.member?.image) {
     return (
       <AvatarImage

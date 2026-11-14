@@ -28,35 +28,35 @@
   color: var(--cal-head);
 }
 
-.evcal [data-color="blue"] {
+:is(.evcal, .neue-upcoming) [data-color="blue"] {
   --card-bg: #1b2d47;
   --card-ink: #b4d2fa;
 }
-.evcal [data-color="purple"] {
+:is(.evcal, .neue-upcoming) [data-color="purple"] {
   --card-bg: #2f2447;
   --card-ink: #d9c0fb;
 }
-.evcal [data-color="orange"] {
+:is(.evcal, .neue-upcoming) [data-color="orange"] {
   --card-bg: #43301c;
   --card-ink: #f8c796;
 }
-.evcal [data-color="green"] {
+:is(.evcal, .neue-upcoming) [data-color="green"] {
   --card-bg: #1d3a2b;
   --card-ink: #aee8c0;
 }
-.evcal [data-color="yellow"] {
+:is(.evcal, .neue-upcoming) [data-color="yellow"] {
   --card-bg: #3d391b;
   --card-ink: #f0df8f;
 }
-.evcal [data-color="pink"] {
+:is(.evcal, .neue-upcoming) [data-color="pink"] {
   --card-bg: #43223a;
   --card-ink: #f6b4d8;
 }
-.evcal [data-color="red"] {
+:is(.evcal, .neue-upcoming) [data-color="red"] {
   --card-bg: #44242a;
   --card-ink: #f7b3b3;
 }
-.evcal [data-color="gray"] {
+:is(.evcal, .neue-upcoming) [data-color="gray"] {
   --card-bg: #2a2a2a;
   --card-ink: #dedede;
 }
