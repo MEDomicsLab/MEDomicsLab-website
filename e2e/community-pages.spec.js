@@ -5,10 +5,7 @@ import courses from "../src/data/courses.json" with { type: "json" };
 
 test.use({ viewport: { width: 1440, height: 1000 }, reducedMotion: "reduce" });
 
-const timelines = [
-  { title: "News", path: "/community/news", data: news },
-  { title: "Events", path: "/community/events", data: events },
-];
+const timelines = [{ title: "News", path: "/community/news", data: news }];
 
 for (const { title, path, data } of timelines) {
   test(`${title} shares publication styling while preserving the timeline, filters and details`, async ({

@@ -55,13 +55,13 @@ test("event metadata fits narrow screens and omits dates without an exact day", 
 });
 
 test("news about an event can display date, type, and venue", async ({ page }) => {
-  await page.goto("/community/news/2026-09-29-mila-digital-health");
+  await page.goto("/community/news/kafefak-presentation-first-publication-award-2026");
   const details = page.getByRole("region", { name: "Event details" });
   await expect(details.locator("dt")).toHaveText(["Date", "Type", "Venue"]);
   await expect(details.locator("dd")).toHaveText([
-    "September 29, 2026",
-    "Community of practice",
-    "Mila, Montréal",
+    "April 29, 2026",
+    "Presentation",
+    "Université de Sherbrooke, Faculté des sciences",
   ]);
   await expect(details.getByRole("link")).toHaveCount(0);
   await expect(page.getByRole("link", { name: "Back to News", exact: true })).toBeVisible();
