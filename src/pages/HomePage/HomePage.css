@@ -1167,6 +1167,99 @@ body:has(.neue-home-layout) .nav-dropdown-portal {
 .neue-events-aside .neue-visit {
   width: 100%;
 }
+.neue-events-aside.has-upcoming {
+  gap: 56px;
+}
+.neue-upcoming {
+  position: relative;
+  display: grid;
+  width: 100%;
+  transition: transform 0.15s;
+}
+.neue-upcoming:hover {
+  transform: scale(0.97);
+}
+.neue-upcoming:focus-visible {
+  outline: 2px solid var(--neue-white);
+  outline-offset: 6px;
+  border-radius: 16px;
+}
+.neue-upcoming-card {
+  grid-area: 1 / 1;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-height: 190px;
+  padding: 16px 18px 18px;
+  border-radius: 14px;
+  background: var(--card-bg);
+  color: var(--card-ink);
+  box-shadow: 0 10px 30px rgb(0 0 0 / 35%);
+  transition: rotate 0.2s;
+}
+.neue-upcoming-card[data-depth="0"] {
+  z-index: 3;
+}
+.neue-upcoming-card[data-depth="1"] {
+  z-index: 2;
+  rotate: -3deg;
+}
+.neue-upcoming-card[data-depth="2"] {
+  z-index: 1;
+  rotate: 3deg;
+}
+.neue-upcoming:is(:hover, :focus-visible) .neue-upcoming-card[data-depth="0"] {
+  rotate: -1deg;
+}
+.neue-upcoming:is(:hover, :focus-visible) .neue-upcoming-card[data-depth="1"] {
+  rotate: -5deg;
+}
+.neue-upcoming:is(:hover, :focus-visible) .neue-upcoming-card[data-depth="2"] {
+  rotate: 4deg;
+}
+.neue-upcoming-head {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+.neue-upcoming-head > span {
+  opacity: 0.6;
+}
+.neue-upcoming-title {
+  display: -webkit-box;
+  overflow: hidden;
+  font-size: clamp(18px, 1.5vw, 24px);
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+.neue-upcoming-foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: auto;
+}
+.neue-upcoming-foot .evcal-card-people {
+  position: static;
+}
+.neue-upcoming-more {
+  font-size: 13px;
+  font-weight: 600;
+  opacity: 0.6;
+  white-space: nowrap;
+}
+@media (prefers-reduced-motion: reduce) {
+  .neue-upcoming,
+  .neue-upcoming-card {
+    transition: none;
+  }
+}
 
 .neue-next {
   padding: 100px 0 120px;
@@ -1722,6 +1815,14 @@ body:has(.neue-home-layout) .nav-dropdown-portal {
     width: auto;
     flex: 1;
     font-size: 21px;
+  }
+  .neue-events-aside.has-upcoming {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 36px;
+  }
+  .neue-upcoming-card {
+    min-height: 170px;
   }
   .neue-events-dot {
     width: 60px;
