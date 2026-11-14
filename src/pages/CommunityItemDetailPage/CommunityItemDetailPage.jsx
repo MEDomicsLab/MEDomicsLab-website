@@ -7,12 +7,7 @@ import ResearcherList from "../../components/ResearcherList/ResearcherList.jsx";
 import EventMetadata from "../../components/EventMetadata/EventMetadata.jsx";
 import { getPeopleByNames } from "../../lib/team";
 
-export default function CommunityItemDetailPage({
-  title,
-  data,
-  backPath,
-  showEventMetadata = false,
-}) {
+export default function CommunityItemDetailPage({ title, data, backPath }) {
   const { slug } = useParams();
 
   const item =
@@ -48,11 +43,11 @@ export default function CommunityItemDetailPage({
           </div>
 
           <div className="lg:col-span-4 space-y-6 lg:sticky lg:top-32 h-fit">
-            {(showEventMetadata || item.event || item.date) && (
+            {(item.event || item.date) && (
               <EventMetadata
-                item={showEventMetadata ? item : item.event || item}
-                heading={showEventMetadata || item.event ? "Event details" : "News details"}
-                showType={showEventMetadata || Boolean(item.event)}
+                item={item.event || item}
+                heading={item.event ? "Event details" : "News details"}
+                showType={Boolean(item.event)}
               />
             )}
             <ResearcherList people={getPeopleByNames(item.contributors)} />
