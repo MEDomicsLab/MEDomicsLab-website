@@ -10,6 +10,26 @@
       "source": "/community/courses/mdph-610-instrumentation-and-computation-in-medical-physics",
       "destination": "/community/courses/mdph-610-supervised-machine-learning-in-medicine",
       "permanent": true
+    },
+    {
+      "source": "/community/news/2026-09-29-mila-digital-health",
+      "destination": "/community/events/2026-09-29-mila-digital-health",
+      "permanent": true
+    },
+    {
+      "source": "/community/news/2026-08-13-ri-muhc-summer-student-research-day",
+      "destination": "/community/events/2026-08-13-ri-muhc-summer-student-research-day",
+      "permanent": true
+    },
+    {
+      "source": "/community/news/2022-06-02-rbiq",
+      "destination": "/community/events/2022-06-02-rbiq",
+      "permanent": true
+    },
+    {
+      "source": "/community/events/kafefak-presentation-first-publication-award-2026",
+      "destination": "/community/news/kafefak-presentation-first-publication-award-2026",
+      "permanent": true
     }
   ]
 }

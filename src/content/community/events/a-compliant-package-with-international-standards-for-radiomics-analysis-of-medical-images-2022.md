@@ -19,8 +19,6 @@ correct functioning of the package and the compatibility of the user needs with 
 offered by this technology. It is expected that this tool made for extracting rich and complex
 radiomic features will be used to conduct multicentric studies in precision oncology.
 
-## Poster
-
 ![Poster](/images/albums/cirius-mahdi-2022/cirius-mall.png)
 
 ## Links

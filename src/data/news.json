@@ -6,18 +6,6 @@
         "month": "September",
         "items": [
           {
-            "title": "Participation in Mila's Community of Practice on Digital Health",
-            "slug": "2026-09-29-mila-digital-health",
-            "event": {
-              "date": "2026-09-29",
-              "kind": "Community of practice",
-              "venue": "Mila, Montréal"
-            },
-            "category": "Conferences",
-            "contributors": ["Steven Ravary", "Simon Provost"],
-            "markdown": "community/news/2026-09-29-mila-digital-health.md"
-          },
-          {
             "title": "Mariem Kallel successfully defended her thesis",
             "slug": "2026-09-22-mariem-msc",
             "event": {
@@ -32,19 +20,19 @@
         ]
       },
       {
-        "month": "August",
+        "month": "April",
         "items": [
           {
-            "title": "Poster presentations at the RI-MUHC 2026 Summer Student Research Day",
-            "slug": "2026-08-13-ri-muhc-summer-student-research-day",
-            "category": "Publications",
+            "title": "Kaféfak Presentation - First Publication Award",
+            "slug": "kafefak-presentation-first-publication-award-2026",
             "event": {
-              "date": "2026-08-13",
-              "kind": "Poster presentation",
-              "venue": "Research Institute of the McGill University Health Centre (RI-MUHC) - Montreal General Hospital, Montréal"
+              "date": "2026-04-29",
+              "kind": "Presentation",
+              "venue": "Université de Sherbrooke, Faculté des sciences"
             },
-            "contributors": ["Steven Ravary", "Thanh-Tri Nguyen"],
-            "markdown": "community/news/2026-08-13-ri-muhc-summer-student-research-day.md"
+            "category": "Awards",
+            "contributors": ["Olivier Lefebvre"],
+            "markdown": "community/news/kafefak-presentation-first-publication-award-2026.md"
           }
         ]
       },
@@ -246,13 +234,6 @@
             "category": "Thesis Defenses",
             "contributors": ["Simon Giard-Leroux"],
             "markdown": "community/news/2022-09-09-sgl-msc.md"
-          },
-          {
-            "title": "PhD study permit received for Hakima",
-            "slug": "2022-09-01-hakima-permis",
-            "category": "Milestones",
-            "contributors": ["Hakima Laribi"],
-            "markdown": "community/news/2022-09-01-hakima-permis.md"
           }
         ]
       },
@@ -265,19 +246,6 @@
             "category": "Milestones",
             "contributors": ["Olivier Lefebvre"],
             "markdown": "community/news/2022-08-29-phd-oli.md"
-          }
-        ]
-      },
-      {
-        "month": "June",
-        "items": [
-          {
-            "title": "Participation in the RBIQ 2022 Scientific Day",
-            "slug": "2022-06-02-rbiq",
-            "category": "Conferences",
-            "contributors": ["Mahdi Loutfi"],
-            "markdown": "community/news/2022-06-02-rbiq.md",
-            "date": "2022-06-02"
           }
         ]
       },
