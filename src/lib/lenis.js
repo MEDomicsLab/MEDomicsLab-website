@@ -9,6 +9,8 @@ export const setLenis = (lenis) => {
   instance = lenis;
 };
 
+export const getLenis = () => instance;
+
 export const scrollToSection = (section) => {
   const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   if (instance) {
