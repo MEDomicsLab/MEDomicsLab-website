@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import AvatarImage from "../AvatarImage/AvatarImage";
 import BrandName from "../BrandName/BrandName.jsx";
+import LabAvatar from "../LabAvatar/LabAvatar.jsx";
 
 const cohortLabel = (cohort) => {
   if (cohort === "Lab Principal Investigator") return "PI";
@@ -22,14 +23,18 @@ export default function ResearcherList({ people, title = "Researchers" }) {
         {people.map((person) =>
           person.member ? (
             <li key={person.member.slug} className="flex items-center space-x-3">
-              <div className="w-12 h-12 rounded-full overflow-hidden bg-secondary/40 shrink-0">
-                <AvatarImage
-                  src={person.member.image}
-                  alt={person.member.name}
-                  size={48}
-                  loading="lazy"
-                />
-              </div>
+              {person.member.image ? (
+                <div className="w-12 h-12 rounded-full overflow-hidden bg-secondary/40 shrink-0">
+                  <AvatarImage
+                    src={person.member.image}
+                    alt={person.member.name}
+                    size={48}
+                    loading="lazy"
+                  />
+                </div>
+              ) : (
+                <LabAvatar size={48} />
+              )}
               <div className="min-w-0">
                 <div className="flex items-baseline gap-2">
                   <Link
@@ -49,10 +54,7 @@ export default function ResearcherList({ people, title = "Researchers" }) {
             </li>
           ) : (
             <li key={person.name} className="flex items-center space-x-3">
-              <div
-                aria-hidden="true"
-                className="w-12 h-12 rounded-full bg-secondary/40 border border-border/60 shrink-0"
-              />
+              <LabAvatar size={48} />
               <span className="text-base font-bold">
                 <BrandName>{person.name}</BrandName>
               </span>
