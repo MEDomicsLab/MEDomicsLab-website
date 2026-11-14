@@ -11,6 +11,7 @@ import {
 } from "../data-store.mjs";
 import { validateAgainst } from "../validate.mjs";
 import { mirrorAttachments } from "../attachments.mjs";
+import { writeEventThumbnails } from "../event-thumbnails.mjs";
 
 const FIELD = {
   title: "Event title",
@@ -29,6 +30,19 @@ const FIELD = {
   additional: "Additional context",
 };
 
+export function addLink(markdown, label, href) {
+  const item = `- [${label}](${href})`;
+  const heading = /^##\s+Links\s*$/m.exec(markdown);
+  if (!heading) return `${markdown}\n\n## Links\n\n${item}`;
+  const start = heading.index + heading[0].length;
+  const next = /^#{1,6}\s/m.exec(markdown.slice(start));
+  const end = next ? start + next.index : markdown.length;
+  const section = markdown.slice(start, end).trimEnd();
+  return `${markdown.slice(0, start)}${section}\n${section.trim() ? "" : "\n"}${item}${
+    next ? `\n\n${markdown.slice(end)}` : ""
+  }`;
+}
+
 const CATEGORY_BY_KIND = {
   "Thesis defense (PhD)": "Thesis Defenses",
   "Thesis defense (MSc)": "Thesis Defenses",
@@ -37,9 +51,10 @@ const CATEGORY_BY_KIND = {
   "Invited talk": "Presentations",
   "Conference talk / poster": "Presentations",
   "Lab meeting / seminar": "Seminars",
+  "Forum / community of practice": "Forums",
   "Lab life / social": "Lab Life",
   Outreach: "Outreach",
-  Other: "Other",
+  Other: "Forums",
 };
 
 export const event = {
@@ -113,10 +128,9 @@ export const event = {
     const lines = [];
     if (blurb) lines.push(blurb, "");
     if (fields[FIELD.time]) lines.push(`**Time:** ${fields[FIELD.time].trim()}`, "");
-    if (fields[FIELD.registration]) {
-      lines.push(`**Registration:** ${fields[FIELD.registration].trim()}`, "");
-    }
-    lines.push(fields[FIELD.body].trim());
+    const registration = (fields[FIELD.registration] || "").trim();
+    const body = fields[FIELD.body].trim();
+    lines.push(registration ? addLink(body, "Registration", registration) : body);
     if (fields[FIELD.additional]) {
       lines.push("", "<!-- Additional context", fields[FIELD.additional].trim(), "-->");
     }
@@ -144,12 +158,13 @@ export const event = {
     if (!result.ok) return { ok: false, errors: result.errors };
     const attachments = await mirrorAttachments(root, plan.markdownBody, { slug: plan.slug });
     if (!attachments.ok) return attachments;
+    const thumbnails = await writeEventThumbnails(root, attachments.text);
     await writeJson(dataFile, next);
     const mdPath = path.join(root, "src/content", plan.markdownRel);
     await writeMarkdown(mdPath, attachments.text);
     return {
       ok: true,
-      paths: [dataFile, mdPath, ...attachments.paths],
+      paths: [dataFile, mdPath, ...attachments.paths, ...thumbnails],
       branch: `content/event-${plan.slug}`,
       commit: `feat(events): add ${plan.entry.title}`,
       prTitle: `feat(events): add ${plan.entry.title}`,

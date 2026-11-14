@@ -1,3 +1,4 @@
+import sharp from "sharp";
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import fs from "node:fs";
@@ -5,13 +6,14 @@ import os from "node:os";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import prettier from "prettier";
+import yaml from "js-yaml";
 
 import { parseIssueForm, splitList, parseChecklist } from "../lib/issue-form-parser.mjs";
 import { getIssueFormFields } from "../lib/issue-form-template.mjs";
 import { slugify } from "../lib/slug.mjs";
 import { publication } from "../lib/handlers/publication.mjs";
 import { news } from "../lib/handlers/news.mjs";
-import { event } from "../lib/handlers/event.mjs";
+import { addLink, event } from "../lib/handlers/event.mjs";
 import { team } from "../lib/handlers/team.mjs";
 import { validateAgainst } from "../lib/validate.mjs";
 import { writeJson, insertCommunityItem, communityOrderProblems } from "../lib/data-store.mjs";
@@ -204,6 +206,29 @@ test("news handler infers year/month from publish date", () => {
   assert.equal(plan.entry.category, "Publications");
 });
 
+test("every event kind in the issue form maps to a calendar event type", () => {
+  const form = yaml.load(
+    fs.readFileSync(path.join(repoRoot, ".github/ISSUE_TEMPLATE/add_event.yaml"), "utf8")
+  );
+  const kinds = form.body.find((field) => field.id === "kind").attributes.options;
+  const schema = JSON.parse(
+    fs.readFileSync(path.join(repoRoot, "src/data/_schemas/events.schema.json"), "utf8")
+  );
+  const types =
+    schema.items.properties.months.items.properties.items.items.properties.category.enum;
+  const reached = new Set();
+  for (const kind of kinds) {
+    const plan = event.buildPlan({
+      ...parseFixture("event-valid.md"),
+      "Event kind": kind,
+    });
+    assert.equal(plan.ok, true, kind);
+    assert.ok(types.includes(plan.entry.category), `${kind} → ${plan.entry.category}`);
+    reached.add(plan.entry.category);
+  }
+  assert.deepEqual([...reached].sort(), [...types].sort());
+});
+
 test("event handler refuses a kind it has no filter category for", () => {
   const plan = event.buildPlan({
     "Event title": "Example event",
@@ -246,8 +271,65 @@ test("event handler preserves multi-day logistics in sidebar data", () => {
   assert.equal(plan.ok, true);
   assert.equal(plan.entry.endDate, "2026-05-03");
   assert.equal(plan.entry.registration, undefined);
-  assert.match(plan.markdownBody, /https:\/\/example.com\/register/);
+  assert.match(
+    plan.markdownBody,
+    /## Links\n\n- \[Registration\]\(https:\/\/example.com\/register\)$/
+  );
   assert.doesNotMatch(plan.markdownBody, /2026-05-03/);
+});
+
+test("the registration link joins the event's Links list, wherever it sits", () => {
+  assert.equal(
+    addLink(
+      "Intro.\n\n## Links\n\n- [Teams](https://t.example)",
+      "Registration",
+      "https://r.example"
+    ),
+    "Intro.\n\n## Links\n\n- [Teams](https://t.example)\n- [Registration](https://r.example)"
+  );
+  assert.equal(
+    addLink(
+      "## Links\n\n- [Teams](https://t.example)\n\n## Agenda\n\nTalks.",
+      "Registration",
+      "https://r.example"
+    ),
+    "## Links\n\n- [Teams](https://t.example)\n- [Registration](https://r.example)\n\n## Agenda\n\nTalks."
+  );
+  assert.equal(
+    addLink("Intro.", "Registration", "https://r.example"),
+    "Intro.\n\n## Links\n\n- [Registration](https://r.example)"
+  );
+});
+
+test("event apply() makes calendar previews of the event's pictures", async () => {
+  const sandbox = fs.mkdtempSync(path.join(os.tmpdir(), "issue-to-pr-event-media-"));
+  const schemaDir = path.join(sandbox, "src/data/_schemas");
+  fs.mkdirSync(schemaDir, { recursive: true });
+  fs.copyFileSync(
+    path.join(repoRoot, "src/data/_schemas/events.schema.json"),
+    path.join(schemaDir, "events.schema.json")
+  );
+  fs.copyFileSync(
+    path.join(repoRoot, "src/data/events.json"),
+    path.join(sandbox, "src/data/events.json")
+  );
+  const album = path.join(sandbox, "public/images/albums/test-album");
+  fs.mkdirSync(album, { recursive: true });
+  await sharp({ create: { width: 1600, height: 900, channels: 3, background: "#3c5280" } })
+    .png()
+    .toFile(path.join(album, "photo.png"));
+
+  const plan = event.buildPlan({
+    ...parseFixture("event-valid.md"),
+    "Full description (Markdown)": "![Photo](/images/albums/test-album/photo.png)\n\nBody.",
+  });
+  const result = await event.apply(sandbox, plan);
+  assert.equal(result.ok, true, JSON.stringify(result, null, 2));
+  const preview = path.join(album, "photo-640.webp");
+  assert.ok(result.paths.includes(preview), "expected the preview among the PR's files");
+  const { width, format } = await sharp(preview).metadata();
+  assert.equal(width, 640);
+  assert.equal(format, "webp");
 });
 
 test("event apply() generates a conventional PR title", async () => {
