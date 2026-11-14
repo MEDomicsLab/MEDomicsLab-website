@@ -334,9 +334,9 @@
 
 .evcal-dock {
   position: fixed;
-  bottom: 15px;
+  bottom: calc(15px + env(safe-area-inset-bottom));
   left: 50%;
-  z-index: 60;
+  z-index: 47;
   width: calc(100% - 20px);
   max-width: 480px;
   height: 40px;
@@ -902,36 +902,57 @@ html.evm-open {
 }
 @media (max-width: 767px) {
   .evcal {
-    --evcal-head-top: 12px;
-    height: calc(100svh - 7rem);
+    --evcal-head-top: 100px;
+  }
+  .evcal-date {
+    padding-bottom: 10px;
+  }
+  .evcal-events {
+    padding-bottom: calc(66px + env(safe-area-inset-bottom));
   }
   .evm {
     --evm-y: 12px;
     --evm-x: 8px;
   }
   .evm-panel {
-    display: block;
+    display: flex;
+    flex-direction: column;
+    padding: 0 10px 10px;
     overflow-y: auto;
     overscroll-behavior: contain;
   }
-  .evm-side,
   .evm-main {
+    display: contents;
+  }
+  .evm-panel > *,
+  .evm-main > * {
+    flex-shrink: 0;
+  }
+  .evm-actions {
+    position: sticky;
+    top: 0;
+    order: 0;
+    justify-content: flex-end;
+    margin: 0 -10px;
+    padding: 10px 10px 8px;
+    border-radius: 24px 24px 0 0;
+    background: var(--evm-surface);
+  }
+  .evm-title-line {
+    order: 1;
+    margin: 4px 6px 24px;
+  }
+  .evm-side {
+    order: 2;
     overflow: visible;
   }
   .evm-side-card {
     min-height: 0;
   }
-  .evm-main {
-    padding: 32px 16px 40px;
-  }
-  .evm-title-line {
-    margin-right: 0;
-  }
-  .evm-actions {
-    position: sticky;
-    top: 0;
-    justify-content: flex-end;
-    padding: 0 0 8px;
+  .neue-interior-layout .evm-prose.prose,
+  .evm-note {
+    order: 3;
+    margin: 28px 6px 24px;
   }
 }
 

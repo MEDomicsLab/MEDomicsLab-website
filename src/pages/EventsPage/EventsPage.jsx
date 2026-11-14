@@ -276,8 +276,8 @@ function EventsCalendar({ activeSlug }) {
     let frame = 0;
     const measure = () => {
       frame = 0;
-      const section = sectionRef.current;
-      if (section) setAway(section.getBoundingClientRect().bottom < window.innerHeight - 80);
+      const footer = sectionRef.current?.closest("main")?.nextElementSibling;
+      setAway(Boolean(footer) && footer.getBoundingClientRect().top < window.innerHeight - 80);
     };
     const schedule = () => {
       if (!frame) frame = requestAnimationFrame(measure);

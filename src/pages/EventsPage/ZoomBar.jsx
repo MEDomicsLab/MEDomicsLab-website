@@ -3,6 +3,7 @@ import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import { ZOOM_LEVELS } from "./eventsCalendar";
 
 const SPRING = { type: "spring", stiffness: 200, damping: 16 };
+const MIN_THUMB = 84;
 
 const MinusIcon = () => (
   <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" aria-hidden="true">
@@ -40,9 +41,12 @@ export default function ZoomBar({ scrollerRef, scrollTo, zoom, onZoom, layoutKey
     if (!scroller || !track) return undefined;
     const measure = () => {
       const max = Math.max(0, scroller.scrollWidth - scroller.clientWidth);
-      const ratio = scroller.scrollWidth
+      const visible = scroller.scrollWidth
         ? Math.min(1, scroller.clientWidth / scroller.scrollWidth)
         : 1;
+      const ratio = track.clientWidth
+        ? Math.min(1, Math.max(visible, MIN_THUMB / track.clientWidth))
+        : visible;
       const free = track.clientWidth * (1 - ratio);
       const progress = max > 0 ? scroller.scrollLeft / max : 0;
       metrics.current = { ratio, max, free };

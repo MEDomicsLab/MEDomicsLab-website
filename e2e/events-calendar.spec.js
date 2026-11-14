@@ -169,3 +169,29 @@ test("a shared event link opens its dialog, and the arrows step through events",
   await expect(page).toHaveURL("/community/events");
   await expect(card(page, previous.slug)).toBeInViewport();
 });
+
+test.describe("on a phone", () => {
+  test.use({ viewport: { width: 375, height: 812 }, hasTouch: true });
+
+  test("the calendar sits below the navbar and keeps its zoom and type filter", async ({
+    page,
+  }) => {
+    await page.goto("/community/events");
+    const navbar = await page.locator(".mobile-nav-bar").boundingBox();
+    const heading = await page.locator(".evcal-date-inner").first().boundingBox();
+    expect(heading.y).toBeGreaterThanOrEqual(navbar.y + navbar.height);
+    await expect(page.locator(".evcal-dock")).not.toHaveAttribute("data-away");
+    const handle = await page.locator(".evcal-bar-handle").boundingBox();
+    expect(handle.width).toBeGreaterThanOrEqual(80);
+    await page.getByRole("button", { name: "Zoom out to months" }).click();
+    await page.getByRole("button", { name: "Zoom out to years" }).click();
+    await expect(page.locator("[data-column]")).toHaveCount(count(items.map((item) => item.year)));
+    await page.getByRole("button", { name: "Filter events by type" }).click();
+    const menu = page.getByRole("group", { name: "Event types" });
+    await expect(menu).toBeInViewport({ ratio: 1 });
+    await menu.getByRole("button", { name: "Lab Life" }).click();
+    await expect(page.locator(".evcal-card")).toHaveCount(
+      items.filter((item) => item.category === "Lab Life").length
+    );
+  });
+});
