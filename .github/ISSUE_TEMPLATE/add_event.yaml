@@ -22,7 +22,7 @@ body:
 
         <em>Feeds <code>src/data/events.json</code> and <code>src/content/community/events/&lt;slug&gt;.md</code>.</em>
 
-        Events are grouped by year → month. Event details (kind, dates, venue) are stored in `events.json` and displayed in the right-hand sidebar alongside contributors. The location field supplies the sidebar venue. The Markdown body holds time, registration, links, description, abstract, agenda, and media. Talks and posters belong here, not in the publication form.
+        Events appear on the Events calendar as a card (title, date, speakers' photos, and the event's pictures). Opening a card shows the event: its details (kind, dates, venue) and contributors on the left, stored in `events.json`, and the Markdown body on the right. The location field supplies the venue. The Markdown body holds time, description, abstract, agenda, and media; links listed under a `## Links` heading are shown beside the event details. An event with a future start date also appears among the upcoming events on the homepage. Talks and posters belong here, not in the publication form.
 
         See [`src/content/_templates/event.md`](https://github.com/MEDomicsLab/MEDomicsLab-website/blob/main/src/content/_templates/event.md) for the markdown skeleton.
   - type: checkboxes
@@ -53,7 +53,7 @@ body:
     id: kind
     attributes:
       label: "Event kind"
-      description: Also decides the event's filter category on the Events page (talks and posters → Presentations, defenses → Thesis Defenses, and so on).
+      description: Also decides the event's colour and filter type on the Events calendar (talks and posters → Presentations, defenses → Thesis Defenses, and so on).
       options:
         - "Thesis defense (PhD)"
         - "Thesis defense (MSc)"
@@ -62,6 +62,7 @@ body:
         - "Invited talk"
         - "Conference talk / poster"
         - "Lab meeting / seminar"
+        - "Forum / community of practice"
         - "Lab life / social"
         - "Outreach"
         - "Other"
@@ -79,7 +80,7 @@ body:
     id: listing-month
     attributes:
       label: "Listing month"
-      description: Required when the start date is unknown. Use `YYYY-MM` to choose the timeline group; this does not create a sidebar date. If a start date is supplied, its month is used.
+      description: Required when the start date is unknown. Use `YYYY-MM` to place the event in that month on the calendar; this does not show a date in the event details. If a start date is supplied, its month is used.
       placeholder: "2024-08"
     validations:
       required: false
@@ -102,7 +103,7 @@ body:
     id: location
     attributes:
       label: "Location"
-      description: Optional. Only give a venue explicitly named in the source. Put meeting and registration links in the description below.
+      description: Optional. Only give a venue explicitly named in the source. Put meeting links under a `## Links` heading in the description below; the registration link has its own field.
       placeholder: "Université de Sherbrooke, room D7-1010 (hybrid)"
     validations:
       required: false
@@ -110,7 +111,7 @@ body:
     id: contributors
     attributes:
       label: "Contributors / speakers"
-      description: Comma-separated. Saved as a `contributors` array in `events.json`. Use `team.json` spelling for lab members so cross-links work. These names appear in the Researchers sidebar; do not repeat them in an Authors section.
+      description: Comma-separated. Saved as a `contributors` array in `events.json`. Use `team.json` spelling for lab members so their photos and profile links appear; anyone else is shown with the lab logo. These names appear under Researchers in the event; do not repeat them in an Authors section.
       placeholder: "Mahdi Loutfi"
     validations:
       required: true
@@ -118,7 +119,7 @@ body:
     id: blurb
     attributes:
       label: "Short blurb"
-      description: Optional. The events listing shows the title only; if provided, this becomes the opening paragraph of the markdown file.
+      description: Optional. Not shown on the calendar card; if provided, this becomes the opening paragraph of the markdown file.
       placeholder: "Mahdi Loutfi's MSc thesis defense."
     validations:
       required: false
@@ -127,16 +128,18 @@ body:
     attributes:
       label: "Full description (Markdown)"
       description: |
-        Saved to `src/content/community/events/<slug>.md`. Supports inline HTML and standard Markdown images. Put each photo in its own paragraph for full-width images with rounded corners.
-        Drag images (PNG, JPG, GIF, WebP) or PDFs straight into this field, at most 10 MB each. The automation copies them into the repository and links the post to those copies.
+        Saved to `src/content/community/events/<slug>.md`. Supports inline HTML and standard Markdown images.
+        Pictures are shown on the event's calendar card and in its gallery, not inside the text: the first photo is the card's cover (up to three are stacked), and wide logos or banners appear as a small badge on the card. Put links under a `## Links` heading, one `- [label](url)` per line.
+        Drag images (PNG, JPG, GIF, WebP) or PDFs straight into this field, at most 10 MB each. The automation copies them into the repository, links the post to those copies, and makes small previews of the images for the calendar.
         Image links to other sites, such as `![description](https://example.com/image.jpg)`, remain externally hosted: use stable, public URLs only.
-      placeholder: "Abstract, agenda, speaker bios, etc. Available date, type, venue, and contributors appear automatically in the sidebar."
+      placeholder: "Abstract, agenda, speaker bios, etc. Available date, type, venue, and contributors appear automatically in the event details."
     validations:
       required: true
   - type: input
     id: registration
     attributes:
       label: "Registration / RSVP link"
+      description: Optional. Added as "Registration" to the event's links.
       placeholder: "Optional"
     validations:
       required: false
