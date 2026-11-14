@@ -19,8 +19,6 @@ neighboring and the results obtained can be explained by consulting the connecti
 This graph-based approach would infer relationships between patients and thus add interpretability and
 performance to a model based on random forests.
 
-## Poster
-
 ![Poster](/images/albums/cirius-hakima-2022/cirius-hl.png)
 
 ## Links

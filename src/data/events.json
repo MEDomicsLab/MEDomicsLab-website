@@ -3,8 +3,33 @@
     "year": "2026",
     "months": [
       {
+        "month": "September",
+        "items": [
+          {
+            "title": "Participation in Mila's Community of Practice on Digital Health",
+            "slug": "2026-09-29-mila-digital-health",
+            "category": "Forums",
+            "date": "2026-09-29",
+            "contributors": ["Steven Ravary", "Simon Provost"],
+            "markdown": "community/events/2026-09-29-mila-digital-health.md",
+            "kind": "Community of practice",
+            "venue": "Mila, Montréal"
+          }
+        ]
+      },
+      {
         "month": "August",
         "items": [
+          {
+            "title": "Poster presentations at the RI-MUHC 2026 Summer Student Research Day",
+            "slug": "2026-08-13-ri-muhc-summer-student-research-day",
+            "category": "Presentations",
+            "date": "2026-08-13",
+            "contributors": ["Steven Ravary", "Thanh-Tri Nguyen"],
+            "markdown": "community/events/2026-08-13-ri-muhc-summer-student-research-day.md",
+            "kind": "Poster presentation",
+            "venue": "Research Institute of the McGill University Health Centre (RI-MUHC) - Montreal General Hospital, Montréal"
+          },
           {
             "title": "Simpler Radiomics Can Be Enough: Identifying the Minimal Feature Complexity Required for Accurate Prediction",
             "slug": "simpler-radiomics-can-be-enough-identifying-the-minimal-feature-complexity-required-for-accurate-prediction-2026",
@@ -13,20 +38,6 @@
             "contributors": ["Mahdi Loutfi", "Martin Vallières"],
             "markdown": "community/events/simpler-radiomics-can-be-enough-identifying-the-minimal-feature-complexity-required-for-accurate-prediction-2026.md",
             "venue": "Lady Davis Institute (LDI) Conference (Poster Presentation)"
-          }
-        ]
-      },
-      {
-        "month": "April",
-        "items": [
-          {
-            "title": "Kaféfak Presentation - First Publication Award",
-            "slug": "kafefak-presentation-first-publication-award-2026",
-            "category": "Presentations",
-            "date": "2026-04-29",
-            "contributors": ["Olivier Lefebvre"],
-            "markdown": "community/events/kafefak-presentation-first-publication-award-2026.md",
-            "venue": "Université de Sherbrooke, Faculté des sciences"
           }
         ]
       },
@@ -258,6 +269,14 @@
             "contributors": ["Mahdi Loutfi"],
             "markdown": "community/events/an-international-standard-compliant-tool-for-radiomic-feature-extraction-from-medical-images-2022.md",
             "venue": "Medical Imaging with Deep Learning 2022"
+          },
+          {
+            "title": "Participation in the RBIQ 2022 Scientific Day",
+            "slug": "2022-06-02-rbiq",
+            "category": "Presentations",
+            "date": "2022-06-02",
+            "contributors": ["Mahdi Loutfi"],
+            "markdown": "community/events/2022-06-02-rbiq.md"
           }
         ]
       }
