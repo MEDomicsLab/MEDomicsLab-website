@@ -1,5 +1,7 @@
 import PageLink from "../../components/PageLink/PageLink.jsx";
 import LabVideo from "./LabVideo.jsx";
+import UpcomingEvents from "./UpcomingEvents.jsx";
+import { upcomingEvents } from "../EventsPage/eventsCalendar";
 
 function DotBorder() {
   return (
@@ -12,6 +14,7 @@ function DotBorder() {
 }
 
 export default function HomeEvents() {
+  const upcoming = upcomingEvents();
   return (
     <section className="neue-events" aria-labelledby="events-heading">
       <LabVideo />
@@ -22,8 +25,12 @@ export default function HomeEvents() {
           <br />
           our events<span>.</span>
         </h2>
-        <div className="neue-events-aside">
-          <span className="neue-events-dot blue-paper" aria-hidden="true" />
+        <div className={upcoming.length ? "neue-events-aside has-upcoming" : "neue-events-aside"}>
+          {upcoming.length ? (
+            <UpcomingEvents events={upcoming} />
+          ) : (
+            <span className="neue-events-dot blue-paper" aria-hidden="true" />
+          )}
           <PageLink className="neue-visit" to="/community/events">
             Visit all events
           </PageLink>

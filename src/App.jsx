@@ -14,7 +14,6 @@ import NewsPage from "./pages/NewsPage/NewsPage.jsx";
 import EventsPage from "./pages/EventsPage/EventsPage.jsx";
 import CommunityContactPage from "./pages/CommunityContactPage/CommunityContactPage.jsx";
 import NewsDetailPage from "./pages/NewsDetailPage/NewsDetailPage.jsx";
-import EventsDetailPage from "./pages/EventsDetailPage/EventsDetailPage.jsx";
 import CoursesPage from "./pages/CoursesPage/CoursesPage.jsx";
 import CoursesDetailPage from "./pages/CoursesDetailPage/CoursesDetailPage.jsx";
 import NotFoundPage from "./pages/NotFoundPage/NotFoundPage.jsx";
@@ -75,11 +74,10 @@ const App = () => {
         <Route path="/team" element={<TeamPage />} />
         <Route path="/team/:slug" element={<TeamMemberDetail />} />
         <Route path="/community/news" element={<NewsPage />} />
-        <Route path="/community/events" element={<EventsPage />} />
+        <Route path="/community/events/:slug?" element={<EventsPage />} />
         <Route path="/community/courses" element={<CoursesPage />} />
         <Route path="/community/contact" element={<CommunityContactPage />} />
         <Route path="/community/news/:slug" element={<NewsDetailPage />} />
-        <Route path="/community/events/:slug" element={<EventsDetailPage />} />
         <Route path="/community/courses/:slug" element={<CoursesDetailPage />} />
         <Route path="*" element={<NotFoundPage />} />
       </Route>
