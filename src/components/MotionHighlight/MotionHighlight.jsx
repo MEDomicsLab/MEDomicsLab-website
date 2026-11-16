@@ -1,4 +1,4 @@
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import {
   cloneElement,
   createContext,
@@ -20,7 +20,15 @@ function useMotionHighlight() {
   return context;
 }
 
-export function MotionHighlight({ children, className, boundsOffset, containerClassName, style }) {
+export function MotionHighlight({
+  children,
+  className,
+  boundsOffset,
+  containerClassName,
+  style,
+  highlightContent,
+}) {
+  const reducedMotion = useReducedMotion();
   const containerRef = useRef(null);
   const [activeValue, setActiveValue] = useState(null);
   const [bounds, setBounds] = useState(null);
@@ -69,12 +77,18 @@ export function MotionHighlight({ children, className, boundsOffset, containerCl
             <motion.div
               animate={{ ...bounds, opacity: 1 }}
               initial={{ ...bounds, opacity: 0 }}
-              exit={{ opacity: 0, transition: { ...transition, delay: 0.2 } }}
-              transition={transition}
+              exit={{
+                opacity: 0,
+                transition: reducedMotion ? { duration: 0 } : { ...transition, delay: 0.2 },
+              }}
+              transition={reducedMotion ? { duration: 0 } : transition}
               className={cn("absolute bg-muted z-0", className)}
               data-slot="motion-highlight"
               style={style}
-            />
+              aria-hidden="true"
+            >
+              {highlightContent}
+            </motion.div>
           )}
         </AnimatePresence>
         {children}
@@ -110,6 +124,12 @@ export function MotionHighlightItem({ children, className, disabled = false }) {
       className={className}
       data-slot="motion-highlight-item-container"
       {...dataAttributes}
+      onFocus={() => {
+        if (!disabled) setActiveValue(id);
+      }}
+      onBlur={(event) => {
+        if (!event.currentTarget.contains(event.relatedTarget)) setActiveValue(null);
+      }}
       onMouseEnter={(event) => {
         if (!disabled) setActiveValue(id);
         children.props.onMouseEnter?.(event);

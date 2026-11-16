@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
 import { Link, Outlet, useLocation } from "react-router-dom";
-import { GlassFrame } from "../GlassSurface/GlassSurface.jsx";
+import BrowserGlass from "../GlassSurface/BrowserGlass.jsx";
+import { VASO_GLASS } from "../../lib/vasoPresets.js";
 import { cn } from "../../lib/utils";
 import homeData from "../../data/home.json";
 import layoutData from "../../data/layout.json";
@@ -8,7 +9,6 @@ import RollingText from "../RollingText/RollingText.jsx";
 import { MotionHighlight, MotionHighlightItem } from "../MotionHighlight/MotionHighlight.jsx";
 import SkeletonImage from "../SkeletonImage/SkeletonImage.jsx";
 import Seo from "../Seo/Seo.jsx";
-import { LIQUID_PARAMS } from "../../lib/liquidGlassParams";
 import SiteShortcuts from "./SiteShortcuts.jsx";
 import MobileNav from "./MobileNav.jsx";
 import NavDropdown, {
@@ -23,7 +23,6 @@ import "./Layout.css";
 import "./InteriorPages.css";
 
 export default function Layout() {
-  const liquid = LIQUID_PARAMS;
   const location = useLocation();
   const isHome = location.pathname === "/";
   const [homeScrolled, setHomeScrolled] = useState(false);
@@ -153,168 +152,162 @@ export default function Layout() {
         </Link>
       </div>
 
-      <GlassFrame
-        displacementScale={liquid.nav.displacementScale}
-        blurAmount={liquid.nav.blurAmount}
-        saturation={liquid.nav.saturation}
-        aberrationIntensity={liquid.nav.aberrationIntensity}
-        elasticity={liquid.nav.elasticity}
-        cornerRadius={liquid.nav.cornerRadius}
-        mode={liquid.nav.mode}
-        overLight={liquid.nav.overLight}
-        padding={isMobile ? (isHome ? "12px 8px" : "12px 16px") : "12px 24px"}
-        surfaceClassName="liquid-nav-anchor"
-        style={{
-          position: "fixed",
-          top: navTop,
-          left: "50%",
-          zIndex: 50,
-        }}
-      >
-        <nav aria-label="Main navigation">
-          <MotionHighlight
-            className="!bg-transparent overflow-hidden"
-            style={{
-              backdropFilter: `blur(${liquid.tabHighlight.blurAmount}px) saturate(${liquid.tabHighlight.saturation}%)`,
-              WebkitBackdropFilter: `blur(${liquid.tabHighlight.blurAmount}px) saturate(${liquid.tabHighlight.saturation}%)`,
-              backgroundColor: `rgba(255, 255, 255, ${liquid.tabHighlight.tintOpacity * liquid.tabHighlight.opacity})`,
-              borderRadius: `${liquid.tabHighlight.cornerRadius}px`,
-              boxShadow: [
-                `0 0 0 0.5px rgba(255, 255, 255, ${liquid.tabHighlight.borderOpacity * liquid.tabHighlight.opacity}) inset`,
-                `0 1px 2px rgba(255, 255, 255, ${liquid.tabHighlight.innerHighlightOpacity * liquid.tabHighlight.opacity}) inset`,
-                `0 4px 14px rgba(0, 0, 0, ${liquid.tabHighlight.shadowOpacity * liquid.tabHighlight.opacity})`,
-              ].join(", "),
-            }}
-            containerClassName="relative flex flex-nowrap items-center gap-x-1 md:gap-x-6"
-            boundsOffset={
-              isMobile
-                ? { top: -7, left: -6, width: 12, height: 16 }
-                : { top: -6, left: -10, width: 20, height: 12 }
-            }
-          >
-            {navItems.map((item) =>
-              item.children ? (
-                <MotionHighlightItem
-                  key={item.defaultLabel}
-                  className="relative flex h-7 items-center md:h-8"
-                  disabled={item.children.some((child) => location.pathname === child.path)}
-                >
-                  <div
-                    className="relative px-2 py-1 rounded-full"
-                    onMouseEnter={() => {
-                      if (communityTimeoutRef.current) {
-                        clearTimeout(communityTimeoutRef.current);
-                        communityTimeoutRef.current = null;
-                      }
-                      setIsCommunityOpen(true);
-                    }}
-                    onMouseLeave={() => {
-                      if (communityTimeoutRef.current) {
-                        clearTimeout(communityTimeoutRef.current);
-                      }
-                      communityTimeoutRef.current = setTimeout(() => {
-                        setIsCommunityOpen(false);
-                      }, NAV_TRIGGER_CLOSE_DELAY);
-                    }}
+      <div className="liquid-nav-frame">
+        <BrowserGlass
+          surface="navbar"
+          {...VASO_GLASS.navbar}
+          className="liquid-nav-anchor medomics-glass"
+          style={{
+            position: "fixed",
+            padding: "12px 24px",
+            top: navTop,
+            left: "50%",
+            transform: "translate(-50%, -50%)",
+            zIndex: 50,
+          }}
+        >
+          <nav aria-label="Main navigation">
+            <MotionHighlight
+              className="!bg-transparent nav-hover-lens"
+              highlightContent={
+                <BrowserGlass
+                  surface="hover"
+                  {...VASO_GLASS.hover}
+                  style={{ position: "absolute", inset: 0 }}
+                  className="nav-hover-lens__glass"
+                />
+              }
+              containerClassName="relative flex flex-nowrap items-center gap-x-1 md:gap-x-6"
+              boundsOffset={
+                isMobile
+                  ? { top: -7, left: -6, width: 12, height: 16 }
+                  : { top: -6, left: -10, width: 20, height: 12 }
+              }
+            >
+              {navItems.map((item) =>
+                item.children ? (
+                  <MotionHighlightItem
+                    key={item.defaultLabel}
+                    className="relative flex h-7 items-center md:h-8"
+                    disabled={item.children.some((child) => location.pathname === child.path)}
                   >
-                    <button
-                      type="button"
-                      ref={communityButtonRef}
-                      className={cn(
-                        NAV_TEXT_CLASS,
-                        "inline-flex items-center uppercase whitespace-nowrap text-white transition-colors leading-none p-0 bg-transparent border-0 align-middle relative -top-px",
-                        !isHome && "hover:text-primary"
-                      )}
-                      aria-haspopup="true"
-                      aria-expanded={isCommunityOpen}
-                      aria-controls="community-navigation-menu"
-                      onClick={() => {
+                    <div
+                      className="relative px-2 py-1 rounded-full"
+                      onMouseEnter={() => {
                         if (communityTimeoutRef.current) {
                           clearTimeout(communityTimeoutRef.current);
                           communityTimeoutRef.current = null;
                         }
-                        setIsCommunityOpen((isOpen) => !isOpen);
-                        setShouldFocusCommunityMenu(false);
+                        setIsCommunityOpen(true);
                       }}
-                      onKeyDown={(event) => {
-                        if (event.key === "Escape") {
-                          setIsCommunityOpen(false);
-                          setShouldFocusCommunityMenu(false);
-                          return;
+                      onMouseLeave={() => {
+                        if (communityTimeoutRef.current) {
+                          clearTimeout(communityTimeoutRef.current);
                         }
-
-                        if (["Enter", " ", "ArrowDown"].includes(event.key)) {
-                          event.preventDefault();
+                        communityTimeoutRef.current = setTimeout(() => {
+                          setIsCommunityOpen(false);
+                        }, NAV_TRIGGER_CLOSE_DELAY);
+                      }}
+                    >
+                      <button
+                        type="button"
+                        ref={communityButtonRef}
+                        className={cn(
+                          NAV_TEXT_CLASS,
+                          "inline-flex items-center uppercase whitespace-nowrap text-white transition-colors leading-none p-0 bg-transparent border-0 align-middle relative -top-px",
+                          !isHome && "hover:text-primary"
+                        )}
+                        aria-haspopup="true"
+                        aria-expanded={isCommunityOpen}
+                        aria-controls="community-navigation-menu"
+                        onClick={() => {
                           if (communityTimeoutRef.current) {
                             clearTimeout(communityTimeoutRef.current);
                             communityTimeoutRef.current = null;
                           }
-                          setIsCommunityOpen(true);
-                          setShouldFocusCommunityMenu(true);
-                        }
-                      }}
-                    >
-                      {item.defaultLabel}
-                    </button>
-                  </div>
-                </MotionHighlightItem>
-              ) : item.disabled ? (
-                <button
-                  key={item.path}
-                  type="button"
-                  disabled
-                  aria-disabled="true"
-                  className={cn(NAV_TEXT_CLASS, "nav-disabled uppercase px-1.5 py-1")}
-                >
-                  {item.defaultLabel}
-                </button>
-              ) : (
-                <MotionHighlightItem
-                  key={item.path}
-                  className="relative flex h-7 items-center md:h-8"
-                  disabled={location.pathname === item.path}
-                >
-                  <Link
-                    to={item.path}
-                    aria-current={location.pathname === item.path ? "page" : undefined}
-                    className={cn(
-                      NAV_TEXT_CLASS,
-                      "inline-flex items-center uppercase whitespace-nowrap transition-colors relative leading-none px-1.5 py-1 rounded-full",
-                      !isHome && "hover:text-primary",
-                      location.pathname === item.path
-                        ? "text-primary font-bold"
-                        : "text-white font-semibold"
-                    )}
-                    style={
-                      location.pathname === item.path
-                        ? {
-                            color: isHome && heroBehindNav ? "white" : "var(--primary)",
-                            isolation: "isolate",
-                            mixBlendMode: "normal",
+                          setIsCommunityOpen((isOpen) => !isOpen);
+                          setShouldFocusCommunityMenu(false);
+                        }}
+                        onKeyDown={(event) => {
+                          if (event.key === "Escape") {
+                            setIsCommunityOpen(false);
+                            setShouldFocusCommunityMenu(false);
+                            return;
                           }
-                        : undefined
-                    }
+
+                          if (["Enter", " ", "ArrowDown"].includes(event.key)) {
+                            event.preventDefault();
+                            if (communityTimeoutRef.current) {
+                              clearTimeout(communityTimeoutRef.current);
+                              communityTimeoutRef.current = null;
+                            }
+                            setIsCommunityOpen(true);
+                            setShouldFocusCommunityMenu(true);
+                          }
+                        }}
+                      >
+                        {item.defaultLabel}
+                      </button>
+                    </div>
+                  </MotionHighlightItem>
+                ) : item.disabled ? (
+                  <button
+                    key={item.path}
+                    type="button"
+                    disabled
+                    aria-disabled="true"
+                    className={cn(NAV_TEXT_CLASS, "nav-disabled uppercase px-1.5 py-1")}
                   >
                     {item.defaultLabel}
-                    {location.pathname === item.path && (
-                      <span
-                        className="absolute -bottom-1 left-0 right-0 h-[1px] bg-primary"
-                        style={{
-                          backgroundColor: isHome && heroBehindNav ? "white" : "var(--primary)",
-                        }}
-                      />
-                    )}
-                  </Link>
-                </MotionHighlightItem>
-              )
-            )}
-          </MotionHighlight>
-        </nav>
-      </GlassFrame>
+                  </button>
+                ) : (
+                  <MotionHighlightItem
+                    key={item.path}
+                    className="relative flex h-7 items-center md:h-8"
+                    disabled={location.pathname === item.path}
+                  >
+                    <Link
+                      to={item.path}
+                      aria-current={location.pathname === item.path ? "page" : undefined}
+                      className={cn(
+                        NAV_TEXT_CLASS,
+                        "inline-flex items-center uppercase whitespace-nowrap transition-colors relative leading-none px-1.5 py-1 rounded-full",
+                        !isHome && "hover:text-primary",
+                        location.pathname === item.path
+                          ? "text-primary font-bold"
+                          : "text-white font-semibold"
+                      )}
+                      style={
+                        location.pathname === item.path
+                          ? {
+                              color: isHome && heroBehindNav ? "white" : "var(--primary)",
+                              isolation: "isolate",
+                              mixBlendMode: "normal",
+                            }
+                          : undefined
+                      }
+                    >
+                      {item.defaultLabel}
+                      {location.pathname === item.path && (
+                        <span
+                          className="absolute -bottom-1 left-0 right-0 h-[1px] bg-primary"
+                          style={{
+                            backgroundColor: isHome && heroBehindNav ? "white" : "var(--primary)",
+                          }}
+                        />
+                      )}
+                    </Link>
+                  </MotionHighlightItem>
+                )
+              )}
+            </MotionHighlight>
+          </nav>
+        </BrowserGlass>
+      </div>
 
       <MobileNav githubHref={githubHref} />
 
-      <SiteShortcuts href={githubHref} liquid={liquid} />
+      <SiteShortcuts href={githubHref} />
 
       <main className={cn("min-h-screen md:pt-0", location.pathname === "/" ? "pt-0" : "pt-28")}>
         <Outlet />
@@ -326,7 +319,6 @@ export default function Layout() {
         label="Community"
         open={isCommunityOpen}
         anchorRef={communityButtonRef}
-        liquid={liquid}
         menuRef={communityMenuRef}
         focusFirstItem={shouldFocusCommunityMenu}
         onFocusedFirstItem={clearCommunityFocusRequest}
@@ -359,6 +351,7 @@ export default function Layout() {
             to={child.path}
             role="menuitem"
             className={cn(NAV_MENU_ITEM_CLASS, "text-white")}
+            onClick={() => setIsCommunityOpen(false)}
           >
             {child.rollingText?.length ? (
               <span className="relative inline-flex items-center">

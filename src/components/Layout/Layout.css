@@ -1,3 +1,9 @@
+@property --glass-opacity {
+  syntax: "<number>";
+  inherits: true;
+  initial-value: 1;
+}
+
 .nav-dropdown-portal > * {
   transition: none !important;
 }
@@ -108,9 +114,6 @@
   height: 23px;
   object-fit: contain;
 }
-.glass-frame.liquid-action-anchor > * {
-  transition: --glass-opacity var(--nav-action-fade-duration, 700ms) ease !important;
-}
 .liquid-action-anchor.is-idle {
   --nav-action-fade-duration: 1800ms;
   --glass-opacity: 0.4;
@@ -134,9 +137,6 @@
   }
 }
 @media (prefers-reduced-motion: reduce) {
-  .glass-frame.liquid-action-anchor > * {
-    transition-duration: 0ms !important;
-  }
   .nav-action-slide > span {
     transition: none;
   }
@@ -399,10 +399,6 @@
   .mobile-nav-bar {
     translate: 0 calc(var(--mobile-nav-hide, 0) * -164px);
   }
-  .glass-frame:has(> .liquid-nav-anchor),
-  .glass-frame.liquid-action-anchor {
-    display: none;
-  }
 }
 @media (prefers-reduced-motion: reduce) {
   .mobile-nav-menu,
@@ -416,5 +412,91 @@
   }
   .mobile-nav-row {
     transform: none;
+  }
+}
+
+.liquid-nav-frame,
+.liquid-action-anchor {
+  display: contents;
+}
+.medomics-glass {
+  border-radius: 100px;
+  font-family: inherit;
+  color: white;
+}
+.medomics-glass > [data-vaso] {
+  background: rgb(24 42 58 / 0.08);
+}
+.medomics-glass > :not([data-vaso], svg) {
+  position: relative;
+  z-index: 1;
+}
+.liquid-nav-anchor,
+.shortcut-position {
+  width: max-content;
+}
+.nav-hover-lens {
+  pointer-events: none;
+  border-radius: 100px;
+}
+.nav-hover-lens__glass > [data-vaso] {
+  background: rgb(255 255 255 / 0.08);
+}
+.nav-hover-lens:has(~ [data-active="true"] :active) {
+  scale: 1.04 1.08;
+}
+.community-glass {
+  border-radius: 24px;
+}
+.community-glass > [data-vaso] {
+  background: rgb(18 30 42 / 0.08);
+}
+.shortcut-glass > [data-vaso],
+.shortcut-glass > .nav-action-link {
+  opacity: var(--glass-opacity, 1);
+  transition: opacity var(--nav-action-fade-duration, 700ms) ease;
+}
+.nav-action-link {
+  font-family: inherit;
+  font-weight: 600;
+  letter-spacing: -0.04em;
+  text-shadow: 0 1px 4px rgb(0 10 20 / 0.55);
+}
+@media (max-width: 767px) {
+  .liquid-nav-frame,
+  .liquid-action-anchor,
+  .liquid-nav-anchor,
+  .shortcut-position {
+    display: none;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .shortcut-glass > [data-vaso],
+  .shortcut-glass > .nav-action-link {
+    transition: none;
+  }
+  .nav-hover-lens {
+    scale: 1;
+  }
+}
+@media (prefers-reduced-transparency: reduce) {
+  .medomics-glass > [data-vaso] {
+    background: #202830;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+  }
+}
+
+.glass-frame.liquid-action-anchor > * {
+  transition: --glass-opacity var(--nav-action-fade-duration, 700ms) ease !important;
+}
+@media (max-width: 767px) {
+  .glass-frame.liquid-action-anchor {
+    display: none;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .glass-frame.liquid-action-anchor > * {
+    transition-duration: 0ms !important;
   }
 }
