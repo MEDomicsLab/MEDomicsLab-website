@@ -2,8 +2,8 @@ import { imageSrcSet } from "../../lib/images.js";
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { GitFork, Star } from "lucide-react";
-import { GlassFrame } from "../../components/GlassSurface/GlassSurface.jsx";
-import { LIQUID_PARAMS } from "../../lib/liquidGlassParams";
+import BrowserGlass from "../../components/GlassSurface/BrowserGlass.jsx";
+import { VASO_GLASS } from "../../lib/vasoPresets.js";
 import useRepoStats from "../../lib/useRepoStats";
 import { ecosystemApps } from "./homepageContent";
 
@@ -209,10 +209,17 @@ export default function Ecosystem() {
             {app && <img src={app.card} alt="" width="1080" height="1350" draggable="false" />}
           </a>
           <div className="neue-ecosystem-stain" onMouseEnter={stay} onMouseLeave={() => leave()}>
-            <GlassFrame
-              {...LIQUID_PARAMS.nav}
-              padding="0"
-              style={{ position: "absolute", top: "50%", left: "50%" }}
+            <BrowserGlass
+              surface="stain"
+              {...VASO_GLASS.buttons}
+              radius={undefined}
+              className="neue-ecosystem-stain-glass medomics-glass"
+              style={{
+                position: "absolute",
+                top: "50%",
+                left: "50%",
+                transform: "translate(-50%, -50%)",
+              }}
             >
               <div className="neue-ecosystem-stain-body" aria-live="polite" aria-atomic="true">
                 {app && (
@@ -241,7 +248,7 @@ export default function Ecosystem() {
                   </>
                 )}
               </div>
-            </GlassFrame>
+            </BrowserGlass>
           </div>
         </div>
       </div>
