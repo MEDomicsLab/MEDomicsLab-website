@@ -1,0 +1,3 @@
+![Bon voyage, Hakima: a boarding pass from Montréal to France for Hakima Laribi's three-month internship](/images/albums/2026-09-24-bon-voyage-hakima/bon-voyage-hakima.webp)
+
+Congratulations to [Hakima Laribi](/team/hakima-laribi) on her upcoming three-month internship in France! We are excited to see her take her medical data expertise and coding skills across the Atlantic. The lab will miss her thoughtful ideas, sharp questions, and good company, but we will gladly accept updates from her French adventure. We hope the experience is rewarding, inspiring, and that the trains are running on the days she needs them. If a strike gets in the way, she can count it as cultural immersion. After all, even medical data deserves a little vacation.

@@ -3,8 +3,33 @@
     "year": "2026",
     "months": [
       {
+        "month": "October",
+        "items": [
+          {
+            "title": "Mahdi Loutfi wins the best presentation prize at the RRCancer Symposium",
+            "slug": "2026-10-02-rrcancer-best-presentation-prize",
+            "event": {
+              "date": "2026-10-02",
+              "kind": "Best presentation prize",
+              "venue": "CHUM, Amphithéâtre Pierre-Péladeau, Montréal"
+            },
+            "category": "Awards",
+            "contributors": ["Mahdi Loutfi"],
+            "markdown": "community/news/2026-10-02-rrcancer-best-presentation-prize.md"
+          }
+        ]
+      },
+      {
         "month": "September",
         "items": [
+          {
+            "title": "Bon voyage, Hakima!",
+            "slug": "2026-09-24-bon-voyage-hakima",
+            "category": "Milestones",
+            "date": "2026-09-24",
+            "contributors": ["Hakima Laribi"],
+            "markdown": "community/news/2026-09-24-bon-voyage-hakima.md"
+          },
           {
             "title": "Mariem Kallel successfully defended her thesis",
             "slug": "2026-09-22-mariem-msc",
@@ -16,6 +41,23 @@
             "category": "Thesis Defenses",
             "contributors": ["Mariem Kallel"],
             "markdown": "community/news/2026-09-22-mariem-msc.md"
+          }
+        ]
+      },
+      {
+        "month": "August",
+        "items": [
+          {
+            "title": "Mahdi Loutfi wins the best presentation prize at the LDI Conference",
+            "slug": "2026-08-07-ldi-best-presentation-prize",
+            "event": {
+              "date": "2026-08-07",
+              "kind": "Best presentation prize",
+              "venue": "Lady Davis Institute - Jewish General Hospital, Montréal"
+            },
+            "category": "Awards",
+            "contributors": ["Mahdi Loutfi"],
+            "markdown": "community/news/2026-08-07-ldi-best-presentation-prize.md"
           }
         ]
       },
