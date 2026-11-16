@@ -1,41 +1,17 @@
 <!--suppress HtmlDeprecatedAttribute -->
-<div align="center">
-   <p align="center">
-      <br>
-      <a href="https://medomicslab.com/">
-         <img src="/docs/assets/banner/medomicslab-banner.webp" alt="MEDomicsLab banner" width="320">
-      </a>
-   </p>
-   <h4 align="center">
-      Official MEDomicsLab's Website.
-      <br>
-      <a href="https://medomicslab.com/">Live site</a>
-   </h4>
-</div>
+<p align="center">
+  <a href="https://medomicslab.com/">
+    <img src="https://raw.githubusercontent.com/MEDomicsLab/MEDomicsLab-website/refs/heads/main/docs/assets/banner/medomicslab-website-header.webp" width="100%" alt="MEDomicsLab Website banner with previews of the lab’s website">
+  </a>
+</p>
 
-<div align="center">
-
-<a href="https://medomicslab.com/">
-   <img alt="Live" src="https://img.shields.io/static/v1?label=Site&message=medomicslab.com&color=472727&labelColor=FF8C00&style=for-the-badge&logo=googlechrome&logoColor=white">
-</a>
-
-<img alt="React" src="https://img.shields.io/static/v1?label=React&message=18&color=472727&labelColor=FF8C00&style=for-the-badge&logo=react&logoColor=white">
-
-<img alt="Vite" src="https://img.shields.io/static/v1?label=Vite&message=7&color=472727&labelColor=FF8C00&style=for-the-badge&logo=vite&logoColor=white">
-
-<img alt="Tailwind" src="https://img.shields.io/static/v1?label=Tailwind&message=v4&color=472727&labelColor=FF8C00&style=for-the-badge&logo=tailwindcss&logoColor=white">
-
-<img alt="ESLint" src="https://img.shields.io/static/v1?label=ESLint&message=passing&color=472727&labelColor=FF8C00&style=for-the-badge&logo=eslint&logoColor=white">
-
-<img alt="Playwright" src="https://img.shields.io/static/v1?label=Playwright&message=e2e&color=472727&labelColor=FF8C00&style=for-the-badge&logo=playwright&logoColor=white">
-
-<img alt="License" src="https://img.shields.io/static/v1?label=License&message=MIT&color=472727&labelColor=FF8C00&style=for-the-badge&logo=opensourceinitiative&logoColor=white">
-
-</div>
+<p align="center">
+  <img src="https://raw.githubusercontent.com/MEDomicsLab/MEDomicsLab-website/refs/heads/main/docs/assets/icons/lucide/house.svg" width="20" height="20" alt="" align="absmiddle">&nbsp;<a href="https://medomicslab.com/">Live Website</a>
+</p>
 
 # Contributor Covenant Code of Conduct
 
-## Our Pledge
+## <img src="https://raw.githubusercontent.com/MEDomicsLab/MEDomicsLab-website/refs/heads/main/docs/assets/icons/lucide/users-round.svg" width="32" alt="" align="absmiddle"> Our Pledge
 
 We as members, contributors, and leaders pledge to make participation in our
 community a harassment-free experience for everyone, regardless of age, body
@@ -47,7 +23,7 @@ identity and orientation.
 We pledge to act and interact in ways that contribute to an open, welcoming,
 diverse, inclusive, and healthy community.
 
-## Our Standards
+## <img src="https://raw.githubusercontent.com/MEDomicsLab/MEDomicsLab-website/refs/heads/main/docs/assets/icons/lucide/book-open-text.svg" width="32" alt="" align="absmiddle"> Our Standards
 
 Examples of behavior that contributes to a positive environment for our
 community include:
@@ -71,7 +47,7 @@ Examples of unacceptable behavior include:
 - Other conduct which could reasonably be considered inappropriate in a
   professional setting
 
-## Enforcement Responsibilities
+## <img src="https://raw.githubusercontent.com/MEDomicsLab/MEDomicsLab-website/refs/heads/main/docs/assets/icons/lucide/landmark.svg" width="32" alt="" align="absmiddle"> Enforcement Responsibilities
 
 Community leaders are responsible for clarifying and enforcing our standards of
 acceptable behavior and will take appropriate and fair corrective action in
@@ -83,7 +59,7 @@ comments, commits, code, wiki edits, issues, and other contributions that are
 not aligned to this Code of Conduct, and will communicate reasons for moderation
 decisions when appropriate.
 
-## Scope
+## <img src="https://raw.githubusercontent.com/MEDomicsLab/MEDomicsLab-website/refs/heads/main/docs/assets/icons/lucide/compass.svg" width="32" alt="" align="absmiddle"> Scope
 
 This Code of Conduct applies within all community spaces, and also applies when
 an individual is officially representing the community in public spaces.
@@ -91,18 +67,18 @@ Examples of representing our community include using an official e-mail address,
 posting via an official social media account, or acting as an appointed
 representative at an online or offline event.
 
-## Enforcement
+## <img src="https://raw.githubusercontent.com/MEDomicsLab/MEDomicsLab-website/refs/heads/main/docs/assets/icons/lucide/scale.svg" width="32" alt="" align="absmiddle"> Enforcement
 
 Instances of abusive, harassing, or otherwise unacceptable behavior may be
 reported to the community leaders responsible for enforcement at
-**simon.gilbert.provost@gmail.com**.
+[medomics.info@gmail.com](mailto:medomics.info@gmail.com).
 
 All complaints will be reviewed and investigated promptly and fairly.
 
 All community leaders are obligated to respect the privacy and security of the
 reporter of any incident.
 
-## Enforcement Guidelines
+## <img src="https://raw.githubusercontent.com/MEDomicsLab/MEDomicsLab-website/refs/heads/main/docs/assets/icons/lucide/folder-tree.svg" width="32" alt="" align="absmiddle"> Enforcement Guidelines
 
 Community leaders will follow these Community Impact Guidelines in determining
 the consequences for any action they deem in violation of this Code of Conduct:
@@ -148,7 +124,7 @@ individual, or aggression toward or disparagement of classes of individuals.
 **Consequence**: A permanent ban from any sort of public interaction within the
 community.
 
-## Attribution
+## <img src="https://raw.githubusercontent.com/MEDomicsLab/MEDomicsLab-website/refs/heads/main/docs/assets/icons/lucide/info.svg" width="32" alt="" align="absmiddle"> Attribution
 
 This Code of Conduct is adapted from the [Contributor Covenant][homepage],
 version 2.1, available at
