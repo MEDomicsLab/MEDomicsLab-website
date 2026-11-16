@@ -16,3 +16,4 @@ The LinkedIn announcement was published on 22 September 2026. -->
 
 - [Mariem's announcement on LinkedIn](https://lnkd.in/p/gqQAvAmk)
 - [Université de Sherbrooke defense announcement](https://www.usherbrooke.ca/actualites/evenements/details/58795)
+- [Mariem's master's project](/research/medomicslab-optimization)
