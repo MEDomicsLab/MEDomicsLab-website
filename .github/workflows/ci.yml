@@ -42,6 +42,7 @@ jobs:
       - run: npm run lint:knip
       - run: npm run lint:images
       - run: npm run lint:avatars
+      - run: npm run lint:home-cards
       - run: npm run lint:licenses
       - run: npm run lint:schemas
       - run: npm run test:scripts

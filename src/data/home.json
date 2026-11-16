@@ -28,7 +28,7 @@
         {
           "name": "MEDiml",
           "website": "https://www.mediml.app/",
-          "repo": "https://github.com/MEDomicsLab/MEDiml",
+          "repo": "https://github.com/MEDomicsLab/MEDiml-app",
           "logo": "/images/homepage-neue/MEDiml-white.png",
           "statsSnapshot": {
             "stars": 8,
@@ -47,7 +47,7 @@
         },
         {
           "name": "MEDfl",
-          "repo": "https://github.com/MEDomicsLab/MEDfl",
+          "repo": "https://www.medfl.app/",
           "logo": "/images/homepage-neue/MEDfl-white.png",
           "statsSnapshot": {
             "stars": 3,

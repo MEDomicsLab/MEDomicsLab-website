@@ -19,10 +19,11 @@
     "lint:knip": "knip",
     "lint:images": "node .github/scripts/check-unused-assets.mjs",
     "lint:avatars": "node .github/scripts/check-avatar-variants.mjs",
+    "lint:home-cards": "node .github/scripts/check-home-cards.mjs",
     "lint:licenses": "node .github/scripts/check-licenses.mjs",
     "lint:schemas": "node .github/scripts/check-schemas.mjs",
     "test:scripts": "node --test .github/scripts/__tests__/*.test.mjs",
-    "check:issue-content": "npm run lint:md && npm run lint:images && npm run lint:avatars && npm run lint:schemas && npm run test:scripts",
+    "check:issue-content": "npm run lint:md && npm run lint:images && npm run lint:avatars && npm run lint:home-cards && npm run lint:schemas && npm run test:scripts",
     "audit:deps": "npm audit --omit=dev --audit-level=high",
     "test:e2e": "playwright test",
     "test:seo": "playwright test e2e/seo.spec.js",
@@ -31,7 +32,7 @@
     "test:a11y": "playwright test e2e/a11y.spec.js",
     "lhci": "lhci autorun --config=.github/lighthouserc.json",
     "size": "size-limit",
-    "check": "npm run lint && npm run format:check && npm run lint:md && npm run lint:knip && npm run lint:images && npm run lint:avatars && npm run lint:licenses && npm run lint:schemas && npm run test:scripts",
+    "check": "npm run lint && npm run format:check && npm run lint:md && npm run lint:knip && npm run lint:images && npm run lint:avatars && npm run lint:home-cards && npm run lint:licenses && npm run lint:schemas && npm run test:scripts",
     "check:full": "npm run check && npm run build && npm run size && npm run test:e2e"
   },
   "size-limit": [

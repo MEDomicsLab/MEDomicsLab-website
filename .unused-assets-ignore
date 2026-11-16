@@ -8,19 +8,3 @@
 /images/homepage-neue/ecosystem/medfl.webp
 /images/homepage-neue/ecosystem/mediml.webp
 /images/homepage-neue/ecosystem/medprofiles.webp
-
-# homepageContent.js derives these from research project order and slugs.
-/images/homepage-neue/next/01-medomics-platform.webp
-/images/homepage-neue/next/02-mediml.webp
-/images/homepage-neue/next/03-med3pa.webp
-/images/homepage-neue/next/04-multilevel-graphs.webp
-/images/homepage-neue/next/05-medomicslab-optimization.webp
-/images/homepage-neue/next/06-distributed-learning-inference.webp
-/images/homepage-neue/next/07-distributed-random-forests.webp
-/images/homepage-neue/next/08-energai.webp
-/images/homepage-neue/next/09-kidney-small-tumors.webp
-/images/homepage-neue/next/10-multitask-classification.webp
-/images/homepage-neue/next/11-patient-mortality-prediction.webp
-/images/homepage-neue/next/12-prostate-models.webp
-/images/homepage-neue/next/13-radiomics-complexity.webp
-/images/homepage-neue/next/14-vo2max-obesity.webp
