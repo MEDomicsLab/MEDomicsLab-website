@@ -1,37 +1,27 @@
 <!--suppress HtmlDeprecatedAttribute -->
-<div align="center">
-   <p align="center">
-      <br>
-      <a href="https://medomicslab.com/">
-         <img src="docs/assets/banner/medomicslab-banner.webp" alt="MEDomicsLab banner" width="320">
-      </a>
-   </p>
-   <h4 align="center">
-      Official MEDomicsLab's Website.
-      <br>
-      <a href="https://medomicslab.com/">Live site</a>
-   </h4>
-</div>
+<p align="center">
+  <a href="https://medomicslab.com/">
+    <img src="docs/assets/banner/medomicslab-website-header.webp" width="100%" alt="MEDomicsLab Website banner with previews of the lab’s website">
+  </a>
+</p>
 
-<div align="center">
+<p align="center"><strong>The official website for MEDomicsLab’s research, software, and resources.</strong></p>
 
-<a href="https://medomicslab.com/">
-   <img alt="Live" src="https://img.shields.io/static/v1?label=Site&message=medomicslab.com&color=1a1a1a&labelColor=3c5280&style=for-the-badge&logo=googlechrome&logoColor=white">
-</a>
+<p align="center">
+  <img src="https://img.shields.io/badge/React-18-blue" alt="React 18">
+  <img src="https://img.shields.io/badge/Vite-5-blue" alt="Vite 5">
+  <img src="https://img.shields.io/badge/Tailwind_CSS-4-blue" alt="Tailwind CSS 4">
+  <a href="https://github.com/MEDomicsLab/MEDomicsLab-website/actions/workflows/ci.yml"><img src="https://github.com/MEDomicsLab/MEDomicsLab-website/actions/workflows/ci.yml/badge.svg?branch=main" alt="CI status on main"></a>
+  <a href="#license"><img src="https://img.shields.io/badge/License-MIT-blue" alt="MIT license"></a>
+</p>
 
-<img alt="React" src="https://img.shields.io/static/v1?label=React&message=18&color=1a1a1a&labelColor=3c5280&style=for-the-badge&logo=react&logoColor=white">
-
-<img alt="Vite" src="https://img.shields.io/static/v1?label=Vite&message=7&color=1a1a1a&labelColor=3c5280&style=for-the-badge&logo=vite&logoColor=white">
-
-<img alt="Tailwind" src="https://img.shields.io/static/v1?label=Tailwind&message=v4&color=1a1a1a&labelColor=3c5280&style=for-the-badge&logo=tailwindcss&logoColor=white">
-
-<img alt="ESLint" src="https://img.shields.io/static/v1?label=ESLint&message=passing&color=1a1a1a&labelColor=3c5280&style=for-the-badge&logo=eslint&logoColor=white">
-
-<img alt="Playwright" src="https://img.shields.io/static/v1?label=Playwright&message=e2e&color=1a1a1a&labelColor=3c5280&style=for-the-badge&logo=playwright&logoColor=white">
-
-<img alt="License" src="https://img.shields.io/static/v1?label=License&message=MIT&color=1a1a1a&labelColor=3c5280&style=for-the-badge&logo=opensourceinitiative&logoColor=white">
-
-</div>
+<p align="center">
+  <img src="docs/assets/icons/lucide/house.svg" width="20" height="20" alt="" align="absmiddle">&nbsp;<a href="https://medomicslab.com/">Live Website</a>
+  &nbsp;&nbsp;·&nbsp;&nbsp;
+  <img src="docs/assets/icons/lucide/badge-plus.svg" width="20" height="20" alt="" align="absmiddle">&nbsp;<a href="#how-to-add-content-user-friendly">Add Content</a>
+  &nbsp;&nbsp;·&nbsp;&nbsp;
+  <img src="docs/assets/icons/lucide/terminal.svg" width="20" height="20" alt="" align="absmiddle">&nbsp;<a href="#running-the-site-locally">Run Locally</a>
+</p>
 
 ## <a id="how-to-add-content-user-friendly"></a><img src="docs/assets/icons/lucide/badge-plus.svg" width="32" alt="" /> How To Add Content (User-Friendly)
 
