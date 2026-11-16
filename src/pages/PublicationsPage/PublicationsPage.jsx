@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import pubData from "../../data/publications.json";
+import { getMemberByName } from "../../lib/team";
 import { cn } from "../../lib/utils";
 import EntryRow, { EntryRowBody, EntryRowTitle } from "../../components/EntryRow/EntryRow.jsx";
 import FilterChips from "../../components/FilterChips/FilterChips.jsx";
@@ -134,7 +135,11 @@ export default function PublicationsPage() {
                       </span>
                     )}
                     <EntryRowTitle variant="detailed">{pub.title}</EntryRowTitle>
-                    <p className="text-base text-muted-foreground">{pub.contributors.join(", ")}</p>
+                    <p className="text-base text-muted-foreground">
+                      {pub.labAuthorsOnly
+                        ? `Lab authors: ${pub.contributors.filter(getMemberByName).join(", ")}`
+                        : pub.contributors.join(", ")}
+                    </p>
                     <p className="text-sm italic text-muted-foreground/80">{pub.journal}</p>
                   </EntryRowBody>
                 </EntryRow>

@@ -87,16 +87,6 @@
         "redirect": true
       },
       {
-        "title": "An Agentic Framework for Interrogatable and Interpretable Survival Analysis",
-        "slug": "an-agentic-framework-for-interrogatable-and-interpretable-survival-analysis-2026",
-        "contributors": ["Juan Duran", "Shirin A. Enger", "Martin Vallières"],
-        "journal": "Radiotherapy and Oncology (CARO ASM 2026)",
-        "link": "https://doi.org/10.1016/S0167-8140(26)00891-1",
-        "type": "Conference Papers",
-        "date": "2026-09-01",
-        "redirect": true
-      },
-      {
         "title": "Predictive performance precision analysis in medicine: identification of low-confidence predictions at patient and profile levels (MED3pa I)",
         "slug": "predictive-performance-precision-analysis-in-medicine-identification-of-low-confidence-predictions-at-patient-and-profile-levels-med3pa-i-2026",
         "contributors": [
@@ -135,6 +125,34 @@
     "year": "2025",
     "items": [
       {
+        "title": "Beyond single-run metrics with CP-fuse: A rigorous multi-cohort evaluation of clinico-pathological fusion for improved survival prediction in TCGA",
+        "slug": "beyond-single-run-metrics-with-cp-fuse-a-rigorous-multi-cohort-evaluation-of-clinico-pathological-fusion-for-improved-survival-prediction-in-tcga-2025",
+        "contributors": ["Juan Duran", "Yujing Zou", "Martin Vallières", "Shirin A. Enger"],
+        "journal": "Machine Learning with Applications",
+        "link": "https://doi.org/10.1016/j.mlwa.2025.100789",
+        "type": "Journal Papers",
+        "date": "2025-11-04",
+        "redirect": true
+      },
+      {
+        "title": "Predictive Performance Precision Analysis in Medicine: Identification of low-confidence predictions at patient and profile levels (MED3pa I)",
+        "slug": "predictive-performance-precision-analysis-in-medicine-identification-of-low-confidence-predictions-at-patient-and-profile-levels-med3pa-i-2025",
+        "contributors": [
+          "Olivier Lefebvre",
+          "Félix Camirand Lemyre",
+          "Jean-François Ethier",
+          "Lyna Hiba Chikouche",
+          "Ludmila Amriou",
+          "Dan Poenaru",
+          "Martin Vallières"
+        ],
+        "journal": "medRxiv",
+        "link": "https://doi.org/10.1101/2025.08.22.25334254",
+        "type": "Preprints",
+        "date": "2025-08-26",
+        "redirect": true
+      },
+      {
         "title": "Leveraging patients’ longitudinal data to improve the Hospital One-year Mortality Risk",
         "slug": "leveraging-patients-longitudinal-data-to-improve-the-hospital-one-year-mortality-risk-2025",
         "contributors": ["Hakima Laribi", "Nicolas Raymond", "Martin Vallières"],
@@ -143,6 +161,21 @@
         "markdown": "publications/leveraging-patients-longitudinal-data-to-improve-the-hospital-one-year-mortality-risk-2025.md",
         "type": "Journal Papers",
         "date": "2025-03-04"
+      },
+      {
+        "title": "How Artificial Intelligence Can Help Improve Arc Flash Predictive Models",
+        "slug": "how-artificial-intelligence-can-help-improve-arc-flash-predictive-models-2025",
+        "contributors": [
+          "Simon Giard-Leroux",
+          "Greg Pagello",
+          "Nicolas Raymond",
+          "Martin Vallières"
+        ],
+        "journal": "2025 IEEE IAS Electrical Safety Workshop (ESW)",
+        "link": "https://doi.org/10.1109/esw58401.2025.11159075",
+        "type": "Conference Papers",
+        "date": "2025-03-03",
+        "redirect": true
       }
     ]
   },
@@ -150,7 +183,7 @@
     "year": "2024",
     "items": [
       {
-        "title": "Multi-task Bayesian Model Combining FDG-PET/CT Imaging and Clinical Data for Interpretable High-Grade Prostate Cancer Prognosis (Journal Article)",
+        "title": "Multi-task Bayesian model combining FDG-PET/CT imaging and clinical data for interpretable high-grade prostate cancer prognosis",
         "slug": "multi-task-bayesian-model-combining-fdg-pet-ct-imaging-and-clinical-data-for-interpretable-high-grade-prostate-cancer-prognosis-journal-article-2024",
         "contributors": ["Maxence Larose", "Nicolas Raymond", "Martin Vallières"],
         "journal": "Nature Scientific Reports",
@@ -168,16 +201,6 @@
         "markdown": "publications/synthetic-data-for-accessible-learning-in-healthcare-improving-mortality-prediction-with-longitudinal-data-preprint-2024.md",
         "type": "Preprints",
         "date": "2024-11-04"
-      },
-      {
-        "title": "Leveraging patients’ longitudinal data to improve the Hospital One-year Mortality Risk",
-        "slug": "leveraging-patients-longitudinal-data-to-improve-the-hospital-one-year-mortality-risk-2024",
-        "contributors": ["Hakima Laribi", "Nicolas Raymond", "Martin Vallières"],
-        "journal": "medRxiv",
-        "link": "https://www.medrxiv.org/content/10.1101/2024.06.21.24309191v3",
-        "markdown": "publications/leveraging-patients-longitudinal-data-to-improve-the-hospital-one-year-mortality-risk-2024.md",
-        "type": "Preprints",
-        "date": "2024-07-26"
       },
       {
         "title": "Unraveling Radiomics Complexity: Strategies for Optimal Simplicity in Predictive Modeling",
@@ -198,16 +221,6 @@
         "markdown": "publications/development-of-error-passing-network-for-optimizing-the-prediction-of-vo2-peak-in-childhood-acute-leukemia-survivors-2024.md",
         "type": "Conference Papers",
         "date": "2024-06-27"
-      },
-      {
-        "title": "Multi-task Bayesian Model Combining FDG-PET/CT Imaging and Clinical Data for Interpretable High-Grade Prostate Cancer Prognosis (Preprint)",
-        "slug": "multi-task-bayesian-model-combining-fdg-pet-ct-imaging-and-clinical-data-for-interpretable-high-grade-prostate-cancer-prognosis-preprint-2024",
-        "contributors": ["Maxence Larose", "Nicolas Raymond", "Martin Vallières"],
-        "journal": "medRxiv",
-        "link": "https://www.medrxiv.org/content/10.1101/2024.06.19.24308396v1",
-        "markdown": "publications/multi-task-bayesian-model-combining-fdg-pet-ct-imaging-and-clinical-data-for-interpretable-high-grade-prostate-cancer-prognosis-preprint-2024.md",
-        "type": "Preprints",
-        "date": "2024-06-20"
       }
     ]
   },
@@ -253,6 +266,186 @@
         "markdown": "publications/graph-attention-network-for-prostate-cancer-lymph-node-invasion-prediction-2022.md",
         "type": "Conference Papers",
         "date": "2022-04-22"
+      }
+    ]
+  },
+  {
+    "year": "2020",
+    "items": [
+      {
+        "title": "The Image Biomarker Standardization Initiative: Standardized Quantitative Radiomics for High-Throughput Image-based Phenotyping",
+        "slug": "the-image-biomarker-standardization-initiative-standardized-quantitative-radiomics-for-high-throughput-image-based-phenotyping-2020",
+        "contributors": [
+          "Alex Zwanenburg",
+          "Martin Vallières",
+          "Mahmoud A. Abdalah",
+          "Hugo J. W. L. Aerts",
+          "Vincent Andrearczyk",
+          "Aditya Apte",
+          "Saeed Ashrafinia",
+          "Spyridon Bakas",
+          "Roelof J. Beukinga",
+          "Ronald Boellaard",
+          "Marta Bogowicz",
+          "Luca Boldrini",
+          "Irène Buvat",
+          "Gary J. R. Cook",
+          "Christos Davatzikos",
+          "Adrien Depeursinge",
+          "Marie-Charlotte Desseroit",
+          "Nicola Dinapoli",
+          "Cuong Viet Dinh",
+          "Sebastian Echegaray",
+          "Issam El Naqa",
+          "Andriy Y. Fedorov",
+          "Roberto Gatta",
+          "Robert J. Gillies",
+          "Vicky Goh",
+          "Michael Götz",
+          "Matthias Guckenberger",
+          "Sung Min Ha",
+          "Mathieu Hatt",
+          "Fabian Isensee",
+          "Philippe Lambin",
+          "Stefan Leger",
+          "Ralph T.H. Leijenaar",
+          "Jacopo Lenkowicz",
+          "Fiona Lippert",
+          "Are Losnegård",
+          "Klaus H. Maier-Hein",
+          "Olivier Morin",
+          "Henning Müller",
+          "Sandy Napel",
+          "Christophe Nioche",
+          "Fanny Orlhac",
+          "Sarthak Pati",
+          "Elisabeth A.G. Pfaehler",
+          "Arman Rahmim",
+          "Arvind U.K. Rao",
+          "Jonas Scherer",
+          "Muhammad Musib Siddique",
+          "Nanna M. Sijtsema",
+          "Jairo Socarras Fernandez",
+          "Emiliano Spezi",
+          "Roel J.H.M. Steenbakkers",
+          "Stephanie Tanadini-Lang",
+          "Daniela Thorwarth",
+          "Esther G.C. Troost",
+          "Taman Upadhaya",
+          "Vincenzo Valentini",
+          "Lisanne V. van Dijk",
+          "Joost van Griethuysen",
+          "Floris H.P. van Velden",
+          "Philip Whybra",
+          "Christian Richter",
+          "Steffen Löck"
+        ],
+        "journal": "Radiology",
+        "link": "https://doi.org/10.1148/radiol.2020191145",
+        "type": "Journal Papers",
+        "date": "2020-03-10",
+        "redirect": true,
+        "labAuthorsOnly": true
+      }
+    ]
+  },
+  {
+    "year": "2018",
+    "items": [
+      {
+        "title": "Investigating the role of functional imaging in the management of soft-tissue sarcomas of the extremities",
+        "slug": "investigating-the-role-of-functional-imaging-in-the-management-of-soft-tissue-sarcomas-of-the-extremities-2018",
+        "contributors": [
+          "Martin Vallières",
+          "Monica Serban",
+          "Ibtissam Benzyane",
+          "Zaki Ahmed",
+          "Shu Xing",
+          "Issam El Naqa",
+          "Ives R. Levesque",
+          "Jan Seuntjens",
+          "Carolyn R. Freeman"
+        ],
+        "journal": "Physics and Imaging in Radiation Oncology",
+        "link": "https://doi.org/10.1016/j.phro.2018.05.003",
+        "type": "Journal Papers",
+        "date": "2018-05-19",
+        "redirect": true
+      },
+      {
+        "title": "Responsible Radiomics Research for Faster Clinical Translation",
+        "slug": "responsible-radiomics-research-for-faster-clinical-translation-2018",
+        "contributors": [
+          "Martin Vallières",
+          "Alex Zwanenburg",
+          "Bodgan Badic",
+          "Catherine Cheze Le Rest",
+          "Dimitris Visvikis",
+          "Mathieu Hatt"
+        ],
+        "journal": "Journal of Nuclear Medicine",
+        "link": "https://doi.org/10.2967/jnumed.117.200501",
+        "type": "Journal Papers",
+        "date": "2018-02-01",
+        "redirect": true
+      }
+    ]
+  },
+  {
+    "year": "2017",
+    "items": [
+      {
+        "title": "Enhancement of multimodality texture-based prediction models via optimization of PET and MR image acquisition protocols: a proof of concept",
+        "slug": "enhancement-of-multimodality-texture-based-prediction-models-via-optimization-of-pet-and-mr-image-acquisition-protocols-a-proof-of-concept-2017",
+        "contributors": ["Martin Vallières", "Sébastien Laberge", "André Diamant", "Issam El Naqa"],
+        "journal": "Physics in Medicine &amp; Biology",
+        "link": "https://doi.org/10.1088/1361-6560/aa8a49",
+        "type": "Journal Papers",
+        "date": "2017-10-27",
+        "redirect": true
+      },
+      {
+        "title": "Radiomics strategies for risk assessment of tumour failure in head-and-neck cancer",
+        "slug": "radiomics-strategies-for-risk-assessment-of-tumour-failure-in-head-and-neck-cancer-2017",
+        "contributors": [
+          "Martin Vallières",
+          "Emily Kay-Rivest",
+          "Léo Jean Perrin",
+          "Xavier Liem",
+          "Christophe Furstoss",
+          "Hugo J. W. L. Aerts",
+          "Nader Khaouam",
+          "Phuc Felix Nguyen-Tan",
+          "Chang-Shu Wang",
+          "Khalil Sultanem",
+          "Jan Seuntjens",
+          "Issam El Naqa"
+        ],
+        "journal": "Scientific Reports",
+        "link": "https://doi.org/10.1038/s41598-017-10371-5",
+        "type": "Journal Papers",
+        "date": "2017-08-31",
+        "redirect": true
+      }
+    ]
+  },
+  {
+    "year": "2015",
+    "items": [
+      {
+        "title": "A radiomics model from joint FDG-PET and MRI texture features for the prediction of lung metastases in soft-tissue sarcomas of the extremities",
+        "slug": "a-radiomics-model-from-joint-fdg-pet-and-mri-texture-features-for-the-prediction-of-lung-metastases-in-soft-tissue-sarcomas-of-the-extremities-2015",
+        "contributors": [
+          "Martin Vallières",
+          "Carolyn R. Freeman",
+          "Sonia R. Skamene",
+          "Issam El Naqa"
+        ],
+        "journal": "Physics in Medicine &amp; Biology",
+        "link": "https://doi.org/10.1088/0031-9155/60/14/5471",
+        "type": "Journal Papers",
+        "date": "2015-06-29",
+        "redirect": true
       }
     ]
   }

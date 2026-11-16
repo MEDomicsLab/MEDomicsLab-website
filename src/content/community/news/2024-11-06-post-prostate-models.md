@@ -3,7 +3,7 @@
 Congratulations to [Maxence Larose](/team/maxence-larose),
 [Nicolas Raymond](/team/nicolas-raymond), and
 [Martin Vallières](/team/martin-vallieres) for the publication of their paper entitled
-"Multi-task Bayesian Model Combining FDG-PET/CT Imaging and Clinical Data for Interpretable High-Grade Prostate Cancer Prognosis"
+"Multi-task Bayesian model combining FDG-PET/CT imaging and clinical data for interpretable high-grade prostate cancer prognosis"
 in [Nature Scientific Reports](https://www.nature.com/srep/).
 
 The article can be found at:

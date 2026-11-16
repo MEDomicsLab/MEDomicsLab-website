@@ -23,6 +23,7 @@
               "items": { "type": "string", "minLength": 1 },
               "minItems": 1
             },
+            "labAuthorsOnly": { "type": "boolean" },
             "journal": { "type": "string", "minLength": 1 },
             "link": { "type": "string", "minLength": 1 },
             "markdown": { "type": "string" },
