@@ -63,10 +63,6 @@ _No response_
 
 _No response_
 
-### ResearchGate
-
-_No response_
-
 ### GitHub
 
 https://github.com/test-member

@@ -6,7 +6,6 @@ import {
   GoogleScholarIcon,
   LinkedinIcon,
   CvIcon,
-  ResearchGateIcon,
   OrcidIcon,
 } from "../Icons/Icons.jsx";
 
@@ -15,7 +14,6 @@ const SOCIAL_ITEMS = [
   { key: "github", label: "GitHub", Icon: GithubIcon },
   { key: "scholar", label: "Google Scholar", Icon: GoogleScholarIcon },
   { key: "orcid", label: "ORCID", Icon: OrcidIcon, optional: true },
-  { key: "researchgate", label: "ResearchGate", Icon: ResearchGateIcon },
   { key: "cv", label: "CV", Icon: CvIcon },
   { key: "linkedin", label: "LinkedIn", Icon: LinkedinIcon },
   { key: "email", label: "Email", Icon: EnvelopeIcon },

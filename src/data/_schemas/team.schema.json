@@ -159,9 +159,6 @@
                 "scholar": {
                   "type": "string"
                 },
-                "researchgate": {
-                  "type": "string"
-                },
                 "github": {
                   "type": "string"
                 },
