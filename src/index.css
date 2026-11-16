@@ -81,6 +81,6 @@
   background:
     url("/images/homepage-neue/paper-texture.webp") center / cover,
     linear-gradient(rgb(0 61 165 / 48%), rgb(0 61 165 / 48%)),
-    url("/images/homepage-neue/branding-blue-texture.png") center / cover;
+    url("/images/homepage-neue/branding-blue-texture.webp") center / cover;
   background-blend-mode: soft-light, normal, normal;
 }

@@ -1,5 +1,6 @@
 import fs from "node:fs";
 import path from "node:path";
+import sharp from "sharp";
 
 import { slugify } from "./slug.mjs";
 import { ensureDir } from "./data-store.mjs";
@@ -191,7 +192,15 @@ export async function mirrorAttachments(root, text, { slug }) {
         );
         continue;
       }
-      downloads.push({ url, buffer, type });
+      const convertImage = type.kind === "image" && type.ext !== "webp";
+      const storedBuffer = convertImage
+        ? await sharp(buffer, { animated: true }).rotate().webp({ quality: 85 }).toBuffer()
+        : buffer;
+      downloads.push({
+        url,
+        buffer: storedBuffer,
+        type: convertImage ? { ...type, ext: "webp" } : type,
+      });
     } catch (err) {
       errors.push(err.message);
       if (!(err instanceof AttachmentRejectedError)) investigate = true;

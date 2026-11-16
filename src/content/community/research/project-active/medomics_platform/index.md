@@ -28,7 +28,7 @@ authors:
   - Martin Vallières
 ---
 
-![MEDomics platform](/images/albums/research-medomics_platform/MEDomicsLab-Principles-1.png "MEDomics platform")
+![MEDomics platform](/images/albums/research-medomics_platform/MEDomicsLab-Principles-1.webp "MEDomics platform")
 
 ## Status
 
@@ -73,9 +73,9 @@ For more information, see the [project website](https://medomics.app/).
 
 The figures below provide an overview of the core architecture of the MEDomics platform.
 
-![MEDomics goal](/images/albums/research-medomics_platform/MEDomicsLab-Principles-2.png)
-![MEDomics overview](/images/albums/research-medomics_platform/MEDomicsLab-Principles-3.png)
-![MEDomics workflow](/images/albums/research-medomics_platform/MEDomicsLab-Principles-5.png)
+![MEDomics goal](/images/albums/research-medomics_platform/MEDomicsLab-Principles-2.webp)
+![MEDomics overview](/images/albums/research-medomics_platform/MEDomicsLab-Principles-3.webp)
+![MEDomics workflow](/images/albums/research-medomics_platform/MEDomicsLab-Principles-5.webp)
 
 [//]: # "This platform is being developed in collaboration with: "
 [//]: # "- [University California San Francisco](https://www.ucsf.edu/) (Olivier Morin, Taman Upadhaya, Jorge Barrios)"

@@ -1,4 +1,4 @@
-![Journal of the American Medical Informatics Association (JAMIA)](/images/albums/2026-med3pa-article/featured.png)
+![Journal of the American Medical Informatics Association (JAMIA)](/images/albums/2026-med3pa-article/featured.webp)
 
 ## Date
 

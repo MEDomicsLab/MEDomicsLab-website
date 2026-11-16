@@ -1,4 +1,4 @@
-![arXiv](/images/albums/2024-radiomics-complexity-preprint/featured.png)
+![arXiv](/images/albums/2024-radiomics-complexity-preprint/featured.webp)
 
 ## Date
 

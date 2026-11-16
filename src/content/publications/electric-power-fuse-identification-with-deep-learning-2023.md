@@ -1,4 +1,4 @@
-![arXiv](/images/albums/2023-energai-article/featured.png)
+![arXiv](/images/albums/2023-energai-article/featured.webp)
 
 ## Date
 

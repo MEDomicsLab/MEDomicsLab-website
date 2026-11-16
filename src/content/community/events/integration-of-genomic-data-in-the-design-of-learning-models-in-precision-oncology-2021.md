@@ -1,4 +1,4 @@
-![ACFAS](/images/albums/genomics-acfas-2021/featured.png)
+![ACFAS](/images/albums/genomics-acfas-2021/featured.webp)
 
 ## Summary
 

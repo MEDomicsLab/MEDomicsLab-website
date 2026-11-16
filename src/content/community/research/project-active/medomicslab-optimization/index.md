@@ -8,7 +8,7 @@ authors:
   - Martin Vallières
 ---
 
-![MEDomics platform optimization project](/images/albums/research-medomicslab-optimization/project.png)
+![MEDomics platform optimization project](/images/albums/research-medomicslab-optimization/project.webp)
 
 ## Status
 

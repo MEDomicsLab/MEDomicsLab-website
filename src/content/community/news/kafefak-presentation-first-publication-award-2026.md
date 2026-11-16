@@ -1,4 +1,4 @@
-![First Publication Award certificate](/images/albums/2026-first-med3pa-presentation/certificat.png)
+![First Publication Award certificate](/images/albums/2026-first-med3pa-presentation/certificat.webp)
 
 ## Summary
 

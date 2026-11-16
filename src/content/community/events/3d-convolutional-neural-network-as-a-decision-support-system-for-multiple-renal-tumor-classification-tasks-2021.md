@@ -1,4 +1,4 @@
-![ACFAS](/images/albums/3d-conv-acfas-2021/featured.png)
+![ACFAS](/images/albums/3d-conv-acfas-2021/featured.webp)
 
 ## Summary
 

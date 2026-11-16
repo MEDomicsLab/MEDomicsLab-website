@@ -1,4 +1,4 @@
-![RBIQ](/images/albums/medomicslab-rbiq-2022/featured.jpg)
+![RBIQ](/images/albums/medomicslab-rbiq-2022/featured.webp)
 
 ## Summary
 

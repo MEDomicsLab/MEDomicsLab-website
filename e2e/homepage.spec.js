@@ -165,7 +165,7 @@ test("project focus reveals statistics and publications expose four readable, li
   for (const name of ["MEDomics", "MED3pa", "MEDfl", "MEDiml", "MEDprofiles"]) {
     await page.locator(`.neue-ecosystem-app[aria-label^="${name},"]`).focus();
     const logo = page.getByRole("img", { name: `${name} logo`, exact: true });
-    await expect(logo).toHaveAttribute("src", `/images/homepage-neue/${name}-white.png`);
+    await expect(logo).toHaveAttribute("src", `/images/homepage-neue/${name}-white.webp`);
     await expect.poll(() => logo.evaluate((el) => el.naturalWidth)).toBeGreaterThan(0);
   }
   await expect(page.locator(".neue-ecosystem-stain-body")).not.toContainText("On GitHub");

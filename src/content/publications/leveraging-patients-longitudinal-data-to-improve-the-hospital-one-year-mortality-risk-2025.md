@@ -1,4 +1,4 @@
-![Health Information Science and Systems](/images/albums/2025-longitudinal-oym-article/featured.png)
+![Health Information Science and Systems](/images/albums/2025-longitudinal-oym-article/featured.webp)
 
 ## Date
 

@@ -7,7 +7,7 @@
         "position": "Associate Professor | Medical Physics Unit, Department of Oncology, McGill University",
         "slug": "martin-vallieres",
         "email": "martin.vallieres@mcgill.ca",
-        "image": "/images/team/martin-vallieres/avatar.jpg",
+        "image": "/images/team/martin-vallieres/avatar.webp",
         "degreeSuffix": "PhD",
         "appointments": [
           {
@@ -100,7 +100,7 @@
           {
             "name": "RSN – Réseau santé numérique",
             "url": "https://rsn.quebec/en/team/martin-vallieres-phd/",
-            "logo": "/images/logo/institutes/rsn.png"
+            "logo": "/images/logo/institutes/rsn.webp"
           },
           {
             "name": "Mila - Quebec AI Institute",
@@ -110,7 +110,7 @@
           {
             "name": "Lady Davis Institute for Medical Research",
             "url": "https://www.ladydavis.ca/en/researcher/martin-vallieres/",
-            "logo": "/images/logo/institutes/ladydavis.png"
+            "logo": "/images/logo/institutes/ladydavis.webp"
           },
           {
             "name": "Research Institute of the McGill University Health Centre (RI-MUHC)",
@@ -138,7 +138,7 @@
         "position": "Postdoctoral Researcher ML4Health",
         "slug": "simon-provost",
         "email": "simon.g.provost@mcgill.ca",
-        "image": "/images/team/simon-provost/avatar.png",
+        "image": "/images/team/simon-provost/avatar.webp",
         "expertise": [
           "Longitudinal-data-aware machine learning",
           "Automated machine learning (AutoML)",
@@ -189,7 +189,7 @@
         "position": "PhD Computer science",
         "slug": "hakima-laribi",
         "email": "Hakima.Laribi@USherbrooke.ca",
-        "image": "/images/team/hakima-laribi/avatar.jpeg",
+        "image": "/images/team/hakima-laribi/avatar.webp",
         "expertise": ["Knowledge graphs", "Graph neural networks", "Health informatics"],
         "education": [
           {
@@ -219,7 +219,7 @@
         "position": "PhD Biomedical Engineering",
         "slug": "juan-duran",
         "email": "juan.duran@mail.mcgill.ca",
-        "image": "/images/team/juan-duran/avatar.jpg",
+        "image": "/images/team/juan-duran/avatar.webp",
         "expertise": [
           "Multimodal fusion for survival prediction",
           "Interpretable AI methods for uncovering pathological features",
@@ -256,7 +256,7 @@
         "position": "PhD Computer science",
         "slug": "olivier-lefebvre",
         "email": "Olivier.Lefebvre3@USherbrooke.ca",
-        "image": "/images/team/olivier-lefebvre/avatar.jpeg",
+        "image": "/images/team/olivier-lefebvre/avatar.webp",
         "expertise": [
           "Machine learning",
           "Federated learning",
@@ -291,7 +291,7 @@
         "position": "PhD Biological & Biomedical Engineering",
         "slug": "mahdi-loutfi",
         "email": "mahdi.aitlhajloutfi@mail.mcgill.ca",
-        "image": "/images/team/mahdi-loutfi/avatar.png",
+        "image": "/images/team/mahdi-loutfi/avatar.webp",
         "expertise": ["Python", "Medical imaging", "Radiomics", "Artificial intelligence"],
         "education": [
           {
@@ -326,7 +326,7 @@
         "position": "MSc Radiation sciences and medical imaging",
         "slug": "elodie-gillard",
         "email": "elodie.gillard@usherbrooke.ca",
-        "image": "/images/team/elodie-gillard/avatar.jpg",
+        "image": "/images/team/elodie-gillard/avatar.webp",
         "expertise": [
           "Medical imaging",
           "Neurosciences & ophthalmology",
@@ -365,7 +365,7 @@
         "position": "MSc Software Engineering",
         "slug": "ouael-nedjem-eddine-sahbi",
         "email": "ouael2019esi@gmail.com",
-        "image": "/images/team/ouael-nedjem-eddine-sahbi/avatar.jpg",
+        "image": "/images/team/ouael-nedjem-eddine-sahbi/avatar.webp",
         "expertise": [
           "Machine Learning",
           "Federated Learning",
@@ -402,7 +402,7 @@
         "position": "MSc Software Engineering",
         "slug": "moustafa-amine-bezzahi",
         "email": "moustafa.amine.bezzahi@usherbrooke.ca",
-        "image": "/images/team/moustafa-amine-bezzahi/avatar.jpg",
+        "image": "/images/team/moustafa-amine-bezzahi/avatar.webp",
         "expertise": ["Deep learning", "Computer vision", "Medical Imaging", "Digital Health"],
         "education": [
           {
@@ -432,7 +432,7 @@
         "position": "Research assistant",
         "slug": "nicolas-longchamps",
         "email": "Nicolas.Longchamps@USherbrooke.ca",
-        "image": "/images/team/nicolas-longchamps/avatar.jpg",
+        "image": "/images/team/nicolas-longchamps/avatar.webp",
         "expertise": ["Robotics"],
         "education": [
           {
@@ -456,7 +456,7 @@
         "name": "Steven Ravary",
         "position": "MSc candidate in Biological and Biomedical Engineering",
         "slug": "steven-ravary",
-        "image": "/images/team/steven-ravary/avatar.jpg",
+        "image": "/images/team/steven-ravary/avatar.webp",
         "bio": "Steven is a master's student in the MEDomicsLab since 2026. A former healthcare professional, he previously worked on a prior project focused on data processing and validation of open-source datasets. He is working on deep learning and Bayesian methods for hierarchical intermediate multimodal fusion. He will be developing MEDfusion, a module for hierarchical multimodal fusion that will be integrated into the MEDomics platform",
         "expertise": [
           "Healthcare AI",
@@ -491,7 +491,7 @@
         "name": "Alexander Chum",
         "position": "Research Assistant",
         "slug": "alexander-chum",
-        "image": "/images/team/alexander-chum/avatar.jpg",
+        "image": "/images/team/alexander-chum/avatar.webp",
         "bio": "Alexander is a research assistant in the MEDomics Lab since 2026. A former software developer, he previously worked at Meta on improving user facing products including Instagram, Messenger, Facebook, and Oculus. He also worked on automation for cancer treatment planning. He is an aspiring medical physicists and currently contributing to MEDiml and MEDomics Lab through various projects.",
         "expertise": ["Product UX", "Mobile Development", "ESAPI Scripting"],
         "email": "Alexander.Chum@rimuhc.ca",
@@ -516,7 +516,7 @@
         "name": "Ben Coull-Neveu",
         "position": "MSc Medical Physics",
         "slug": "ben-coull-neveu",
-        "image": "/images/team/ben-coull-neveu/avatar.jpg",
+        "image": "/images/team/ben-coull-neveu/avatar.webp",
         "bio": "Ben Coull-Neveu is a MSc1 medical physics student at McGill university who started working in the MEDomics lab in late 2026. His previous research experience involved exoplanetary science, and more recently involved federated learning for lung lesion autosegmentation models.",
         "expertise": ["Machine learning", "Federated learning", "Medical physics"],
         "email": "benjamin.coull-neveu@mail.mcgill.ca",
@@ -547,7 +547,7 @@
         "name": "Thanh-Tri Nguyen",
         "position": "Undergraduate in Bioengineering",
         "slug": "thanhtri-nguyen",
-        "image": "/images/team/thanhtri-nguyen/avatar.jpg",
+        "image": "/images/team/thanhtri-nguyen/avatar.webp",
         "bio": "Thanh-Tri Nguyen is a Bioengineering undergraduate at McGill University and a student researcher in the Medical Physics Unit at the McGill University Health Centre, supervised by Prof. Martin Vallières. His current focus is integrating MED3pa, a Python package for confidence-aware evaluation of predictive models, into MEDomicsLab, a no-code medical AI platform built on Electron, React/TypeScript, Go and Python. His work spans the full stack, from the user interface for exploring model confidence and uncertainty to the backend that runs the experiments. He is broadly interested in software development, data science, protein development, medical device engineering and making trustworthy medical AI accessible to clinicians and researchers.",
         "expertise": ["Medical AI", "Confidence-aware model evaluation", "Machine learning"],
         "email": "thanh-tri.nguyen@mail.mcgill.ca",
@@ -565,7 +565,7 @@
         "position": "MSc Software Engineering",
         "slug": "mariem-kallel",
         "email": "mariem.kallel@usherbrooke.ca",
-        "image": "/images/team/mariem-kallel/avatar.jpg",
+        "image": "/images/team/mariem-kallel/avatar.webp",
         "expertise": ["Human-Computer Interfaces", "Health Informatics", "Artificial Intelligence"],
         "education": [
           {
@@ -595,7 +595,7 @@
         "position": "Intern in AI / Imaging",
         "slug": "anthonin-falk",
         "email": "anthonin.falk@gmail.com",
-        "image": "/images/team/anthonin-falk/avatar.jpg",
+        "image": "/images/team/anthonin-falk/avatar.webp",
         "expertise": [
           "Medical imaging",
           "Artificial intelligence",
@@ -625,7 +625,7 @@
         "position": "Research professional",
         "slug": "brahim-fakri",
         "email": "brahim.fakri@yahoo.fr",
-        "image": "/images/team/brahim-fakri/avatar.jpg",
+        "image": "/images/team/brahim-fakri/avatar.webp",
         "expertise": ["Big Data"],
         "education": [
           {
@@ -655,7 +655,7 @@
         "position": "Research assistant",
         "slug": "cedrik-lampron",
         "email": "cedrik.lampron@usherbrooke.ca",
-        "image": "/images/team/cedrik-lampron/avatar.jpg",
+        "image": "/images/team/cedrik-lampron/avatar.webp",
         "expertise": ["Game Jams", "Cybersecurity", "Data Governance"],
         "education": [
           {
@@ -685,7 +685,7 @@
         "position": "Research assistant",
         "slug": "charles-olivier-ipperciel",
         "email": "ippc2001@usherbrooke.ca",
-        "image": "/images/team/charles-olivier-ipperciel/avatar.jpg",
+        "image": "/images/team/charles-olivier-ipperciel/avatar.webp",
         "expertise": ["Web development", "Full stack"],
         "education": [
           {
@@ -710,7 +710,7 @@
         "position": "Research assistant",
         "slug": "guillaume-blain",
         "email": "Guillaume.Blain2@USherbrooke.ca",
-        "image": "/images/team/guillaume-blain/avatar.jpg",
+        "image": "/images/team/guillaume-blain/avatar.webp",
         "expertise": ["Python", "Robotics", "Full Stack Web Development"],
         "education": [
           {
@@ -735,7 +735,7 @@
         "position": "Research professional",
         "slug": "marc-alexandre-parent",
         "email": "",
-        "image": "/images/team/marc-alexandre-parent/avatar.jpg",
+        "image": "/images/team/marc-alexandre-parent/avatar.webp",
         "expertise": ["Python"],
         "education": [],
         "bio": "",
@@ -759,7 +759,7 @@
         "position": "MSc Physics",
         "slug": "maxence-larose",
         "email": "Maxence.Larose@USherbrooke.ca",
-        "image": "/images/team/maxence-larose/avatar.jpg",
+        "image": "/images/team/maxence-larose/avatar.webp",
         "expertise": ["Physics"],
         "education": [
           {
@@ -789,7 +789,7 @@
         "position": "MSc Health sciences",
         "slug": "teodora-boblea-podasca",
         "email": "Teodora.Boblea.Podasca@USherbrooke.ca",
-        "image": "/images/team/teodora-boblea-podasca/avatar.png",
+        "image": "/images/team/teodora-boblea-podasca/avatar.webp",
         "expertise": ["Kidney cancer", "Radiomics", "Urology"],
         "education": [
           {
@@ -819,7 +819,7 @@
         "position": "Research assistant",
         "slug": "andreanne-allaire",
         "email": "Andreanne.Allaire@USherbrooke.ca",
-        "image": "/images/team/andreanne-allaire/avatar.jpg",
+        "image": "/images/team/andreanne-allaire/avatar.webp",
         "expertise": ["Magnetic resonance imaging", "Medical physics", "Radiomics"],
         "education": [
           {
@@ -844,7 +844,7 @@
         "position": "Intern",
         "slug": "ihssene-brahimi",
         "email": "ihssene.brahimi@usherbrooke.ca",
-        "image": "/images/team/ihssene-brahimi/avatar.jpg",
+        "image": "/images/team/ihssene-brahimi/avatar.webp",
         "expertise": ["Artificial Intelligence", "Medical Imaging"],
         "education": [
           {
@@ -869,7 +869,7 @@
         "position": "Intern",
         "slug": "ludmila-amriou",
         "email": "jl_amriou@esi.dz",
-        "image": "/images/team/ludmila-amriou/avatar.jpg",
+        "image": "/images/team/ludmila-amriou/avatar.webp",
         "expertise": [
           "Software Engineering",
           "Artificial Intelligence: Machine Learning, Deep Learning"
@@ -897,7 +897,7 @@
         "position": "Intern",
         "slug": "lyna-hiba-chikouche",
         "email": "jl_chikouche@esi.dz",
-        "image": "/images/team/lyna-hiba-chikouche/avatar.jpg",
+        "image": "/images/team/lyna-hiba-chikouche/avatar.webp",
         "expertise": [
           "Software Engineering",
           "Machine Learning",
@@ -928,7 +928,7 @@
         "position": "Research professional",
         "slug": "sarah-denis",
         "email": "sarah.denis@usherbrooke.ca",
-        "image": "/images/team/sarah-denis/avatar.jpg",
+        "image": "/images/team/sarah-denis/avatar.webp",
         "expertise": ["Machine Learning", "Healthcare Informatics"],
         "education": [
           {
@@ -963,7 +963,7 @@
         "position": "MSc Computer science, imaging",
         "slug": "alexandre-ayotte",
         "email": "Alexandre.Ayotte2@USherbrooke.ca",
-        "image": "/images/team/alexandre-ayotte/avatar.jpg",
+        "image": "/images/team/alexandre-ayotte/avatar.webp",
         "expertise": ["Classification of renal tumors", "Multi-task learning"],
         "education": [
           {
@@ -993,7 +993,7 @@
         "position": "Intern",
         "slug": "arthur-baudot",
         "email": "arthur.baudot@usherbrooke.ca",
-        "image": "/images/team/arthur-baudot/avatar.jpg",
+        "image": "/images/team/arthur-baudot/avatar.webp",
         "expertise": ["Machine Learning", "Bioinformatics", "Data science"],
         "education": [
           {
@@ -1023,7 +1023,7 @@
         "position": "Intern",
         "slug": "hithem-lamri",
         "email": "hithem.lamri@usherbrooke.ca",
-        "image": "/images/team/hithem-lamri/avatar.jpg",
+        "image": "/images/team/hithem-lamri/avatar.webp",
         "expertise": ["Federated Learning", "Computer science"],
         "education": [
           {
@@ -1053,7 +1053,7 @@
         "position": "MSc Computer science",
         "slug": "nicolas-raymond",
         "email": "Nicolas.Raymond2@USherbrooke.ca",
-        "image": "/images/team/nicolas-raymond/avatar.jpg",
+        "image": "/images/team/nicolas-raymond/avatar.webp",
         "expertise": [
           "Machine learning",
           "Multiomics data",
@@ -1089,7 +1089,7 @@
         "position": "(MSc Computer science), electrical engineer",
         "slug": "simon-giard-leroux",
         "email": "sgiardleroux@gmail.com",
-        "image": "/images/team/simon-giard-leroux/avatar.png",
+        "image": "/images/team/simon-giard-leroux/avatar.webp",
         "expertise": ["Electrical energy", "Object detection"],
         "education": [
           {
@@ -1119,7 +1119,7 @@
         "position": "Intern",
         "slug": "clarisse-cheng",
         "email": "Clarisse.Cheng@USherbrooke.ca",
-        "image": "/images/team/clarisse-cheng/avatar.jpeg",
+        "image": "/images/team/clarisse-cheng/avatar.webp",
         "expertise": ["Embedded systems"],
         "education": [
           {
@@ -1144,7 +1144,7 @@
         "position": "Intern",
         "slug": "corentin-gauthier",
         "email": "Corentin.Gauthier@USherbrooke.ca",
-        "image": "/images/team/corentin-gauthier/avatar.jpeg",
+        "image": "/images/team/corentin-gauthier/avatar.webp",
         "expertise": ["Python", "JavaScript", "Machine learning"],
         "education": [
           {
@@ -1169,7 +1169,7 @@
         "position": "Intern",
         "slug": "guillaume-cleroux",
         "email": "Guillaume.Cleroux@USherbrooke.ca",
-        "image": "/images/team/guillaume-cleroux/avatar.jpg",
+        "image": "/images/team/guillaume-cleroux/avatar.webp",
         "expertise": ["Julia"],
         "education": [
           {
@@ -1194,7 +1194,7 @@
         "position": "Research assistant",
         "slug": "mohammed-benabbassi",
         "email": "Mohammed.Benabbassi@USherbrooke.ca",
-        "image": "/images/team/mohammed-benabbassi/avatar.jpg",
+        "image": "/images/team/mohammed-benabbassi/avatar.webp",
         "expertise": ["Python", "Reinforcement learning", "Federated learning", "Data Science"],
         "education": [
           {
@@ -1224,7 +1224,7 @@
         "position": "Intern",
         "slug": "achille-lanctot-saumure",
         "email": "Achille.Lanctot-Saumure@USherbrooke.ca",
-        "image": "/images/team/achille-lanctot-saumure/avatar.jpeg",
+        "image": "/images/team/achille-lanctot-saumure/avatar.webp",
         "expertise": ["Text Detection"],
         "education": [
           {
@@ -1249,7 +1249,7 @@
         "position": "Intern",
         "slug": "alex-chorel-campanozzi",
         "email": "Alex.Chorel-Campanozzi@USherbrooke.ca",
-        "image": "/images/team/alex-chorel-campanozzi/avatar.png",
+        "image": "/images/team/alex-chorel-campanozzi/avatar.webp",
         "expertise": ["Line Detection"],
         "education": [
           {
@@ -1279,7 +1279,7 @@
         "position": "Research professional",
         "slug": "jonathan-perron",
         "email": "Jonathan.Andre.Perron@USherbrooke.ca",
-        "image": "/images/team/jonathan-perron/avatar.jpg",
+        "image": "/images/team/jonathan-perron/avatar.webp",
         "expertise": ["Python"],
         "education": [
           {
@@ -1314,7 +1314,7 @@
         "position": "Intern",
         "slug": "kayla-davio-roy",
         "email": "Kayla.Davio-Roy@USherbrooke.ca",
-        "image": "/images/team/kayla-davio-roy/avatar.jpg",
+        "image": "/images/team/kayla-davio-roy/avatar.webp",
         "expertise": ["Medicine"],
         "education": [
           {
@@ -1339,7 +1339,7 @@
         "position": "Research professional",
         "slug": "mamadou-mountagha-bah",
         "email": "Mamadou.Mountagha.Bah@USherbrooke.ca",
-        "image": "/images/team/mamadou-mountagha-bah/avatar.jpeg",
+        "image": "/images/team/mamadou-mountagha-bah/avatar.webp",
         "expertise": ["Machine learning"],
         "education": [
           {
@@ -1374,7 +1374,7 @@
         "position": "Intern",
         "slug": "mehdi-mitiche",
         "email": "Mehdi.Mitiche@USherbrooke.ca",
-        "image": "/images/team/mehdi-mitiche/avatar.jpeg",
+        "image": "/images/team/mehdi-mitiche/avatar.webp",
         "expertise": ["Machine Learning"],
         "education": [
           {
@@ -1399,7 +1399,7 @@
         "position": "Research assistant",
         "slug": "shreyas-sunil-kulkarni",
         "email": "Shreyas.Sunil.Kulkarni@USherbrooke.ca",
-        "image": "/images/team/shreyas-sunil-kulkarni/avatar.jpeg",
+        "image": "/images/team/shreyas-sunil-kulkarni/avatar.webp",
         "expertise": ["Machine learning"],
         "education": [
           {
@@ -1434,7 +1434,7 @@
         "position": "Intern",
         "slug": "charles-levesque-matte",
         "email": "Charles.Levesque-Matte@USherbrooke.ca",
-        "image": "/images/team/charles-levesque-matte/avatar.jpeg",
+        "image": "/images/team/charles-levesque-matte/avatar.webp",
         "expertise": ["Machine learning", "Python"],
         "education": [
           {
@@ -1459,7 +1459,7 @@
         "position": "Intern",
         "slug": "fabio-provencher-flores",
         "email": "Fabio.Provencher-Flores@USherbrooke.ca",
-        "image": "/images/team/fabio-provencher-flores/avatar.jpeg",
+        "image": "/images/team/fabio-provencher-flores/avatar.webp",
         "expertise": ["Federated learning"],
         "education": [
           {
@@ -1484,7 +1484,7 @@
         "position": "Intern",
         "slug": "francois-marcoux",
         "email": "Francois.Marcoux2@USherbrooke.ca",
-        "image": "/images/team/francois-marcoux/avatar.jpg",
+        "image": "/images/team/francois-marcoux/avatar.webp",
         "expertise": ["Federated learning"],
         "education": [
           {
@@ -1509,7 +1509,7 @@
         "position": "Intern",
         "slug": "julien-corriveau-trudel",
         "email": "Julien.Corriveau-Trudel@USherbrooke.ca",
-        "image": "/images/team/julien-corriveau-trudel/avatar.jpg",
+        "image": "/images/team/julien-corriveau-trudel/avatar.webp",
         "expertise": ["Statistics"],
         "education": [
           {
@@ -1539,7 +1539,7 @@
         "position": "Intern",
         "slug": "robin-mailhot",
         "email": "Robin.Mailhot@USherbrooke.ca",
-        "image": "/images/team/robin-mailhot/avatar.jpeg",
+        "image": "/images/team/robin-mailhot/avatar.webp",
         "expertise": ["Robotics"],
         "education": [
           {

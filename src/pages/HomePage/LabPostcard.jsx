@@ -233,7 +233,7 @@ export default function LabPostcard({ paused, mission }) {
       const [photo, whiteLogo, bluePaper, paperGrain] = await Promise.all([
         loadImage(PHOTO),
         loadImage(homeData.brand.lightLogoUrl),
-        loadImage("/images/homepage-neue/branding-blue-texture.png"),
+        loadImage("/images/homepage-neue/branding-blue-texture.webp"),
         loadImage("/images/homepage-neue/paper-texture.webp"),
       ]);
       if (cancelled) return;

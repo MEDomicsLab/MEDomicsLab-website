@@ -8,7 +8,7 @@
      { "name", "url", "affiliation" } objects). The project page
      shows both in its sidebar, so there is no Team section here. -->
 
-![<!-- replace: alt text -->](/images/albums/<!-- replace: album folder -->/featured.png "<!-- caption -->")
+![<!-- replace: alt text -->](/images/albums/<!-- replace: album folder -->/featured.webp "<!-- caption -->")
 
 ## Status
 

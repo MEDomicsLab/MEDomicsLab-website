@@ -1,4 +1,4 @@
-![Radiomics complexity preprint featured image](/images/albums/2024-07-05-post-arxiv/featured.png)
+![Radiomics complexity preprint featured image](/images/albums/2024-07-05-post-arxiv/featured.webp)
 
 Congratulations to [Mahdi Loutfi](/team/mahdi-loutfi),
 [Teodora Boblea Podasca](/team/teodora-boblea-podasca), and

@@ -6,8 +6,8 @@
     "name": "MEDomicsLab",
     "siteUrl": "https://medomicslab.com",
     "repositoryUrl": "https://github.com/MEDomicsLab/MEDomicsLab-website",
-    "logoUrl": "/images/logo/medomicslab.png",
-    "lightLogoUrl": "/images/homepage-neue/MEDomicsLab-white.png"
+    "logoUrl": "/images/logo/medomicslab.webp",
+    "lightLogoUrl": "/images/homepage-neue/MEDomicsLab-white.webp"
   },
   "mission": {
     "text": "We advance precision medicine by building open-source, clinically grounded AI tools and methods spanning medical imaging, multimodal predictive modeling, and privacy-aware collaboration."
@@ -19,7 +19,7 @@
           "name": "MEDomics",
           "website": "https://medomics.app/",
           "repo": "https://github.com/MEDomicsLab/MEDomics",
-          "logo": "/images/homepage-neue/MEDomics-white.png",
+          "logo": "/images/homepage-neue/MEDomics-white.webp",
           "statsSnapshot": {
             "stars": 8,
             "forks": 7
@@ -29,7 +29,7 @@
           "name": "MEDiml",
           "website": "https://www.mediml.app/",
           "repo": "https://github.com/MEDomicsLab/MEDiml-app",
-          "logo": "/images/homepage-neue/MEDiml-white.png",
+          "logo": "/images/homepage-neue/MEDiml-white.webp",
           "statsSnapshot": {
             "stars": 8,
             "forks": 2
@@ -39,7 +39,7 @@
           "name": "MED3pa",
           "website": "https://www.med3pa.app/",
           "repo": "https://github.com/MEDomicsLab/MED3pa",
-          "logo": "/images/homepage-neue/MED3pa-white.png",
+          "logo": "/images/homepage-neue/MED3pa-white.webp",
           "statsSnapshot": {
             "stars": 5,
             "forks": 0
@@ -48,7 +48,7 @@
         {
           "name": "MEDfl",
           "repo": "https://www.medfl.app/",
-          "logo": "/images/homepage-neue/MEDfl-white.png",
+          "logo": "/images/homepage-neue/MEDfl-white.webp",
           "statsSnapshot": {
             "stars": 3,
             "forks": 0
@@ -61,7 +61,7 @@
             "stars": 0,
             "forks": 0
           },
-          "logo": "/images/homepage-neue/MEDprofiles-white.png"
+          "logo": "/images/homepage-neue/MEDprofiles-white.webp"
         }
       ]
     }

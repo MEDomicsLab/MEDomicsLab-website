@@ -1,4 +1,4 @@
-![T-CAIREM](/images/albums/2023-tcairem-lefebvre-presentation/tcairem.png)
+![T-CAIREM](/images/albums/2023-tcairem-lefebvre-presentation/tcairem.webp)
 
 ## Summary
 

@@ -1,4 +1,4 @@
-![MED3pa article featured image](/images/albums/2026-03-31-post-med3pa-article/featured.png)
+![MED3pa article featured image](/images/albums/2026-03-31-post-med3pa-article/featured.webp)
 
 Congratulations to [Olivier Lefebvre](/team/olivier-lefebvre) and
 [Martin Vallières](/team/martin-vallieres) for the publication of their paper entitled

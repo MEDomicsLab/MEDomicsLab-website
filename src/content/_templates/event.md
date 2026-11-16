@@ -9,9 +9,9 @@
 <!-- Pictures are shown on the event's calendar card and in its gallery, not inside the text.
      The first photo is the card's cover, and up to three photos are stacked on it.
      Wide logos or banners appear as a small badge on the card. -->
-<!-- ![<alt>](/images/albums/<album>/featured.png) -->
+<!-- ![<alt>](/images/albums/<album>/featured.webp) -->
 
-<!-- ![<alt>](/images/albums/<album>/photo-1.png) -->
+<!-- ![<alt>](/images/albums/<album>/photo-1.webp) -->
 
 <!-- replace: a paragraph (or several) describing the event. Tables, lists,
 and embedded media all work here. -->

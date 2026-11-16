@@ -1,7 +1,7 @@
 {
   "description": "MEDomicsLab develops reliable predictive models from heterogeneous medical data for precision medicine research.",
   "tagline": "Medical AI & Precision Medicine Research",
-  "image": "/images/homepage.jpg",
+  "image": "/images/homepage.webp",
   "pages": {
     "/": { "title": "Home" },
     "/research": {

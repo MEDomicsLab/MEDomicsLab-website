@@ -1,4 +1,4 @@
-![arXiv](/images/albums/2022-ml-strategies-laes/featured.png)
+![arXiv](/images/albums/2022-ml-strategies-laes/featured.webp)
 
 ## Date
 

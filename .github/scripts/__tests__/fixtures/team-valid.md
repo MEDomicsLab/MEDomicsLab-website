@@ -73,7 +73,7 @@ _No response_
 
 ### Portrait photo
 
-![portrait](team-photo.png)
+![portrait](team-photo.webp)
 
 ### Anything else?
 
