@@ -8,7 +8,7 @@ authors:
   - Martin Vallières
 ---
 
-![Example of a small renal mass](/images/albums/research-kidney-small-tumors/tumor.png "Example of a small renal mass")
+![Example of a small renal mass](/images/albums/research-kidney-small-tumors/tumor.webp "Example of a small renal mass")
 
 ## Status
 

@@ -1,4 +1,4 @@
-![Prostate models article featured image](/images/albums/2024-11-06-post-prostate-models/featured.png)
+![Prostate models article featured image](/images/albums/2024-11-06-post-prostate-models/featured.webp)
 
 Congratulations to [Maxence Larose](/team/maxence-larose),
 [Nicolas Raymond](/team/nicolas-raymond), and

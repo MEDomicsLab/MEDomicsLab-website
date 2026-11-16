@@ -1,4 +1,4 @@
-![PMLR](/images/albums/2024-epn/featured.png)
+![PMLR](/images/albums/2024-epn/featured.webp)
 
 ## Date
 

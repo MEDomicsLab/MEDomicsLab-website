@@ -12,8 +12,8 @@ authors:
   - Martin Vallières
 ---
 
-![Examples of fuse detection](/images/albums/research-energAI/fuses.png "Examples of fuse detection")
-![Examples of symbols detection](/images/albums/research-energAI/drawings.png "Examples of symbols detection")
+![Examples of fuse detection](/images/albums/research-energAI/fuses.webp "Examples of fuse detection")
+![Examples of symbols detection](/images/albums/research-energAI/drawings.webp "Examples of symbols detection")
 
 ## Status
 

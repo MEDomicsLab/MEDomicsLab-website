@@ -217,12 +217,12 @@ export default function LabVideo({ priority = false }) {
       <picture>
         <source
           type="image/webp"
-          srcSet={imageSrcSet("/images/homepage.jpg", [640, 1280], "webp")}
+          srcSet={imageSrcSet("/images/homepage.webp", [640, 1280], "webp")}
           sizes="100vw"
         />
         <img
           className="neue-video-poster"
-          src="/images/homepage.jpg"
+          src="/images/homepage.webp"
           alt=""
           loading={priority ? "eager" : "lazy"}
           fetchPriority={priority ? "high" : undefined}

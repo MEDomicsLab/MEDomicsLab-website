@@ -8,7 +8,7 @@ authors:
   - Martin Vallières
 ---
 
-![Hard-sharing architecture example](/images/albums/research-multitask-classification/hard_sharing_en.png "Hard-sharing architecture example.")
+![Hard-sharing architecture example](/images/albums/research-multitask-classification/hard_sharing_en.webp "Hard-sharing architecture example.")
 
 ## Status
 

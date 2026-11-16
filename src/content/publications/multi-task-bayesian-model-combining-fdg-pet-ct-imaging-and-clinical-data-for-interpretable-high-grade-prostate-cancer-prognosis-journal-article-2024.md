@@ -1,4 +1,4 @@
-![arXiv](/images/albums/2024-prostate-models-article/featured.png)
+![arXiv](/images/albums/2024-prostate-models-article/featured.webp)
 
 ## Date
 

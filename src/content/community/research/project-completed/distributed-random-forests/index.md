@@ -10,7 +10,7 @@ authors:
   - Martin Vallières
 ---
 
-![Class diagram](/images/albums/research-distributed-random-forests/fig_1.png)
+![Class diagram](/images/albums/research-distributed-random-forests/fig_1.webp)
 
 ## Status
 
@@ -41,7 +41,7 @@ implementation is based are "Federated personalized random forest for human acti
 
 The implementation was done in _Python_ and _Docker_ was used to run the clients.
 
-![Class diagram](/images/albums/research-distributed-random-forests/fig_1.png)
+![Class diagram](/images/albums/research-distributed-random-forests/fig_1.webp)
 
 ## Classes
 
@@ -99,7 +99,7 @@ majority vote.
 
 Class that represents a node of a decision tree.
 
-![Sequence diagram](/images/albums/research-distributed-random-forests/fig_2.png)
+![Sequence diagram](/images/albums/research-distributed-random-forests/fig_2.webp)
 
 ## Flow of the algorithm
 
@@ -128,27 +128,27 @@ The details of the usage are presented in the _Readme_. (links to GitHub)
 
 All results were obtained with an average of executions of the algorithm.
 
-![Accuracy of the model as a function of the distribution of training targets in client 1](/images/albums/research-distributed-random-forests/fig_3.png)
+![Accuracy of the model as a function of the distribution of training targets in client 1](/images/albums/research-distributed-random-forests/fig_3.webp)
 
 The results shown in Figure 3 were obtained by varying the distribution of training targets in client 1 from a distribution of 15% 'B' target and 85% 'M' target to 85% 'B' target and 15% 'M' target. The initial distribution of the data was 60% 'B' and 40% 'M'. It is possible to observe a very low accuracy when the amount of 'M' is very high for client 1. Our hypothesis is that this configuration gathers all the data whose target is 'M' in the first client, which negatively impacts the learning in federated mode. À
 50% target 'B' and above, the federated model seems to perform very well, outperforming local training and achieving similar results to centralized training.
 
-![Accuracy of the model as a function of the number of clients with unequal data distribution](/images/albums/research-distributed-random-forests/fig_4.png)
+![Accuracy of the model as a function of the number of clients with unequal data distribution](/images/albums/research-distributed-random-forests/fig_4.webp)
 
 The results shown in Figure 4 are the result of training with clients that have an unequal amount of data, distributed using '_unequal_rep_' from _NetworkCreator_. It is possible to observe a trend where the minimum correctness of local training decreases and the average correctness of local training also decreases, as clients have less and less data. The federated mode accuracy seems to closely follow the centralized mode accuracy. These results can be explained by the fact that client 1 has as much decisional weight as all the other
 as all the other clients. Thus, in federated mode, this distribution is similar to training a centralized random forest, but with half the data.
 
-![Figure](/images/albums/research-distributed-random-forests/fig_5_a.png)
+![Figure](/images/albums/research-distributed-random-forests/fig_5_a.webp)
 
-![Accuracy as a function of number of customers](/images/albums/research-distributed-random-forests/fig_5_b.png)
+![Accuracy as a function of number of customers](/images/albums/research-distributed-random-forests/fig_5_b.webp)
 
 Accuracy was measured by increasing the number of clients from 2 to 140. We can observe a significant decrease in the local and federated models as the number of clients increases. However, the federated model is more resilient than the local models. Indeed, the federated model produces reasonable correctness (about 88%) compared to the local models (about 50%).
 
-![Accuracy as a function of the number of clients, up to 20 clients](/images/albums/research-distributed-random-forests/fig_6.png)
+![Accuracy as a function of the number of clients, up to 20 clients](/images/albums/research-distributed-random-forests/fig_6.webp)
 
 With figure 6, it is possible to see in more detail the impact of the number of clients, up to 20 clients. We observe that the federated model seems on average to be a good compromise between the centralized model and the local models.
 
-![Accuracy as a function of the number of data per client, for 2 clients](/images/albums/research-distributed-random-forests/fig_7.png)
+![Accuracy as a function of the number of data per client, for 2 clients](/images/albums/research-distributed-random-forests/fig_7.webp)
 
 Figure 7 shows the change in accuracy by number of data in the first client (in percent). The distribution of data does not seem to have a significant impact on the performance of the model.
 

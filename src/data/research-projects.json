@@ -6,7 +6,7 @@
     "status": "Active",
     "track": "General",
     "coverImage": {
-      "url": "/images/albums/research-medomics_platform/MEDomicsLab-Principles-1.png",
+      "url": "/images/albums/research-medomics_platform/MEDomicsLab-Principles-1.webp",
       "alt": "MEDomics platform"
     },
     "homeCard": "/images/homepage-neue/next/medomics-platform.webp",
@@ -109,7 +109,7 @@
     "status": "Active",
     "track": "Master's",
     "coverImage": {
-      "url": "/images/albums/research-medomicslab-optimization/project.png",
+      "url": "/images/albums/research-medomicslab-optimization/project.webp",
       "alt": "Project illustration"
     },
     "homeCard": "/images/homepage-neue/next/medomicslab-optimization.webp",
@@ -123,7 +123,7 @@
     "status": "Completed",
     "track": "General",
     "coverImage": {
-      "url": "/images/albums/research-mediml/mediml-overview.png",
+      "url": "/images/albums/research-mediml/mediml-overview.webp",
       "alt": "Schematic diagram of the MEDiml package"
     },
     "researchers": [
@@ -143,7 +143,7 @@
     "status": "Completed",
     "track": "General",
     "coverImage": {
-      "url": "/images/albums/research-distributed-learning-inference/distributed_main.jpg",
+      "url": "/images/albums/research-distributed-learning-inference/distributed_main.webp",
       "alt": "Distributed learning and inference methods"
     },
     "homeCard": "/images/homepage-neue/next/distributed-learning-inference.webp",
@@ -164,7 +164,7 @@
     "status": "Completed",
     "track": "General",
     "coverImage": {
-      "url": "/images/albums/research-distributed-random-forests/fig_1.png",
+      "url": "/images/albums/research-distributed-random-forests/fig_1.webp",
       "alt": "Class diagram"
     },
     "homeCard": "/images/homepage-neue/next/distributed-random-forests.webp",
@@ -178,7 +178,7 @@
     "status": "Completed",
     "track": "Master's",
     "coverImage": {
-      "url": "/images/albums/research-energAI/fuses.png",
+      "url": "/images/albums/research-energAI/fuses.webp",
       "alt": "Examples of fuse detection"
     },
     "homeCard": "/images/homepage-neue/next/energai.webp",
@@ -199,7 +199,7 @@
     "status": "Completed",
     "track": "Master's",
     "coverImage": {
-      "url": "/images/albums/research-kidney-small-tumors/tumor.png",
+      "url": "/images/albums/research-kidney-small-tumors/tumor.webp",
       "alt": "Example of a small renal mass"
     },
     "homeCard": "/images/homepage-neue/next/kidney-small-tumors.webp",
@@ -221,7 +221,7 @@
     "status": "Completed",
     "track": "Master's",
     "coverImage": {
-      "url": "/images/albums/research-multitask-classification/hard_sharing_en.png",
+      "url": "/images/albums/research-multitask-classification/hard_sharing_en.webp",
       "alt": "Hard-sharing architecture example"
     },
     "homeCard": "/images/homepage-neue/next/multitask-classification.webp",
@@ -249,7 +249,7 @@
     "status": "Completed",
     "track": "Master's",
     "coverImage": {
-      "url": "/images/albums/research-prostate-models/scans.png",
+      "url": "/images/albums/research-prostate-models/scans.webp",
       "alt": "Examples of scans"
     },
     "homeCard": "/images/homepage-neue/next/prostate-models.webp",

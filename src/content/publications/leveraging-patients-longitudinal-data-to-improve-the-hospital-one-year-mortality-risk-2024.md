@@ -1,4 +1,4 @@
-![arXiv](/images/albums/2024-longitudinal-oym-preprint/featured.png)
+![arXiv](/images/albums/2024-longitudinal-oym-preprint/featured.webp)
 
 ## Date
 

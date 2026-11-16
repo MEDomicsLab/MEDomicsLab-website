@@ -3,6 +3,7 @@ import assert from "node:assert/strict";
 import fs from "node:fs";
 import os from "node:os";
 import path from "node:path";
+import sharp from "sharp";
 import { fileURLToPath } from "node:url";
 
 import { parseIssueForm } from "../lib/issue-form-parser.mjs";
@@ -30,7 +31,7 @@ const parseFixture = (name) =>
     getIssueFormFields(name.split("-")[0])
   );
 
-const PNG = fs.readFileSync(path.join(fixtures, "team-photo.png"));
+const PNG = await sharp(path.join(fixtures, "team-photo.webp")).png().toBuffer();
 const PDF = Buffer.from("%PDF-1.7\n1 0 obj << >> endobj\ntrailer << >>\n%%EOF\n");
 const SVG = Buffer.from('<svg xmlns="http://www.w3.org/2000/svg"></svg>');
 
@@ -107,9 +108,14 @@ test("news apply() copies dropped images and PDFs into the PR and rewrites the l
   const result = await news.apply(sandbox, plan);
   assert.equal(result.ok, true, JSON.stringify(result, null, 2));
 
-  const imagePath = `/images/albums/${plan.slug}/image-1.png`;
+  const imagePath = `/images/albums/${plan.slug}/image-1.webp`;
   const pdfPath = `/publications/${plan.slug}/2-14-steven-ravary.pdf`;
-  assert.deepEqual(fs.readFileSync(path.join(sandbox, "public", imagePath)), PNG);
+  const storedImage = fs.readFileSync(path.join(sandbox, "public", imagePath));
+  const storedMetadata = await sharp(storedImage).metadata();
+  const sourceMetadata = await sharp(PNG).metadata();
+  assert.equal(storedMetadata.format, "webp");
+  assert.equal(storedMetadata.width, sourceMetadata.width);
+  assert.equal(storedMetadata.height, sourceMetadata.height);
   assert.deepEqual(fs.readFileSync(path.join(sandbox, "public", pdfPath)), PDF);
   assert.ok(result.paths.includes(path.join(sandbox, "public", imagePath)));
   assert.ok(result.paths.includes(path.join(sandbox, "public", pdfPath)));
@@ -119,7 +125,7 @@ test("news apply() copies dropped images and PDFs into the PR and rewrites the l
   assert.equal(markdown.split(imagePath).length - 1, 2, "both image references are rewritten");
   assert.ok(markdown.includes(`[Download the poster (PDF)](${pdfPath})`));
   assert.match(result.summary, /### Attachments/);
-  assert.ok(result.summary.includes(`(${formatSize(PNG.length)})`), result.summary);
+  assert.ok(result.summary.includes(`(${formatSize(storedImage.length)})`), result.summary);
   assert.ok(!result.summary.includes("0.0 MB"), "small files are shown in B or KB");
 });
 
@@ -134,7 +140,7 @@ test("event apply() copies attachments the same way", async (t) => {
   const result = await event.apply(sandbox, plan);
   assert.equal(result.ok, true, JSON.stringify(result, null, 2));
   const markdown = fs.readFileSync(path.join(sandbox, "src/content", plan.markdownRel), "utf8");
-  assert.ok(markdown.includes(`![Group photo](/images/albums/${plan.slug}/image-1.png)`));
+  assert.ok(markdown.includes(`![Group photo](/images/albums/${plan.slug}/image-1.webp)`));
 });
 
 test("publication apply() points the primary link at a mirrored PDF", async (t) => {

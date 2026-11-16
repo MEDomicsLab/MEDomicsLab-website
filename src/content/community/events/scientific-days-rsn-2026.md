@@ -1,4 +1,4 @@
-![Olivier Lefebvre presenting at the RSN Scientific Days](/images/albums/2026-rsn-med3pa-presentation/presentation.jpeg)
+![Olivier Lefebvre presenting at the RSN Scientific Days](/images/albums/2026-rsn-med3pa-presentation/presentation.webp)
 
 ## Summary
 

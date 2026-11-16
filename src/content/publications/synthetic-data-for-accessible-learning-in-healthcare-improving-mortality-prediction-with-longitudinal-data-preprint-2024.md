@@ -1,4 +1,4 @@
-![Research Square](/images/albums/2024-synthetic-data-preprint/featured.png)
+![Research Square](/images/albums/2024-synthetic-data-preprint/featured.webp)
 
 ## Date
 

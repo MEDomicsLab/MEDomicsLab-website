@@ -6,10 +6,10 @@ import team from "../src/data/team.json" with { type: "json" };
 
 const jobs = new Map();
 const add = (src, sizes) => jobs.set(src, sizes);
-add("/images/homepage.jpg", [640, 1280]);
+add("/images/homepage.webp", [640, 1280]);
 add(home.brand.lightLogoUrl, [160, 320]);
 add(home.brand.logoUrl, [80, 128]);
-add("/images/homepage-neue/MEDomics-white.png", [80, 160]);
+add("/images/homepage-neue/MEDomics-white.webp", [80, 160]);
 const pi = team.find((group) => group.year === "Lab Principal Investigator").members[0];
 for (const appointment of pi.appointments) {
   if (!appointment.logo.endsWith(".svg")) add(appointment.logo, [128, 256]);

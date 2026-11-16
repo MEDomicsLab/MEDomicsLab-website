@@ -12,7 +12,7 @@ authors:
   - Martin Vallières
 ---
 
-![Distributed learning and inference methods](/images/albums/research-distributed-learning-inference/distributed_main.jpg "Distributed learning and inference methods")
+![Distributed learning and inference methods](/images/albums/research-distributed-learning-inference/distributed_main.webp "Distributed learning and inference methods")
 
 ## Status
 

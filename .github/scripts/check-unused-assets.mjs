@@ -88,8 +88,8 @@ for (const filePath of publicImages) {
   if (variantMatch) {
     const canonicalBase = base.slice(0, -variantMatch[0].length);
     const dir = path.dirname(publicRel);
-    // Try same ext and common source exts (jpg, png) since variants are derived.
-    const candidates = [ext, ".jpg", ".jpeg", ".png"];
+    // Variants may use a different format from their canonical image.
+    const candidates = [".svg", ".webp", ".avif"];
     let found = false;
     for (const candidateExt of candidates) {
       const canonical = `${dir}/${canonicalBase}${candidateExt}`;

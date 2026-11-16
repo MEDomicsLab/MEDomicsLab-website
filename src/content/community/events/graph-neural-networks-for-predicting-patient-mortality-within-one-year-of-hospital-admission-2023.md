@@ -1,4 +1,4 @@
-![T-CAIREM](/images/albums/2023-tcairem-hakima/tcairem.png)
+![T-CAIREM](/images/albums/2023-tcairem-hakima/tcairem.webp)
 
 ## Summary
 

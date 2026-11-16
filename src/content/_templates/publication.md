@@ -2,7 +2,7 @@
      Drop a copy of this file under src/content/publications/<slug>.md
      and add a matching entry to src/data/publications.json. -->
 
-![<!-- replace: alt text -->](/images/albums/<!-- replace: album folder -->/featured.png)
+![<!-- replace: alt text -->](/images/albums/<!-- replace: album folder -->/featured.webp)
 
 ## Date
 

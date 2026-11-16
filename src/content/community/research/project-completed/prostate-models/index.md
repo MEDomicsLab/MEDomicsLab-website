@@ -8,9 +8,9 @@ authors:
   - Martin Vallières
 ---
 
-![Examples of scans](/images/albums/research-prostate-models/scans.png "Examples of scans")
-![Project steps](/images/albums/research-prostate-models/steps.png "Project steps")
-![Detailed steps](/images/albums/research-prostate-models/flowchart.png "Detailed steps")
+![Examples of scans](/images/albums/research-prostate-models/scans.webp "Examples of scans")
+![Project steps](/images/albums/research-prostate-models/steps.webp "Project steps")
+![Detailed steps](/images/albums/research-prostate-models/flowchart.webp "Detailed steps")
 
 ## Status
 

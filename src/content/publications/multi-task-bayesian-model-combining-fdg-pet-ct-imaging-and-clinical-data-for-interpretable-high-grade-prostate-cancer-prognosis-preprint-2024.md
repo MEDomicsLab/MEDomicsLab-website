@@ -1,4 +1,4 @@
-![medRxiv](/images/albums/2024-prostate-models-preprint/featured.png)
+![medRxiv](/images/albums/2024-prostate-models-preprint/featured.webp)
 
 ## Date
 

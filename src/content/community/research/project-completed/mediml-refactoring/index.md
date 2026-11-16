@@ -12,7 +12,7 @@ authors:
   - Martin Vallières
 ---
 
-![Schematic diagram of the MEDiml package](/images/albums/research-mediml/mediml-overview.png "Schematic diagram of the MEDiml package")
+![Schematic diagram of the MEDiml package](/images/albums/research-mediml/mediml-overview.webp "Schematic diagram of the MEDiml package")
 
 ## Status
 

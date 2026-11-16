@@ -136,9 +136,6 @@ async function loadPhotoBuffer(source, { fixtureRoot } = {}) {
 async function generateAvatarVariants(buffer, outDir) {
   ensureDir(outDir);
   const written = [];
-  const meta = await sharp(buffer).metadata();
-  const fallbackFormat = meta.format === "png" ? "png" : "jpeg";
-  const fallbackExt = fallbackFormat === "jpeg" ? "jpg" : "png";
 
   for (const size of SIZES) {
     const resized = sharp(buffer).resize(size, size, { fit: "cover", position: "centre" });
@@ -148,11 +145,8 @@ async function generateAvatarVariants(buffer, outDir) {
       await pipeline.toFile(out);
       written.push(out);
     }
-    const fallbackOut = path.join(outDir, `avatar-${size}.${fallbackExt}`);
-    await resized.clone().toFormat(fallbackFormat, { quality: 82 }).toFile(fallbackOut);
-    written.push(fallbackOut);
   }
-  return { paths: written, fallbackExt };
+  return written;
 }
 
 export const team = {
@@ -196,7 +190,7 @@ export const team = {
       name,
       position,
       slug,
-      image: `/images/team/${slug}/avatar.jpg`,
+      image: `/images/team/${slug}/avatar.webp`,
       bio: fields[FIELD.bio].trim(),
       expertise,
     };
@@ -235,11 +229,8 @@ export const team = {
 
     const avatarDir = path.join(root, "public/images/team", plan.slug);
     let variantPaths;
-    let fallbackExt;
     try {
-      const result = await generateAvatarVariants(photoBuffer, avatarDir);
-      variantPaths = result.paths;
-      fallbackExt = result.fallbackExt;
+      variantPaths = await generateAvatarVariants(photoBuffer, avatarDir);
     } catch (err) {
       return { ok: false, errors: [`Failed to process portrait photo: ${err.message}`] };
     }
@@ -247,7 +238,7 @@ export const team = {
     const member = next
       .find((c) => c.year === plan.cohort)
       .members.find((m) => m.slug === plan.slug);
-    member.image = `/images/team/${plan.slug}/avatar.${fallbackExt}`;
+    member.image = `/images/team/${plan.slug}/avatar.webp`;
 
     const result = validateAgainst("team.schema.json", next);
     if (!result.ok) return { ok: false, errors: result.errors };

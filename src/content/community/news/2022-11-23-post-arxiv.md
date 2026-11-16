@@ -1,4 +1,4 @@
-![arXiv preprint featured image](/images/albums/2022-11-23-post-arxiv/featured.png)
+![arXiv preprint featured image](/images/albums/2022-11-23-post-arxiv/featured.webp)
 
 Congratulations to [Nicolas Raymond](/team/nicolas-raymond) and
 [Martin Vallières](/team/martin-vallieres) for the publication of their paper entitled

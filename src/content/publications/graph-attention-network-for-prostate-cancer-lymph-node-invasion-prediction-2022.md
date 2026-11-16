@@ -1,4 +1,4 @@
-![MIDL](/images/albums/graph-attention-midl-2022/featured.png)
+![MIDL](/images/albums/graph-attention-midl-2022/featured.webp)
 
 ## Date
 

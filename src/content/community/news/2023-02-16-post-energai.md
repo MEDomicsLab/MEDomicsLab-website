@@ -1,4 +1,4 @@
-![EnergAI publication featured image](/images/albums/2023-02-16-post-energai/featured.png)
+![EnergAI publication featured image](/images/albums/2023-02-16-post-energai/featured.webp)
 
 Congratulations to [Simon Giard-Leroux](/team/simon-giard-leroux),
 [Guillaume Cléroux](/team/guillaume-cleroux),

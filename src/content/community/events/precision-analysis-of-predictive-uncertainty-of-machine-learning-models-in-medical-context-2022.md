@@ -1,4 +1,4 @@
-![CIRIUS](/images/albums/cirius-olivier-2022/cirius-blanc.png)
+![CIRIUS](/images/albums/cirius-olivier-2022/cirius-blanc.webp)
 
 ## Summary
 
@@ -21,7 +21,7 @@ to detect when the model is potentially aberrant and thus make better use of it.
 also allow us to identify subgroups of patients for whom our model performs less well, and therefore
 potentially not use the model for these patients.
 
-![Poster](/images/albums/cirius-olivier-2022/cirius-ol.png)
+![Poster](/images/albums/cirius-olivier-2022/cirius-ol.webp)
 
 ## Links
 

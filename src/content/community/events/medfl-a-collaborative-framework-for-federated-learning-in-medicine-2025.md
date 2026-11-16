@@ -1,4 +1,4 @@
-![T-CAIREM](/images/albums/2025-tcairem-SAHBI-presentation/tcairem.png)
+![T-CAIREM](/images/albums/2025-tcairem-SAHBI-presentation/tcairem.webp)
 
 ## Summary
 

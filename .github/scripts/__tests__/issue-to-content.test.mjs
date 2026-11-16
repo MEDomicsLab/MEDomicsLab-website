@@ -463,7 +463,7 @@ test("team handler builds a plan with parsed expertise, education, and affiliati
   ]);
   assert.equal(plan.member.socials.linkedin, "https://www.linkedin.com/in/test-member/");
   assert.equal(plan.member.socials.website, "https://example.com/test-member");
-  assert.equal(plan.photoSource, "team-photo.png");
+  assert.equal(plan.photoSource, "team-photo.webp");
 
   const invalidAffiliation = team.buildPlan({
     ...fields,
@@ -495,7 +495,7 @@ test("team apply() writes resized avatar variants and updates team.json", async 
   const cohort = teamJson.find((c) => c.year === plan.cohort);
   const member = cohort.members.find((m) => m.slug === plan.slug);
   assert.ok(member, "expected new member in team.json");
-  assert.equal(member.image, `/images/team/${plan.slug}/avatar.png`);
+  assert.equal(member.image, `/images/team/${plan.slug}/avatar.webp`);
   assert.deepEqual(member.affiliations, plan.member.affiliations);
   assert.equal(member.socials.website, "https://example.com/test-member");
   const teamSource = fs.readFileSync(path.join(dataDir, "team.json"), "utf8");
@@ -507,7 +507,7 @@ test("team apply() writes resized avatar variants and updates team.json", async 
 
   const avatarDir = path.join(sandbox, "public/images/team", plan.slug);
   for (const size of [80, 128, 160, 256]) {
-    for (const ext of ["avif", "webp", "png"]) {
+    for (const ext of ["avif", "webp"]) {
       const file = path.join(avatarDir, `avatar-${size}.${ext}`);
       assert.ok(fs.existsSync(file), `expected ${file}`);
     }

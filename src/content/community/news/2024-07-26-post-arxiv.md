@@ -1,4 +1,4 @@
-![Longitudinal mortality preprint featured image](/images/albums/2024-07-26-post-arxiv/featured.png)
+![Longitudinal mortality preprint featured image](/images/albums/2024-07-26-post-arxiv/featured.webp)
 
 Congratulations to [Hakima Laribi](/team/hakima-laribi), [Nicolas Raymond](/team/nicolas-raymond), and
 [Martin Vallières](/team/martin-vallieres) for the publication of their paper entitled
