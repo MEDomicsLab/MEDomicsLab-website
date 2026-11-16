@@ -10,7 +10,7 @@ Beyond these regulatory and data-related challenges, there is also a growing **n
 
 **2. Proposed Solution: MEDfl**
 
-We propose MEDfl, a federated learning (FL) framework that enables collaborative research AI modeling across multiple hospitals without moving sensitive data outside institutional boundaries.
+We propose [MEDfl](https://www.medfl.app/), a federated learning (FL) framework that enables collaborative research AI modeling across multiple hospitals without moving sensitive data outside institutional boundaries.
 Each site retains full control over its datasets, while only encrypted model updates are exchanged with a central coordinating server.
 
 MEDfl integrates several complementary technologies:
@@ -72,3 +72,7 @@ MEDfl aims to:
 
 - [Event Details](https://tcairem.utoronto.ca/2025-t-cairem-conference-evolution-generative-ai)
 - [T-CAIREM website](https://tcairem.utoronto.ca/)
+
+![Ouael Sahbi next to his MEDfl poster at the T-CAIREM Conference](/images/albums/2025-tcairem-SAHBI-presentation/ouael-sahbi-poster.webp)
+
+![Panel discussion during the T-CAIREM Conference](/images/albums/2025-tcairem-SAHBI-presentation/panel-discussion.webp)

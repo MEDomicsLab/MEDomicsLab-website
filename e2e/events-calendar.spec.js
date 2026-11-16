@@ -115,12 +115,12 @@ test("cards keep amie's four rows and show their event's pictures", async ({ pag
   );
   const banner = card(
     page,
-    "medfl-a-collaborative-framework-for-federated-learning-in-medicine-2025"
+    "integration-of-genomic-data-in-the-design-of-learning-models-in-precision-oncology-2021"
   );
   await expect(banner).toHaveAttribute("data-span", "1");
   await expect(banner.locator(".evcal-card-banner")).toHaveAttribute(
     "src",
-    "/images/albums/2025-tcairem-SAHBI-presentation/tcairem-640.webp"
+    "/images/albums/genomics-acfas-2021/featured-640.webp"
   );
   const heights = () =>
     page

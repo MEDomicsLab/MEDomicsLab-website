@@ -3,8 +3,62 @@
     "year": "2026",
     "months": [
       {
+        "month": "November",
+        "items": [
+          {
+            "title": "CTR Horizons 2026",
+            "slug": "2026-11-25-ctr-horizons",
+            "category": "Presentations",
+            "date": "2026-11-25",
+            "endDate": "2026-11-26",
+            "contributors": ["Mahdi Loutfi", "Juan Duran", "Martin Vallières"],
+            "markdown": "community/events/2026-11-25-ctr-horizons.md",
+            "kind": "Conference presentations",
+            "venue": "Holiday Inn & Suites Montreal Centre-ville Ouest, Montréal"
+          },
+          {
+            "title": "Digital Health Solutions Co-creation Workshop 2026",
+            "slug": "2026-11-12-rsn-co-creation-workshop",
+            "category": "Workshops",
+            "date": "2026-11-12",
+            "endDate": "2026-11-13",
+            "contributors": ["Ouael Nedjem Eddine SAHBI"],
+            "markdown": "community/events/2026-11-12-rsn-co-creation-workshop.md",
+            "kind": "Co-creation workshop",
+            "venue": "Agora du Mila, Montréal"
+          }
+        ]
+      },
+      {
+        "month": "October",
+        "items": [
+          {
+            "title": "AQPMC 2026 Annual Scientific Congress",
+            "slug": "2026-10-13-aqpmc-annual-congress",
+            "category": "Presentations",
+            "date": "2026-10-13",
+            "endDate": "2026-10-24",
+            "contributors": ["Mahdi Loutfi", "Juan Duran", "Martin Vallières"],
+            "markdown": "community/events/2026-10-13-aqpmc-annual-congress.md",
+            "kind": "Oral presentations and invited talk",
+            "venue": "Online and CIC de Québec, Québec City (hybrid)"
+          }
+        ]
+      },
+      {
         "month": "September",
         "items": [
+          {
+            "title": "13th RRCancer & Marathon of Hope Québec Symposium",
+            "slug": "2026-09-30-rrcancer-symposium",
+            "category": "Presentations",
+            "date": "2026-09-30",
+            "endDate": "2026-10-02",
+            "contributors": ["Martin Vallières", "Mahdi Loutfi"],
+            "markdown": "community/events/2026-09-30-rrcancer-symposium.md",
+            "kind": "Oral presentation",
+            "venue": "CHUM, Amphithéâtre Pierre-Péladeau, Montréal (hybrid)"
+          },
           {
             "title": "Participation in Mila's Community of Practice on Digital Health",
             "slug": "2026-09-29-mila-digital-health",
@@ -37,7 +91,8 @@
             "date": "2026-08-07",
             "contributors": ["Mahdi Loutfi", "Martin Vallières"],
             "markdown": "community/events/simpler-radiomics-can-be-enough-identifying-the-minimal-feature-complexity-required-for-accurate-prediction-2026.md",
-            "venue": "Lady Davis Institute (LDI) Conference (Poster Presentation)"
+            "kind": "Poster presentation",
+            "venue": "LDI Conference 2026, Lady Davis Institute - Jewish General Hospital, Montréal"
           }
         ]
       },
@@ -48,10 +103,12 @@
             "title": "Scientific Days RSN",
             "slug": "scientific-days-rsn-2026",
             "category": "Presentations",
-            "date": "2026-03-31",
-            "contributors": ["Olivier Lefebvre"],
+            "date": "2026-03-30",
+            "endDate": "2026-03-31",
+            "contributors": ["Olivier Lefebvre", "Ouael Nedjem Eddine SAHBI"],
             "markdown": "community/events/scientific-days-rsn-2026.md",
-            "venue": "Réseau Santé Numérique (RSN)"
+            "kind": "Presentation and poster",
+            "venue": "Réseau Santé Numérique (RSN), Université Laval, Québec City"
           }
         ]
       }

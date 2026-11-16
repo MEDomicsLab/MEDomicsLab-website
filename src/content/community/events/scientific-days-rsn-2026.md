@@ -4,6 +4,8 @@
 
 Olivier Lefebvre presented his research during the **Réseau Santé Numérique (RSN) Scientific Day** at Université Laval. He delivered a seven-minute presentation highlighting the key contributions of his work and its implications for the development of reliable and trustworthy machine-learning models in healthcare. The talk offered an accessible overview of his methodological advances and their relevance to real-world clinical applications.
 
+[Ouael Nedjem Eddine Sahbi](/team/ouael-nedjem-eddine-sahbi) also presented a poster on [MEDfl](/research/medfl), the lab's open-source federated learning framework for medicine. His poster and photos are shown below.
+
 ## Abstract
 
 **Objectives**
@@ -30,7 +32,18 @@ Better leveraging confidence in model predictions could improve reliability and 
 
 <iframe src="/publications/2026-rsn-med3pa-presentation/Lefebvre_olivier_rsn_2026.pdf" width="100%" height="600px" style="border: none; background: transparent;"></iframe>
 
+## MEDfl poster
+
+<iframe src="/publications/2026-rsn-medfl-poster/Poster_MEDfl_RSN.pdf" width="100%" height="600px" style="border: none; background: transparent;"></iframe>
+
+![Ouael Sahbi next to his MEDfl poster at the RSN Scientific Days](/images/albums/2026-rsn-medfl-poster/ouael-sahbi-poster.webp)
+
+![Ouael Sahbi during the poster session](/images/albums/2026-rsn-medfl-poster/poster-session.webp)
+
+![Poster session hall at Université Laval](/images/albums/2026-rsn-medfl-poster/poster-hall.webp)
+
 ## Links
 
 - [Event Details](https://event.fourwaves.com/jsrsn/pages)
+- [RSN 2026 Scientific Days](https://rsn.quebec/en/rsn-2026-scientific-days/)
 - [Related paper in JAMIA](https://doi.org/10.1093/jamia/ocag034)
