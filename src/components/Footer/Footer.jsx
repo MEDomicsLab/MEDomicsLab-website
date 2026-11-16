@@ -190,7 +190,7 @@ export default function Footer() {
       </div>
       <div className="neue-footer-bottom">
         <a href={homeData.brand.repositoryUrl} target="_blank" rel="noreferrer">
-          Maintained by Lab members
+          Maintained by Lab Members
         </a>
         <a href={footer.creditLink} target="_blank" rel="noreferrer">
           {animateCredit ? (
