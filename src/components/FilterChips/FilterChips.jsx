@@ -9,6 +9,7 @@ const VISIBLE_OPTIONS = 3;
  * Match any selected tag; an empty selection shows all items.
  * Keep selected tags inline and put overflow in the More menu.
  * `options` is `[{ value, label?, count }]`; `selected` is an array of values.
+ * `visibleOptions` sets how many options stay inline before the rest fold into More.
  */
 export default function FilterChips({
   options,
@@ -19,10 +20,11 @@ export default function FilterChips({
   shown,
   noun = "items",
   className,
+  visibleOptions = VISIBLE_OPTIONS,
 }) {
   const isAll = selected.length === 0;
   let inline = options.filter(
-    (option, index) => index < VISIBLE_OPTIONS || selected.includes(option.value)
+    (option, index) => index < visibleOptions || selected.includes(option.value)
   );
   let folded = options.filter((option) => !inline.includes(option));
   if (folded.length < 2) {

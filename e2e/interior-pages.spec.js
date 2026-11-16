@@ -1,6 +1,9 @@
 import { expect, test } from "@playwright/test";
 import teamData from "../src/data/team.json" with { type: "json" };
 import publicationsData from "../src/data/publications.json" with { type: "json" };
+import projectsData from "../src/data/research-projects.json" with { type: "json" };
+
+const doctorateCount = projectsData.filter((project) => project.track === "Doctorate").length;
 
 test.use({ viewport: { width: 1440, height: 1000 }, reducedMotion: "reduce" });
 
@@ -42,16 +45,16 @@ test("research filters retain their results and project Markdown and metadata", 
   page,
 }) => {
   await page.goto("/research");
-  await expect(page.locator(".research-project")).toHaveCount(14);
-  const doctorate = page.getByRole("button", { name: "Doctorate 2", exact: true });
+  await expect(page.locator(".research-project")).toHaveCount(projectsData.length);
+  const doctorate = page.getByRole("button", { name: `Doctorate ${doctorateCount}`, exact: true });
   await expect(doctorate).toHaveCSS("cursor", "pointer");
   await doctorate.click();
   await expect(doctorate).toHaveCSS("background-color", "rgb(229, 218, 195)");
   await expect(doctorate).toHaveCSS("color", "rgb(26, 26, 26)");
-  await expect(page.locator(".research-project")).toHaveCount(2);
+  await expect(page.locator(".research-project")).toHaveCount(doctorateCount);
   await expect(page.getByRole("button", { name: "Clear filters" })).toHaveCSS("cursor", "pointer");
   await page.getByRole("button", { name: "Clear filters" }).click();
-  await expect(page.locator(".research-project")).toHaveCount(14);
+  await expect(page.locator(".research-project")).toHaveCount(projectsData.length);
   await page.locator('main a[href="/research/medomics-platform"]').click();
   await expect(page.locator(".project-markdown")).toContainText("In progress (2020-today)");
   await expect(
@@ -141,12 +144,8 @@ test("member links use larger icons, wrap only when needed and keep missing link
 }) => {
   await page.goto("/team/martin-vallieres");
   const socials = page.locator(".member-socials");
-  await expect(socials.locator("svg")).toHaveCount(6);
+  await expect(socials.locator("svg")).toHaveCount(5);
   await expect(socials.getByRole("link")).toHaveCount(5);
-  await expect(socials.getByRole("img", { name: /ResearchGate.*not available/ })).toHaveCSS(
-    "cursor",
-    "auto"
-  );
   for (const icon of await socials.locator("svg").all()) {
     await expect(icon).toHaveCSS("width", "32px");
     await expect(icon).toHaveCSS("height", "32px");
@@ -171,11 +170,18 @@ test("member links use larger icons, wrap only when needed and keep missing link
     const rows = await socials
       .locator("li")
       .evaluateAll((items) => new Set(items.map((item) => item.getBoundingClientRect().top)).size);
-    expect(rows).toBe(width === 320 ? 2 : 1);
+    expect(rows).toBe(1);
     expect(
       await page.evaluate(() => document.documentElement.scrollWidth - window.innerWidth)
     ).toBeLessThanOrEqual(1);
   }
+  const missing = teamData
+    .flatMap((group) => group.members)
+    .find((member) => member.socials && !member.socials.github);
+  await page.goto(`/team/${missing.slug}`);
+  await expect(
+    page.locator(".member-socials").getByRole("img", { name: /GitHub.*not available/ })
+  ).toHaveCSS("cursor", "auto");
 });
 
 test("publications keeps the year sidebar visible and enlarges headings after scroll", async ({

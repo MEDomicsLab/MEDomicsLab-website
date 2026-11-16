@@ -8,6 +8,9 @@
   "Master's": {
     "description": "Master's-level research projects and applied studies."
   },
+  "MEDomics Ecosystem": {
+    "description": "Projects that are part of the MEDomics ecosystem and ship a desktop application."
+  },
   "Completed": {
     "description": "Completed and archived research projects."
   }

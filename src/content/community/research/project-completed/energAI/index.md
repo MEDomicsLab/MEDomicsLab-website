@@ -47,3 +47,7 @@ and automate the creation of models that can be imported into a calculation soft
 This automation will provide greater accuracy and reduce the time required to interpret electrical installation
 surveys, thereby increasing the efficiency of the electrical engineer's work and the safety of the public regarding
 electrical installations.
+
+## Related News
+
+- [Publication of the article “Electric Power Fuse Identification With Deep Learning”](/community/news/2023-02-16-post-energai)

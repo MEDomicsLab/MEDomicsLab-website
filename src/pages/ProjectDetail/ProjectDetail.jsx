@@ -6,6 +6,7 @@ import MarkdownContent from "../../components/MarkdownContent/MarkdownContent";
 import { getMembersByCohort } from "../../lib/team";
 import ResearcherList from "../../components/ResearcherList/ResearcherList.jsx";
 import BrandName from "../../components/BrandName/BrandName.jsx";
+import { imageSrcSet } from "../../lib/images";
 
 export default function ProjectDetail() {
   const { slug } = useParams();
@@ -22,14 +23,23 @@ export default function ProjectDetail() {
         <BackLink to="/research">Back to Research</BackLink>
         <div className="project-heading-grid">
           <div>
-            <p className="interior-eyebrow">{project.track} · Research project</p>
+            <p className="interior-eyebrow">
+              {[project.track, project.ecosystem && "MEDomics Ecosystem", "Research project"]
+                .filter(Boolean)
+                .join(" · ")}
+            </p>
             <h1>
               <BrandName>{project.title}</BrandName>
             </h1>
           </div>
-          {project.coverImage && (
+          {project.homeCard && (
             <figure className="project-cover">
-              <img src={project.coverImage.url} alt={project.coverImage.alt} />
+              <img
+                src={project.homeCard}
+                srcSet={imageSrcSet(project.homeCard, [480, 880], "webp")}
+                sizes="(max-width: 1023px) min(100vw, 420px), 420px"
+                alt={project.coverImage?.alt ?? project.title}
+              />
             </figure>
           )}
         </div>
@@ -65,9 +75,17 @@ export default function ProjectDetail() {
               <div className="border-t border-border pt-6">
                 <h3 className="text-sm text-muted-foreground mb-3">Track</h3>
                 <p>{project.track}</p>
+                {project.ecosystem && <p>MEDomics Ecosystem</p>}
               </div>
             )}
-            <ResearcherList people={getMembersByCohort(project.researchers)} />
+            <ResearcherList
+              people={[
+                ...getMembersByCohort(project.researchers),
+                ...(project.externalResearchers ?? []).map((p) =>
+                  typeof p === "string" ? { name: p } : p
+                ),
+              ]}
+            />
           </div>
         </div>
       </div>

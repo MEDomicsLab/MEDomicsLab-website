@@ -8,6 +8,7 @@ authors:
   - Ludmila Amriou
   - Lyna Hiba Chikouche
   - Martin Vallières
+  - Dan Poenaru
 ---
 
 ![Method overview](/images/albums/research-MED3pa/res_meto.svg "Method overview")
@@ -18,7 +19,7 @@ In progress (2021-today)
 
 ## Type
 
-Doctorate
+Doctorate · MEDomics Ecosystem
 
 ## Description
 

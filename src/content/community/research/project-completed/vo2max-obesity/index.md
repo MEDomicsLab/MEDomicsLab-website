@@ -20,12 +20,12 @@ Completed (2020-2022)
 
 Master's
 
-## Équipe
+## Team
 
-- [Nicolas Raymond](/team/nicolas-raymond)<sup>1</sup> (2020-today)
-- [Hakima Laribi](/team/hakima-laribi)<sup>1</sup> (2022-today)
-- [Mehdi Mitiche](/team/mehdi-mitiche)<sup>1</sup> (2020-2021)
-- [Martin Vallières](/team/martin-vallieres)<sup>1</sup> (2020-today)
+- [Nicolas Raymond](/team/nicolas-raymond)<sup>1</sup>
+- [Hakima Laribi](/team/hakima-laribi)<sup>1</sup>
+- [Mehdi Mitiche](/team/mehdi-mitiche)<sup>1</sup>
+- [Martin Vallières](/team/martin-vallieres)<sup>1</sup>
 
 <sup>1</sup> Computer science department, Université de Sherbrooke, Sherbrooke (QC), Canada
 

@@ -210,6 +210,17 @@ Same year/month grouping as news. Store event logistics in JSON using the option
 
 A research project belongs to one or more tracks. Tracks are defined as a flat object keyed by track name; projects reference tracks by that key.
 
+A project's `researchers` list holds team member slugs from `team.json`; they link to their profiles. Researchers who are not on the team go in the optional `externalResearchers` list. Each entry is either a full name or an object with an optional link to the person's external profile and their affiliation:
+
+```json
+"externalResearchers": [
+  "John Doe",
+  { "name": "Jane Roe", "url": "https://orcid.org/0000-0000-0000-0000", "affiliation": "Placeholder University" }
+]
+```
+
+They appear after the team members in the project's sidebar with an "External" tag. The name links to `url` (in a new tab) when one is given, and the affiliation shows under the name.
+
 </details>
 
 <details>

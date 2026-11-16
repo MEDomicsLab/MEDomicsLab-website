@@ -32,3 +32,10 @@ sex and age.
 
 Ultimately, we hope that this project will help physicians provide more appropriate treatment for each patient and
 allow for a better use of resources.
+
+## Publication
+
+This work was published in February 2026 as
+[Optimizing renal mass histology prediction with artificial intelligence using handcrafted radiomics](/publications/optimizing-renal-mass-histology-prediction-with-artificial-intelligence-using-handcrafted-radiomics-2026)
+in World Journal of Urology
+([article link](https://doi.org/10.1007/s00345-026-06296-2)).
