@@ -26,6 +26,7 @@
     "check:issue-content": "npm run lint:md && npm run lint:images && npm run lint:avatars && npm run lint:home-cards && npm run lint:schemas && npm run test:scripts",
     "audit:deps": "npm audit --omit=dev --audit-level=high",
     "test:e2e": "playwright test",
+    "test:glass:browsers": "playwright test --config=playwright.glass.config.js",
     "test:seo": "playwright test e2e/seo.spec.js",
     "check:seo": "npm run build && npm run test:seo -- --workers=2 && node scripts/check-seo.mjs",
     "test:e2e:install": "playwright install --with-deps chromium",
