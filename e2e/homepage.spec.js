@@ -2,6 +2,7 @@ import { test, expect } from "@playwright/test";
 import home from "../src/data/home.json" with { type: "json" };
 import layout from "../src/data/layout.json" with { type: "json" };
 import team from "../src/data/team.json" with { type: "json" };
+import projects from "../src/data/research-projects.json" with { type: "json" };
 
 test("homepage identity, appointments and shared footer use the content data", async ({ page }) => {
   await page.emulateMedia({ reducedMotion: "reduce" });
@@ -67,7 +68,9 @@ test("all generated ecosystem and project-card artwork remains available", async
   const sources = await page
     .locator(".neue-ecosystem-app img, .neue-next-card img")
     .evaluateAll((images) => [...new Set(images.map((image) => image.getAttribute("src")))]);
-  expect(sources).toHaveLength(19);
+  const ecosystemApps = 5;
+  const projectCards = projects.filter((project) => project.homeCard).length;
+  expect(sources).toHaveLength(ecosystemApps + projectCards);
   for (const source of sources) {
     const response = await request.get(source);
     expect(response.ok(), source).toBe(true);
@@ -204,7 +207,7 @@ test("footer and route changes preserve their interactions", async ({ page }) =>
     /user=fRkjFK4AAAAJ/
   );
   await expect(footer.locator(".shiny-text")).toHaveText("Designed by Simon");
-  await expect(footer.getByRole("link", { name: "Maintained by Lab members" })).toHaveAttribute(
+  await expect(footer.getByRole("link", { name: "Maintained by Lab Members" })).toHaveAttribute(
     "href",
     "https://github.com/MEDomicsLab/MEDomicsLab-website"
   );
@@ -648,3 +651,17 @@ for (const width of [390, 1440]) {
     }
   });
 }
+
+test("latest news shows the three most recent items with valid dates", async ({ page }) => {
+  await page.goto("/");
+  const dates = await page
+    .locator(".neue-news-row time")
+    .evaluateAll((times) => times.map((time) => [time.dateTime, time.textContent]));
+  expect(dates).toHaveLength(3);
+  for (const [dateTime, text] of dates) {
+    expect(dateTime).toMatch(/^\d{4}-\d{2}-\d{2}$/);
+    expect(text).not.toContain("Invalid");
+  }
+  const order = dates.map(([dateTime]) => dateTime);
+  expect(order).toEqual([...order].sort().reverse());
+});

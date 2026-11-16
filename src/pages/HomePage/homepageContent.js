@@ -16,8 +16,10 @@ export const ecosystemApps = ["MEDomics", "MED3pa", "MEDfl", "MEDiml", "MEDprofi
   })
 );
 
-export const nextCards = researchProjects.map((project, index) => ({
-  ...project,
-  image: `/images/homepage-neue/next/${String(index + 1).padStart(2, "0")}-${project.slug}.webp`,
-  href: `/research/${project.slug}`,
-}));
+export const nextCards = researchProjects
+  .filter((project) => project.homeCard)
+  .map((project) => ({
+    ...project,
+    image: project.homeCard,
+    href: `/research/${project.slug}`,
+  }));

@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { imageSrcSet } from "../../lib/images.js";
 import LoopingMarquee from "./LoopingMarquee.jsx";
 import PageLink from "../../components/PageLink/PageLink.jsx";
@@ -5,6 +6,11 @@ import { Link } from "react-router-dom";
 import { nextCards } from "./homepageContent";
 
 export default function NextSteps({ paused }) {
+  const [failed, setFailed] = useState(() => new Set());
+  const hideCard = (slug) =>
+    setFailed((current) => (current.has(slug) ? current : new Set(current).add(slug)));
+  const cards = nextCards.filter((card) => !failed.has(card.slug));
+
   return (
     <section className="neue-next" aria-labelledby="next-heading">
       <div className="neue-next-intro">
@@ -28,7 +34,7 @@ export default function NextSteps({ paused }) {
         setClassName="neue-marquee-set"
       >
         {(duplicate) =>
-          nextCards.map((card) => (
+          cards.map((card) => (
             <Link
               key={card.slug}
               to={card.href}
@@ -42,6 +48,7 @@ export default function NextSteps({ paused }) {
                 decoding="async"
                 alt={card.title}
                 loading="lazy"
+                onError={() => hideCard(card.slug)}
               />
             </Link>
           ))

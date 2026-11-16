@@ -3,9 +3,35 @@ import { Link } from "react-router-dom";
 import newsData from "../../data/news.json";
 import HoverArrow from "../../components/HoverArrow/HoverArrow.jsx";
 
+const MONTHS = [
+  "January",
+  "February",
+  "March",
+  "April",
+  "May",
+  "June",
+  "July",
+  "August",
+  "September",
+  "October",
+  "November",
+  "December",
+];
+
+// Not every slug starts with a date, so fall back to the item's event date, then its month.
+const newsDate = (item, year, month) =>
+  item.date ??
+  /^\d{4}-\d{2}-\d{2}/.exec(item.slug)?.[0] ??
+  item.event?.date ??
+  `${year}-${String(MONTHS.indexOf(month) + 1).padStart(2, "0")}-01`;
+
 const latestNews = newsData
-  .flatMap((year) => year.months.flatMap((month) => month.items))
-  .sort((a, b) => b.slug.localeCompare(a.slug))
+  .flatMap((year) =>
+    year.months.flatMap((month) =>
+      month.items.map((item) => ({ ...item, date: newsDate(item, year.year, month.month) }))
+    )
+  )
+  .sort((a, b) => b.date.localeCompare(a.date))
   .slice(0, 3);
 
 export default function LatestNews() {
@@ -24,8 +50,8 @@ export default function LatestNews() {
       <div className="neue-news-list">
         {latestNews.map((news) => (
           <Link to={`/community/news/${news.slug}`} key={news.slug} className="neue-news-row group">
-            <time dateTime={news.slug.slice(0, 10)}>
-              {new Date(`${news.slug.slice(0, 10)}T12:00:00`).toLocaleDateString("en-GB", {
+            <time dateTime={news.date}>
+              {new Date(`${news.date}T12:00:00`).toLocaleDateString("en-GB", {
                 day: "2-digit",
                 month: "short",
                 year: "numeric",
