@@ -130,7 +130,7 @@
         "month": "November",
         "items": [
           {
-            "title": "Publication of the article “Multi-task Bayesian Model Combining FDG-PET/CT Imaging and Clinical Data for Interpretable High-Grade Prostate Cancer Prognosis”",
+            "title": "Publication of the article “Multi-task Bayesian model combining FDG-PET/CT imaging and clinical data for interpretable high-grade prostate cancer prognosis”",
             "slug": "2024-11-06-post-prostate-models",
             "category": "Publications",
             "contributors": ["Maxence Larose", "Nicolas Raymond", "Martin Vallières"],

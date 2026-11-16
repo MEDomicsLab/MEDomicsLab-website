@@ -35,7 +35,7 @@
     "sections": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["ecosystem"],
+      "required": ["ecosystem", "featuredPublications"],
       "properties": {
         "ecosystem": {
           "type": "object",
@@ -84,6 +84,43 @@
                     }
                   }
                 }
+              }
+            }
+          }
+        },
+        "featuredPublications": {
+          "type": "array",
+          "minItems": 4,
+          "maxItems": 4,
+          "uniqueItems": true,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["title", "venue", "year", "type", "abstract", "link"],
+            "properties": {
+              "title": {
+                "type": "string",
+                "minLength": 1
+              },
+              "venue": {
+                "type": "string",
+                "minLength": 1
+              },
+              "year": {
+                "type": "string",
+                "pattern": "^[0-9]{4}$"
+              },
+              "type": {
+                "enum": ["Journal Paper", "Conference Paper", "Preprint"]
+              },
+              "abstract": {
+                "type": "string",
+                "minLength": 1
+              },
+              "link": {
+                "type": "string",
+                "format": "uri",
+                "pattern": "^https?://"
               }
             }
           }

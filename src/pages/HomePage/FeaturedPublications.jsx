@@ -1,39 +1,12 @@
 import PageLink from "../../components/PageLink/PageLink.jsx";
-import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { useState } from "react";
 import ReactMarkdown from "react-markdown";
-import publicationsData from "../../data/publications.json";
-import { getMarkdownContent } from "../../lib/markdown";
+import home from "../../data/home.json";
 
-const papers = publicationsData
-  .flatMap((group) => group.items.map((paper) => ({ ...paper, year: group.year })))
-  .filter((paper) => paper.markdown)
-  .sort((a, b) => (b.date || b.year).localeCompare(a.date || a.year))
-  .slice(0, 4)
-  .map((paper) => ({
-    ...paper,
-    title: paper.title.replace(/\s*\((?:Journal Article|Preprint|Conference Paper)\)$/i, ""),
-    venue: paper.journal.replace(/\s*\([A-Z][A-Z0-9. -]+\)$/, ""),
-  }));
+const { featuredPublications } = home.sections;
 
 export default function FeaturedPublications() {
   const [active, setActive] = useState(0);
-  const [abstracts, setAbstracts] = useState({});
-  useEffect(() => {
-    let cancelled = false;
-    Promise.all(
-      papers.map(async (paper) => {
-        const markdown = await getMarkdownContent(paper.markdown);
-        const abstract = markdown?.match(/## Abstract\s*\n([\s\S]*?)(?=\n## |$)/)?.[1]?.trim();
-        return [paper.slug, abstract];
-      })
-    ).then((entries) => {
-      if (!cancelled) setAbstracts(Object.fromEntries(entries));
-    });
-    return () => {
-      cancelled = true;
-    };
-  }, []);
 
   return (
     <section className="neue-publications" aria-labelledby="publications-heading">
@@ -50,10 +23,10 @@ export default function FeaturedPublications() {
         </div>
       </div>
       <div className="neue-publication-panels" onMouseLeave={() => setActive(0)}>
-        {papers.map((paper, index) => (
+        {featuredPublications.map((paper, index) => (
           <article
             className={`neue-publication-panel neue-publication-panel-${index} ${active === index ? "is-open" : ""}`}
-            key={paper.slug}
+            key={paper.link}
           >
             <button
               className="neue-publication-tab"
@@ -65,13 +38,7 @@ export default function FeaturedPublications() {
               id={`paper-tab-${index}`}
               aria-label={`Read publication ${index + 1}: ${paper.title}`}
             >
-              <span>
-                {paper.type === "Journal Papers"
-                  ? "Journal Paper"
-                  : paper.type === "Conference Papers"
-                    ? "Conference Paper"
-                    : "Preprint"}
-              </span>
+              <span>{paper.type}</span>
               <span>{index + 1}</span>
             </button>
             <div
@@ -81,12 +48,10 @@ export default function FeaturedPublications() {
               aria-labelledby={`paper-tab-${index}`}
             >
               <div className="neue-publication-venue">
-                <p title={paper.journal}>{paper.venue}</p>
+                <p>{paper.venue}</p>
                 <span>{paper.year}</span>
               </div>
-              <h3>
-                <Link to={`/publications/${paper.slug}`}>{paper.title}</Link>
-              </h3>
+              <h3>{paper.title}</h3>
               <div
                 className="neue-publication-abstract"
                 // eslint-disable-next-line jsx-a11y/no-noninteractive-tabindex
@@ -95,13 +60,16 @@ export default function FeaturedPublications() {
                 aria-label={`Abstract of ${paper.title}`}
                 data-lenis-prevent
               >
-                {abstracts[paper.slug] ? (
-                  <ReactMarkdown>{abstracts[paper.slug]}</ReactMarkdown>
-                ) : (
-                  <p>Loading abstract…</p>
-                )}
+                <ReactMarkdown allowedElements={["p", "em", "strong"]} unwrapDisallowed>
+                  {paper.abstract}
+                </ReactMarkdown>
               </div>
-              <PageLink className="neue-publication-link" to={`/publications/${paper.slug}`}>
+              <PageLink
+                className="neue-publication-link"
+                href={paper.link}
+                target="_blank"
+                rel="noreferrer"
+              >
                 Read publication
               </PageLink>
             </div>

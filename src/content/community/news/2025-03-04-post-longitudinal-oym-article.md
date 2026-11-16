@@ -10,5 +10,4 @@ The article can be found at:
 
 ## Links
 
-- [Details](/publications/leveraging-patients-longitudinal-data-to-improve-the-hospital-one-year-mortality-risk-2025)
 - [Article link](https://link.springer.com/article/10.1007/s13755-024-00332-4)

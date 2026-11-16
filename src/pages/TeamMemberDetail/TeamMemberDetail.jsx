@@ -222,7 +222,7 @@ export default function TeamMemberDetail() {
                   lessLabel="See less"
                 >
                   {activity.map((entry) => (
-                    <EntryRow key={entry.to} to={entry.to}>
+                    <EntryRow key={entry.to ?? entry.href} to={entry.to} href={entry.href}>
                       <EntryRowBody>
                         <div className="flex items-center gap-3 text-xs uppercase tracking-widest text-muted-foreground">
                           <span className="border border-white/10 rounded-full px-2 py-1 bg-white/5 text-white/70">

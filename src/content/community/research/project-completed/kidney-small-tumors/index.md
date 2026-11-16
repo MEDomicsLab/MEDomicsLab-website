@@ -36,6 +36,6 @@ allow for a better use of resources.
 ## Publication
 
 This work was published in February 2026 as
-[Optimizing renal mass histology prediction with artificial intelligence using handcrafted radiomics](/publications/optimizing-renal-mass-histology-prediction-with-artificial-intelligence-using-handcrafted-radiomics-2026)
+[Optimizing renal mass histology prediction with artificial intelligence using handcrafted radiomics](https://doi.org/10.1007/s00345-026-06296-2)
 in World Journal of Urology
 ([article link](https://doi.org/10.1007/s00345-026-06296-2)).

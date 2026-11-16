@@ -23,7 +23,7 @@ body:
 
         Publications are grouped by year. The automation derives the slug from the title and display year and saves it in `publications.json` — you do not need to provide one.
 
-        See [`src/content/_templates/publication.md`](https://github.com/MEDomicsLab/MEDomicsLab-website/blob/main/src/content/_templates/publication.md) for the markdown skeleton.
+        The entry links directly to the publication.
   - type: checkboxes
     id: checks
     attributes:
@@ -33,7 +33,7 @@ body:
           required: true
         - label: All listed authors agree to be credited on the public site.
           required: true
-        - label: For each lab-affiliated author, the name matches the spelling used in `src/data/team.json` (so the cross-link works).
+        - label: For each lab-affiliated author, the name matches the spelling used in `src/data/team.json` (so it appears on their team profile).
           required: true
   - type: input
     id: title
@@ -47,7 +47,7 @@ body:
     id: contributors
     attributes:
       label: "Contributors"
-      description: Comma-separated, in publication order. Saved as a `contributors` array in `publications.json`. Use the same spelling as `team.json` for lab members so cross-links work.
+      description: Comma-separated, in publication order. Saved as a `contributors` array in `publications.json`. Use the same spelling as `team.json` for lab members so the publication appears on their team profiles.
       placeholder: "Hakima Laribi, Nicolas Raymond, Martin Vallières"
     validations:
       required: true
@@ -62,7 +62,7 @@ body:
     id: type
     attributes:
       label: "Type"
-      description: Must be one of the three values supported by `publications.schema.json`. Talks and posters are events now; file them with the "Add an event" form instead.
+      description: Must be one of the three values supported by `publications.schema.json`. Use "Conference Papers" for full manuscripts. Submit conference abstracts, talks and posters with the "Add an event" form.
       options:
         - "Journal Papers"
         - "Conference Papers"
@@ -89,44 +89,7 @@ body:
     id: link
     attributes:
       label: "Primary link (DOI / publisher URL)"
+      description: Public HTTPS URL for the DOI, publisher page, or preprint.
       placeholder: "https://doi.org/..."
     validations:
       required: true
-  - type: input
-    id: redirect
-    attributes:
-      label: "Direct redirect?"
-      description: Enter yes to link the publication card directly to the primary link. Leave blank or enter no to open its detail page.
-      placeholder: "yes / no — optional"
-    validations:
-      required: false
-  - type: textarea
-    id: abstract
-    attributes:
-      label: "Abstract / summary (Markdown)"
-      description: Will be saved to `src/content/publications/<slug>.md` and referenced from `publications.json` via the `markdown` field. Follow the structure in [`src/content/_templates/publication.md`](https://github.com/MEDomicsLab/MEDomicsLab-website/blob/main/src/content/_templates/publication.md). Drag images (PNG, JPG, GIF, WebP) or PDFs straight into this field, at most 10 MB each. The automation copies them into the repository and links the post to those copies. Image links to other sites remain externally hosted, so use stable, public URLs only.
-      placeholder: "Paste the abstract or a short summary."
-    validations:
-      required: false
-  - type: textarea
-    id: bibtex
-    attributes:
-      label: "BibTeX (optional)"
-      description: Optional. Saved as a BibTeX section in the publication detail page.
-      render: bibtex
-    validations:
-      required: false
-  - type: textarea
-    id: assets
-    attributes:
-      label: "Images / attachments for maintainer review"
-      description: Attach files a maintainer should review but that should not appear on the website as they are. Files here are not copied or published; put anything readers should see in the content field instead.
-    validations:
-      required: false
-  - type: textarea
-    id: additional
-    attributes:
-      label: "Additional context"
-      placeholder: "Optional — funding, related projects, news post to publish in parallel, etc."
-    validations:
-      required: false

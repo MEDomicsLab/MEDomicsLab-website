@@ -9,4 +9,4 @@
 
 <!-- replace: a short paragraph announcing the news. Cross-link to team
 members with [Name](/team/<slug>) and to publications with
-[Title](/publications/<slug>). -->
+[Title](https://doi.org/<doi>). -->

@@ -72,7 +72,7 @@ const collectPublications = (name) => {
       entries.push({
         kind: "Publication",
         title: item.title,
-        to: `/publications/${item.slug}`,
+        href: item.link,
         date: item.date ?? resolveDate(item.slug, yearGroup.year),
       });
     }
@@ -92,7 +92,7 @@ const collectProjects = (slug) =>
 
 /**
  * @param {{ slug: string, name: string }} member
- * @returns {Array<{ kind: string, title: string, to: string, date: string|null, dateLabel: string|null }>}
+ * @returns {Array<{ kind: string, title: string, to?: string, href?: string, date: string|null, dateLabel: string|null }>}
  */
 export const getMemberActivity = (member) => {
   if (!member?.name) return [];

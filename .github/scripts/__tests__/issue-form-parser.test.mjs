@@ -9,7 +9,6 @@ import { IssueFormParseError, parseIssueForm } from "../lib/issue-form-parser.mj
 import { getIssueFormFields } from "../lib/issue-form-template.mjs";
 import { event } from "../lib/handlers/event.mjs";
 import { news } from "../lib/handlers/news.mjs";
-import { publication } from "../lib/handlers/publication.mjs";
 
 const here = path.dirname(fileURLToPath(import.meta.url));
 const repoRoot = path.resolve(here, "..", "..", "..");
@@ -21,16 +20,10 @@ function submission(kind, overrides = {}) {
   return labels.map((label) => `### ${label}\n\n${answers[label] || "_No response_"}`).join("\n\n");
 }
 
-test("Markdown sections survive parsing and generated event, news, and publication files", async () => {
+test("Markdown sections survive parsing and generated event and news files", async () => {
   const cases = [
     { handler: event, data: "events", field: "Full description (Markdown)", heading: "Agenda" },
     { handler: news, data: "news", field: "Full content (Markdown)", heading: "Highlights" },
-    {
-      handler: publication,
-      data: "publications",
-      field: "Abstract / summary (Markdown)",
-      heading: "Methods",
-    },
   ];
   for (const { handler, data, field, heading } of cases) {
     const content = `Opening paragraph.\n\n### ${heading}\n\nThis content must survive.\n\n#### Details\n\nFinal paragraph.`;
@@ -71,17 +64,17 @@ test("only headings belonging to the selected form delimit answers", () => {
 
 test("code fences preserve form-like headings and require a matching closing fence", () => {
   for (const [open, inside, close] of [
-    ["```markdown", "### Title\n\nLiteral title", "```"],
-    ["~~~markdown", "### Title\n\n```\n### Contributors", "~~~~"],
-    ["  ````markdown", "```\n### Title\n~~~\n### Contributors", "   `````"],
+    ["```markdown", "### Headline\n\nLiteral title", "```"],
+    ["~~~markdown", "### Headline\n\n```\n### Contributors / people involved", "~~~~"],
+    ["  ````markdown", "```\n### Headline\n~~~\n### Contributors / people involved", "   `````"],
   ]) {
     const content = `Opening paragraph.\n\n${open}\n${inside}\n${close}\n\n### Findings\n\nAfter the code block.`;
     const fields = parseIssueForm(
-      submission("publication", { "Abstract / summary (Markdown)": content }),
-      getIssueFormFields("publication")
+      submission("news", { "Full content (Markdown)": content }),
+      getIssueFormFields("news")
     );
-    assert.equal(fields["Abstract / summary (Markdown)"], content);
-    assert.equal(fields["BibTeX (optional)"], "");
+    assert.equal(fields["Full content (Markdown)"], content);
+    assert.equal(fields.Headline, "Pipeline drafted news post");
   }
 });
 

@@ -11,5 +11,4 @@ The article can be found at:
 
 ## Links
 
-- [Details](/publications/optimizing-renal-mass-histology-prediction-with-artificial-intelligence-using-handcrafted-radiomics-2026)
 - [Article link](https://doi.org/10.1007/s00345-026-06296-2)

@@ -7,7 +7,6 @@ import publications from "../data/publications.json" with { type: "json" };
 import research from "../data/research-projects.json" with { type: "json" };
 import team from "../data/team.json" with { type: "json" };
 import seo from "../data/seo.json" with { type: "json" };
-import { hasPublicationLink } from "./publications.js";
 import { imageVariant } from "./images.js";
 
 export const siteUrl = home.brand.siteUrl;
@@ -31,10 +30,7 @@ const details = [
     section: prefix,
     type,
     record,
-    redirect:
-      type === "ScholarlyArticle" && record.redirect && hasPublicationLink(record)
-        ? record.link
-        : null,
+    redirect: type === "ScholarlyArticle" ? record.link : null,
   }))
 );
 
@@ -103,13 +99,6 @@ function structuredDataFor(route, canonicalUrl, description, image) {
     return base;
   }
   const { record, type } = route;
-  if (type === "ScholarlyArticle") {
-    base.headline = record.title;
-    base.datePublished = record.date;
-    base.author = (record.contributors || []).map((name) => ({ "@type": "Person", name }));
-    if (record.journal) base.isPartOf = { "@type": "Periodical", name: record.journal };
-    if (hasPublicationLink(record)) base.sameAs = record.link;
-  }
   if (type === "NewsArticle") {
     base.headline = record.title;
     base.datePublished = /^\d{4}-\d{2}-\d{2}/.exec(record.slug)?.[0];
@@ -165,11 +154,12 @@ export function getPageMetadata(pathname) {
     imageAlt: record?.coverImage?.alt || record?.name || record?.title || home.brand.name,
     indexable,
     redirect: route?.redirect,
-    ogType: ["NewsArticle", "ScholarlyArticle"].includes(route?.type)
-      ? "article"
-      : route?.type === "ProfilePage"
-        ? "profile"
-        : "website",
+    ogType:
+      route?.type === "NewsArticle"
+        ? "article"
+        : route?.type === "ProfilePage"
+          ? "profile"
+          : "website",
     schema: indexable ? structuredDataFor(route, canonicalUrl, description, image) : null,
   };
 }

@@ -36,4 +36,4 @@ To account for the variance that single-run evaluations overlook, each model was
 ## Publications
 
 - [Beyond single-run metrics with CP-fuse: A rigorous multi-cohort evaluation of clinico-pathological fusion for improved survival prediction in TCGA](https://doi.org/10.1016/j.mlwa.2025.100789) (Machine Learning with Applications, 2025)
-- [An Agentic Framework for Interrogatable and Interpretable Survival Analysis](/publications/an-agentic-framework-for-interrogatable-and-interpretable-survival-analysis-2026) (Radiotherapy and Oncology, CARO ASM 2026)
+- [An Agentic Framework for Interrogatable and Interpretable Survival Analysis](<https://doi.org/10.1016/S0167-8140(26)00891-1>) (conference abstract, Radiotherapy and Oncology, CARO ASM 2026)

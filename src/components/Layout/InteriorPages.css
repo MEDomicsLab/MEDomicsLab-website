@@ -328,8 +328,7 @@
   letter-spacing: -0.025em;
 }
 .neue-interior-layout .project-metadata h3,
-.neue-interior-layout .member-detail h3,
-.neue-interior-layout .publication-detail h3 {
+.neue-interior-layout .member-detail h3 {
   font-size: 16px;
   letter-spacing: 0;
   text-transform: none;
@@ -381,7 +380,7 @@
   overflow-x: auto;
 }
 .neue-interior-layout .member-detail,
-.neue-interior-layout :is(.publication-detail, .community-detail) > .container {
+.neue-interior-layout .community-detail > .container {
   padding-top: 150px;
 }
 .neue-interior-layout .member-detail h1 {
@@ -414,8 +413,7 @@
 .member-position .whitespace-nowrap {
   white-space: normal;
 }
-.neue-interior-layout .member-detail .uppercase,
-.neue-interior-layout .publication-detail .uppercase {
+.neue-interior-layout .member-detail .uppercase {
   text-transform: none;
   letter-spacing: 0;
 }
@@ -423,7 +421,7 @@
   font-size: 22px;
   letter-spacing: -0.02em;
 }
-.neue-interior-layout :is(.publication-detail, .community-detail) h1 {
+.neue-interior-layout .community-detail h1 {
   font-size: clamp(38px, 4.2vw, 64px);
   line-height: 1.07;
   letter-spacing: -0.045em;
@@ -433,7 +431,7 @@
   .neue-interior-layout .page-shell,
   .neue-interior-layout .project-header,
   .neue-interior-layout .member-detail,
-  .neue-interior-layout :is(.publication-detail, .community-detail) > .container {
+  .neue-interior-layout .community-detail > .container {
     padding-top: 190px;
   }
   .project-heading-grid {

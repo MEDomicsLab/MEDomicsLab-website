@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import pubData from "../../data/publications.json";
+import { getMemberByName } from "../../lib/team";
 import { cn } from "../../lib/utils";
 import EntryRow, { EntryRowBody, EntryRowTitle } from "../../components/EntryRow/EntryRow.jsx";
 import FilterChips from "../../components/FilterChips/FilterChips.jsx";
@@ -125,8 +126,8 @@ export default function PublicationsPage() {
             </div>
 
             <div className="space-y-0 mt-6">
-              {yearGroup.items.map((pub, idx) => (
-                <EntryRow key={idx} to={`/publications/${pub.slug}`} variant="detailed">
+              {yearGroup.items.map((pub) => (
+                <EntryRow key={pub.slug} href={pub.link} variant="detailed">
                   <EntryRowBody variant="detailed">
                     {activeTypes.length > 1 && (
                       <span className="inline-block text-xs uppercase tracking-widest border border-white/10 rounded-full px-3 py-1 text-white/70 bg-white/5 w-fit mb-3">
@@ -134,7 +135,11 @@ export default function PublicationsPage() {
                       </span>
                     )}
                     <EntryRowTitle variant="detailed">{pub.title}</EntryRowTitle>
-                    <p className="text-base text-muted-foreground">{pub.contributors.join(", ")}</p>
+                    <p className="text-base text-muted-foreground">
+                      {pub.labAuthorsOnly
+                        ? `Lab authors: ${pub.contributors.filter(getMemberByName).join(", ")}`
+                        : pub.contributors.join(", ")}
+                    </p>
                     <p className="text-sm italic text-muted-foreground/80">{pub.journal}</p>
                   </EntryRowBody>
                 </EntryRow>

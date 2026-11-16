@@ -71,14 +71,13 @@ Use the `Add a new publication` template.
 
 A publication entry needs:
 
-- A clear title, comma-separated authors, and the year.
-- A _kind_ picked from the dropdown (`Journal Papers`, `Conference Papers`, `Preprints`). Submit talks and posters with the event form.
-- A DOI or URL. The DOI is preferred when one exists; the site renders both.
-- A short abstract. One paragraph is enough; readers click through for the full text.
+- A title, comma-separated authors, a venue, the publication date, and the display year.
+- A _kind_ picked from the dropdown (`Journal Papers`, `Conference Papers`, `Preprints`). Submit conference abstracts, talks and posters with the event form.
+- A public DOI, publisher, or preprint URL. The entry opens this URL directly.
 
-The automation appends the entry to the matching year bucket in [`src/data/publications.json`](./src/data/publications.json) and writes a markdown stub under `src/content/publications/<slug>.md` for any prose you provided.
+The automation appends the entry to the matching year bucket in [`src/data/publications.json`](./src/data/publications.json).
 
-Important to recall: if the paper has lab member co-authors, write their names exactly as they appear in `src/data/team.json` so the cross-link to their profile page works.
+Important to recall: if the paper has lab member co-authors, write their names exactly as they appear in `src/data/team.json` so the paper appears on their team profiles.
 
 </details>
 
@@ -121,7 +120,7 @@ You'll need:
 
 The automation adds the entry to [`src/data/news.json`](./src/data/news.json) and writes the body to `src/content/community/news/<slug>.md`.
 
-Important to recall: drag and drop images (PNG, JPG, GIF, WebP) and PDFs straight into the content field, at most 10 MB each. The automation copies them into the PR, images under `public/images/albums/<slug>/` and PDFs under `public/publications/<slug>/`, and rewrites the links to point at those copies. The same applies to events and publications. Files in the "Images / attachments for maintainer review" field are not copied. Maintainers: set the optional `ATTACHMENTS_TOKEN` repository secret (a personal access token with read access to this repository) so PDFs download at once; without it, the workflow waits for GitHub to publish them.
+Important to recall: drag and drop images (PNG, JPG, GIF, WebP) and PDFs straight into the content field, at most 10 MB each. The automation copies them into the PR, images under `public/images/albums/<slug>/` and PDFs under `public/publications/<slug>/`, and rewrites the links to point at those copies. The same applies to events. Files in the "Images / attachments for maintainer review" field are not copied. Maintainers: set the optional `ATTACHMENTS_TOKEN` repository secret (a personal access token with read access to this repository) so PDFs download at once; without it, the workflow waits for GitHub to publish them.
 
 </details>
 
@@ -167,10 +166,9 @@ npm run lint:avatars    # checks the 12-file matrix per slug
 <br>
 
 - **Schema:** [`src/data/_schemas/publications.schema.json`](./src/data/_schemas/publications.schema.json)
-- **Template:** [`src/content/_templates/publication.md`](./src/content/_templates/publication.md)
-- **Pages:** `PublicationsPage`, `PublicationDetailPage`, `HomePage` (recent papers section).
+- **Pages:** Publications and team profiles.
 
-Top-level array grouped by `year` (string). Each item has a stable `slug` that owns the `/publications/<slug>` URL, a `contributors` array (matches the shape used by news/events), and a `type` enum.
+Top-level array grouped by `year` (string). Each item has a stable `slug`, a `contributors` array, a `type` enum, and a direct publication `link`. Existing `/publications/<slug>` URLs redirect to the source.
 
 </details>
 
@@ -244,7 +242,14 @@ Each course has a `slug`, `title`, `summary`, instructor list, and optional link
 - **Schema:** [`src/data/_schemas/home.schema.json`](./src/data/_schemas/home.schema.json)
 - **Page:** `HomePage`.
 
-The hero block (label, title, subtitle, CTA), the "What we do" cards, the "Open-source" featured projects, and the "Latest news / Recent papers" feed configuration. To change the homepage copy or the featured project list, edit this file. The recent papers and news sections automatically pull from `publications.json` and `news.json` (most recent N).
+**Update Featured Publications.** Edit `sections.featuredPublications` in [`src/data/home.json`](./src/data/home.json) directly and open a regular pull request. The publication issue form only updates the main catalogue.
+
+1. Keep exactly four entries. Their order in the array sets the panel order. The first panel opens by default.
+2. For each entry, set `title`, `venue`, `year` (a four-digit string), `type` (`Journal Paper`, `Conference Paper`, or `Preprint`), `abstract`, and `link`.
+3. Use `\n\n` between paragraphs in the abstract string and Markdown for bold or italics. Set `link` to the public DOI, publisher, or preprint URL opened by **Read publication**.
+4. Run `npm run lint:schemas` and preview the homepage to check the order, abstracts, and links.
+
+This selection is independent of the publication dates and entries in `publications.json`.
 
 </details>
 

@@ -37,7 +37,7 @@ body:
     id: page-url
     attributes:
       label: "Affected page / URL"
-      description: Which page is broken? Paste the full URL or the route (e.g. `/publications/leveraging-patients-...-2025`).
+      description: Which page is broken? Paste the full URL or the route (e.g. `/publications`).
       placeholder: "https://medomicslab.com/team/martin-vallieres"
     validations:
       required: true

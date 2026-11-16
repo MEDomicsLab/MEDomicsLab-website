@@ -7,7 +7,7 @@ import HomePage from "./pages/HomePage/HomePage.jsx";
 import ResearchPage from "./pages/ResearchPage/ResearchPage.jsx";
 import ProjectDetail from "./pages/ProjectDetail/ProjectDetail.jsx";
 import PublicationsPage from "./pages/PublicationsPage/PublicationsPage.jsx";
-import PublicationDetailPage from "./pages/PublicationDetailPage/PublicationDetailPage.jsx";
+import PublicationRedirect from "./pages/PublicationsPage/PublicationRedirect.jsx";
 import TeamPage from "./pages/TeamPage/TeamPage.jsx";
 import TeamMemberDetail from "./pages/TeamMemberDetail/TeamMemberDetail.jsx";
 import NewsPage from "./pages/NewsPage/NewsPage.jsx";
@@ -70,7 +70,7 @@ const App = () => {
         <Route path="/research" element={<ResearchPage />} />
         <Route path="/research/:slug" element={<ProjectDetail />} />
         <Route path="/publications" element={<PublicationsPage />} />
-        <Route path="/publications/:slug" element={<PublicationDetailPage />} />
+        <Route path="/publications/:slug" element={<PublicationRedirect />} />
         <Route path="/team" element={<TeamPage />} />
         <Route path="/team/:slug" element={<TeamMemberDetail />} />
         <Route path="/community/news" element={<NewsPage />} />
