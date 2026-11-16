@@ -244,7 +244,14 @@ Each course has a `slug`, `title`, `summary`, instructor list, and optional link
 - **Schema:** [`src/data/_schemas/home.schema.json`](./src/data/_schemas/home.schema.json)
 - **Page:** `HomePage`.
 
-The hero block (label, title, subtitle, CTA), the "What we do" cards, the "Open-source" featured projects, and the "Latest news / Recent papers" feed configuration. To change the homepage copy or the featured project list, edit this file. The recent papers and news sections automatically pull from `publications.json` and `news.json` (most recent N).
+**Update Featured Publications.** Edit `sections.featuredPublications` in [`src/data/home.json`](./src/data/home.json) directly and open a regular pull request. The publication issue form only updates the main catalogue.
+
+1. Keep exactly four entries. Their order in the array sets the panel order. The first panel opens by default.
+2. For each entry, set `title`, `venue`, `year` (a four-digit string), `type` (`Journal Paper`, `Conference Paper`, or `Preprint`), `abstract`, and `link`.
+3. Use `\n\n` between paragraphs in the abstract string and Markdown for bold or italics. Set `link` to the public DOI, publisher, or preprint URL opened by **Read publication**.
+4. Run `npm run lint:schemas` and preview the homepage to check the order, abstracts, and links.
+
+This selection is independent of the publication dates and entries in `publications.json`.
 
 </details>
 

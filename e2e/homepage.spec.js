@@ -151,7 +151,7 @@ test("the hero stays pinned while the profile covers it; navigation is centred i
   expect(Math.abs(profile.y - 497)).toBeLessThan(2);
 });
 
-test("project focus reveals statistics and publications expose four readable, linked abstracts", async ({
+test("project focus reveals statistics and featured publications show curated abstracts and direct links", async ({
   page,
 }) => {
   await page.setViewportSize({ width: 1440, height: 1000 });
@@ -179,18 +179,16 @@ test("project focus reveals statistics and publications expose four readable, li
     const panel = page.locator(`#paper-content-${i}`);
     await expect(panel).toBeVisible();
     await expect(page.locator(".neue-publication-content:visible")).toHaveCount(1);
-    await expect(panel.locator(".neue-publication-abstract")).not.toContainText("Loading abstract");
-    expect(
-      (await panel.locator(".neue-publication-abstract").textContent()).length
-    ).toBeGreaterThan(200);
-    await expect(panel.locator("h3")).not.toContainText("(Journal Article)");
+    const paper = home.sections.featuredPublications[i];
+    await expect(panel.getByRole("heading", { level: 3 })).toHaveText(paper.title);
+    await expect(panel.locator(".neue-publication-venue")).toContainText(paper.venue);
+    const abstract = panel.getByRole("region", { name: `Abstract of ${paper.title}` });
+    await expect(abstract).toBeVisible();
+    await expect(abstract).toContainText(/\S/);
     await expect(
       panel.getByRole("link", { name: "Read publication", exact: true })
-    ).toHaveAttribute("href", /^\/publications\/.+/);
-    if (i === 0)
-      await expect(panel.locator(".neue-publication-venue")).toContainText(
-        "Journal of the American Medical Informatics Association"
-      );
+    ).toHaveAttribute("href", paper.link);
+    await expect(panel.getByRole("link")).toHaveCount(1);
   }
 });
 
