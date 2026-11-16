@@ -701,8 +701,6 @@ body:has(.neue-home-layout) .nav-dropdown-portal {
   opacity: 0;
   transition: none;
 }
-/* No stacking context here or on the stain: the glass's blended rims isolate their nearest
-   one, and the blur would then see nothing behind it. The section is the isolated group. */
 .neue-ecosystem-spotlight {
   position: absolute;
   inset: 0;
@@ -757,9 +755,14 @@ body:has(.neue-home-layout) .nav-dropdown-portal {
   pointer-events: auto;
   transition: --glass-opacity 0.6s ease 0.12s;
 }
+.neue-ecosystem-stain-glass,
+.neue-ecosystem-stain-glass > [data-vaso],
 .neue-ecosystem-stain .glass-frame > *,
 .neue-ecosystem-stain .glass {
   border-radius: var(--stain-shape) !important;
+}
+.neue-ecosystem-stain-glass > [data-vaso] {
+  opacity: var(--glass-opacity);
 }
 .neue-ecosystem-stain-body {
   width: min(29vw, 64svh);

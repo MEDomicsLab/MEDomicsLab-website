@@ -1,9 +1,3 @@
-@property --glass-opacity {
-  syntax: "<number>";
-  inherits: true;
-  initial-value: 1;
-}
-
 .glass-frame {
   display: contents;
 }

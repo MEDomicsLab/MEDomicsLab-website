@@ -39,13 +39,6 @@ export default function GlassSurface({
   );
 }
 
-/**
- * Keep LiquidGlass's rims on the surface and fade every layer together. The
- * library sizes its sibling rims only on window resize and eases them 200ms
- * behind the surface; an ancestor's opacity (or a box that isolates their
- * blending) would flatten the backdrop blur, so this group renders no box and
- * fades each layer through `--glass-opacity`.
- */
 export function GlassFrame({ className, surfaceClassName, children, ...glass }) {
   const frame = useRef(null);
   useLayoutEffect(() => {
