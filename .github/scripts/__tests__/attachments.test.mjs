@@ -17,7 +17,6 @@ import {
 } from "../lib/attachments.mjs";
 import { news } from "../lib/handlers/news.mjs";
 import { event } from "../lib/handlers/event.mjs";
-import { publication } from "../lib/handlers/publication.mjs";
 
 const here = path.dirname(fileURLToPath(import.meta.url));
 const repoRoot = path.resolve(here, "..", "..", "..");
@@ -141,25 +140,6 @@ test("event apply() copies attachments the same way", async (t) => {
   assert.equal(result.ok, true, JSON.stringify(result, null, 2));
   const markdown = fs.readFileSync(path.join(sandbox, "src/content", plan.markdownRel), "utf8");
   assert.ok(markdown.includes(`![Group photo](/images/albums/${plan.slug}/image-1.webp)`));
-});
-
-test("publication apply() points the primary link at a mirrored PDF", async (t) => {
-  stubFetch(t, { [PDF_URL]: PDF });
-  const sandbox = sandboxWith(["publications.json", "team.json"]);
-  const fields = parseFixture("publication-valid.md");
-  fields["Primary link (DOI / publisher URL)"] = PDF_URL;
-  const plan = publication.buildPlan(fields);
-  assert.equal(plan.ok, true);
-
-  const result = await publication.apply(sandbox, plan);
-  assert.equal(result.ok, true, JSON.stringify(result, null, 2));
-  const localPdf = `/publications/${plan.slug}/2-14-steven-ravary.pdf`;
-  const entry = JSON.parse(fs.readFileSync(path.join(sandbox, "src/data/publications.json")))
-    .flatMap((bucket) => bucket.items)
-    .find((item) => item.slug === plan.slug);
-  assert.equal(entry.link, localPdf);
-  const markdown = fs.readFileSync(path.join(sandbox, "src/content", plan.markdownRel), "utf8");
-  assert.ok(markdown.includes(`[Primary link](${localPdf})`));
 });
 
 test("oversized or unsupported attachments are rejected before anything is written", async (t) => {

@@ -7,20 +7,27 @@ const doctorateCount = projectsData.filter((project) => project.track === "Docto
 
 test.use({ viewport: { width: 1440, height: 1000 }, reducedMotion: "reduce" });
 
-test("publication authors retain their order and use shared team profile lookup", async ({
+test("publication listings and team profiles link directly to the source", async ({
   page,
+  request,
 }) => {
-  const publication = publicationsData
-    .flatMap((group) => group.items)
-    .find(
-      (item) => !item.redirect && item.contributors?.includes("Martin Vallières") && item.markdown
-    );
-  await page.goto(`/publications/${publication.slug}`);
-  const authors = page.locator(".publication-detail h1 + p");
-  await expect(authors).toHaveText(publication.contributors.join(", "));
-  await expect(
-    authors.getByRole("link", { name: "Martin Vallières", exact: true })
-  ).toHaveAttribute("href", "/team/martin-vallieres");
+  const papers = publicationsData.flatMap((group) => group.items);
+  await page.goto("/publications");
+  const rows = page.locator(".publication-year .entry-row");
+  await expect(rows).toHaveCount(papers.length);
+  expect(
+    await rows.evaluateAll((links) => links.map((link) => link.getAttribute("href")).sort())
+  ).toEqual(papers.map((paper) => paper.link).sort());
+
+  const paper = papers.find((item) => item.contributors[0] === "Martin Vallières");
+  await page.goto("/team/martin-vallieres");
+  await page.getByRole("button", { name: /^See more/ }).click();
+  const activity = page.getByRole("link").filter({ hasText: paper.title });
+  await expect(activity).toHaveAttribute("href", paper.link);
+
+  const oldUrl = await request.get(`/publications/${paper.slug}`, { maxRedirects: 0 });
+  expect(oldUrl.status()).toBe(308);
+  expect(oldUrl.headers().location).toBe(paper.link);
 });
 
 test("detail pages share consistent missing-record states and return links", async ({ page }) => {

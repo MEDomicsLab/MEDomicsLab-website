@@ -5,13 +5,13 @@
  * Reads a GitHub Issue Form submission, parses the body into key/value
  * fields, hands the parsed payload to a per-template handler that
  * - builds a JSON entry conforming to the matching schema in src/data/_schemas/,
- * - renders a markdown skeleton under src/content/<entity>/<slug>.md,
+ * - writes Markdown for submissions that include site content,
  * - re-validates the resulting JSON tree with Ajv,
  * and writes a machine-readable plan to GITHUB_OUTPUT so the calling
  * workflow can branch / commit / open a PR.
  *
  * Local usage (no GitHub):
- *   node .github/scripts/issue-to-content.mjs --fixture path/to/event.md --label content,publication
+ *   node .github/scripts/issue-to-content.mjs --fixture path/to/publication.md --label content,publication
  *
  * Workflow usage:
  *   ISSUE_BODY=...  ISSUE_LABELS=content,publication  ISSUE_NUMBER=123
@@ -105,7 +105,21 @@ async function main() {
 
   let fields;
   try {
-    fields = parseIssueForm(body, getIssueFormFields(handler.label));
+    const formFields = getIssueFormFields(handler.label);
+    // Delimit obsolete answers in issues submitted before the publication form changed.
+    fields = parseIssueForm(
+      body,
+      handler === publication
+        ? [
+            ...formFields,
+            "Direct redirect?",
+            "Abstract / summary (Markdown)",
+            "BibTeX (optional)",
+            "Images / attachments for maintainer review",
+            "Additional context",
+          ]
+        : formFields
+    );
   } catch (err) {
     if (!(err instanceof IssueFormParseError)) throw err;
     logErrors(handler, [err.message]);

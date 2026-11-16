@@ -12,5 +12,4 @@ The article can be found at:
 
 ## Links
 
-- [Details](/publications/electric-power-fuse-identification-with-deep-learning-2023)
 - [Article link](https://ieeexplore.ieee.org/abstract/document/10045819)

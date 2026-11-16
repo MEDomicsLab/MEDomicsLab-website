@@ -10,5 +10,4 @@ The article can be found at:
 
 ## Links
 
-- [Details](/publications/unraveling-radiomics-complexity-strategies-for-optimal-simplicity-in-predictive-modeling-2024)
 - [Article link](https://arxiv.org/abs/2407.04888)

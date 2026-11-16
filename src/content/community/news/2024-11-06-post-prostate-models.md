@@ -11,5 +11,4 @@ The article can be found at:
 
 ## Links
 
-- [Details](/publications/multi-task-bayesian-model-combining-fdg-pet-ct-imaging-and-clinical-data-for-interpretable-high-grade-prostate-cancer-prognosis-journal-article-2024)
 - [Article link](https://www.nature.com/articles/s41598-024-77498-0)

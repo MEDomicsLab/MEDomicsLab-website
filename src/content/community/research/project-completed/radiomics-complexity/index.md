@@ -42,6 +42,6 @@ We already have a large database on which the analysis of the levels of complexi
 ## Publication
 
 This work was released in July 2024 as the preprint
-[Unraveling Radiomics Complexity: Strategies for Optimal Simplicity in Predictive Modeling](/publications/unraveling-radiomics-complexity-strategies-for-optimal-simplicity-in-predictive-modeling-2024)
+[Unraveling Radiomics Complexity: Strategies for Optimal Simplicity in Predictive Modeling](https://arxiv.org/abs/2407.04888)
 on arXiv
 ([article link](https://arxiv.org/abs/2407.04888)).

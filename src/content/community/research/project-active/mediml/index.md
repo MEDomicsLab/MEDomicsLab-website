@@ -49,9 +49,9 @@ The guide covers five steps: single-scan extraction, radiomics pre-checks in the
 
 ## Publications
 
-- [Medical Image Analysis with Machine Learning (MEDiml): Strategies for Simpler Radiomics](/publications/medical-image-analysis-with-machine-learning-mediml-strategies-for-simpler-radiomics-2026) (arXiv, 2026)
-- [Reference Manual of MEDiml](/publications/reference-manual-of-mediml-2026) (arXiv, 2026)
-- [Unraveling Radiomics Complexity: Strategies for Optimal Simplicity in Predictive Modeling](/publications/unraveling-radiomics-complexity-strategies-for-optimal-simplicity-in-predictive-modeling-2024) (arXiv, 2024)
+- [Medical Image Analysis with Machine Learning (MEDiml): Strategies for Simpler Radiomics](https://arxiv.org/abs/2610.37715) (arXiv, 2026)
+- [Reference Manual of MEDiml](https://arxiv.org/abs/2610.29666) (arXiv, 2026)
+- [Unraveling Radiomics Complexity: Strategies for Optimal Simplicity in Predictive Modeling](https://arxiv.org/abs/2407.04888) (arXiv, 2024)
 
 ## Related Events
 

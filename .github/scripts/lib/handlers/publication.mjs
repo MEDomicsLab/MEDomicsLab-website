@@ -1,15 +1,8 @@
 import path from "node:path";
 import { splitList } from "../issue-form-parser.mjs";
 import { slugify } from "../slug.mjs";
-import {
-  isValidIsoDate,
-  readJson,
-  writeJson,
-  writeMarkdown,
-  insertPublication,
-} from "../data-store.mjs";
+import { isValidIsoDate, readJson, writeJson, insertPublication } from "../data-store.mjs";
 import { validateAgainst } from "../validate.mjs";
-import { mirrorAttachments } from "../attachments.mjs";
 
 const FIELD = {
   title: "Title",
@@ -19,22 +12,7 @@ const FIELD = {
   date: "Publication date",
   year: "Display year",
   link: "Primary link (DOI / publisher URL)",
-  redirect: "Direct redirect?",
-  abstract: "Abstract / summary (Markdown)",
-  bibtex: "BibTeX (optional)",
-  additional: "Additional context",
 };
-
-/**
- * GitHub serializes a textarea with `render: bibtex` as a fenced code block.
- * Remove that outer fence before wrapping the generated content in its own
- * consistently highlighted BibTeX block.
- */
-function normaliseBibtex(value) {
-  const trimmed = value.trim();
-  const fenced = /^```(?:bibtex|bib|latex|tex|text|shell)?\s*\n([\s\S]*?)\n```\s*$/i.exec(trimmed);
-  return fenced ? fenced[1].trim() : trimmed;
-}
 
 export const publication = {
   label: "publication",
@@ -67,7 +45,6 @@ export const publication = {
       };
     }
     const type = fields[FIELD.type].trim();
-    const markdownRel = `publications/${slug}.md`;
 
     const entry = {
       title,
@@ -75,59 +52,21 @@ export const publication = {
       contributors,
       journal: fields[FIELD.journal].trim(),
       link: fields[FIELD.link].trim(),
-      markdown: markdownRel,
       type,
       date,
     };
-    const redirectRaw = (fields[FIELD.redirect] || "").trim().toLowerCase();
-    if (redirectRaw === "yes" || redirectRaw === "true") entry.redirect = true;
-
-    const markdownInput = {
-      date,
-      contributors,
-      summary: fields[FIELD.abstract] || "",
-      bibtex: fields[FIELD.bibtex] || "",
-      additional: fields[FIELD.additional] || "",
-      link: entry.link,
-    };
-
-    return {
-      ok: true,
-      year,
-      slug,
-      entry,
-      markdownRel,
-      markdownInput,
-    };
+    return { ok: true, year, slug, entry };
   },
   async apply(root, plan) {
     const dataFile = path.join(root, "src/data/publications.json");
     const current = readJson(dataFile);
-    const validation = validateAgainst(
-      "publications.schema.json",
-      insertPublication(current, plan.year, plan.entry)
-    );
+    const updated = insertPublication(current, plan.year, plan.entry);
+    const validation = validateAgainst("publications.schema.json", updated);
     if (!validation.ok) return { ok: false, errors: validation.errors };
-    const team = readJson(path.join(root, "src/data/team.json"));
-    const teamSlugs = new Set(
-      team.flatMap((cohort) => cohort.members ?? []).map((member) => member.slug)
-    );
-    const attachments = await mirrorAttachments(
-      root,
-      renderMarkdown(plan.markdownInput, teamSlugs),
-      { slug: plan.slug }
-    );
-    if (!attachments.ok) return attachments;
-    const entry = {
-      ...plan.entry,
-      link: attachments.urlMap.get(plan.entry.link) ?? plan.entry.link,
-    };
-    await writeJson(dataFile, insertPublication(current, plan.year, entry));
-    const mdPath = path.join(root, "src/content", plan.markdownRel);
-    await writeMarkdown(mdPath, attachments.text);
+    await writeJson(dataFile, updated);
     return {
       ok: true,
-      paths: [dataFile, mdPath, ...attachments.paths],
+      paths: [dataFile],
       branch: `content/publication-${plan.slug}`,
       commit: `feat(publications): add ${plan.entry.title}`,
       prTitle: `feat(publications): add ${plan.entry.title}`,
@@ -136,42 +75,8 @@ export const publication = {
         `**Type:** ${plan.entry.type}`,
         `**Slug:** \`${plan.slug}\``,
         `**Contributors:** ${plan.entry.contributors.join(", ")}`,
-        `**Link:** ${entry.link}`,
-        ...(attachments.summary.length ? ["", "### Attachments", "", ...attachments.summary] : []),
+        `**Link:** ${plan.entry.link}`,
       ].join("\n"),
     };
   },
 };
-
-function renderMarkdown({ date, contributors, summary, bibtex, additional, link }, teamSlugs) {
-  const authors = contributors
-    .map((name) => {
-      const slug = slugify(name);
-      return teamSlugs.has(slug) ? `- [${name}](/team/${slug})` : `- ${name}`;
-    })
-    .join("\n");
-  const sections = [
-    "## Date",
-    "",
-    date,
-    "",
-    "## Authors",
-    "",
-    authors || "<!-- replace: list contributors -->",
-    "",
-    "## Summary",
-    "",
-    summary.trim() || "<!-- replace: add a short summary -->",
-    "",
-    "## Links",
-    "",
-    `- [Primary link](${link})`,
-  ];
-  if (bibtex.trim()) {
-    sections.push("", "## BibTeX", "", "```bibtex", normaliseBibtex(bibtex), "```");
-  }
-  if (additional.trim()) {
-    sections.push("", "## Additional context", "", additional.trim());
-  }
-  return sections.join("\n");
-}

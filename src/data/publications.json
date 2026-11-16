@@ -26,8 +26,7 @@
         "journal": "arXiv",
         "link": "https://arxiv.org/abs/2610.37715",
         "type": "Preprints",
-        "date": "2026-10-27",
-        "redirect": true
+        "date": "2026-10-27"
       },
       {
         "title": "DIGOM: Disentangled Interaction Graphs for Outcome prediction in Multimodal healthcare",
@@ -36,8 +35,7 @@
         "journal": "arXiv",
         "link": "https://arxiv.org/abs/2610.32451",
         "type": "Preprints",
-        "date": "2026-10-23",
-        "redirect": true
+        "date": "2026-10-23"
       },
       {
         "title": "Every Edge Needs a Quote: Building a Quote-Grounded Knowledge Graph of Healthcare Software Adoption with Language-Model Agents",
@@ -46,8 +44,7 @@
         "journal": "arXiv",
         "link": "https://arxiv.org/abs/2610.32781",
         "type": "Preprints",
-        "date": "2026-10-23",
-        "redirect": true
+        "date": "2026-10-23"
       },
       {
         "title": "Reference Manual of MEDiml",
@@ -73,8 +70,7 @@
         "journal": "arXiv",
         "link": "https://arxiv.org/abs/2610.29666",
         "type": "Preprints",
-        "date": "2026-10-21",
-        "redirect": true
+        "date": "2026-10-21"
       },
       {
         "title": "Diagnosing Low-Confidence Patient Profiles via Localized Harmful Covariate Shift Detection",
@@ -83,8 +79,7 @@
         "journal": "arXiv",
         "link": "https://arxiv.org/abs/2610.19178",
         "type": "Preprints",
-        "date": "2026-10-13",
-        "redirect": true
+        "date": "2026-10-13"
       },
       {
         "title": "Predictive performance precision analysis in medicine: identification of low-confidence predictions at patient and profile levels (MED3pa I)",
@@ -97,7 +92,6 @@
         ],
         "journal": "Journal of the American Medical Informatics Association (JAMIA)",
         "link": "https://doi.org/10.1093/jamia/ocag034",
-        "markdown": "publications/predictive-performance-precision-analysis-in-medicine-identification-of-low-confidence-predictions-at-patient-and-profile-levels-med3pa-i-2026.md",
         "type": "Journal Papers",
         "date": "2026-03-31"
       },
@@ -115,7 +109,6 @@
         ],
         "journal": "World Journal of Urology",
         "link": "https://doi.org/10.1007/s00345-026-06296-2",
-        "markdown": "publications/optimizing-renal-mass-histology-prediction-with-artificial-intelligence-using-handcrafted-radiomics-2026.md",
         "type": "Journal Papers",
         "date": "2026-02-25"
       }
@@ -131,8 +124,7 @@
         "journal": "Machine Learning with Applications",
         "link": "https://doi.org/10.1016/j.mlwa.2025.100789",
         "type": "Journal Papers",
-        "date": "2025-11-04",
-        "redirect": true
+        "date": "2025-11-04"
       },
       {
         "title": "Predictive Performance Precision Analysis in Medicine: Identification of low-confidence predictions at patient and profile levels (MED3pa I)",
@@ -149,8 +141,7 @@
         "journal": "medRxiv",
         "link": "https://doi.org/10.1101/2025.08.22.25334254",
         "type": "Preprints",
-        "date": "2025-08-26",
-        "redirect": true
+        "date": "2025-08-26"
       },
       {
         "title": "Leveraging patients’ longitudinal data to improve the Hospital One-year Mortality Risk",
@@ -158,7 +149,6 @@
         "contributors": ["Hakima Laribi", "Nicolas Raymond", "Martin Vallières"],
         "journal": "Health Information Science and Systems",
         "link": "https://link.springer.com/article/10.1007/s13755-024-00332-4",
-        "markdown": "publications/leveraging-patients-longitudinal-data-to-improve-the-hospital-one-year-mortality-risk-2025.md",
         "type": "Journal Papers",
         "date": "2025-03-04"
       },
@@ -174,8 +164,7 @@
         "journal": "2025 IEEE IAS Electrical Safety Workshop (ESW)",
         "link": "https://doi.org/10.1109/esw58401.2025.11159075",
         "type": "Conference Papers",
-        "date": "2025-03-03",
-        "redirect": true
+        "date": "2025-03-03"
       }
     ]
   },
@@ -188,7 +177,6 @@
         "contributors": ["Maxence Larose", "Nicolas Raymond", "Martin Vallières"],
         "journal": "Nature Scientific Reports",
         "link": "https://www.nature.com/articles/s41598-024-77498-0",
-        "markdown": "publications/multi-task-bayesian-model-combining-fdg-pet-ct-imaging-and-clinical-data-for-interpretable-high-grade-prostate-cancer-prognosis-journal-article-2024.md",
         "type": "Journal Papers",
         "date": "2024-11-06"
       },
@@ -198,7 +186,6 @@
         "contributors": ["Hakima Laribi", "Nicolas Raymond", "Martin Vallières"],
         "journal": "Research Square",
         "link": "https://www.researchsquare.com/article/rs-5363467/v1",
-        "markdown": "publications/synthetic-data-for-accessible-learning-in-healthcare-improving-mortality-prediction-with-longitudinal-data-preprint-2024.md",
         "type": "Preprints",
         "date": "2024-11-04"
       },
@@ -208,7 +195,6 @@
         "contributors": ["Mahdi Loutfi", "Teodora Boblea Podasca", "Martin Vallières"],
         "journal": "arXiv",
         "link": "https://arxiv.org/abs/2407.04888",
-        "markdown": "publications/unraveling-radiomics-complexity-strategies-for-optimal-simplicity-in-predictive-modeling-2024.md",
         "type": "Preprints",
         "date": "2024-07-05"
       },
@@ -218,7 +204,6 @@
         "contributors": ["Nicolas Raymond", "Hakima Laribi", "Mehdi Mitiche", "Martin Vallières"],
         "journal": "Proceedings of Machine Learning Research",
         "link": "https://proceedings.mlr.press/v248/raymond24a.html",
-        "markdown": "publications/development-of-error-passing-network-for-optimizing-the-prediction-of-vo2-peak-in-childhood-acute-leukemia-survivors-2024.md",
         "type": "Conference Papers",
         "date": "2024-06-27"
       }
@@ -238,7 +223,6 @@
         ],
         "journal": "IEEE Transactions on Industrial Informatics",
         "link": "https://ieeexplore.ieee.org/abstract/document/10045819",
-        "markdown": "publications/electric-power-fuse-identification-with-deep-learning-2023.md",
         "type": "Journal Papers",
         "date": "2023-02-16"
       }
@@ -253,7 +237,6 @@
         "contributors": ["Nicolas Raymond", "Hakima Laribi", "Mehdi Mitiche", "Martin Vallières"],
         "journal": "arXiv",
         "link": "https://arxiv.org/abs/2211.13188",
-        "markdown": "publications/machine-learning-strategies-to-predict-late-adverse-effects-in-childhood-acute-lymphoblastic-leukemia-survivors-2022.md",
         "type": "Preprints",
         "date": "2022-11-30"
       },
@@ -263,7 +246,6 @@
         "contributors": ["Maxence Larose", "Nicolas Raymond", "Martin Vallières"],
         "journal": "Quebec Bioimaging Network 2022",
         "link": "https://openreview.net/forum?id=zIpx-MISaIA",
-        "markdown": "publications/graph-attention-network-for-prostate-cancer-lymph-node-invasion-prediction-2022.md",
         "type": "Conference Papers",
         "date": "2022-04-22"
       }
@@ -340,12 +322,11 @@
           "Christian Richter",
           "Steffen Löck"
         ],
+        "labAuthorsOnly": true,
         "journal": "Radiology",
         "link": "https://doi.org/10.1148/radiol.2020191145",
         "type": "Journal Papers",
-        "date": "2020-03-10",
-        "redirect": true,
-        "labAuthorsOnly": true
+        "date": "2020-03-10"
       }
     ]
   },
@@ -369,8 +350,7 @@
         "journal": "Physics and Imaging in Radiation Oncology",
         "link": "https://doi.org/10.1016/j.phro.2018.05.003",
         "type": "Journal Papers",
-        "date": "2018-05-19",
-        "redirect": true
+        "date": "2018-05-19"
       },
       {
         "title": "Responsible Radiomics Research for Faster Clinical Translation",
@@ -386,8 +366,7 @@
         "journal": "Journal of Nuclear Medicine",
         "link": "https://doi.org/10.2967/jnumed.117.200501",
         "type": "Journal Papers",
-        "date": "2018-02-01",
-        "redirect": true
+        "date": "2018-02-01"
       }
     ]
   },
@@ -401,8 +380,7 @@
         "journal": "Physics in Medicine &amp; Biology",
         "link": "https://doi.org/10.1088/1361-6560/aa8a49",
         "type": "Journal Papers",
-        "date": "2017-10-27",
-        "redirect": true
+        "date": "2017-10-27"
       },
       {
         "title": "Radiomics strategies for risk assessment of tumour failure in head-and-neck cancer",
@@ -424,8 +402,7 @@
         "journal": "Scientific Reports",
         "link": "https://doi.org/10.1038/s41598-017-10371-5",
         "type": "Journal Papers",
-        "date": "2017-08-31",
-        "redirect": true
+        "date": "2017-08-31"
       }
     ]
   },
@@ -444,8 +421,7 @@
         "journal": "Physics in Medicine &amp; Biology",
         "link": "https://doi.org/10.1088/0031-9155/60/14/5471",
         "type": "Journal Papers",
-        "date": "2015-06-29",
-        "redirect": true
+        "date": "2015-06-29"
       }
     ]
   }

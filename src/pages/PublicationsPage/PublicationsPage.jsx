@@ -126,8 +126,8 @@ export default function PublicationsPage() {
             </div>
 
             <div className="space-y-0 mt-6">
-              {yearGroup.items.map((pub, idx) => (
-                <EntryRow key={idx} to={`/publications/${pub.slug}`} variant="detailed">
+              {yearGroup.items.map((pub) => (
+                <EntryRow key={pub.slug} href={pub.link} variant="detailed">
                   <EntryRowBody variant="detailed">
                     {activeTypes.length > 1 && (
                       <span className="inline-block text-xs uppercase tracking-widest border border-white/10 rounded-full px-3 py-1 text-white/70 bg-white/5 w-fit mb-3">

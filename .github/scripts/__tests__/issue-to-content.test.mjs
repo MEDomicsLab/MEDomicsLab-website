@@ -76,11 +76,7 @@ test("publication handler builds a valid plan from a fixture", () => {
     "Nicolas Raymond",
     "Martin Vallières",
   ]);
-  assert.deepEqual(plan.markdownInput.contributors, [
-    "Hakima Laribi",
-    "Nicolas Raymond",
-    "Martin Vallières",
-  ]);
+  assert.equal(plan.entry.link, "https://doi.org/10.0000/test");
 });
 
 test("publication handler reports missing required fields", () => {
@@ -133,67 +129,33 @@ test("event handler rejects an invalid or earlier end date", () => {
   assert.match(earlierEndDate.errors.join("\n"), /before the start date/);
 });
 
-test("publication Markdown links only contributors with a team profile", async () => {
+test("publication submissions write only the catalogue and require a web URL", async (t) => {
   const sandbox = fs.mkdtempSync(path.join(os.tmpdir(), "issue-to-pr-publication-"));
-  const dataDir = path.join(sandbox, "src/data");
-  fs.mkdirSync(dataDir, { recursive: true });
-  fs.copyFileSync(
-    path.join(repoRoot, "src/data/publications.json"),
-    path.join(dataDir, "publications.json")
-  );
-  fs.writeFileSync(
-    path.join(dataDir, "team.json"),
-    JSON.stringify([{ year: "Current", members: [{ slug: "linked-author" }] }]),
-    "utf8"
-  );
+  t.after(() => fs.rmSync(sandbox, { recursive: true, force: true }));
+  const dataFile = path.join(sandbox, "src/data/publications.json");
+  fs.mkdirSync(path.dirname(dataFile), { recursive: true });
+  fs.copyFileSync(path.join(repoRoot, "src/data/publications.json"), dataFile);
 
-  const plan = publication.buildPlan({
-    Title: "Contributor linking test",
-    Contributors: "Linked Author, External Author",
-    "Venue / journal / conference": "Example Journal",
-    Type: "Journal Papers",
-    "Publication date": "2027-01-02",
-    "Display year": "2027",
-    "Primary link (DOI / publisher URL)": "https://doi.org/10.5555/test",
-  });
-  assert.equal(plan.ok, true, JSON.stringify(plan, null, 2));
-
+  const fields = parseFixture("publication-valid.md");
+  const plan = publication.buildPlan(fields);
   const result = await publication.apply(sandbox, plan);
-  assert.equal(result.ok, true, JSON.stringify(result, null, 2));
-  assert.match(result.prTitle, /^feat\(publications\): add /);
-  const markdown = fs.readFileSync(path.join(sandbox, "src/content", plan.markdownRel), "utf8");
-  assert.match(markdown, /\[Linked Author\]\(\/team\/linked-author\)/);
-  assert.match(markdown, /- External Author/);
-  assert.doesNotMatch(markdown, /\/team\/external-author/);
-});
+  assert.equal(result.ok, true, JSON.stringify(result));
+  assert.deepEqual(result.paths, [dataFile]);
+  assert.equal(fs.existsSync(path.join(sandbox, "src/content")), false);
 
-test("publication handler normalises GitHub-form BibTeX fences", async () => {
-  const sandbox = fs.mkdtempSync(path.join(os.tmpdir(), "issue-to-pr-publication-bibtex-"));
-  const dataDir = path.join(sandbox, "src/data");
-  fs.mkdirSync(dataDir, { recursive: true });
-  fs.copyFileSync(
-    path.join(repoRoot, "src/data/publications.json"),
-    path.join(dataDir, "publications.json")
-  );
-  fs.writeFileSync(path.join(dataDir, "team.json"), "[]", "utf8");
+  const saved = fs.readFileSync(dataFile, "utf8");
+  const entry = JSON.parse(saved)
+    .flatMap((group) => group.items)
+    .find((item) => item.slug === plan.slug);
+  assert.deepEqual(entry, plan.entry);
 
-  const plan = publication.buildPlan({
-    Title: "BibTeX fence test",
-    Contributors: "External Author",
-    "Venue / journal / conference": "Example Journal",
-    Type: "Journal Papers",
-    "Publication date": "2027-01-02",
-    "Display year": "2027",
-    "Primary link (DOI / publisher URL)": "https://doi.org/10.5555/bibtex-test",
-    "BibTeX (optional)": "```bibtex\n@article{bibtexTest,\n  title = {Fence test}\n}\n```",
+  const invalid = publication.buildPlan({
+    ...fields,
+    Title: "Invalid publication link",
+    "Primary link (DOI / publisher URL)": "javascript:alert(1)",
   });
-  assert.equal(plan.ok, true, JSON.stringify(plan, null, 2));
-
-  const result = await publication.apply(sandbox, plan);
-  assert.equal(result.ok, true, JSON.stringify(result, null, 2));
-  const markdown = fs.readFileSync(path.join(sandbox, "src/content", plan.markdownRel), "utf8");
-  assert.match(markdown, /```bibtex\n@article\{bibtexTest,/);
-  assert.doesNotMatch(markdown, /```bibtex\n```bibtex/);
+  assert.equal((await publication.apply(sandbox, invalid)).ok, false);
+  assert.equal(fs.readFileSync(dataFile, "utf8"), saved);
 });
 
 test("news handler infers year/month from publish date", () => {

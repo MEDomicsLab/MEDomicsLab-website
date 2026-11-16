@@ -11,5 +11,4 @@ The article can be found at:
 
 ## Links
 
-- [Details](/publications/predictive-performance-precision-analysis-in-medicine-identification-of-low-confidence-predictions-at-patient-and-profile-levels-med3pa-i-2026)
 - [Article link](https://doi.org/10.1093/jamia/ocag034)
