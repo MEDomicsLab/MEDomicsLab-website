@@ -22,7 +22,6 @@ const FIELD = {
   linkedin: "LinkedIn",
   orcid: "ORCID",
   scholar: "Google Scholar",
-  researchgate: "ResearchGate",
   github: "GitHub",
   cv: "CV (URL)",
   photo: "Portrait photo",
@@ -101,7 +100,7 @@ function parseAffiliations(value) {
 }
 
 function buildSocials(fields) {
-  const keys = ["website", "linkedin", "orcid", "scholar", "researchgate", "github", "cv"];
+  const keys = ["website", "linkedin", "orcid", "scholar", "github", "cv"];
   const socials = {};
   for (const key of keys) {
     const value = (fields[FIELD[key]] || "").trim();

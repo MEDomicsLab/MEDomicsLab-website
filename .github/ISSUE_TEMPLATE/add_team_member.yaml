@@ -147,11 +147,6 @@ body:
       label: "Google Scholar"
       placeholder: "https://scholar.google.com/citations?user=…"
   - type: input
-    id: researchgate
-    attributes:
-      label: "ResearchGate"
-      placeholder: "https://www.researchgate.net/profile/…"
-  - type: input
     id: github
     attributes:
       label: "GitHub"

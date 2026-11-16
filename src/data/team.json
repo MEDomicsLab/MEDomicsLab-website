@@ -123,7 +123,6 @@
           "linkedin": "https://www.linkedin.com/in/martvallieres/",
           "orcid": "",
           "scholar": "https://scholar.google.ca/citations?user=fRkjFK4AAAAJ",
-          "researchgate": "",
           "github": "https://github.com/mvallieres",
           "stackoverflow": "",
           "cv": "https://www.dropbox.com/s/fpfv1ycalxgb0tm/CCV-MartinVallieres-Full_CV.pdf?dl=0"
@@ -210,7 +209,6 @@
           "linkedin": "https://www.linkedin.com/in/hakima-laribi-4631381b8/",
           "orcid": "",
           "scholar": "",
-          "researchgate": "",
           "github": "https://github.com/LaribiHakima",
           "stackoverflow": "",
           "cv": ""
@@ -247,8 +245,7 @@
         "socials": {
           "linkedin": "http://linkedin.com/in/juan-duran-6aa742205",
           "orcid": "",
-          "scholar": "",
-          "researchgate": "",
+          "scholar": "https://scholar.google.com/citations?user=6iaqyh0AAAAJ&hl=en",
           "github": "https://www.github.com/juanduranmcgill",
           "stackoverflow": "",
           "cv": ""
@@ -284,7 +281,6 @@
           "linkedin": "https://www.linkedin.com/in/olivier-lefebvre-bb8837162/",
           "orcid": "",
           "scholar": "",
-          "researchgate": "",
           "github": "https://github.com/Olivier998",
           "stackoverflow": "",
           "cv": ""
@@ -295,7 +291,7 @@
         "position": "PhD Biological & Biomedical Engineering",
         "slug": "mahdi-loutfi",
         "email": "mahdi.aitlhajloutfi@mail.mcgill.ca",
-        "image": "/images/team/mahdi-loutfi/avatar.jpg",
+        "image": "/images/team/mahdi-loutfi/avatar.png",
         "expertise": ["Python", "Medical imaging", "Radiomics", "Artificial intelligence"],
         "education": [
           {
@@ -320,7 +316,6 @@
           "linkedin": "https://www.linkedin.com/in/mahdi-loutfi-332014253/",
           "orcid": "",
           "scholar": "",
-          "researchgate": "",
           "github": "https://github.com/MahdiAll99",
           "stackoverflow": "",
           "cv": ""
@@ -360,7 +355,6 @@
           "linkedin": "",
           "orcid": "",
           "scholar": "",
-          "researchgate": "",
           "github": "",
           "stackoverflow": "",
           "cv": ""
@@ -398,7 +392,6 @@
           "linkedin": "https://www.linkedin.com/in/ouael-nedjem-eddine-sahbi-4674231b3?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app",
           "orcid": "",
           "scholar": "",
-          "researchgate": "",
           "github": "https://github.com/ouaelesi",
           "stackoverflow": "",
           "cv": ""
@@ -429,7 +422,6 @@
           "linkedin": "",
           "orcid": "",
           "scholar": "",
-          "researchgate": "",
           "github": "https://github.com/mus-bz",
           "stackoverflow": "",
           "cv": ""
@@ -455,7 +447,6 @@
           "linkedin": "",
           "orcid": "",
           "scholar": "",
-          "researchgate": "",
           "github": "https://github.com/NicoLongfield",
           "stackoverflow": "",
           "cv": ""
@@ -594,7 +585,6 @@
           "linkedin": "https://ca.linkedin.com/in/mariem-kallel-4a80201b5",
           "orcid": "",
           "scholar": "",
-          "researchgate": "",
           "github": "https://github.com/mariemkallel16",
           "stackoverflow": "",
           "cv": ""
@@ -625,7 +615,6 @@
           "linkedin": "http://www.linkedin.com/in/anthonin-falk",
           "orcid": "",
           "scholar": "",
-          "researchgate": "",
           "github": "https://github.com/S3vy",
           "stackoverflow": "",
           "cv": ""
@@ -656,7 +645,6 @@
           "linkedin": "http://www.linkedin.com/in/brahim-fakri",
           "orcid": "",
           "scholar": "",
-          "researchgate": "",
           "github": "",
           "stackoverflow": "",
           "cv": ""
@@ -687,7 +675,6 @@
           "linkedin": "https://www.linkedin.com/in/c%C3%A9drik-lampron-541002187/",
           "orcid": "",
           "scholar": "",
-          "researchgate": "",
           "github": "https://github.com/Pyropingouin",
           "stackoverflow": "",
           "cv": ""
@@ -713,7 +700,6 @@
           "linkedin": "https://www.linkedin.com/in/coipp/",
           "orcid": "",
           "scholar": "",
-          "researchgate": "",
           "github": "https://github.com/CharlesOIpperciel",
           "stackoverflow": "",
           "cv": ""
@@ -739,7 +725,6 @@
           "linkedin": "https://www.linkedin.com/in/guillaume-blain-a7b9871a2/",
           "orcid": "",
           "scholar": "",
-          "researchgate": "",
           "github": "",
           "stackoverflow": "",
           "cv": ""
@@ -759,7 +744,6 @@
           "linkedin": "",
           "orcid": "",
           "scholar": "",
-          "researchgate": "",
           "github": "https://github.com/m-alexparent",
           "stackoverflow": "",
           "cv": ""
@@ -795,7 +779,6 @@
           "linkedin": "https://www.linkedin.com/in/maxence-larose/",
           "orcid": "",
           "scholar": "",
-          "researchgate": "",
           "github": "https://github.com/MaxenceLarose",
           "stackoverflow": "",
           "cv": ""
@@ -826,7 +809,6 @@
           "linkedin": "",
           "orcid": "",
           "scholar": "",
-          "researchgate": "",
           "github": "",
           "stackoverflow": "",
           "cv": ""
@@ -852,7 +834,6 @@
           "linkedin": "https://www.linkedin.com/in/andr%C3%A9anne-a-001236170/",
           "orcid": "",
           "scholar": "",
-          "researchgate": "",
           "github": "https://github.com/AndreanneAllaire",
           "stackoverflow": "",
           "cv": ""
@@ -878,7 +859,6 @@
           "linkedin": "https://www.linkedin.com/in/%D8%A5%D8%AD%D8%B3%D8%A7%D9%86-%D8%A7%D8%A8%D8%B1%D8%A7%D9%87%D9%8A%D9%85%D9%8A-%F0%9F%87%B5%F0%9F%87%B8%F0%9F%87%A9%F0%9F%87%BF-89724519a/",
           "orcid": "",
           "scholar": "",
-          "researchgate": "",
           "github": "https://github.com/Ihssene-Brahimi",
           "stackoverflow": "",
           "cv": ""
@@ -907,7 +887,6 @@
           "linkedin": "https://www.linkedin.com/in/ludmila-amriou-875b58238/",
           "orcid": "",
           "scholar": "",
-          "researchgate": "",
           "github": "https://github.com/LudmilaAmriou",
           "stackoverflow": "",
           "cv": ""
@@ -939,7 +918,6 @@
           "linkedin": "http://www.linkedin.com/in/lynahiba-chikouche-62a5181bb",
           "orcid": "",
           "scholar": "",
-          "researchgate": "",
           "github": "https://github.com/lyna1404",
           "stackoverflow": "",
           "cv": ""
@@ -970,7 +948,6 @@
           "linkedin": "https://www.linkedin.com/in/sarah-denis-b384b722b/",
           "orcid": "",
           "scholar": "",
-          "researchgate": "",
           "github": "https://github.com/Sari27",
           "stackoverflow": "",
           "cv": ""
@@ -1006,7 +983,6 @@
           "linkedin": "https://www.linkedin.com/in/alexandre-ayotte-a4770b176/",
           "orcid": "",
           "scholar": "",
-          "researchgate": "",
           "github": "https://github.com/AleAyotte",
           "stackoverflow": "",
           "cv": ""
@@ -1037,7 +1013,6 @@
           "linkedin": "https://www.linkedin.com/in/arthur-baudot-980b88208/",
           "orcid": "",
           "scholar": "",
-          "researchgate": "",
           "github": "",
           "stackoverflow": "",
           "cv": ""
@@ -1063,7 +1038,6 @@
           "linkedin": "",
           "orcid": "",
           "scholar": "",
-          "researchgate": "",
           "github": "",
           "stackoverflow": "",
           "cv": ""
@@ -1105,7 +1079,6 @@
           "linkedin": "https://www.linkedin.com/in/nicolas-raymond-002950b6/",
           "orcid": "",
           "scholar": "",
-          "researchgate": "",
           "github": "https://github.com/Rayn2402",
           "stackoverflow": "",
           "cv": ""
@@ -1136,7 +1109,6 @@
           "linkedin": "https://www.linkedin.com/in/simon-giard-leroux",
           "orcid": "",
           "scholar": "",
-          "researchgate": "",
           "github": "https://github.com/sgiardl",
           "stackoverflow": "",
           "cv": ""
@@ -1162,7 +1134,6 @@
           "linkedin": "https://www.linkedin.com/in/clarisse-cheng-2b58601b9/",
           "orcid": "",
           "scholar": "",
-          "researchgate": "",
           "github": "https://github.com/Lilihe15",
           "stackoverflow": "",
           "cv": ""
@@ -1188,7 +1159,6 @@
           "linkedin": "https://www.linkedin.com/in/corentin-gauthier/",
           "orcid": "",
           "scholar": "",
-          "researchgate": "",
           "github": "",
           "stackoverflow": "",
           "cv": ""
@@ -1214,7 +1184,6 @@
           "linkedin": "",
           "orcid": "",
           "scholar": "",
-          "researchgate": "",
           "github": "https://github.com/gcleroux",
           "stackoverflow": "",
           "cv": ""
@@ -1240,7 +1209,6 @@
           "linkedin": "https://www.linkedin.com/in/mohammed-benabbassi-5257a5213",
           "orcid": "",
           "scholar": "",
-          "researchgate": "",
           "github": "",
           "stackoverflow": "",
           "cv": ""
@@ -1271,7 +1239,6 @@
           "linkedin": "",
           "orcid": "",
           "scholar": "",
-          "researchgate": "",
           "github": "https://github.com/Troy-Boy",
           "stackoverflow": "",
           "cv": ""
@@ -1302,7 +1269,6 @@
           "linkedin": "https://www.linkedin.com/in/alex-chorel-campanozzi-605787176/",
           "orcid": "",
           "scholar": "",
-          "researchgate": "",
           "github": "https://github.com/AlexCampanozzi",
           "stackoverflow": "",
           "cv": ""
@@ -1338,7 +1304,6 @@
           "linkedin": "https://www.linkedin.com/in/jonathan-perron-a347ab7b/",
           "orcid": "",
           "scholar": "",
-          "researchgate": "",
           "github": "",
           "stackoverflow": "",
           "cv": ""
@@ -1364,7 +1329,6 @@
           "linkedin": "",
           "orcid": "",
           "scholar": "",
-          "researchgate": "",
           "github": "",
           "stackoverflow": "",
           "cv": ""
@@ -1400,7 +1364,6 @@
           "linkedin": "https://www.linkedin.com/in/mamadou-mountagha-bah-b40701141/",
           "orcid": "",
           "scholar": "",
-          "researchgate": "",
           "github": "",
           "stackoverflow": "",
           "cv": ""
@@ -1426,7 +1389,6 @@
           "linkedin": "https://www.linkedin.com/in/mehdi-mitiche-aa691b147/",
           "orcid": "",
           "scholar": "",
-          "researchgate": "",
           "github": "",
           "stackoverflow": "",
           "cv": ""
@@ -1457,7 +1419,6 @@
           "linkedin": "https://www.linkedin.com/in/shreyasklkarni/",
           "orcid": "",
           "scholar": "",
-          "researchgate": "",
           "github": "https://github.com/Kuyas",
           "stackoverflow": "",
           "cv": ""
@@ -1488,7 +1449,6 @@
           "linkedin": "https://www.linkedin.com/in/charles-l%C3%A9vesque-matte-5120a112b/",
           "orcid": "",
           "scholar": "",
-          "researchgate": "",
           "github": "",
           "stackoverflow": "",
           "cv": ""
@@ -1514,7 +1474,6 @@
           "linkedin": "https://www.linkedin.com/in/fabio-provencher-flores-86a3511a9/",
           "orcid": "",
           "scholar": "",
-          "researchgate": "",
           "github": "",
           "stackoverflow": "",
           "cv": ""
@@ -1540,7 +1499,6 @@
           "linkedin": "",
           "orcid": "",
           "scholar": "",
-          "researchgate": "",
           "github": "",
           "stackoverflow": "",
           "cv": ""
@@ -1571,7 +1529,6 @@
           "linkedin": "https://www.linkedin.com/in/julien-corriveau-trudel/",
           "orcid": "",
           "scholar": "",
-          "researchgate": "",
           "github": "",
           "stackoverflow": "",
           "cv": ""
@@ -1597,7 +1554,6 @@
           "linkedin": "https://www.linkedin.com/in/robin-mailhot/",
           "orcid": "",
           "scholar": "",
-          "researchgate": "",
           "github": "https://github.com/robinmailhot",
           "stackoverflow": "",
           "cv": ""
