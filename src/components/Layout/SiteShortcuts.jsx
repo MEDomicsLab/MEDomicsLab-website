@@ -7,7 +7,7 @@ import homeData from "../../data/home.json";
 import AnimatedShortcut from "./AnimatedShortcut.jsx";
 import useShortcutPositions from "./useShortcutPositions.js";
 
-export default function SiteShortcuts({ href, liquid }) {
+export default function SiteShortcuts({ href }) {
   const [idle, setIdle] = useState(false);
   const idleTimer = useRef(null);
   const location = useLocation();
@@ -36,7 +36,6 @@ export default function SiteShortcuts({ href, liquid }) {
         accessibleName={docked ? "GitHub" : "GitHub Organization"}
         icon={<GithubIcon className="nav-action-icon" />}
         href={href}
-        liquid={liquid}
         className={cn(docked && idle && "is-idle", !docked && "is-in-hero")}
         surfaceClassName="liquid-github-anchor"
         style={{
@@ -57,7 +56,6 @@ export default function SiteShortcuts({ href, liquid }) {
           />
         }
         to="/#ecosystem"
-        liquid={liquid}
         className={cn(docked && idle && "is-idle", !docked && "is-in-hero")}
         surfaceClassName="liquid-ecosystem-anchor"
         style={{

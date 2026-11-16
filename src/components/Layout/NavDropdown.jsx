@@ -1,6 +1,7 @@
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
-import LiquidGlass from "../GlassSurface/GlassSurface.jsx";
+import BrowserGlass from "../GlassSurface/BrowserGlass.jsx";
+import { VASO_GLASS } from "../../lib/vasoPresets.js";
 import { cn } from "../../lib/utils";
 
 export const NAV_TEXT_CLASS = "text-[8px] md:text-[12px] font-semibold tracking-tighter";
@@ -19,17 +20,11 @@ const PADDING_Y = 12;
 const VIEWPORT_MARGIN = 16;
 const REVEAL_DELAY_MS = 50;
 
-/**
- * LiquidGlass uses centre coordinates. Measure the menu to place it below
- * the navigation and within the viewport. Ancestor opacity/transform
- * animations would flatten its backdrop blur.
- */
 export default function NavDropdown({
   id,
   label,
   open,
   anchorRef,
-  liquid,
   menuRef,
   onMouseEnter,
   onMouseLeave,
@@ -71,17 +66,27 @@ export default function NavDropdown({
       };
       setPos((prev) => (prev && prev.top === next.top && prev.left === next.left ? prev : next));
     };
+    let frame;
+    const followEntrance = () => {
+      place();
+      if (document.querySelector(".neue-home")?.dataset.heroIntro === "revealing") {
+        frame = requestAnimationFrame(followEntrance);
+      }
+    };
     place();
-    const id = requestAnimationFrame(place);
+    frame = requestAnimationFrame(followEntrance);
+    const sizes = new ResizeObserver(place);
+    if (contentRef.current) sizes.observe(contentRef.current);
+    const navigation = document.querySelector(".liquid-nav-anchor");
+    if (navigation) sizes.observe(navigation);
     window.addEventListener("resize", place);
     return () => {
-      cancelAnimationFrame(id);
+      cancelAnimationFrame(frame);
+      sizes.disconnect();
       window.removeEventListener("resize", place);
     };
   }, [open, anchorRef]);
 
-  // Hide LiquidGlass's initial 270x69 placeholder until it measures itself.
-  // A timer avoids waiting for animation frames in a background tab.
   useEffect(() => {
     if (!open || !pos) {
       setRevealed(false);
@@ -104,20 +109,16 @@ export default function NavDropdown({
       className="nav-dropdown-portal"
       style={{ opacity: revealed ? 1 : 0, pointerEvents: revealed ? undefined : "none" }}
     >
-      <LiquidGlass
-        displacementScale={liquid.communityModal.displacementScale}
-        blurAmount={liquid.communityModal.blurAmount}
-        saturation={liquid.communityModal.saturation}
-        aberrationIntensity={liquid.communityModal.aberrationIntensity}
-        elasticity={liquid.communityModal.elasticity}
-        cornerRadius={liquid.communityModal.cornerRadius}
-        mode={liquid.communityModal.mode}
-        overLight={liquid.communityModal.overLight}
-        padding={`${PADDING_Y}px ${PADDING_X}px`}
+      <BrowserGlass
+        surface="community"
+        {...VASO_GLASS.community}
+        className="community-glass medomics-glass"
         style={{
           position: "fixed",
+          padding: `${PADDING_Y}px ${PADDING_X}px`,
           top: pos?.top ?? -9999,
           left: pos?.left ?? -9999,
+          transform: "translate(-50%, -50%)",
           zIndex: 60,
         }}
       >
@@ -137,7 +138,7 @@ export default function NavDropdown({
         >
           {children}
         </div>
-      </LiquidGlass>
+      </BrowserGlass>
     </div>,
     document.body
   );

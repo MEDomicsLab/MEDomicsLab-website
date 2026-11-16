@@ -204,9 +204,8 @@ body:has(.neue-home-layout) .nav-dropdown-portal {
     visibility: hidden;
     animation: neue-hero-fallback-show 0s 3s forwards;
   }
-  .neue-home-layout:has(.neue-home:not([data-hero-intro]))
-    .glass-frame:has(> .liquid-nav-anchor)
-    > * {
+  .neue-home-layout:has(.neue-home:not([data-hero-intro])) .liquid-nav-frame > *,
+  .neue-home-layout:has(.neue-home:not([data-hero-intro])) .liquid-nav-frame > .glass-frame > * {
     translate: 0 -400px;
     animation: neue-hero-fallback-place 0s 3s forwards;
   }

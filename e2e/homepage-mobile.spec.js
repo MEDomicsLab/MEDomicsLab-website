@@ -25,7 +25,7 @@ test("mobile shares a native 540p player, pauses offscreen, and resumes without 
     ".liquid-github-anchor",
     ".liquid-ecosystem-anchor",
   ]) {
-    await expect(page.locator(`${surface} .glass__warp`)).toHaveCount(1);
+    await expect(page.locator(surface)).toBeHidden();
   }
   await expect.poll(() => player.evaluate((el) => Boolean(el.media?.nativeEl))).toBe(true);
   expect(await player.evaluate((el) => el.maxResolution)).toBe("540p");
