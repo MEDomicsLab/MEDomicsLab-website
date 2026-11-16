@@ -6,6 +6,7 @@ type: book
 authors:
   - Hakima Laribi
   - Martin Vallières
+  - Dan Poenaru
 ---
 
 ![Project presentation](/images/albums/research-multilevel-graphs/Project.svg "Project presentation")

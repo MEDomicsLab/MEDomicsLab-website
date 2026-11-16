@@ -13,6 +13,10 @@
       "summary": { "type": "string", "minLength": 1 },
       "status": { "type": "string", "enum": ["Active", "Completed"] },
       "track": { "type": "string", "enum": ["General", "Doctorate", "Master's"] },
+      "ecosystem": {
+        "type": "boolean",
+        "description": "True for projects in the MEDomics ecosystem (with a desktop application). Adds a \"MEDomics Ecosystem\" tag next to the track on the Research page and the project page."
+      },
       "coverImage": {
         "type": "object",
         "required": ["url"],
@@ -22,9 +26,38 @@
           "alt": { "type": "string" }
         }
       },
+      "homeCard": {
+        "type": "string",
+        "description": "Optional 4:5 artwork for the homepage \"Where next?\" carousel, named after the slug: /images/homepage-neue/next/<slug>.webp. Run scripts/optimise-homepage-images.mjs to create its -480/-880 variants. Projects without it are left out of the carousel.",
+        "pattern": "^/images/homepage-neue/next/[a-z0-9-]+\\.webp$"
+      },
       "researchers": {
         "type": "array",
         "items": { "type": "string", "pattern": "^[a-z0-9-]+$" }
+      },
+      "externalResearchers": {
+        "type": "array",
+        "description": "Researchers who are not in team.json, listed after the team members with an \"External\" tag. Each is a full name, or an object with the name plus an optional external profile url and affiliation.",
+        "items": {
+          "oneOf": [
+            { "type": "string", "minLength": 1 },
+            {
+              "type": "object",
+              "required": ["name"],
+              "additionalProperties": false,
+              "properties": {
+                "name": { "type": "string", "minLength": 1 },
+                "url": { "type": "string", "format": "uri" },
+                "affiliation": { "type": "string", "minLength": 1 },
+                "role": {
+                  "type": "string",
+                  "minLength": 1,
+                  "description": "Optional role shown in the tag, e.g. \"PI\" displays \"External PI\"."
+                }
+              }
+            }
+          ]
+        }
       },
       "markdown": { "type": "string" }
     }

@@ -128,9 +128,18 @@
 .neue-interior-layout .project-image {
   border-radius: 3px;
   background: #ebebeb;
+  width: 100%;
+  max-width: 420px;
 }
 .neue-interior-layout .project-image img {
   object-fit: contain;
+}
+/* Homepage card artwork is opaque and already 4:5, so it fills the frame edge to edge. */
+.neue-interior-layout .project-image--card {
+  background: transparent;
+}
+.neue-interior-layout .project-image--card img {
+  object-fit: cover;
 }
 .project-link-label {
   display: inline-flex;
@@ -297,11 +306,15 @@
   line-height: 1;
   letter-spacing: -0.05em;
 }
+.project-cover {
+  justify-self: end;
+  width: 100%;
+  max-width: 420px;
+}
 .project-cover img {
   width: 100%;
-  aspect-ratio: 4 / 3;
-  object-fit: contain;
-  background: #ebebeb;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
   border-radius: 3px;
 }
 .project-article {
@@ -460,6 +473,9 @@
   }
   .project-heading-grid {
     grid-template-columns: 1fr;
+  }
+  .project-cover {
+    justify-self: start;
   }
   .project-article {
     padding-right: 0;

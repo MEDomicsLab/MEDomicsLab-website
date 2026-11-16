@@ -9,6 +9,7 @@
       "url": "/images/albums/research-medomics_platform/MEDomicsLab-Principles-1.png",
       "alt": "MEDomics platform"
     },
+    "homeCard": "/images/homepage-neue/next/medomics-platform.webp",
     "researchers": [
       "andreanne-allaire",
       "brahim-fakri",
@@ -31,27 +32,24 @@
       "ouael-nedjem-eddine-sahbi",
       "robin-mailhot",
       "sarah-denis",
+      "simon-provost",
       "martin-vallieres"
     ],
     "markdown": "community/research/project-active/medomics_platform/index.md"
   },
   {
-    "title": "Development of the MEDiml package",
+    "title": "MEDiml – Medical Image analysis with Machine Learning",
     "slug": "mediml",
-    "summary": "Open-source Python software for medical image processing and IBSI-compliant radiomics extraction.",
+    "summary": "Open-source, IBSI-compliant radiomics platform, available as a Python package and a no-code desktop application.",
     "status": "Active",
     "track": "General",
+    "ecosystem": true,
     "coverImage": {
-      "url": "/images/albums/research-mediml/mediml-overview.png",
-      "alt": "Schematic diagram of the MEDiml package"
+      "url": "/images/homepage-neue/ecosystem/mediml.webp",
+      "alt": "MEDiml radiomics platform"
     },
-    "researchers": [
-      "clarisse-cheng",
-      "corentin-gauthier",
-      "mahdi-loutfi",
-      "martin-vallieres",
-      "mohammed-benabbassi"
-    ],
+    "homeCard": "/images/homepage-neue/next/mediml.webp",
+    "researchers": ["mahdi-loutfi", "martin-vallieres"],
     "markdown": "community/research/project-active/mediml/index.md"
   },
   {
@@ -60,15 +58,25 @@
     "summary": "Methodology to identify low-confidence predictions and patient profiles where clinical models are unreliable.",
     "status": "Active",
     "track": "Doctorate",
+    "ecosystem": true,
     "coverImage": {
       "url": "/images/albums/research-MED3pa/res_meto.svg",
       "alt": "Method overview"
     },
+    "homeCard": "/images/homepage-neue/next/med3pa.webp",
     "researchers": [
       "olivier-lefebvre",
       "ludmila-amriou",
       "lyna-hiba-chikouche",
       "martin-vallieres"
+    ],
+    "externalResearchers": [
+      {
+        "name": "Dan Poenaru",
+        "url": "https://www.mcgill.ca/pediatricsurgery/dan-poenaru",
+        "affiliation": "McGill University",
+        "role": "PI"
+      }
     ],
     "markdown": "community/research/project-active/MED3pa/index.md"
   },
@@ -82,7 +90,16 @@
       "url": "/images/albums/research-multilevel-graphs/Project.svg",
       "alt": "Project presentation"
     },
+    "homeCard": "/images/homepage-neue/next/multilevel-graphs.webp",
     "researchers": ["hakima-laribi", "martin-vallieres"],
+    "externalResearchers": [
+      {
+        "name": "Dan Poenaru",
+        "url": "https://www.mcgill.ca/pediatricsurgery/dan-poenaru",
+        "affiliation": "McGill University",
+        "role": "PI"
+      }
+    ],
     "markdown": "community/research/project-active/multilevel-graphs/index.md"
   },
   {
@@ -95,8 +112,29 @@
       "url": "/images/albums/research-medomicslab-optimization/project.png",
       "alt": "Project illustration"
     },
+    "homeCard": "/images/homepage-neue/next/medomicslab-optimization.webp",
     "researchers": ["mariem-kallel", "martin-vallieres"],
     "markdown": "community/research/project-active/medomicslab-optimization/index.md"
+  },
+  {
+    "title": "Refactoring of the MEDiml Python package",
+    "slug": "mediml-refactoring",
+    "summary": "Refactoring of the MEDiml codebase, its docstrings and documentation, which also started the first version of the MEDiml app.",
+    "status": "Completed",
+    "track": "General",
+    "coverImage": {
+      "url": "/images/albums/research-mediml/mediml-overview.png",
+      "alt": "Schematic diagram of the MEDiml package"
+    },
+    "researchers": [
+      "andreanne-allaire",
+      "clarisse-cheng",
+      "corentin-gauthier",
+      "mahdi-loutfi",
+      "mohammed-benabbassi",
+      "martin-vallieres"
+    ],
+    "markdown": "community/research/project-completed/mediml-refactoring/index.md"
   },
   {
     "title": "Development of a methodological review on statistical inference and distributed learning in health",
@@ -108,6 +146,7 @@
       "url": "/images/albums/research-distributed-learning-inference/distributed_main.jpg",
       "alt": "Distributed learning and inference methods"
     },
+    "homeCard": "/images/homepage-neue/next/distributed-learning-inference.webp",
     "researchers": [
       "fabio-provencher-flores",
       "francois-marcoux",
@@ -128,6 +167,7 @@
       "url": "/images/albums/research-distributed-random-forests/fig_1.png",
       "alt": "Class diagram"
     },
+    "homeCard": "/images/homepage-neue/next/distributed-random-forests.webp",
     "researchers": ["olivier-lefebvre", "martin-vallieres"],
     "markdown": "community/research/project-completed/distributed-random-forests/index.md"
   },
@@ -141,6 +181,7 @@
       "url": "/images/albums/research-energAI/fuses.png",
       "alt": "Examples of fuse detection"
     },
+    "homeCard": "/images/homepage-neue/next/energai.webp",
     "researchers": [
       "simon-giard-leroux",
       "guillaume-cleroux",
@@ -161,7 +202,16 @@
       "url": "/images/albums/research-kidney-small-tumors/tumor.png",
       "alt": "Example of a small renal mass"
     },
+    "homeCard": "/images/homepage-neue/next/kidney-small-tumors.webp",
     "researchers": ["teodora-boblea-podasca", "martin-vallieres"],
+    "externalResearchers": [
+      {
+        "name": "Patrick Richard",
+        "role": "PI",
+        "url": "https://www.usherbrooke.ca/recherche/fr/specialistes/details/patrick.richard/",
+        "affiliation": "Université de Sherbrooke"
+      }
+    ],
     "markdown": "community/research/project-completed/kidney-small-tumors/index.md"
   },
   {
@@ -174,6 +224,7 @@
       "url": "/images/albums/research-multitask-classification/hard_sharing_en.png",
       "alt": "Hard-sharing architecture example"
     },
+    "homeCard": "/images/homepage-neue/next/multitask-classification.webp",
     "researchers": ["alexandre-ayotte", "martin-vallieres"],
     "markdown": "community/research/project-completed/multitask-classification/index.md"
   },
@@ -187,6 +238,7 @@
       "url": "/images/albums/research-patient-mortality-prediction/project.svg",
       "alt": "Project presentation"
     },
+    "homeCard": "/images/homepage-neue/next/patient-mortality-prediction.webp",
     "researchers": ["hakima-laribi", "martin-vallieres"],
     "markdown": "community/research/project-completed/patient-mortality-prediction/index.md"
   },
@@ -200,20 +252,29 @@
       "url": "/images/albums/research-prostate-models/scans.png",
       "alt": "Examples of scans"
     },
+    "homeCard": "/images/homepage-neue/next/prostate-models.webp",
     "researchers": ["maxence-larose", "martin-vallieres"],
     "markdown": "community/research/project-completed/prostate-models/index.md"
   },
   {
-    "title": "Exploration of the complexity levels of radiomic characteristics",
+    "title": "Analyzing the Complexity of Radiomics: Approaches for Simplified Modeling",
     "slug": "radiomics-complexity",
     "summary": "Systematic study of radiomic feature complexity across imaging modalities for precision oncology tasks.",
     "status": "Completed",
     "track": "Master's",
     "coverImage": {
       "url": "/images/albums/research-radiomics-complexity/summary.svg",
-      "alt": "Résumé du projet"
+      "alt": "Project summary"
     },
+    "homeCard": "/images/homepage-neue/next/radiomics-complexity.webp",
     "researchers": ["mahdi-loutfi", "martin-vallieres"],
+    "externalResearchers": [
+      {
+        "name": "Martin Lepage",
+        "url": "https://www.usherbrooke.ca/recherche/fr/specialistes/details/martin.lepage",
+        "affiliation": "Université de Sherbrooke"
+      }
+    ],
     "markdown": "community/research/project-completed/radiomics-complexity/index.md"
   },
   {
@@ -226,7 +287,67 @@
       "url": "/images/albums/research-vo2max-obesity/introduction_figure.svg",
       "alt": "Project presentation"
     },
+    "homeCard": "/images/homepage-neue/next/vo2max-obesity.webp",
     "researchers": ["nicolas-raymond", "hakima-laribi", "mehdi-mitiche", "martin-vallieres"],
     "markdown": "community/research/project-completed/vo2max-obesity/index.md"
+  },
+  {
+    "title": "Predicting adverse radiation effects of stereotactic radiosurgery for brain metastases using radiomics and machine learning",
+    "slug": "brain-metastases-srs",
+    "summary": "Simple radiomic model built from pre-treatment brain MRI and dosimetry maps to identify patients at high risk of adverse radiation effects after stereotactic radiosurgery.",
+    "status": "Active",
+    "track": "Master's",
+    "coverImage": {
+      "url": "/images/albums/research-brain-metastases-srs/stereotactic-radiosurgery.webp",
+      "alt": "Illustration of Gamma Knife stereotactic radiosurgery"
+    },
+    "homeCard": "/images/homepage-neue/next/brain-metastases-srs.webp",
+    "researchers": ["elodie-gillard", "anthonin-falk", "martin-vallieres"],
+    "externalResearchers": [
+      {
+        "name": "Martin Lepage",
+        "url": "https://www.usherbrooke.ca/recherche/fr/specialistes/details/martin.lepage",
+        "affiliation": "Université de Sherbrooke"
+      },
+      {
+        "name": "David Mathieu",
+        "url": "https://www.usherbrooke.ca/recherche/fr/specialistes/details/David.Mathieu",
+        "affiliation": "Université de Sherbrooke"
+      }
+    ],
+    "markdown": "community/research/project-active/brain-metastases-srs/index.md"
+  },
+  {
+    "title": "MEDfl: A Collaborative Framework for Federated Learning in Medicine",
+    "slug": "medfl",
+    "summary": "Open-source federated learning framework that lets hospitals train clinical AI models together without moving patient data, available as a Python package and a no-code desktop application.",
+    "status": "Active",
+    "track": "Master's",
+    "ecosystem": true,
+    "coverImage": {
+      "url": "/images/homepage-neue/ecosystem/medfl.webp",
+      "alt": "MEDfl federated learning framework"
+    },
+    "homeCard": "/images/homepage-neue/next/medfl.webp",
+    "researchers": ["ouael-nedjem-eddine-sahbi", "martin-vallieres"],
+    "markdown": "community/research/project-active/medfl/index.md"
+  },
+  {
+    "title": "Multimodal fusion of histopathology and clinical data for survival prediction in oncology",
+    "slug": "multimodal-survival-prediction",
+    "summary": "Fusion of whole-slide histopathology images and clinical data to build accurate, well-calibrated and interpretable survival models for cancer patients.",
+    "status": "Active",
+    "track": "Doctorate",
+    "homeCard": "/images/homepage-neue/next/multimodal-survival-prediction.webp",
+    "researchers": ["juan-duran", "martin-vallieres"],
+    "externalResearchers": [
+      {
+        "name": "Shirin A. Enger",
+        "url": "https://www.mcgill.ca/medphys/shirin-abbasinejad-enger",
+        "affiliation": "McGill University",
+        "role": "PI"
+      }
+    ],
+    "markdown": "community/research/project-active/multimodal-survival-prediction/index.md"
   }
 ]

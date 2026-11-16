@@ -6,11 +6,15 @@ import PageShell, { PageTitle } from "../../components/PageShell/PageShell.jsx";
 import FilterChips from "../../components/FilterChips/FilterChips.jsx";
 import BrandName from "../../components/BrandName/BrandName.jsx";
 import HoverArrow from "../../components/HoverArrow/HoverArrow.jsx";
+import { imageSrcSet } from "../../lib/images.js";
 
 const TAGS = Object.keys(trackMeta);
 
-const tagsOf = (project) =>
-  project.status === "Completed" ? [project.track, "Completed"] : [project.track];
+const tagsOf = (project) => [
+  project.track,
+  ...(project.ecosystem ? ["MEDomics Ecosystem"] : []),
+  ...(project.status === "Completed" ? ["Completed"] : []),
+];
 
 const sortKey = (project) =>
   (project.status === "Completed" ? TAGS.length : 0) + TAGS.indexOf(project.track);
@@ -53,6 +57,7 @@ export default function ResearchPage() {
         className="mb-16"
         label="Filter research projects by tag"
         options={TAGS.map((tag) => ({ value: tag, count: tagCounts[tag] ?? 0 }))}
+        visibleOptions={TAGS.length}
         selected={selectedTags}
         onChange={setSelectedTags}
         total={orderedProjects.length}
@@ -100,14 +105,30 @@ export default function ResearchPage() {
                 </span>
               </div>
 
-              <div className="project-image lg:col-span-4 relative aspect-[4/3] overflow-hidden bg-secondary/20">
-                {project.coverImage && (
+              <div
+                className={`project-image lg:col-span-4 relative aspect-[4/5] overflow-hidden bg-secondary/20 ${
+                  project.homeCard ? "project-image--card" : ""
+                }`}
+              >
+                {project.homeCard ? (
                   <img
-                    src={project.coverImage.url}
-                    alt={project.coverImage.alt}
+                    src={project.homeCard}
+                    srcSet={imageSrcSet(project.homeCard, [480, 880], "webp")}
+                    sizes="(max-width: 1023px) min(100vw, 420px), 30vw"
+                    alt={project.coverImage?.alt ?? project.title}
                     loading="lazy"
+                    decoding="async"
                     className="object-cover w-full h-full transition-[scale] duration-700 ease-out group-hover:scale-105"
                   />
+                ) : (
+                  project.coverImage && (
+                    <img
+                      src={project.coverImage.url}
+                      alt={project.coverImage.alt}
+                      loading="lazy"
+                      className="object-cover w-full h-full transition-[scale] duration-700 ease-out group-hover:scale-105"
+                    />
+                  )
                 )}
               </div>
             </div>

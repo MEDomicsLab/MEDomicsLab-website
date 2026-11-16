@@ -65,7 +65,13 @@ General
 [//]: # "4. _Automatic text processing_: automatic processing and coding of textual reports from electronic patient records would allow for better integration of information relevant to multi-omics modeling throughout the patient management period."
 [//]: # "5. _Federated learning_: in order to increase the amount of modeled data from different health care institutions, a distributed learning approach can be used - data is kept within the boundaries of each institution, thus avoiding data transfer and privacy issues."
 
-For more information, see the [project website](https://medomics-udes.gitbook.io/medomics-docs/quick-start).
+Clinical researchers frequently struggle to utilize **artificial intelligence** effectively due to a lack of accessible tools and cooperative pathways between the medical and technological sectors. To resolve these issues, the **MEDomics platform** functions as an open-source solution that unites clinical experts and computer scientists in a collaborative environment. By integrating diverse **multimodal medical data**, this system empowers professionals to build predictive models for customized patient care. The software accommodates varying skill levels through **intuitive visual pipelines** and advanced **Python libraries**, ensuring usability for both doctors and programmers. Furthermore, its structured architecture supports every stage of the process, encompassing **data integration**, **model training**, and **decentralized validation** to advance personalized medicine securely.
+
+MEDomics also gave birth to several useful applications under various projects: MED3pa, MEDfl, MEDiml, with more applications under construction.
+
+For more information, see the [project website](https://medomics.app/).
+
+The figures below provide an overview of the core architecture of the MEDomics platform.
 
 ![MEDomics goal](/images/albums/research-medomics_platform/MEDomicsLab-Principles-2.png)
 ![MEDomics overview](/images/albums/research-medomics_platform/MEDomicsLab-Principles-3.png)

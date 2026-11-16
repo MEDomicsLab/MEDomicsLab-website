@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import AvatarImage from "../AvatarImage/AvatarImage";
 import BrandName from "../BrandName/BrandName.jsx";
 import LabAvatar from "../LabAvatar/LabAvatar.jsx";
+import HoverArrow from "../HoverArrow/HoverArrow.jsx";
 
 const cohortLabel = (cohort) => {
   if (cohort === "Lab Principal Investigator") return "PI";
@@ -11,7 +12,8 @@ const cohortLabel = (cohort) => {
 
 /**
  * Shared researcher sidebar. `{ member, cohort }` entries link to profiles;
- * external contributors use `{ name }` and render as text.
+ * external contributors use `{ name, url?, affiliation?, role? }`, tagged "External"
+ * (or "External <role>", e.g. "External PI"), with the name linking out when `url` is set.
  */
 export default function ResearcherList({ people, title = "Researchers" }) {
   if (!people?.length) return null;
@@ -55,9 +57,31 @@ export default function ResearcherList({ people, title = "Researchers" }) {
           ) : (
             <li key={person.name} className="flex items-center space-x-3">
               <LabAvatar size={48} />
-              <span className="text-base font-bold">
-                <BrandName>{person.name}</BrandName>
-              </span>
+              <div className="min-w-0">
+                <div className="flex items-baseline gap-2">
+                  {person.url ? (
+                    <a
+                      href={person.url}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="group inline-flex items-center gap-1 text-base font-bold hover:text-primary transition-colors"
+                    >
+                      <BrandName>{person.name}</BrandName>
+                      <HoverArrow size="xs" />
+                    </a>
+                  ) : (
+                    <span className="text-base font-bold">
+                      <BrandName>{person.name}</BrandName>
+                    </span>
+                  )}
+                  <span className="text-xs text-muted-foreground/70 whitespace-nowrap">
+                    {person.role ? `External ${person.role}` : "External"}
+                  </span>
+                </div>
+                {person.affiliation && (
+                  <div className="text-sm text-muted-foreground">{person.affiliation}</div>
+                )}
+              </div>
             </li>
           )
         )}
