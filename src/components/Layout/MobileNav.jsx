@@ -224,7 +224,7 @@ export default function MobileNav({ githubHref }) {
             <span>GitHub Organization</span>
             <ArrowUpRight size={18} aria-hidden="true" />
           </a>
-          <Link to="/#ecosystem" className="mobile-nav-cta is-primary">
+          <Link to="/#ecosystem" className="mobile-nav-cta is-primary blue-paper">
             <img
               className="mobile-nav-cta-icon"
               src={medomics.logo}

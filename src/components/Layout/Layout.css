@@ -379,9 +379,10 @@
   font-size: 18px;
 }
 .mobile-nav-cta.is-primary {
+  position: relative;
   border-color: transparent;
-  background: var(--neue-paper);
-  color: #1a1a1a;
+  background: var(--blue-paper-color);
+  color: var(--foreground);
 }
 .mobile-nav-cta-icon {
   width: 20px;

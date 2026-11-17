@@ -112,10 +112,9 @@ test.describe("main navigation", () => {
         "href",
         "https://github.com/MEDomicsLab"
       );
-      await expect(navigation.getByRole("link", { name: "MEDomics Ecosystem" })).toHaveAttribute(
-        "href",
-        "/#ecosystem"
-      );
+      const ecosystem = navigation.getByRole("link", { name: "MEDomics Ecosystem" });
+      await expect(ecosystem).toHaveAttribute("href", "/#ecosystem");
+      await expect(ecosystem).toHaveClass(/\bblue-paper\b/);
       expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBe(width);
 
       await page.keyboard.press("Escape");
