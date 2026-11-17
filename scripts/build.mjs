@@ -3,7 +3,7 @@ import { dirname, resolve } from "node:path";
 import { pathToFileURL } from "node:url";
 import { build } from "vite";
 import theme from "../src/data/theme.json" with { type: "json" };
-import { indexableRoutes, redirects, siteUrl } from "../src/lib/seo.js";
+import { indexableRoutes, redirects, siteRoutes, siteUrl } from "../src/lib/seo.js";
 
 process.env.NODE_ENV = "production";
 await build();
@@ -27,11 +27,7 @@ try {
   const variables = Object.entries(theme.cssVars)
     .map(([name, value]) => `${name}:${value}`)
     .join(";");
-  for (const path of [
-    ...indexableRoutes.map((route) => route.path),
-    ...redirects.map((route) => route.path),
-    "/404",
-  ]) {
+  for (const path of [...siteRoutes.map((route) => route.path), "/404"]) {
     const { html, head, markdown } = await render(path);
     const data = JSON.stringify(markdown).replace(/</g, "\\u003c");
     const page = template
@@ -57,7 +53,7 @@ try {
     `User-agent: *\nAllow: /\n\nSitemap: ${siteUrl}/sitemap.xml\n`
   );
   console.log(
-    `Prerendered ${indexableRoutes.length} public pages, ${redirects.length} redirects, and the 404 page.`
+    `Prerendered ${siteRoutes.length - redirects.length} pages, ${redirects.length} redirects, and the 404 page.`
   );
 } finally {
   await rm(serverDir, { recursive: true, force: true });

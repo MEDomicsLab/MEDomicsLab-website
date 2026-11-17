@@ -6,8 +6,7 @@
     },
     {
       "path": "/visions",
-      "defaultLabel": "Visions",
-      "disabled": true
+      "defaultLabel": "Visions"
     },
     {
       "path": "/research",

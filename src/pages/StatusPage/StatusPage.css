@@ -1,4 +1,4 @@
-.not-found {
+.status-page {
   position: relative;
   display: flex;
   flex-direction: column;
@@ -9,28 +9,28 @@
   padding-bottom: 80px;
   text-align: center;
 }
-.not-found-art {
+.status-page-art {
   position: absolute;
   inset: 0;
 }
-.not-found-copy {
+.status-page-copy {
   position: relative;
   z-index: 1;
   pointer-events: none;
 }
-.not-found-copy h1 {
+.status-page-copy h1 {
   font-size: clamp(36px, 4vw, 60px);
   line-height: 1.05;
   letter-spacing: -0.045em;
 }
-.not-found-copy p {
+.status-page-copy p {
   max-width: 430px;
   margin: 20px auto 0;
   color: var(--muted-foreground);
   font-size: 19px;
   line-height: 1.5;
 }
-.not-found-home {
+.status-page-home {
   display: inline-flex;
   align-items: center;
   justify-content: space-between;
@@ -43,15 +43,15 @@
   font-size: 18px;
   pointer-events: auto;
 }
-.not-found-home:hover {
+.status-page-home:hover {
   border-color: currentColor;
 }
 @media (max-width: 767px) {
-  .not-found {
+  .status-page {
     padding-top: max(390px, 64svh);
     padding-bottom: 56px;
   }
-  .not-found-copy p {
+  .status-page-copy p {
     font-size: 17px;
   }
 }

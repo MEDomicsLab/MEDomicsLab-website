@@ -4,6 +4,11 @@
   "image": "/images/homepage.webp",
   "pages": {
     "/": { "title": "Home" },
+    "/visions": {
+      "title": "Visions",
+      "description": "The MEDomicsLab Visions page is currently under construction.",
+      "noindex": true
+    },
     "/research": {
       "title": "Research",
       "description": "Explore MEDomicsLab research in medical imaging, radiomics, predictive modelling, and precision medicine."

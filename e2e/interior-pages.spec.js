@@ -211,7 +211,8 @@ test("publications keeps the year sidebar visible and enlarges headings after sc
   await expect(page.locator(".entry-row").first()).toBeVisible();
 });
 
-test("shared footer, disabled Vision and narrow layouts work across routes", async ({ page }) => {
+test("shared footer, Visions and narrow layouts work across routes", async ({ page }) => {
+  await page.emulateMedia({ reducedMotion: "reduce" });
   for (const path of [
     "/research",
     "/team",
@@ -225,12 +226,24 @@ test("shared footer, disabled Vision and narrow layouts work across routes", asy
     await expect(page.locator("footer")).toHaveCount(1);
     await expect(page.locator("footer")).toHaveClass(/neue-footer/);
     await page.getByRole("button", { name: "Open menu" }).click();
-    await expect(page.getByRole("button", { name: "Visions", exact: true })).toBeDisabled();
-    await expect(page.locator('a[href="/visions"]')).toHaveCount(0);
+    await expect(
+      page
+        .getByRole("navigation", { name: "Main navigation" })
+        .getByRole("link", { name: "Visions", exact: true })
+    ).toHaveAttribute("href", "/visions");
     await expect
       .poll(() => page.evaluate(() => document.documentElement.scrollWidth - window.innerWidth))
       .toBeLessThanOrEqual(1);
   }
-  await page.goto("/visions");
-  await expect(page.getByRole("heading", { name: "Page not found" })).toBeVisible();
+  await page
+    .getByRole("navigation", { name: "Main navigation" })
+    .getByRole("link", { name: "Visions", exact: true })
+    .click();
+  await expect(page).toHaveURL("/visions");
+  await expect(page.getByRole("button", { name: "Open menu" })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Visions", exact: true })).toBeVisible();
+  await expect(page.locator(".text-trail-static")).toHaveText("WIP");
+  await expect(page.getByText("Currently under construction.", { exact: true })).toBeVisible();
+  await page.getByRole("link", { name: "Return home" }).click();
+  await expect(page).toHaveURL("/");
 });

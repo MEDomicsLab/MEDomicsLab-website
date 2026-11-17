@@ -1,18 +1,18 @@
 import theme from "../../data/theme.json";
 import { lazy, Suspense } from "react";
 import PageLink from "../../components/PageLink/PageLink.jsx";
-import "./NotFoundPage.css";
+import "./StatusPage.css";
 
 const TextTrail = lazy(() => import("../../components/TextTrail/TextTrail.jsx"));
 
-export default function NotFoundPage() {
+export default function StatusPage({ artwork, title, children }) {
   return (
-    <section className="not-found px-4 md:px-8" aria-labelledby="not-found-title">
-      <div className="not-found-art" aria-hidden="true">
+    <section className="status-page px-4 md:px-8" aria-labelledby="status-page-title">
+      <div className="status-page-art" aria-hidden="true">
         {!import.meta.env.SSR && (
           <Suspense fallback={null}>
             <TextTrail
-              text="404"
+              text={artwork}
               fontFamily="PPnMTL"
               fontWeight="600"
               textColor={theme.cssVars["--tertiary"]}
@@ -26,10 +26,10 @@ export default function NotFoundPage() {
           </Suspense>
         )}
       </div>
-      <div className="not-found-copy">
-        <h1 id="not-found-title">Page not found</h1>
-        <p>The page you&apos;re looking for doesn&apos;t exist or has been moved.</p>
-        <PageLink to="/" className="not-found-home" arrowSize="lg">
+      <div className="status-page-copy">
+        <h1 id="status-page-title">{title}</h1>
+        <p>{children}</p>
+        <PageLink to="/" className="status-page-home" arrowSize="lg">
           Return home
         </PageLink>
       </div>

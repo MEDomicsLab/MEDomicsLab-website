@@ -2,6 +2,7 @@ import { expect, test } from "@playwright/test";
 
 const mainLinks = [
   ["Home", "/"],
+  ["Visions", "/visions"],
   ["Research", "/research"],
   ["Team", "/team"],
   ["Publications", "/publications"],
@@ -28,11 +29,6 @@ test.describe("main navigation", () => {
       await expect(navigation.getByRole("link", { name: label })).toHaveAttribute("href", href);
     }
 
-    await expect(navigation.getByRole("button", { name: "Visions" })).toBeDisabled();
-    await expect(navigation.getByRole("button", { name: "Visions" })).toHaveCSS(
-      "cursor",
-      "not-allowed"
-    );
     await navigation.getByRole("link", { name: "Research" }).hover();
     await expect(navigation.locator('[data-slot="motion-highlight"]')).toBeVisible();
     await page.mouse.move(0, 200);
@@ -100,7 +96,6 @@ test.describe("main navigation", () => {
           href
         );
       }
-      await expect(navigation.getByRole("button", { name: "Visions" })).toBeDisabled();
       await navigation.getByRole("button", { name: "Community" }).click();
       for (const [label, href] of communityLinks) {
         await expect(navigation.getByRole("link", { name: label, exact: true })).toHaveAttribute(

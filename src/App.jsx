@@ -16,7 +16,7 @@ import CommunityContactPage from "./pages/CommunityContactPage/CommunityContactP
 import NewsDetailPage from "./pages/NewsDetailPage/NewsDetailPage.jsx";
 import CoursesPage from "./pages/CoursesPage/CoursesPage.jsx";
 import CoursesDetailPage from "./pages/CoursesDetailPage/CoursesDetailPage.jsx";
-import NotFoundPage from "./pages/NotFoundPage/NotFoundPage.jsx";
+import StatusPage from "./pages/StatusPage/StatusPage.jsx";
 
 const App = () => {
   useEffect(() => {
@@ -67,6 +67,14 @@ const App = () => {
     <Routes>
       <Route element={<Layout />}>
         <Route index element={<HomePage />} />
+        <Route
+          path="/visions"
+          element={
+            <StatusPage artwork="WIP" title="Visions">
+              <small>Currently under construction.</small>
+            </StatusPage>
+          }
+        />
         <Route path="/research" element={<ResearchPage />} />
         <Route path="/research/:slug" element={<ProjectDetail />} />
         <Route path="/publications" element={<PublicationsPage />} />
@@ -79,7 +87,14 @@ const App = () => {
         <Route path="/community/contact" element={<CommunityContactPage />} />
         <Route path="/community/news/:slug" element={<NewsDetailPage />} />
         <Route path="/community/courses/:slug" element={<CoursesDetailPage />} />
-        <Route path="*" element={<NotFoundPage />} />
+        <Route
+          path="*"
+          element={
+            <StatusPage artwork="404" title="Page not found">
+              The page you&apos;re looking for doesn&apos;t exist or has been moved.
+            </StatusPage>
+          }
+        />
       </Route>
     </Routes>
   );

@@ -115,9 +115,9 @@ test("404 fits small screens, has an accessible home link and survives history n
     await expect(home).toHaveCSS("outline-style", "solid");
     await expect(home).toHaveCSS("cursor", "pointer");
   }
-  await expect(page.locator(".not-found-art")).toHaveAttribute("aria-hidden", "true");
+  await expect(page.locator(".status-page-art")).toHaveAttribute("aria-hidden", "true");
   const results = await new AxeBuilder({ page })
-    .include(".not-found-copy")
+    .include(".status-page-copy")
     .withTags(["wcag2a", "wcag2aa", "wcag21aa"])
     .analyze();
   expect(results.violations).toEqual([]);

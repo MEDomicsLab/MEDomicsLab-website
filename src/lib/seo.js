@@ -44,7 +44,11 @@ if (routeMap.size !== siteRoutes.length)
 
 export const redirects = details.filter((route) => route.redirect);
 
-export const indexableRoutes = siteRoutes.filter((route) => !route.redirect);
+function isIndexable(route) {
+  return Boolean(route && !route.redirect && !route.noindex);
+}
+
+export const indexableRoutes = siteRoutes.filter(isIndexable);
 const titleCounts = new Map();
 for (const route of indexableRoutes) {
   const title = route.record?.title || route.record?.name || route.title;
@@ -124,7 +128,7 @@ function structuredDataFor(route, canonicalUrl, description, image) {
 export function getPageMetadata(pathname) {
   const route = getSiteRoute(pathname);
   const record = route?.record;
-  const indexable = Boolean(route && !route.redirect);
+  const indexable = isIndexable(route);
   let rawTitle = route?.redirect
     ? "Page moved"
     : record?.title || record?.name || route?.title || "Page not found";
@@ -134,11 +138,11 @@ export function getPageMetadata(pathname) {
   }
   const title = `${rawTitle} | ${home.brand.name}`;
   const canonicalUrl = route ? absoluteUrl(route.redirect || route.path) : null;
-  const description = indexable
-    ? descriptionFor(route).replace(/\s+/g, " ").trim()
-    : route
+  const description = route
+    ? route.redirect
       ? "This page has moved. Follow the link to its new address."
-      : "The requested page could not be found.";
+      : descriptionFor(route).replace(/\s+/g, " ").trim()
+    : "The requested page could not be found.";
   const portrait =
     route?.type === "ProfilePage" && record.image
       ? imageVariant(record.image, 256, "webp")
