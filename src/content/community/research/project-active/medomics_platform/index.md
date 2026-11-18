@@ -75,7 +75,7 @@ The figures below provide an overview of the core architecture of the MEDomics p
 
 ![MEDomics goal](/images/albums/research-medomics_platform/MEDomicsLab-Principles-2.webp)
 ![MEDomics overview](/images/albums/research-medomics_platform/MEDomicsLab-Principles-3.webp)
-![MEDomics workflow](/images/albums/research-medomics_platform/MEDomicsLab-Principles-5.webp)
+![MEDomics workflow](/images/albums/research-medomics_platform/MEDomicsLab-Principles-4.webp)
 
 [//]: # "This platform is being developed in collaboration with: "
 [//]: # "- [University California San Francisco](https://www.ucsf.edu/) (Olivier Morin, Taman Upadhaya, Jorge Barrios)"
