@@ -211,7 +211,7 @@ test("publications keeps the year sidebar visible and enlarges headings after sc
   await expect(page.locator(".entry-row").first()).toBeVisible();
 });
 
-test("shared footer, Visions and narrow layouts work across routes", async ({ page }) => {
+test("shared footer, Vision and narrow layouts work across routes", async ({ page }) => {
   await page.emulateMedia({ reducedMotion: "reduce" });
   for (const path of [
     "/research",
@@ -229,19 +229,19 @@ test("shared footer, Visions and narrow layouts work across routes", async ({ pa
     await expect(
       page
         .getByRole("navigation", { name: "Main navigation" })
-        .getByRole("link", { name: "Visions", exact: true })
-    ).toHaveAttribute("href", "/visions");
+        .getByRole("link", { name: "Vision", exact: true })
+    ).toHaveAttribute("href", "/vision");
     await expect
       .poll(() => page.evaluate(() => document.documentElement.scrollWidth - window.innerWidth))
       .toBeLessThanOrEqual(1);
   }
   await page
     .getByRole("navigation", { name: "Main navigation" })
-    .getByRole("link", { name: "Visions", exact: true })
+    .getByRole("link", { name: "Vision", exact: true })
     .click();
-  await expect(page).toHaveURL("/visions");
+  await expect(page).toHaveURL("/vision");
   await expect(page.getByRole("button", { name: "Open menu" })).toBeVisible();
-  await expect(page.getByRole("heading", { name: "Visions", exact: true })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Vision", exact: true })).toBeVisible();
   await expect(page.locator(".text-trail-static")).toHaveText("WIP");
   await expect(page.getByText("Currently under construction.", { exact: true })).toBeVisible();
   await page.getByRole("link", { name: "Return home" }).click();

@@ -244,12 +244,12 @@ This selection is independent of the publication dates and entries in `publicati
 </details>
 
 <details>
-<summary><strong><img src="docs/assets/icons/lucide/compass.svg" width="18" alt="" align="absmiddle" />&nbsp;&nbsp;Visions: <code>src/data/visions.json</code></strong></summary>
+<summary><strong><img src="docs/assets/icons/lucide/compass.svg" width="18" alt="" align="absmiddle" />&nbsp;&nbsp;Vision: <code>src/data/vision.json</code></strong></summary>
 
 <br>
 
-- **Schema:** [`src/data/_schemas/visions.schema.json`](./src/data/_schemas/visions.schema.json)
-- **Page:** `VisionsPage`.
+- **Schema:** [`src/data/_schemas/vision.schema.json`](./src/data/_schemas/vision.schema.json)
+- **Page:** `VisionPage`.
 
 The hero, the narrative blocks (each a heading, body, optional image), and the embedded gallery references. Image paths are relative to `public/`.
 

@@ -5,8 +5,8 @@
       "defaultLabel": "Home"
     },
     {
-      "path": "/visions",
-      "defaultLabel": "Visions"
+      "path": "/vision",
+      "defaultLabel": "Vision"
     },
     {
       "path": "/research",

@@ -2,7 +2,7 @@ import { expect, test } from "@playwright/test";
 
 const mainLinks = [
   ["Home", "/"],
-  ["Visions", "/visions"],
+  ["Vision", "/vision"],
   ["Research", "/research"],
   ["Team", "/team"],
   ["Publications", "/publications"],

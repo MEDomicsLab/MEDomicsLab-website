@@ -4,9 +4,9 @@
   "image": "/images/homepage.webp",
   "pages": {
     "/": { "title": "Home" },
-    "/visions": {
-      "title": "Visions",
-      "description": "The MEDomicsLab Visions page is currently under construction.",
+    "/vision": {
+      "title": "Vision",
+      "description": "The MEDomicsLab Vision page is currently under construction.",
       "noindex": true
     },
     "/research": {

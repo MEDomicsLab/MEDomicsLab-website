@@ -41,8 +41,8 @@
       "url": "./src/data/_schemas/theme.schema.json"
     },
     {
-      "fileMatch": ["src/data/visions.json"],
-      "url": "./src/data/_schemas/visions.schema.json"
+      "fileMatch": ["src/data/vision.json"],
+      "url": "./src/data/_schemas/vision.schema.json"
     }
   ]
 }

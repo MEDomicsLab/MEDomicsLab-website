@@ -68,9 +68,9 @@ const App = () => {
       <Route element={<Layout />}>
         <Route index element={<HomePage />} />
         <Route
-          path="/visions"
+          path="/vision"
           element={
-            <StatusPage artwork="WIP" title="Visions">
+            <StatusPage artwork="WIP" title="Vision">
               <small>Currently under construction.</small>
             </StatusPage>
           }

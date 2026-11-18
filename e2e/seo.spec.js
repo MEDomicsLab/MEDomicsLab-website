@@ -125,13 +125,13 @@ test("sitemap and robots advertise exactly the canonical, indexable routes", asy
   expect(await robots.text()).toContain("Allow: /");
 });
 
-test("Visions is available as a prerendered placeholder", async ({ request, page }) => {
-  const response = await request.get("/visions");
+test("Vision is available as a prerendered placeholder", async ({ request, page }) => {
+  const response = await request.get("/vision");
   expect(response.status()).toBe(200);
   const data = await parseHtml(page, await response.text());
-  expect(data.titles).toEqual(["Visions | MEDomicsLab"]);
+  expect(data.titles).toEqual(["Vision | MEDomicsLab"]);
   expect(data.robots).toBe("noindex, follow");
-  expect(data.headings).toContain("Visions");
+  expect(data.headings).toContain("Vision");
   expect(data.root).toContain("Currently under construction.");
 });
 
