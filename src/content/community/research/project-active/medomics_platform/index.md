@@ -1,5 +1,5 @@
 ---
-title: "Project: Development of the MEDomics platform"
+title: "Project: MEDomics: A Collaborative Platform for Medical Data Modeling"
 
 type: book
 
@@ -65,7 +65,7 @@ General
 [//]: # "4. _Automatic text processing_: automatic processing and coding of textual reports from electronic patient records would allow for better integration of information relevant to multi-omics modeling throughout the patient management period."
 [//]: # "5. _Federated learning_: in order to increase the amount of modeled data from different health care institutions, a distributed learning approach can be used - data is kept within the boundaries of each institution, thus avoiding data transfer and privacy issues."
 
-Clinical researchers frequently struggle to utilize **artificial intelligence** effectively due to a lack of accessible tools and cooperative pathways between the medical and technological sectors. To resolve these issues, the **MEDomics platform** functions as an open-source solution that unites clinical experts and computer scientists in a collaborative environment. By integrating diverse **multimodal medical data**, this system empowers professionals to build predictive models for customized patient care. The software accommodates varying skill levels through **intuitive visual pipelines** and advanced **Python libraries**, ensuring usability for both doctors and programmers. Furthermore, its structured architecture supports every stage of the process, encompassing **data integration**, **model training**, and **decentralized validation** to advance personalized medicine securely.
+Version 1.0 of the MEDomics platform was launched in 2024. The MEDomics platform is the core component of our research laboratory, with the central role of enhancing the working synergy between clinical researchers and computer scientists for medical data modeling. The platform consists of an interactive front-end interface linked to a reproducible back-end code package via a code generation feature. It can be deployed on standard research laptops, keeping hardware requirements low. It is designed with three core layers and seven modules: (i) [Design]: Input, Extraction, Exploratory; (ii) [Development]: Machine Learning, Evaluation, Federated Learning; and (iii) [Deployment]: Application.
 
 MEDomics also gave birth to several useful applications under various projects: MED3pa, MEDfl, MEDiml, with more applications under construction.
 
