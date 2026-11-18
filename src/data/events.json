@@ -3,6 +3,22 @@
     "year": "2026",
     "months": [
       {
+        "month": "December",
+        "items": [
+          {
+            "title": "2026 Annual Research Institute Showcase",
+            "slug": "2026-12-10",
+            "category": "Presentations",
+            "date": "2026-12-10",
+            "kind": "Conference talk / poster",
+            "venue": "Research Institute of the McGill University Health Centre",
+            "endDate": "2026-12-11",
+            "contributors": ["Simon Provost", "Mahdi Loutfi"],
+            "markdown": "community/events/2026-12-10.md"
+          }
+        ]
+      },
+      {
         "month": "November",
         "items": [
           {
