@@ -103,6 +103,27 @@
     "markdown": "community/research/project-active/multilevel-graphs/index.md"
   },
   {
+    "title": "MEDfusion-EHR: Multimodal Intermediate Fusion for Clinical Prediction from Electronic Health Records",
+    "slug": "medfusion-ehr",
+    "summary": "Sub-modal intermediate fusion framework integrating longitudinal electronic health records for clinical risk prediction.",
+    "status": "Active",
+    "track": "Master's",
+    "coverImage": {
+      "url": "/images/albums/research-MEDfusion-ehr/MEDfusion-ehr.webp",
+      "alt": "MEDfusion-EHR multimodal architecture overview"
+    },
+    "researchers": ["steven-ravary", "martin-vallieres"],
+    "externalResearchers": [
+      {
+        "name": "Danilo Bzdok",
+        "url": "https://www.mcgill.ca/bbme/danilo-bzdok",
+        "affiliation": "McGill University",
+        "role": "PI"
+      }
+    ],
+    "markdown": "community/research/project-active/MEDfusion-ehr/index.md"
+  },
+  {
     "title": "Optimizing MEDomics platform: Enhancing Usability for Clinical AI Adoption",
     "slug": "medomicslab-optimization",
     "summary": "Master's project focused on improving MEDomics platform usability, workflows, and clinical validation.",

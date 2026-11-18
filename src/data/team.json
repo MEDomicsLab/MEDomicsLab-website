@@ -457,12 +457,12 @@
         "position": "MSc candidate in Biological and Biomedical Engineering",
         "slug": "steven-ravary",
         "image": "/images/team/steven-ravary/avatar.webp",
-        "bio": "Steven is a master's student in the MEDomicsLab since 2026. A former healthcare professional, he previously worked on a prior project focused on data processing and validation of open-source datasets. He is working on deep learning and Bayesian methods for hierarchical intermediate multimodal fusion. He will be developing MEDfusion, a module for hierarchical multimodal fusion that will be integrated into the MEDomics platform",
+        "bio": "Steven is a master’s student in the MEDomicsLab since 2026. A former healthcare professional, he previously worked on a project focused on data processing and validation of open-source datasets. He is working on deep learning and interpretable models for hierarchical intermediate multimodal fusion of electronic health records. He is developing MEDfusion, a module for hierarchical multimodal fusion that will be integrated into the MEDomics platform.",
         "expertise": [
           "Healthcare AI",
           "Hierarchical multimodal fusion",
           "Deep Learning",
-          "Bayesian methods"
+          "Interpretable machine learning"
         ],
         "email": "steven.ravary@mail.mcgill.ca",
         "education": [
