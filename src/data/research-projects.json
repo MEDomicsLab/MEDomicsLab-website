@@ -110,8 +110,9 @@
     "track": "Master's",
     "coverImage": {
       "url": "/images/albums/research-MEDfusion-ehr/MEDfusion-ehr.webp",
-      "alt": "MEDfusion-EHR multimodal architecture overview"
+      "alt": "MEDfusion-EHR model landscape comparing performance, feasibility, and interpretability"
     },
+    "homeCard": "/images/homepage-neue/next/medfusion-ehr.webp",
     "researchers": ["steven-ravary", "martin-vallieres"],
     "externalResearchers": [
       {
