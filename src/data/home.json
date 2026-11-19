@@ -47,7 +47,8 @@
         },
         {
           "name": "MEDfl",
-          "repo": "https://www.medfl.app/",
+          "website": "https://www.medfl.app/",
+          "repo": "https://github.com/MEDomicsLab/MEDfl",
           "logo": "/images/homepage-neue/MEDfl-white.webp",
           "statsSnapshot": {
             "stars": 3,
