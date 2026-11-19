@@ -1,0 +1,107 @@
+.scope-title {
+  color: var(--neue-paper);
+  font-size: var(--vision-subtitle-size);
+  line-height: 1.2;
+  letter-spacing: -0.025em;
+  text-align: center;
+  text-wrap: balance;
+}
+.scope-stage {
+  /* Large, but always seen whole: the drawing never outgrows the viewport's height. */
+  width: min(100%, 1000px, calc((100svh - 150px) * 1.03));
+  margin: clamp(18px, 2.6vw, 36px) auto 0;
+}
+.scope-art {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+  touch-action: pan-y;
+}
+/* Each circle is a thin veil of paper over a fine dot grid; where axes meet both add up. */
+.scope-fill {
+  fill: var(--neue-paper);
+  fill-opacity: var(--veil, 0.035);
+  transition: fill-opacity 300ms ease;
+}
+.scope-dots circle {
+  fill: var(--neue-paper);
+  fill-opacity: 0.32;
+}
+.scope-grid {
+  opacity: var(--grid, 0.6);
+  transition: opacity 300ms ease;
+}
+.scope-ring {
+  fill: none;
+  stroke: var(--neue-paper);
+  stroke-opacity: var(--line, 0.42);
+  stroke-width: 1.25;
+  transition: stroke-opacity 300ms ease;
+}
+.scope text {
+  fill: var(--neue-paper);
+  font-family: inherit;
+  text-anchor: middle;
+}
+.scope .scope-topic text {
+  font-size: 18px;
+  letter-spacing: -0.015em;
+}
+.scope .scope-cites,
+.scope .scope-topic .scope-cites {
+  fill: var(--muted-foreground);
+  font-size: 14px;
+  letter-spacing: 0;
+}
+.scope .scope-cites a:hover {
+  fill: var(--neue-paper);
+}
+.scope .scope-arc-label {
+  fill: var(--muted-foreground);
+  font-size: 14px;
+  letter-spacing: 0.02em;
+  transition: fill 300ms ease;
+}
+.scope .scope-app-link {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  width: max-content;
+  margin-inline: auto;
+  color: var(--neue-paper);
+  font-size: 19px;
+  letter-spacing: -0.02em;
+  line-height: 24px;
+  white-space: nowrap;
+}
+.scope .scope-arrow {
+  color: var(--muted-foreground);
+}
+.scope a:is(:hover, :focus-visible) .scope-app-link {
+  color: #fff;
+}
+.scope-item {
+  transition: opacity 320ms ease;
+}
+.scope-art[data-active]:not([data-active=""]) .scope-axis {
+  --veil: 0.02;
+  --line: 0.2;
+  --grid: 0.22;
+}
+.scope-art[data-active]:not([data-active=""]) .scope-item {
+  opacity: 0.32;
+}
+.scope-art[data-active~="I"] :is(.scope-axis[data-axis="I"], .scope-item[data-axes~="I"]),
+.scope-art[data-active~="II"] :is(.scope-axis[data-axis="II"], .scope-item[data-axes~="II"]),
+.scope-art[data-active~="III"] :is(.scope-axis[data-axis="III"], .scope-item[data-axes~="III"]) {
+  --veil: 0.07;
+  --line: 0.85;
+  --grid: 1;
+  opacity: 1;
+}
+.scope-art[data-active~="I"] .scope-arc-label[data-axis="I"],
+.scope-art[data-active~="II"] .scope-arc-label[data-axis="II"],
+.scope-art[data-active~="III"] .scope-arc-label[data-axis="III"] {
+  fill: var(--neue-paper);
+}

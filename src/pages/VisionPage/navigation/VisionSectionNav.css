@@ -1,0 +1,94 @@
+.vision-section-nav {
+  position: fixed;
+  z-index: 100;
+  top: 50%;
+  right: clamp(20px, 2.6vw, 50px);
+  inline-size: max-content;
+  transform: translateY(-50%);
+  text-align: right;
+  white-space: nowrap;
+}
+.vision-section-nav a {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 16px;
+  color: #b8b6ae;
+  font-size: 16px;
+  line-height: 32px;
+  text-decoration: none;
+  text-shadow:
+    0 1px 3px #151515,
+    0 0 2px #151515;
+  transition: color 160ms ease;
+}
+.vision-section-nav a:is(:hover, :focus-visible, [aria-current]) {
+  color: var(--neue-paper);
+  text-decoration: none;
+}
+.vision-section-label-short {
+  display: none;
+}
+.vision-section-tick {
+  display: inline-block;
+  flex: 0 0 32px;
+  width: 32px;
+  height: 2px;
+}
+.vision-section-tick::after {
+  content: "";
+  display: block;
+  width: var(--tick-width);
+  height: 100%;
+  background: currentColor;
+  opacity: 0.42;
+  transition:
+    width 240ms ease,
+    opacity 160ms ease;
+}
+.vision-section-nav a:is([aria-current], :hover, :focus-visible) .vision-section-tick::after {
+  width: 32px;
+  opacity: 1;
+}
+@media (max-width: 1099px) {
+  .vision-section-nav {
+    right: max(5px, env(safe-area-inset-right));
+  }
+  .vision-section-label {
+    display: none;
+  }
+  .vision-section-label-short {
+    display: block;
+  }
+  .vision-section-nav a {
+    min-height: 44px;
+    min-width: 44px;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    font-size: 11px;
+    line-height: 1.1;
+  }
+  .vision-section-tick {
+    flex: none;
+    width: 12px;
+    height: 1px;
+  }
+  .vision-section-tick::after {
+    width: calc(var(--tick-width) * 0.375);
+  }
+  .vision-section-nav a:is([aria-current], :hover, :focus-visible) .vision-section-tick::after {
+    width: 12px;
+  }
+}
+@media (max-width: 800px) {
+  .vision-section-nav {
+    display: none;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .vision-section-nav a,
+  .vision-section-tick::after {
+    transition: none;
+  }
+}

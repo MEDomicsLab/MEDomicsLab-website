@@ -1,0 +1,27 @@
+.cycle-art {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+.cycle-arc {
+  fill: none;
+  stroke: var(--neue-paper);
+  stroke-opacity: 0.55;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+}
+.cycle-tip path {
+  fill: none;
+  stroke: var(--neue-paper);
+  stroke-opacity: 0.85;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.cycle-label {
+  fill: var(--neue-paper);
+  font-family: inherit;
+  font-size: 28px;
+  letter-spacing: -0.035em;
+}

@@ -1,0 +1,28 @@
+.vision-gaps .vision-subtitle {
+  margin-top: 0.55em;
+  color: var(--vision-body);
+}
+.vision-goal {
+  max-width: 21em;
+  font-size: clamp(25px, 3vw, 46px);
+}
+.vision-work-title {
+  margin-top: clamp(44px, 6vw, 80px);
+  text-align: center;
+}
+.vision-work-title + .vision-goal {
+  margin-top: clamp(22px, 3vw, 44px);
+}
+
+@media (min-width: 801px) {
+  .vision-gaps h2,
+  .vision-gaps .vision-argument {
+    text-box: trim-start cap alphabetic;
+  }
+}
+
+@media (max-width: 800px) {
+  .vision-gaps .vision-subtitle {
+    text-align: center;
+  }
+}

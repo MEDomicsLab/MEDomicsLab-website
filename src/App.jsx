@@ -16,6 +16,7 @@ import CommunityContactPage from "./pages/CommunityContactPage/CommunityContactP
 import NewsDetailPage from "./pages/NewsDetailPage/NewsDetailPage.jsx";
 import CoursesPage from "./pages/CoursesPage/CoursesPage.jsx";
 import CoursesDetailPage from "./pages/CoursesDetailPage/CoursesDetailPage.jsx";
+import VisionPage from "./pages/VisionPage/VisionPage.jsx";
 import StatusPage from "./pages/StatusPage/StatusPage.jsx";
 
 const App = () => {
@@ -67,14 +68,7 @@ const App = () => {
     <Routes>
       <Route element={<Layout />}>
         <Route index element={<HomePage />} />
-        <Route
-          path="/vision"
-          element={
-            <StatusPage artwork="WIP" title="Vision">
-              <small>Currently under construction.</small>
-            </StatusPage>
-          }
-        />
+        <Route path="/vision" element={<VisionPage />} />
         <Route path="/research" element={<ResearchPage />} />
         <Route path="/research/:slug" element={<ProjectDetail />} />
         <Route path="/publications" element={<PublicationsPage />} />

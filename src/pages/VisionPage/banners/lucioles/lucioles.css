@@ -1,0 +1,23 @@
+#banner-horizon {
+  --preview: url("./lucioles-wide.webp");
+}
+@media (max-width: 640px) {
+  #banner-horizon {
+    --preview: url("./lucioles-phone.webp");
+  }
+}
+/* Keep the measured opening for the Vision headline in both the live lake and its still. */
+#banner-horizon canvas,
+#banner-horizon::before {
+  mask-image: radial-gradient(
+    ellipse var(--copy-w, 370px) var(--copy-h, 230px) at 50% 0,
+    transparent 87%,
+    #000 112%
+  );
+}
+#banner-horizon:not([data-hl-ready])::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--preview) center / cover;
+}

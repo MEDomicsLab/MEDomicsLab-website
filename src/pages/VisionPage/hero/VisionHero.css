@@ -1,0 +1,77 @@
+.vision-cover {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  text-align: center;
+}
+.vision-cover-copy {
+  position: relative;
+  z-index: 1;
+  width: max-content;
+  max-width: min(550px, calc(100% - 32px));
+  margin-inline: auto;
+}
+.vision-horizon {
+  --meadow-depth: clamp(236px, 22.6vw, 326px);
+  align-self: center;
+  width: 100vw;
+  width: 100cqw;
+  padding-bottom: var(--meadow-depth);
+}
+.neue-interior-layout .vision-cover h1 {
+  color: var(--neue-paper);
+  font-size: clamp(78px, 9.6vw, 120px);
+  font-weight: 600;
+  letter-spacing: -0.065em;
+  line-height: 0.94;
+}
+.vision-cover p {
+  margin: clamp(12px, 1.6vw, 20px) auto 0;
+  max-width: min(100%, 40em);
+  color: #c6c7bf;
+  font-size: clamp(21px, 2.35vw, 30px);
+  line-height: 1.15;
+  letter-spacing: -0.032em;
+  text-wrap: balance;
+}
+@media (max-width: 640px) {
+  .vision-cover {
+    padding-top: clamp(10px, 3vh, 28px);
+  }
+  .vision-horizon {
+    --meadow-depth: clamp(200px, 47vw, 290px);
+  }
+}
+
+/* Opening: the first banner draws in alone, the headline then rises out of the dip in the banner's middle up to its
+   place, and the rest of the page follows (see useEntrance). Without script or with reduced motion, all shows at
+   once. */
+@media (scripting: enabled) and (prefers-reduced-motion: no-preference) {
+  .vision-page[data-entrance="banner"] #banner-horizon::before {
+    content: none;
+  }
+  .vision-cover-copy > * {
+    transition:
+      opacity 450ms ease,
+      filter 500ms ease,
+      translate 650ms var(--vision-ease);
+  }
+  .vision-cover-copy > p {
+    transition-delay: 80ms;
+  }
+  .vision-page[data-entrance="banner"] .vision-cover-copy > * {
+    opacity: 0;
+    filter: blur(6px);
+    translate: 0 clamp(56px, 7vw, 96px);
+  }
+  .vision-page > :not(.vision-cover),
+  .vision-section-nav {
+    transition: opacity 550ms ease;
+  }
+  .vision-page:not([data-entrance="done"]) > :not(.vision-cover),
+  :root:has(.vision-page:not([data-entrance="done"])) .vision-section-nav {
+    opacity: 0;
+    pointer-events: none;
+  }
+}

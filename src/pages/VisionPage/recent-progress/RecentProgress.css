@@ -1,0 +1,128 @@
+.vision-scope-figure {
+  margin-top: clamp(56px, 7vw, 104px);
+}
+.vision-axes {
+  margin-top: clamp(72px, 8vw, 120px);
+  align-items: start;
+}
+.vision-axes .vision-subtitle {
+  padding-top: 19px;
+}
+.vision-axis-body {
+  color: var(--vision-body);
+  font-size: clamp(16px, 1.25vw, 18px);
+  line-height: 1.55;
+  letter-spacing: -0.01em;
+  text-wrap: pretty;
+}
+.vision-axis {
+  border-top: 1px solid var(--border);
+}
+.vision-axis:last-child {
+  border-bottom: 1px solid var(--border);
+}
+.vision-axis summary {
+  list-style: none;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 6px 14px;
+  padding: 18px 4px 24px 0;
+}
+.vision-axis summary::-webkit-details-marker {
+  display: none;
+}
+.vision-axis summary:hover h4 {
+  color: var(--neue-paper);
+}
+.vision-axis summary .vision-kicker {
+  grid-column: 1/-1;
+  color: var(--muted-foreground);
+}
+@media (max-width: 440px) {
+  .vision-axis summary {
+    grid-template-columns: minmax(0, 1fr) auto;
+  }
+  .vision-axis summary .vision-kicker {
+    grid-column: 1;
+  }
+  .vision-axis summary svg {
+    grid-area: 1 / 2;
+  }
+  .neue-interior-layout .vision-axis summary h4 {
+    grid-column: 1 / -1;
+    font-size: clamp(15px, 4.35vw, 18px);
+  }
+}
+.vision-axis[open] summary svg {
+  transform: rotate(45deg);
+}
+/* The native disclosure supplies keyboard and accessibility semantics. A fluid grid
+   track can reverse mid-transition and adapts when the text reflows. */
+@supports selector(details::details-content) {
+  .vision-axis::details-content {
+    content-visibility: visible;
+  }
+  .vision-axis-clip {
+    display: grid;
+    grid-template-rows: 0fr;
+    opacity: 0;
+    visibility: hidden;
+  }
+  .vision-axis[open] .vision-axis-clip {
+    grid-template-rows: 1fr;
+    opacity: 1;
+    visibility: visible;
+  }
+  .vision-axis-body {
+    min-height: 0;
+    overflow: hidden;
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .vision-axis-clip {
+      transition:
+        grid-template-rows 420ms cubic-bezier(0.22, 0.68, 0.17, 1),
+        opacity 290ms ease,
+        visibility 0s linear 420ms;
+    }
+    .vision-axis[open] .vision-axis-clip {
+      transition-delay: 0s;
+    }
+    .vision-axis summary svg {
+      transition: transform 340ms ease;
+    }
+  }
+}
+.vision-axis-body {
+  max-width: 40rem;
+}
+.vision-axis-body > :last-child {
+  padding-bottom: 25px;
+}
+.vision-axis-body p + p {
+  margin-top: 13px;
+}
+.vision-cites {
+  color: var(--muted-foreground);
+  font-size: 0.8em;
+}
+.vision-cites a {
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+}
+
+@media (min-width: 801px) {
+  .vision-axes .vision-subtitle,
+  .vision-axis summary .vision-kicker {
+    text-box: trim-start cap alphabetic;
+  }
+}
+
+@media (max-width: 800px) {
+  .vision-row .vision-axis-body {
+    max-width: none;
+  }
+  .vision-axes .vision-subtitle {
+    padding-top: 0;
+  }
+}

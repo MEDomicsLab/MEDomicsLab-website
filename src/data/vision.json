@@ -1,0 +1,168 @@
+{
+  "headline": "Precision medicine through AI-informed clinical decision support.",
+  "researchQuestionLead": "The core question that we are addressing",
+  "researchQuestion": "How can Agentic AI support interdisciplinary research teams in overcoming the barriers to navigating and creating advanced modeling workflows for Precision Medicine?",
+  "overview": [
+    "The potential to learn from the wealth of real-world health data holds great promise, including the highly desirable large-scale shift towards Precision Medicine through AI-informed clinical decision support.",
+    "Clinical teams can now make increasingly complex treatment decisions using multiple data types, ranging from quantitative features to images and text. However, in practice, optimally modeling multimodal, heterogeneous and longitudinal data sources in a meaningful way for specialized disease prediction is challenging and cannot always be achieved with a one-size-fits-all approach that generalist foundation models provide.",
+    "In fact, tackling grand challenges in Precision Medicine with the development of specialized AI-based decision support systems requires a close synergy among interdisciplinary research teams."
+  ],
+  "premises": {
+    "title": "Fundamental premises",
+    "scope": "favoring clinical translation\nof computer science methods",
+    "items": [
+      "Specialized predictive models in medicine need to be packaged as reusable agents",
+      "Agentic AI also needs to be deployed locally in hospital settings to preserve data confidentiality",
+      "Software engineering is required to enhance the working synergy of interdisciplinary teams"
+    ]
+  },
+  "longTermVision": "Guided by these premises, the long-term vision of our research is to support clinical decisions towards improved Precision Medicine by bridging Generalist/Specialist/Precision Medical AI within an integrated Agentic AI system. Currently, our research focuses on Specialist Medical AI.",
+  "domains": [
+    {
+      "name": "Generalist AI",
+      "model": "Foundation models",
+      "details": ["Multiple medical domains", "Generative AI"]
+    },
+    {
+      "name": "Specialist AI",
+      "model": "Integrative models",
+      "details": ["Specialized medical domains", "Predictive modeling"]
+    },
+    {
+      "name": "Precision AI",
+      "model": "Causal models",
+      "details": ["Personalized care", "Continual causal learning"]
+    }
+  ],
+  "approach": {
+    "lead": "For this purpose, we anchor our work on",
+    "description": "an open-source platform developed by our group."
+  },
+  "progressMilestone": "Version 1.0 of the MEDomics platform was launched in 2024.",
+  "integration": "As described below, the contributions at MEDomicsLab span three main research axes (I, II, III), with the development of the MEDomics platform acting as a cross-cutting axis dedicated to the integration of all methodological developments into a common working environment.",
+  "scopeTitle": "Clinically Grounded AI Tools for Better Precision Medicine",
+  "axesTitle": "Research axes",
+  "axes": [
+    {
+      "id": "I",
+      "title": "Medical data modeling & deployment",
+      "paragraphs": [
+        "We developed graph neural network methods to disentangle interactions in multimodal healthcare data [JA1] and to correct model predictions after training [CP1, CP2].",
+        "Our Ensemble Longitudinal Network (ELN) helped us assess what past patient records contribute to one-year mortality risk predictions in a private dataset in Sherbrooke, Québec [JA2]. We released an associated synthetic dataset of 123,646 patients for other researchers to investigate this question [CP3].",
+        "For safer deployment, MED3pa identifies patient profiles for which a given binary classifier makes low-confidence predictions [JA3] and helps explain the sources of that uncertainty [CP4]."
+      ]
+    },
+    {
+      "id": "II",
+      "title": "Medical image analysis",
+      "paragraphs": [
+        "We used transformers to encode whole-slide histopathology images and developed an image-centered multimodal fusion framework for predicting outcomes across several cancers [JA4]. In high-grade prostate cancer, our multi-task Sequential Network (SN) refines predictions as earlier outcomes become available and influence treatment management [JA5, CP5].",
+        "In radiomics, we optimized renal mass histology prediction [JA6] and contributed to international reference standards for computing convolutional filters in medical images [JA7]."
+      ]
+    },
+    {
+      "id": "III",
+      "title": "Open-source software engineering",
+      "paragraphs": [
+        "MEDomics is the core component of our research program. It helps clinical researchers and computer scientists work together on medical data modeling. Its interactive front end generates code that links to a reproducible back-end package. The platform runs on standard research laptops.",
+        "Seven modules span three layers. Design contains Input, Extraction and Exploratory. Development contains Machine Learning, Evaluation and Federated Learning. Deployment contains Application. Standalone applications extend this work through MED3pa, MEDiml [JA8] and MEDfl."
+      ]
+    }
+  ],
+  "ecosystem": {
+    "title": "MEDomics platform",
+    "lead": [
+      "Today, it is also powered by the standalone sub-applications MED3pa, MEDiml and MEDfl."
+    ],
+    "apps": [
+      {
+        "name": "MEDomics",
+        "caption": "And more is coming.",
+        "alt": "MEDomics card: “Many inputs. One workflow.” Images, tables and time series converge into one design, development and deployment workflow."
+      },
+      {
+        "name": "MED3pa",
+        "alt": "MED3pa card: “Look closer at model confidence.” A grid of patient profiles flags those with lower prediction confidence."
+      },
+      {
+        "name": "MEDiml",
+        "alt": "MEDiml card: “From pixels to features.” CT, MRI and PET images become reproducible radiomic features."
+      },
+      {
+        "name": "MEDfl",
+        "alt": "MEDfl card: “Learn together.” Four institutions train a shared model while their data stays local."
+      }
+    ]
+  },
+  "gapsTitle": "Main gaps in MEDomics",
+  "gaps": "Despite significant development progress, the MEDomics platform currently consists of static modules, and interdisciplinary research teams still face a steep learning curve to master the utilities of each module and their interconnection. Furthermore, the platform lacks methodological tools to efficiently account for patient care trajectories in multimodal modeling setups, which limits its utility in addressing real-world Precision Medicine scenarios.",
+  "work": "In the next years, our goal is to reengineer MEDomics into a platform assisted by local Agentic AI, to optimize collaboration among interdisciplinary teams in advanced medical data modeling research",
+  "figures": {
+    "program": {
+      "title": "Vision of our research program.",
+      "caption": "Our current program (solid lines) currently focuses on Specialist Medical AI for Precision Medicine, within the long-term vision (dashed lines) of Agentic AI bridging Generalist/Specialist/Precision Medical AI."
+    },
+    "cycle": {
+      "title": "MEDomics:",
+      "caption": "A Collaborative Platform for Medical Data Modeling"
+    },
+    "scope": {
+      "title": "Scope of the current research program and recent progress.",
+      "caption": "JA denotes journal articles and CP denotes conference papers. See the list of selected publications below."
+    }
+  },
+  "publications": {
+    "JA1": {
+      "title": "DIGOM: Disentangled Interaction Graphs for Outcome prediction in Multimodal healthcare",
+      "url": "https://doi.org/10.48550/arXiv.2610.32451"
+    },
+    "JA2": {
+      "title": "Leveraging patients’ longitudinal data to improve the Hospital One-year Mortality Risk",
+      "url": "https://doi.org/10.1007/s13755-024-00332-4"
+    },
+    "JA3": {
+      "title": "Predictive performance precision analysis in medicine: identification of low-confidence predictions at patient and profile levels (MED3pa I)",
+      "url": "https://doi.org/10.1093/jamia/ocag034"
+    },
+    "JA4": {
+      "title": "Beyond single-run metrics with CP-fuse: A rigorous multi-cohort evaluation of clinico-pathological fusion for improved survival prediction in TCGA",
+      "url": "https://doi.org/10.1016/j.mlwa.2025.100789"
+    },
+    "JA5": {
+      "title": "Multi-task Bayesian model combining FDG-PET/CT imaging and clinical data for interpretable high-grade prostate cancer prognosis",
+      "url": "https://doi.org/10.1038/s41598-024-77498-0"
+    },
+    "JA6": {
+      "title": "Optimizing renal mass histology prediction with artificial intelligence using handcrafted radiomics",
+      "url": "https://doi.org/10.1007/s00345-026-06296-2"
+    },
+    "JA7": {
+      "title": "The Image Biomarker Standardization Initiative: Standardized Convolutional Filters for Reproducible Radiomics and Enhanced Clinical Insights",
+      "url": "https://doi.org/10.1148/radiol.231319"
+    },
+    "JA8": {
+      "title": "Medical Image Analysis with Machine Learning (MEDiml): Strategies for Simpler Radiomics",
+      "url": "https://doi.org/10.48550/arXiv.2610.37715"
+    },
+    "CP1": {
+      "title": "Population-Graph Post-hoc Correction of Survival Predictions for Improved Risk Stratification",
+      "url": "https://doi.org/10.1007/978-3-032-06103-4_19"
+    },
+    "CP2": {
+      "title": "Development of Error Passing Network for Optimizing the Prediction of VO2 peak in Childhood Acute Leukemia Survivors",
+      "url": "https://proceedings.mlr.press/v248/raymond24a.html"
+    },
+    "CP3": {
+      "title": "Synthetic Data for Accessible Learning in Healthcare: Improving Mortality Prediction with Longitudinal Data",
+      "url": "https://doi.org/10.21203/rs.3.rs-5363467/v1"
+    },
+    "CP4": {
+      "title": "Diagnosing Low-Confidence Patient Profiles via Localized Harmful Covariate Shift Detection",
+      "url": "https://doi.org/10.48550/arXiv.2610.19178"
+    },
+    "CP5": {
+      "title": "Graph Attention Network for Prostate Cancer Lymph Node Invasion Prediction",
+      "url": "https://openreview.net/forum?id=zIpx-MISaIA"
+    }
+  }
+}

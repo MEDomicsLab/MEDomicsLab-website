@@ -1,0 +1,28 @@
+.vision-figure {
+  min-width: 0;
+  margin: 0;
+}
+
+.vision-figure figcaption {
+  max-width: 76ch;
+  margin: clamp(10px, 1.6vw, 20px) auto 0;
+  color: #a2a29c;
+  font-size: clamp(13px, 1vw, 14px);
+  line-height: 1.5;
+  text-align: center;
+  text-wrap: balance;
+}
+.vision-figure figcaption b {
+  color: #bcbab1;
+  font-weight: 500;
+}
+@media (hover: hover) and (pointer: fine) {
+  body:not(:has(:focus-visible)) .vision-figure:not(:hover, :focus-within) figcaption {
+    opacity: 0;
+  }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .vision-figure figcaption {
+    transition: opacity 220ms ease;
+  }
+}

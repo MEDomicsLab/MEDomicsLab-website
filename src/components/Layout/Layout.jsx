@@ -19,6 +19,7 @@ import NavDropdown, {
 } from "./NavDropdown.jsx";
 import { scrollToSection, scrollToTopNow } from "../../lib/lenis";
 import Footer from "../Footer/Footer.jsx";
+import VisionSectionNav from "../../pages/VisionPage/navigation/VisionSectionNav.jsx";
 import "./Layout.css";
 import "./InteriorPages.css";
 
@@ -308,6 +309,8 @@ export default function Layout() {
       <MobileNav githubHref={githubHref} />
 
       <SiteShortcuts href={githubHref} />
+
+      {location.pathname.replace(/\/$/, "") === "/vision" && <VisionSectionNav />}
 
       <main className={cn("min-h-screen md:pt-0", location.pathname === "/" ? "pt-0" : "pt-28")}>
         <Outlet />
