@@ -14,7 +14,8 @@ export const getLenis = () => instance;
 export const scrollToSection = (section) => {
   const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   if (instance) {
-    instance.scrollTo(section, { immediate: reducedMotion, duration: 1.1, force: true });
+    const offset = -parseFloat(getComputedStyle(section).scrollMarginTop) || 0;
+    instance.scrollTo(section, { offset, immediate: reducedMotion, duration: 1.1, force: true });
   } else {
     section.scrollIntoView({ behavior: reducedMotion ? "instant" : "smooth", block: "start" });
   }
