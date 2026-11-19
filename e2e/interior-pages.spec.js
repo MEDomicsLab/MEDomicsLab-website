@@ -242,8 +242,639 @@ test("shared footer, Vision and narrow layouts work across routes", async ({ pag
   await expect(page).toHaveURL("/vision");
   await expect(page.getByRole("button", { name: "Open menu" })).toBeVisible();
   await expect(page.getByRole("heading", { name: "Vision", exact: true })).toBeVisible();
-  await expect(page.locator(".text-trail-static")).toHaveText("WIP");
-  await expect(page.getByText("Currently under construction.", { exact: true })).toBeVisible();
-  await page.getByRole("link", { name: "Return home" }).click();
-  await expect(page).toHaveURL("/");
+  await page.locator("summary").filter({ hasText: "Medical image analysis" }).click();
+  await page.locator(".vision-axis").getByRole("link", { name: /^JA4:/ }).click();
+  await expect(page).toHaveURL(/#paper-JA4$/);
+  await expect(page.locator("#paper-JA4 a")).toHaveAttribute("href", /^https:\/\/doi.org\//);
+  expect(
+    await page.evaluate(() => document.documentElement.scrollWidth - innerWidth)
+  ).toBeLessThanOrEqual(1);
+});
+
+async function expectFullWidthDividers(page) {
+  const dividers = page.locator(".vision-divider");
+  await expect(dividers).toHaveCount(3);
+  const bounds = await dividers.evaluateAll((nodes) => {
+    const width = document.documentElement.clientWidth;
+    return nodes.map((node) => {
+      const { left, right, height } = node.getBoundingClientRect();
+      return { left, rightGap: width - right, height };
+    });
+  });
+  for (const { left, rightGap, height } of bounds) {
+    expect(Math.abs(left)).toBeLessThanOrEqual(1);
+    expect(Math.abs(rightGap)).toBeLessThanOrEqual(1);
+    expect(height).toBeGreaterThan(0);
+  }
+  expect(
+    await page.evaluate(
+      () => document.documentElement.scrollWidth - document.documentElement.clientWidth
+    )
+  ).toBeLessThanOrEqual(1);
+}
+
+test("Vision figures stay inline and only reveal their captions on hover", async ({ page }) => {
+  await page.emulateMedia({ reducedMotion: "reduce" });
+  await page.goto("/vision");
+  const figures = page.locator(".vision-page figure");
+  await expect(figures).toHaveCount(3);
+  await expect(figures.getByRole("button")).toHaveCount(0);
+  for (const figure of await figures.all()) {
+    await figure.scrollIntoViewIfNeeded();
+    const caption = figure.locator("figcaption");
+    await expect(caption.locator("b")).toHaveText(/\S/);
+    await expect(caption).not.toContainText(/\bFig(?:ure)?\.?\s+\d/i);
+    await page.mouse.move(1, 1);
+    await expect(caption).toHaveCSS("opacity", "0");
+    await figure.hover({ position: { x: 8, y: 8 } });
+    await expect(caption).toHaveCSS("opacity", "1");
+    const centreOffset = await figure.evaluate((node) => {
+      const drawing = node
+        .querySelector(".pf-stage, .cycle-art, .scope-stage")
+        .getBoundingClientRect();
+      const label = node.querySelector("figcaption").getBoundingClientRect();
+      return Math.abs(drawing.left + drawing.width / 2 - (label.left + label.width / 2));
+    });
+    expect(centreOffset).toBeLessThan(1);
+    await figure.click({ position: { x: 8, y: 8 } });
+    await expect(page.getByRole("dialog")).toHaveCount(0);
+  }
+
+  const longTerm = page.locator("#long-term-vision");
+  await expect(longTerm.getByText(/^How can Agentic AI support/)).toHaveCount(1);
+  await expect(page.locator("#progress").getByText(/^How can Agentic AI support/)).toHaveCount(0);
+  // Best flow puts the question and its answer before the figure.
+  expect(
+    await longTerm.evaluate((section) => {
+      const [figure] = section.querySelectorAll("figure");
+      const question = section.querySelector(".vision-question");
+      const answer = section.querySelector(".vision-approach-text");
+      const follows = (a, b) =>
+        Boolean(a.compareDocumentPosition(b) & Node.DOCUMENT_POSITION_FOLLOWING);
+      return follows(question, answer) && follows(answer, figure);
+    })
+  ).toBe(true);
+  const approach = longTerm.locator(".vision-approach-text");
+  await expect(approach).toHaveText(
+    "For this purpose, we anchor our work on MEDomics (medomics.app), an open-source platform developed by our group."
+  );
+  await expect(approach.getByRole("link", { name: "MEDomics", exact: true })).toHaveAttribute(
+    "href",
+    "/research/medomics-platform"
+  );
+  await expect(approach.getByRole("link", { name: "medomics.app" })).toHaveAttribute(
+    "href",
+    "https://medomics.app/"
+  );
+  await expect(longTerm.locator("figcaption")).toHaveText(
+    "MEDomics: A Collaborative Platform for Medical Data Modeling"
+  );
+  // Like a slide, the question needs no visible lead-in; screen readers still get one.
+  await expect(longTerm.locator(".vision-question")).not.toContainText(":");
+  await expect(longTerm.locator(".vision-question .sr-only")).toHaveText(
+    "The core question that we are addressing"
+  );
+  // Current work gives the reason before the goal, as the statement does.
+  const work = page.locator("#current-work");
+  expect(
+    await work.evaluate((section) => {
+      const gaps = section.querySelector(".vision-gaps");
+      const goal = section.querySelector(".vision-goal");
+      return Boolean(gaps.compareDocumentPosition(goal) & Node.DOCUMENT_POSITION_FOLLOWING);
+    })
+  ).toBe(true);
+  await expect(work.locator(".vision-gaps")).toContainText(/Main gaps in MEDomics\s*Despite/);
+
+  const scope = page.getByRole("figure", { name: "Scope of the current research program" });
+  const medomics = scope.getByRole("link", { name: "MEDomics website" });
+  await expect(medomics).toHaveText("MEDomics");
+  await expect(medomics).toHaveAttribute("href", "https://medomics.app/");
+  const platformLinks = scope.getByRole("link", { name: /^MED.* website$/ });
+  await expect(platformLinks).toHaveCount(4);
+  for (const link of await platformLinks.all()) {
+    await link.locator(".scope-app-link").hover();
+    await expect(link.locator("svg")).toHaveCSS("rotate", "45deg");
+  }
+  const cites = scope.getByRole("link", { name: /^(JA|CP)\d+: / });
+  await expect(cites).toHaveCount(13);
+  for (const link of await cites.all()) {
+    const target = await link.getAttribute("href");
+    await expect(page.locator(target)).toHaveCount(1);
+  }
+});
+
+test("the research context tells why before the premises, and every part has its subtitle", async ({
+  page,
+}) => {
+  await page.emulateMedia({ reducedMotion: "reduce" });
+  await page.goto("/vision");
+  const program = page.locator("#program");
+  // The opening argument comes first, the premises follow from it, then the long-term vision.
+  expect(
+    await program.evaluate((section) => {
+      const opening = section.querySelector(".vision-opening");
+      const premises = section.querySelector(".vision-premises");
+      const longTerm = section.querySelector("#long-term-vision");
+      const follows = (a, b) =>
+        Boolean(a.compareDocumentPosition(b) & Node.DOCUMENT_POSITION_FOLLOWING);
+      return follows(opening, premises) && follows(premises, longTerm);
+    })
+  ).toBe(true);
+  await expect(program.locator(".vision-opening p").first()).toHaveText(
+    /^The potential to learn from the wealth of real-world health data/
+  );
+  await expect(program.locator(".vision-opening p").last()).toHaveText(/^In fact, /);
+  await expect(page.locator(".vision-premise-list li")).toHaveCount(3);
+  const premises = page.locator(".vision-premises");
+  const heading = await premises.locator("h3").boundingBox();
+  const list = await premises.locator("ul").boundingBox();
+  expect(Math.abs(heading.y - list.y)).toBeLessThan(1);
+  expect(heading.height).toBeLessThan(list.height);
+  await expect(page.locator("#long-term-vision .vision-lede")).toHaveText(
+    /^Guided by these premises, /
+  );
+  for (const name of [
+    "Fundamental premises favoring clinical translation of computer science methods",
+    "Research axes",
+    "MEDomics platform",
+    "Main gaps in MEDomics",
+  ]) {
+    await expect(page.getByRole("heading", { name, exact: true })).toHaveCount(1);
+  }
+  // Presentation copy: no colon lead-ins anywhere in the story.
+  for (const text of await page
+    .locator(".vision-page :is(.vision-lede, .vision-approach-text, .vision-subtitle)")
+    .allTextContents()) {
+    expect(text).not.toMatch(/:\s*$|: [A-Z]/);
+  }
+});
+
+test("the premises heading stays beside the list and the active statement lights up", async ({
+  page,
+}) => {
+  await page.emulateMedia({ reducedMotion: "no-preference" });
+  await page.goto("/vision");
+  const premises = page.locator(".vision-premise-list li");
+  const bounds = await page.locator(".vision-premises").evaluate(async (section) => {
+    await document.fonts.ready;
+    const title = section.querySelector("h3");
+    const list = section.querySelector("ul");
+    const stickyTop = parseFloat(getComputedStyle(title).top);
+    const start = list.getBoundingClientRect().top + scrollY - stickyTop;
+    const travel = list.offsetHeight - title.offsetHeight;
+    return [start - 15, start + travel / 2, start + travel + 15].map((position) => {
+      scrollTo({ top: position, behavior: "instant" });
+      const heading = title.getBoundingClientRect();
+      const body = list.getBoundingClientRect();
+      return { top: heading.top - body.top, bottom: body.bottom - heading.bottom, travel };
+    });
+  });
+  expect(Math.abs(bounds[0].top)).toBeLessThan(1);
+  expect(Math.abs(bounds[1].top - bounds[1].travel / 2)).toBeLessThan(1);
+  expect(Math.abs(bounds[2].bottom)).toBeLessThan(1);
+  await expect(page.locator(".vision-premise-list")).toHaveAttribute("data-spotlight", "");
+  await premises
+    .nth(1)
+    .evaluate((row) => row.scrollIntoView({ block: "center", behavior: "instant" }));
+  // The middle premise is lit; its neighbours wait in half light.
+  await expect
+    .poll(() =>
+      premises.evaluateAll((rows) => {
+        const [first, middle, last] = rows.map((row) => +getComputedStyle(row).opacity);
+        return middle > 0.95 && first < 0.6 && last < 0.6;
+      })
+    )
+    .toBe(true);
+});
+
+test("the figures' dots move once on screen and stand still when motion is reduced", async ({
+  page,
+}) => {
+  await page.emulateMedia({ reducedMotion: "no-preference" });
+  await page.goto("/vision");
+  for (const stage of [".pf-stage", ".scope-stage"]) {
+    const node = page.locator(stage);
+    await node.evaluate((element) =>
+      element.scrollIntoView({ block: "center", behavior: "instant" })
+    );
+    await expect(node).toHaveAttribute("data-dots", "live");
+    // The SVG pattern gives way to the field drawn under the drawing.
+    await expect(node.locator(".dot-static").first()).toBeHidden();
+    await expect(node.locator(".dot-canvas")).toHaveCSS("visibility", "visible");
+  }
+  await page.emulateMedia({ reducedMotion: "reduce" });
+  await page.reload();
+  const scope = page.locator(".scope-stage");
+  await scope.evaluate((element) =>
+    element.scrollIntoView({ block: "center", behavior: "instant" })
+  );
+  await expect(scope).toHaveAttribute("data-dots", "still");
+  await expect(page.locator(".vision-premise-list")).not.toHaveAttribute("data-spotlight");
+});
+
+for (const width of [1440, 390]) {
+  test(`the research vision figure connects every arrow at ${width}px`, async ({ page }) => {
+    await page.setViewportSize({ width, height: 900 });
+    await page.goto("/vision");
+    const figure = page.getByRole("figure", { name: "The long-term research vision" });
+    const art = figure.locator(".pf-art:visible");
+    await expect(art).toHaveCount(1);
+    await expect(art).toHaveAttribute("viewBox", "0 -44 1000 590");
+    for (const label of [
+      "Generalist AI",
+      "Specialist AI",
+      "Precision AI",
+      "Foundation models",
+      "Integrative models",
+      "Causal models",
+      "Reusable AI Agents",
+      "Agentic AI Assistant",
+      "Long-term research vision",
+    ]) {
+      await expect(art.getByText(label, { exact: true })).toHaveCount(1);
+    }
+    // Each connector must start and end on a node or on another connector, never in empty space.
+    const loose = await art.evaluate((svg) => {
+      const boxes = [...svg.querySelectorAll(".pf-box, .pf-tag")].map((node) => node.getBBox());
+      const wires = [...svg.querySelectorAll(".pf-wire")];
+      const samples = wires.map((wire) =>
+        Array.from({ length: 80 }, (_, i) =>
+          wire.getPointAtLength((wire.getTotalLength() * i) / 79)
+        )
+      );
+      const nearBox = (p) =>
+        boxes.some(({ x, y, width, height }) => {
+          const dx = Math.max(x - p.x, 0, p.x - (x + width));
+          const dy = Math.max(y - p.y, 0, p.y - (y + height));
+          return Math.hypot(dx, dy) <= 12;
+        });
+      const nearWire = (p, own) =>
+        samples.some(
+          (points, i) => i !== own && points.some((q) => Math.hypot(q.x - p.x, q.y - p.y) <= 12)
+        );
+      return wires.flatMap((wire, i) => {
+        const ends = [wire.getPointAtLength(0), wire.getPointAtLength(wire.getTotalLength())];
+        return ends
+          .filter((p) => !nearBox(p) && !nearWire(p, i))
+          .map((p) => `${wire.getAttribute("d")} @ ${Math.round(p.x)},${Math.round(p.y)}`);
+      });
+    });
+    expect(loose).toEqual([]);
+  });
+}
+
+test("section links stay above the artwork, hide at the footer, and return on scroll back", async ({
+  page,
+}) => {
+  await page.setViewportSize({ width: 1440, height: 900 });
+  await page.emulateMedia({ reducedMotion: "reduce" });
+  await page.goto("/vision");
+  await expectFullWidthDividers(page);
+  const nav = page.getByRole("navigation", { name: "Vision page sections" });
+  const links = nav.getByRole("link");
+  const labels = [
+    "Research context",
+    "Long-term vision",
+    "Recent progress",
+    "Current work",
+    "Selected publications",
+  ];
+  await expect(links).toHaveCount(labels.length);
+  for (const label of labels) {
+    await expect(nav.getByRole("link", { name: label, exact: true })).toBeVisible();
+  }
+  await expect(nav.locator("[aria-current]")).toHaveCount(0);
+  await page
+    .locator("#program")
+    .evaluate((section) => section.scrollIntoView({ block: "start", behavior: "instant" }));
+  await expect(links.first()).toHaveAttribute("aria-current", "location");
+  await expect(nav).toHaveCSS("background-color", "rgba(0, 0, 0, 0)");
+  expect(await nav.evaluate((element) => getComputedStyle(element, "::before").content)).toBe(
+    "none"
+  );
+  expect(
+    await nav.evaluate((element) => element.getBoundingClientRect().left > innerWidth / 2)
+  ).toBe(true);
+  const railSize = await nav.evaluate((element) => [element.offsetWidth, element.offsetHeight]);
+  for (const link of await links.all()) {
+    await link.hover();
+    expect(await nav.evaluate((element) => [element.offsetWidth, element.offsetHeight])).toEqual(
+      railSize
+    );
+  }
+
+  const stops = page.locator(".vision-horizon, .vision-divider");
+  for (const stop of await stops.all()) {
+    await stop.evaluate((element) =>
+      element.scrollIntoView({ block: "center", behavior: "instant" })
+    );
+    await expect
+      .poll(() =>
+        links.evaluateAll((nodes) =>
+          nodes.every((link) => {
+            const { x, y, width, height } = link.getBoundingClientRect();
+            return link.contains(document.elementFromPoint(x + width / 2, y + height / 2));
+          })
+        )
+      )
+      .toBe(true);
+  }
+  const footer = page.locator("footer");
+  await footer.evaluate((element) =>
+    element.scrollIntoView({ block: "start", behavior: "instant" })
+  );
+  await expect(nav).toBeHidden();
+  await page
+    .locator("#selected-publications")
+    .evaluate((element) => element.scrollIntoView({ block: "start", behavior: "instant" }));
+  await expect(nav).toBeVisible();
+  const vision = nav.getByRole("link", { name: "Long-term vision" });
+  await vision.click();
+  await expect(page).toHaveURL(/#long-term-vision$/);
+  await expect(vision).toHaveAttribute("aria-current", "location");
+  await expect(page.getByRole("heading", { name: "Long-term vision", exact: true })).toBeVisible();
+  const progress = nav.getByRole("link", { name: "Recent progress" });
+  await progress.click();
+  await expect(page).toHaveURL(/#progress$/);
+  await expect(progress).toHaveAttribute("aria-current", "location");
+  await expect(page.locator(".vision-program-figure .pf-art:visible")).toHaveCount(1);
+});
+
+test("phone layouts hide the section rail and center the full figures and reading columns", async ({
+  page,
+}) => {
+  await page.setViewportSize({ width: 390, height: 900 });
+  await page.emulateMedia({ reducedMotion: "reduce" });
+  await page.goto("/vision");
+  await expectFullWidthDividers(page);
+  await expect(page.getByRole("navigation", { name: "Vision page sections" })).toBeHidden();
+  await expect(page.locator(".scope-art .scope-topic:visible")).toHaveCount(6);
+  await expect(page.locator(".scope-art .scope-arc-label:visible")).toHaveCount(3);
+  await expect(page.locator(".vision-opening .vision-argument").first()).toHaveCSS(
+    "text-align",
+    "start"
+  );
+  const offsets = await page
+    .locator(".vision-page :is(.vision-opening, .vision-figure, .vision-axis-list)")
+    .evaluateAll((nodes) =>
+      nodes.map((node) => {
+        const { left, right } = node.getBoundingClientRect();
+        return Math.abs((left + right - document.documentElement.clientWidth) / 2);
+      })
+    );
+  expect(Math.max(...offsets)).toBeLessThan(1);
+});
+
+test("the progress axes animate height and opacity on open, close and reversal", async ({
+  page,
+}) => {
+  await page.emulateMedia({ reducedMotion: "no-preference" });
+  await page.goto("/vision");
+  const axis = page
+    .locator(".vision-axis")
+    .filter({ has: page.getByRole("heading", { name: "Medical image analysis" }) });
+  await axis.scrollIntoViewIfNeeded();
+  const samples = await axis.evaluate((details) => {
+    const clip = details.querySelector(".vision-axis-clip");
+    const summary = details.querySelector("summary");
+    const read = () => [
+      clip.getBoundingClientRect().height,
+      Number(getComputedStyle(clip).opacity),
+    ];
+    function sample(progress) {
+      // Seek the actual transitions to deterministic points, including a halfway reversal.
+      const transitions = clip.getAnimations();
+      for (const animation of transitions) {
+        animation.pause();
+        animation.currentTime = animation.effect.getTiming().duration * progress;
+      }
+      return read();
+    }
+    const closed = read();
+    summary.click();
+    const opening = sample(0.5);
+    summary.click();
+    const reversing = sample(0.5);
+    summary.click();
+    const reopened = sample(1);
+    summary.click();
+    const closing = sample(0.5);
+    const end = sample(1);
+    return { closed, opening, reversing, reopened, closing, end };
+  });
+  expect(samples.closed).toEqual([0, 0]);
+  expect(samples.end).toEqual([0, 0]);
+  expect(samples.reopened[1]).toBe(1);
+  for (const i of [0, 1]) {
+    expect(samples.opening[i]).toBeGreaterThan(0);
+    expect(samples.opening[i]).toBeLessThan(samples.reopened[i]);
+    expect(samples.reversing[i]).toBeLessThan(samples.opening[i]);
+    expect(samples.closing[i]).toBeGreaterThan(0);
+    expect(samples.closing[i]).toBeLessThan(samples.reopened[i]);
+  }
+  await page.emulateMedia({ reducedMotion: "reduce" });
+  const summary = axis.locator("summary");
+  await summary.focus();
+  await page.keyboard.press("Enter");
+  await expect(axis).toHaveAttribute("open", "");
+  await expect(axis.locator(".vision-axis-clip")).toHaveCSS("transition-duration", "0s");
+  await expect(axis.getByRole("link").first()).toBeVisible();
+  await page.keyboard.press("Space");
+  await expect(axis).not.toHaveAttribute("open", "");
+  await expect(axis.locator(".vision-axis-clip")).toHaveCSS("opacity", "0");
+});
+
+test("the platform ring turns with the page and its posters open their websites", async ({
+  page,
+}) => {
+  await page.emulateMedia({ reducedMotion: "no-preference" });
+  await page.route("https://api.github.com/repos/**", (route) =>
+    route.fulfill({ json: { stargazers_count: 42 } })
+  );
+  await page.addInitScript(() => {
+    window.open = (url) => {
+      document.documentElement.dataset.openedPoster = url;
+      return null;
+    };
+  });
+  await page.goto("/vision");
+  const ring = page.locator(".vision-ring");
+  await expect(ring).toHaveAttribute("data-gallery", "orbit");
+  await expect(ring.getByRole("button")).toHaveCount(0);
+  await expect(ring.getByRole("dialog")).toHaveCount(0);
+  const site = ring.locator(".vision-ring-details").getByRole("link", { name: / website$/ });
+  const stars = ring.locator(".vision-ring-details .vision-ring-stars");
+  const canvas = ring.locator(".vision-ring-viewport canvas");
+  const { top, travel } = await ring.locator(".vision-ring-track").evaluate((track) => ({
+    top: track.getBoundingClientRect().top + scrollY,
+    travel: track.offsetHeight - innerHeight,
+  }));
+  await page.evaluate((y) => scrollTo(0, y), top);
+  await expect(ring).toHaveAttribute("data-ready", "");
+  await expect(ring.locator(".vision-ring-details .vision-ring-name")).toHaveText(
+    "And more is coming."
+  );
+  await expect(site).toHaveAccessibleName("MEDomics website");
+  await expect(site).toHaveAttribute("href", "https://medomics.app/");
+  await expect(stars).toHaveText(/42 GitHub stars/);
+  await expect(ring.locator('a[href*="github.com"]')).toHaveCount(0);
+  const captionBox = await ring.locator(".vision-ring-details").boundingBox();
+  expect(captionBox.y + captionBox.height).toBeLessThan(page.viewportSize().height);
+  await expect
+    .poll(async () => {
+      await canvas.hover();
+      return canvas.evaluate((el) => el.style.cursor);
+    })
+    .toBe("pointer");
+  await canvas.click();
+  await expect(page.locator("html")).toHaveAttribute("data-opened-poster", "https://medomics.app/");
+  // The research statement's order: MEDomics, then MED3pa, MEDiml and MEDfl.
+  await page.evaluate(({ y, step }) => scrollTo(0, y + step), { y: top, step: travel / 3 });
+  await expect(site).toHaveAccessibleName("MED3pa website");
+  await canvas.click();
+  await expect(page.locator("html")).toHaveAttribute(
+    "data-opened-poster",
+    "https://www.med3pa.app/"
+  );
+  await page.evaluate((y) => scrollTo(0, y), top + travel);
+  await expect(site).toHaveAccessibleName("MEDfl website");
+  await expect(site).toHaveAttribute("href", "https://www.medfl.app/");
+  expect(
+    await page.evaluate(() => document.documentElement.scrollWidth - innerWidth)
+  ).toBeLessThanOrEqual(1);
+});
+
+test("with reduced motion each platform poster links to its site and shows its star count", async ({
+  page,
+}) => {
+  await page.emulateMedia({ reducedMotion: "reduce" });
+  await page.route("https://api.github.com/repos/**", (route) => route.abort());
+  await page.goto("/vision");
+  const ring = page.locator(".vision-ring");
+  await expect(ring.locator(".vision-platform-lead p")).toHaveText(
+    "Today, it is also powered by the standalone sub-applications MED3pa, MEDiml and MEDfl."
+  );
+  await expect(ring).toHaveAttribute("data-gallery", "static");
+  const cards = ring.locator(".vision-ring-card:visible");
+  await expect(cards.locator(".vision-ring-name")).toHaveText([
+    "And more is coming.",
+    "MED3pa",
+    "MEDiml",
+    "MEDfl",
+  ]);
+  for (const card of await cards.all()) {
+    await expect(card.locator("img")).toHaveAttribute("alt", /card: /);
+    const site = card.getByRole("link", { name: / website$/ });
+    const href = await site.getAttribute("href");
+    expect(href).toMatch(/^https:\/\//);
+    await expect(card.getByRole("link", { name: / website from poster$/ })).toHaveAttribute(
+      "href",
+      href
+    );
+    await expect(card.locator(".vision-ring-stars")).toHaveText(/\d+ GitHub stars/);
+  }
+  await expect(ring.locator('a[href*="github.com"]')).toHaveCount(0);
+  const link = cards.first().getByRole("link", { name: "MEDomics website", exact: true });
+  await link.hover();
+  await expect(link.locator("svg")).toHaveCSS("rotate", "45deg");
+});
+
+test("Vision always shows its four selected artworks and the dawn sun lights the river", async ({
+  page,
+}) => {
+  await page.emulateMedia({ reducedMotion: "reduce" });
+  // Visitors can arrive with selections saved or shared during the design review.
+  await page.addInitScript(() => {
+    localStorage.setItem(
+      "vision-banner-candidates",
+      JSON.stringify({ horizon: "geste", work: "regard" })
+    );
+  });
+  await page.goto("/vision?banners=horizon:geste,progress:axes,work:regard,publications:harfang");
+  await expect(page.getByRole("navigation", { name: "Banner candidates" })).toHaveCount(0);
+  const lake = page.locator("#banner-horizon");
+  await expect(lake.getByRole("heading", { name: "Vision", exact: true })).toBeInViewport();
+  await expect(lake).toHaveAttribute("data-hl-mode", "lucioles");
+  await expect(lake.locator(".distant-butterfly-flight")).toBeVisible();
+  const sky = page.locator("#banner-progress");
+  await sky.evaluate((el) => el.scrollIntoView({ block: "center", behavior: "instant" }));
+  await expect(sky).toHaveCSS("mask-image", /aurore-feather/);
+  await expect(sky.locator(".distant-butterfly-flight")).toBeVisible();
+  const river = page.locator("#banner-work");
+  await river.evaluate((el) => el.scrollIntoView({ block: "center", behavior: "instant" }));
+  await expect(river.locator(".horizon-butterfly-flight")).toBeVisible();
+  await river.getByRole("button", { name: /ripple of sunlight/ }).click();
+  await expect(river.locator(".aube-reflection i").first()).toHaveCSS("opacity", "0.7");
+  const flight = page.locator("#banner-publications");
+  await flight.evaluate((el) => el.scrollIntoView({ block: "center", behavior: "instant" }));
+  await expect(flight).toHaveAttribute("data-hl-mode", "flight");
+  await expect(flight.locator("canvas[data-hl-canvas]")).toBeVisible();
+});
+
+test("the retired DOCX link opens the final Vision flow", async ({ page }) => {
+  await page.goto("/vision?story=docx");
+  await expect(page.getByRole("navigation", { name: "Vision story order" })).toHaveCount(0);
+  await expect(page.locator(".vision-page > header + figure + #program h2")).toHaveText(
+    "Research context"
+  );
+  await expect(page.locator("#long-term-vision .vision-cycle-figure")).toHaveCount(1);
+  await expect(page.locator("#progress .vision-scope-figure")).toHaveCount(1);
+  await expect(
+    page.locator("#current-work ~ .vision-ring ~ #selected-publications li a")
+  ).toHaveCount(13);
+  const axisThree = page.locator(".vision-axis").last();
+  await axisThree.locator("summary").click();
+  await expect(axisThree).toContainText(
+    "Version 1.0 of the MEDomics platform was launched in 2024."
+  );
+  await expect(axisThree).toContainText(
+    "clinical researchers and computer scientists work together"
+  );
+});
+
+test("Vision opens on its banner alone, then its headline, then the page", async ({ page }) => {
+  await page.emulateMedia({ reducedMotion: "no-preference" });
+  // Note each stage as it starts, with what its first painted frame shows: the stages are too brief to poll, and
+  // the prerendered page enters its first stage while still parsing, before its stylesheet applies.
+  await page.addInitScript(() => {
+    window.entranceStages = [];
+    new MutationObserver(() => {
+      const vision = document.querySelector(".vision-page");
+      const stage = vision?.dataset.entrance;
+      if (!stage || stage === window.entranceStages.at(-1)?.stage) return;
+      const entry = { stage };
+      window.entranceStages.push(entry);
+      const opacity = (node) => (node ? getComputedStyle(node).opacity : null);
+      requestAnimationFrame(() =>
+        Object.assign(entry, {
+          banner: document.getElementById("banner-horizon")?.dataset.hlReady === "true",
+          headline: opacity(vision.querySelector(".vision-cover-copy h1")),
+          rest: opacity(vision.querySelector(":scope > :not(.vision-cover)")),
+          nav: opacity(document.querySelector(".vision-section-nav")),
+        })
+      );
+    }).observe(document, {
+      subtree: true,
+      childList: true,
+      attributes: true,
+      attributeFilter: ["data-entrance"],
+    });
+  });
+  await page.goto("/vision");
+  const vision = page.locator(".vision-page");
+  await expect(vision).toHaveAttribute("data-entrance", "done", { timeout: 8000 });
+  const stages = await page.evaluate(() => window.entranceStages);
+  expect(stages.map(({ stage }) => stage)).toEqual(["banner", "copy", "done"]);
+  const [banner, copy] = stages;
+  expect(banner).toMatchObject({ headline: "0", rest: "0", nav: "0" });
+  expect(copy).toMatchObject({ banner: true, rest: "0", nav: "0" });
+  await expect(page.locator(".vision-cover-copy h1")).toHaveCSS("opacity", "1");
+  await expect(page.getByRole("navigation", { name: "Vision page sections" })).toHaveCSS(
+    "opacity",
+    "1"
+  );
+
+  // A section link skips the opening.
+  await page.goto("/vision#progress");
+  await expect(vision).toHaveAttribute("data-entrance", "done");
 });
