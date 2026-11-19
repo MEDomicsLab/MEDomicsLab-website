@@ -1,0 +1,14 @@
+#banner-publications {
+  height: clamp(156px, 23vw, 356px);
+  margin-block: 0;
+  pointer-events: none;
+  --preview: url("./flight-wide.webp");
+}
+@media (max-width: 640px) {
+  #banner-publications {
+    --preview: url("./flight-phone.webp");
+  }
+}
+#banner-publications:not([data-hl-ready]) {
+  background-image: var(--preview);
+}

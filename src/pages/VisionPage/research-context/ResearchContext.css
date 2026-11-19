@@ -1,0 +1,84 @@
+.vision-subtitle-scope {
+  color: var(--muted-foreground);
+}
+
+/* The section opens on why: the promise of the data, then what stands in its way. */
+.vision-opening p + p,
+.vision-opening .vision-argument {
+  margin-top: 0.95em;
+}
+
+.vision-premises {
+  margin-top: clamp(64px, 7vw, 108px);
+}
+.vision-premises .vision-subtitle > span,
+.vision-subtitle-scope > span {
+  display: block;
+}
+@media (min-width: 801px) and (prefers-reduced-motion: no-preference) {
+  .vision-premises .vision-subtitle {
+    position: sticky;
+    top: max(108px, 42svh);
+  }
+}
+.neue-interior-layout .vision-premises h3,
+.vision-premises li {
+  font-size: var(--vision-subtitle-size);
+  line-height: 1.22;
+}
+.vision-premise-list {
+  display: grid;
+  gap: 0.95em;
+  font-size: var(--vision-subtitle-size);
+}
+.vision-premise-list li {
+  max-width: 34em;
+  color: var(--neue-paper);
+  letter-spacing: -0.025em;
+  text-wrap: pretty;
+}
+.vision-premise-list[data-spotlight] li {
+  opacity: calc(0.38 + 0.62 * var(--focus, 0));
+  transition: opacity 180ms linear;
+}
+
+.vision-longterm {
+  margin-top: clamp(76px, 9vw, 144px);
+}
+
+.vision-approach {
+  display: grid;
+  justify-items: center;
+  gap: clamp(26px, 3vw, 44px);
+  margin-top: clamp(22px, 2.6vw, 38px);
+}
+.vision-approach-text {
+  max-width: 39em;
+  color: var(--vision-body);
+  font-size: clamp(16px, 1.42vw, 21px);
+  line-height: 1.4;
+  letter-spacing: -0.018em;
+  text-align: center;
+  text-wrap: balance;
+}
+.vision-approach-text a {
+  text-decoration: underline;
+  text-underline-offset: 0.16em;
+}
+.vision-cycle-figure {
+  width: min(100%, 620px);
+}
+
+@media (min-width: 801px) {
+  .vision-longterm .vision-chapter-title,
+  .vision-longterm > .vision-row .vision-lede {
+    text-box: trim-start cap alphabetic;
+  }
+}
+
+@media (max-width: 800px) {
+  .vision-premise-list li,
+  .vision-premises .vision-subtitle {
+    max-width: none;
+  }
+}

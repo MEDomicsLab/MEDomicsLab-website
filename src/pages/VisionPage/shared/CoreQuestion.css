@@ -1,0 +1,22 @@
+.vision-question {
+  max-width: 19em;
+  margin: clamp(72px, 9vw, 144px) auto 0;
+  font-size: clamp(27px, 3.45vw, 52px);
+  text-align: center;
+}
+.vision-question-text {
+  color: var(--neue-paper);
+  line-height: 1.08;
+  letter-spacing: -0.042em;
+  text-wrap: balance;
+}
+.vision-question-text span {
+  opacity: clamp(0.16, calc((var(--progress, 1) * (var(--words) + 6) - var(--word)) / 6), 1);
+  transition: opacity 140ms linear;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .vision-question-text span {
+    transition: none;
+  }
+}

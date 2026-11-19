@@ -1,0 +1,8 @@
+#banner-progress {
+  height: clamp(310px, 34vw, 490px);
+  background: url("./aurore.webp") 37% 84% / cover;
+  mask: url("./aurore-feather.png") center / 100% 100% no-repeat;
+}
+#banner-progress[data-sweeping] {
+  background-image: none;
+}

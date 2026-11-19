@@ -251,7 +251,7 @@ This selection is independent of the publication dates and entries in `publicati
 - **Schema:** [`src/data/_schemas/vision.schema.json`](./src/data/_schemas/vision.schema.json)
 - **Page:** `VisionPage`.
 
-The hero, the narrative blocks (each a heading, body, optional image), and the embedded gallery references. Image paths are relative to `public/`.
+Edit the research vision, clinical translation premises, three research axes, current work, and selected publications here. Citation codes such as `[JA1, CP2]` in axis paragraphs link to the corresponding publication entries.
 
 </details>
 

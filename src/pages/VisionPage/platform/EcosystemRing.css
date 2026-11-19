@@ -1,0 +1,186 @@
+.vision-ring {
+  --ring-top: clamp(84px, 10.5svh, 112px);
+  --ring-bottom: calc(clamp(80px, 10svh, 100px) + env(safe-area-inset-bottom));
+}
+.vision-platform-lead {
+  display: grid;
+  justify-items: center;
+  gap: clamp(10px, 1.25vw, 18px);
+  width: var(--vision-page-width);
+  margin-top: clamp(96px, 11vw, 168px);
+  padding-inline: clamp(30px, 5vw, 84px);
+  text-align: center;
+}
+.vision-platform-lead .vision-lede {
+  max-width: 40em;
+  text-wrap: balance;
+}
+.vision-ring-track {
+  margin-top: clamp(36px, 4vw, 56px);
+}
+.vision-ring-cards {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 40px 22px;
+}
+.vision-ring-card {
+  min-width: 0;
+}
+.vision-ring-poster-link {
+  display: block;
+  border-radius: 4px;
+}
+.vision-ring-card img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 4px;
+}
+.vision-ring-caption,
+.vision-ring-details {
+  display: grid;
+  gap: 6px;
+}
+.vision-ring-caption {
+  margin-top: 16px;
+}
+.vision-ring-name {
+  color: var(--neue-paper);
+  font-size: clamp(20px, 1.7vw, 25px);
+  line-height: 1.15;
+  letter-spacing: -0.03em;
+}
+.vision-ring-links {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 4px 18px;
+}
+.vision-ring-details .vision-ring-links {
+  justify-self: stretch;
+}
+.vision-ring-stars {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--muted-foreground);
+  font-size: 15px;
+  font-variant-numeric: tabular-nums;
+}
+.vision-page .vision-ring-links a {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  color: var(--muted-foreground);
+  font-size: 15px;
+}
+.vision-page .vision-ring-links a:hover {
+  color: var(--neue-paper);
+}
+.vision-ring-viewport {
+  display: none;
+}
+
+/* Orbit: the stage is pinned while the camera turns through the ring. */
+.vision-ring[data-gallery="orbit"] .vision-ring-track {
+  width: 100cqw;
+  height: calc(100svh + var(--steps) * 62svh);
+  margin-left: calc((var(--vision-page-width) - 100cqw) / 2);
+}
+.vision-ring[data-gallery="orbit"] .vision-ring-stage {
+  position: sticky;
+  top: 0;
+  height: 100svh;
+  overflow: clip;
+}
+.vision-ring[data-gallery="orbit"] .vision-ring-viewport {
+  display: block;
+  position: absolute;
+  inset: 0;
+  /* The ring fades out towards the edges of the stage, leaving the section index on a clear
+     background and the poster in focus alone at full strength. */
+  mask-image: linear-gradient(90deg, transparent 3%, #000 24%, #000 76%, transparent 97%);
+}
+.vision-ring-viewport canvas {
+  display: block;
+}
+.vision-ring-safe {
+  position: absolute;
+  inset: var(--ring-top) 0 var(--ring-bottom);
+  visibility: hidden;
+  pointer-events: none;
+}
+/* The posters are drawn by the ring; the list stays for assistive technology. */
+.vision-ring[data-gallery="orbit"] .vision-ring-cards {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+/* Until the ring's scene has loaded, the poster in focus stands alone in the same place. */
+.vision-ring[data-gallery="orbit"]:not([data-ready]) .vision-ring-cards {
+  inset: 0;
+  width: auto;
+  height: auto;
+  overflow: visible;
+  clip-path: none;
+  white-space: normal;
+}
+.vision-ring[data-gallery="orbit"]:not([data-ready]) .vision-ring-card:not([data-current]),
+.vision-ring[data-gallery="orbit"]:not([data-ready]) .vision-ring-caption {
+  display: none;
+}
+.vision-ring[data-gallery="orbit"]:not([data-ready]) .vision-ring-card[data-current] {
+  --safe: calc(100svh - var(--ring-top) - var(--ring-bottom));
+  position: absolute;
+  left: 50%;
+  top: calc(var(--ring-top) + var(--safe) / 2);
+  width: min(72vw, var(--safe) * 0.736);
+  transform: translate(-50%, -50%);
+}
+.vision-ring[data-gallery="orbit"]:not([data-ready]) .vision-ring-card[data-current] img {
+  border-radius: 0;
+  background: rgb(240 231 212 / 5%);
+}
+.vision-ring-details {
+  position: absolute;
+  width: max-content;
+  min-width: min(170px, calc(100% - 32px));
+  max-width: calc(100% - 32px);
+  left: 50%;
+  bottom: max(14px, env(safe-area-inset-bottom) + 8px);
+  justify-items: center;
+  transform: translateX(-50%);
+  text-align: center;
+}
+
+@media (max-width: 1099px) {
+  .vision-ring[data-gallery="static"] .vision-ring-cards {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (max-width: 699px) {
+  .vision-ring {
+    --ring-top: 92px;
+    --ring-bottom: calc(84px + env(safe-area-inset-bottom));
+  }
+  .vision-ring[data-gallery="static"] .vision-ring-cards {
+    grid-auto-flow: column;
+    grid-template-columns: none;
+    grid-auto-columns: 100%;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    padding-inline: 11%;
+  }
+  .vision-ring[data-gallery="static"] .vision-ring-card {
+    scroll-snap-align: center;
+  }
+  .vision-ring[data-gallery="orbit"] .vision-ring-viewport {
+    mask-image: linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent);
+  }
+}

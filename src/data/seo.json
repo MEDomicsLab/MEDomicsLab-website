@@ -6,8 +6,7 @@
     "/": { "title": "Home" },
     "/vision": {
       "title": "Vision",
-      "description": "The MEDomicsLab Vision page is currently under construction.",
-      "noindex": true
+      "description": "Explore how MEDomicsLab brings medical data modeling, imaging and open-source software together to build clinically grounded AI for precision medicine."
     },
     "/research": {
       "title": "Research",

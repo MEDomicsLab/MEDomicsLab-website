@@ -27,6 +27,7 @@ const pairs = [
   ["home.json", "home.schema.json"],
   ["layout.json", "layout.schema.json"],
   ["theme.json", "theme.schema.json"],
+  ["vision.json", "vision.schema.json"],
   ["seo.json", "seo.schema.json"],
 ];
 
