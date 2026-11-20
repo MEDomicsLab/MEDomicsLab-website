@@ -35,6 +35,9 @@ const eventMedia = () => {
 };
 
 export default defineConfig({
+  define: {
+    "import.meta.env.VERCEL": JSON.stringify(process.env.VERCEL === "1"),
+  },
   plugins: [
     eventMedia(),
     react(),
