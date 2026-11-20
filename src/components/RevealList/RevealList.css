@@ -2,35 +2,45 @@
  * "See more" reveal animation
  */
 
-.reveal-list-extra {
+.reveal-list {
+  --reveal-list-duration: 420ms;
+  --reveal-list-ease: cubic-bezier(0.16, 1, 0.3, 1);
+  --reveal-list-fade: 220ms;
+}
+
+.reveal-list > li {
   display: grid;
+  grid-template-rows: 1fr;
+  transition:
+    grid-template-rows var(--reveal-list-duration) var(--reveal-list-ease),
+    opacity var(--reveal-list-fade) ease,
+    transform var(--reveal-list-duration) var(--reveal-list-ease),
+    visibility 0s linear;
+  transition-delay: var(--reveal-list-delay, 0ms);
+}
+
+.reveal-list > li[data-hidden="true"] {
   grid-template-rows: 0fr;
-  overflow: hidden;
   opacity: 0;
   transform: translateY(-8px);
   visibility: hidden;
-  transition:
-    grid-template-rows 420ms cubic-bezier(0.16, 1, 0.3, 1),
-    opacity 220ms ease,
-    transform 420ms cubic-bezier(0.16, 1, 0.3, 1),
-    visibility 0s linear 420ms;
+  transition-delay: 0ms, 0ms, 0ms, var(--reveal-list-duration);
 }
 
 /*
  * A grid item in a 0fr track keeps an automatic minimum size unless its own
  * overflow is clipped.
  */
-.reveal-list-extra > div {
+.reveal-list > li > div {
   min-height: 0;
   overflow: hidden;
+  margin: -8px;
+  padding: 8px;
+  pointer-events: none;
 }
 
-.reveal-list.is-open .reveal-list-extra {
-  grid-template-rows: 1fr;
-  opacity: 1;
-  transform: translateY(0);
-  visibility: visible;
-  transition-delay: var(--reveal-list-delay, 0ms);
+.reveal-list > li > div > * {
+  pointer-events: auto;
 }
 
 .reveal-list-toggle:hover {
@@ -46,11 +56,9 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .reveal-list-extra {
+  .reveal-list > li,
+  .reveal-list > li[data-hidden="true"] {
     transition-duration: 0.01ms;
-  }
-
-  .reveal-list.is-open .reveal-list-extra {
     transition-delay: 0ms;
   }
 }

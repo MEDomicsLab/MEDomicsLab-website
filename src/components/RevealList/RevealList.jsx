@@ -11,6 +11,7 @@ const STAGGER_MS = 45;
 export default function RevealList({
   children,
   visibleCount = 3,
+  matches,
   moreLabel = "See more",
   lessLabel = "See less",
   className,
@@ -20,28 +21,28 @@ export default function RevealList({
   const listId = useId();
 
   const items = Children.toArray(children);
-  const hiddenCount = Math.max(0, items.length - visibleCount);
+  let rank = 0;
+  const ranks = items.map((_, index) => (matches && !matches[index] ? -1 : rank++));
+  const hiddenCount = Math.max(0, rank - visibleCount);
 
   return (
     <>
-      <ul id={listId} className={cn("reveal-list", isOpen && "is-open", className)}>
+      <ul id={listId} className={cn("reveal-list", className)}>
         {items.map((child, index) => {
-          const isExtra = index >= visibleCount;
-          const isHidden = isExtra && !isOpen;
+          const isExtra = ranks[index] >= visibleCount;
+          const isHidden = ranks[index] === -1 || (isExtra && !isOpen);
 
           return (
             <li
               key={child.key ?? index}
-              className={isExtra ? "reveal-list-extra" : undefined}
-              aria-hidden={isExtra ? !isOpen : undefined}
+              data-hidden={isHidden}
+              aria-hidden={isHidden || undefined}
               style={
                 isExtra
-                  ? { "--reveal-list-delay": `${(index - visibleCount) * STAGGER_MS}ms` }
+                  ? { "--reveal-list-delay": `${(ranks[index] - visibleCount) * STAGGER_MS}ms` }
                   : undefined
               }
             >
-              {/* Plain wrapper so the collapsing track has something with no
-                  padding. */}
               <div>
                 {isHidden && isValidElement(child) ? cloneElement(child, { tabIndex: -1 }) : child}
               </div>
