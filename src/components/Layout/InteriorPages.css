@@ -106,6 +106,57 @@
 .neue-interior-layout .filter-chips > [aria-live] strong {
   font-weight: 400;
 }
+.filter-chips-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px 24px;
+}
+.filter-chips-row > [role="group"] {
+  flex: 0 0 auto;
+  max-width: 100%;
+}
+.filter-chips-row > .search-field {
+  flex: 1 1 100%;
+}
+@media (min-width: 1280px) {
+  .filter-chips-row > .search-field {
+    flex: 1 1 0;
+    min-width: 260px;
+    max-width: 340px;
+    margin-left: auto;
+  }
+}
+
+.neue-interior-layout .research-index .filter-chips {
+  padding-block: 40px;
+  border-bottom: 0;
+}
+.neue-interior-layout .research-list .research-project {
+  margin-bottom: 64px;
+}
+.neue-interior-layout .research-list {
+  --reveal-list-duration: 620ms;
+  --reveal-list-ease: cubic-bezier(0.33, 1, 0.68, 1);
+  --reveal-list-fade: 300ms;
+  margin-bottom: -64px;
+}
+.neue-interior-layout .research-empty {
+  margin-top: 64px;
+  padding-top: 36px;
+  border-top: 1px solid var(--border);
+  color: var(--muted-foreground);
+  font-size: clamp(20px, 1.8vw, 26px);
+  line-height: 1.35;
+  letter-spacing: -0.02em;
+  animation: research-empty-in 420ms cubic-bezier(0.16, 1, 0.3, 1) 120ms both;
+}
+@keyframes research-empty-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+}
 
 .neue-interior-layout .research-project {
   padding-block: 36px 12px;
@@ -452,6 +503,9 @@
   }
   .neue-interior-layout .filter-chips [aria-hidden="true"].w-px {
     display: none;
+  }
+  .neue-interior-layout .research-index .filter-chips {
+    padding-block: 32px;
   }
   .neue-interior-layout .team-card-pi {
     flex-direction: column;
