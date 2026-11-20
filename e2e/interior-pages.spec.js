@@ -57,22 +57,131 @@ test("research filters retain their results and project Markdown and metadata", 
   page,
 }) => {
   await page.goto("/research");
-  await expect(page.locator(".research-project")).toHaveCount(projectsData.length);
+  const shownProjects = page.locator(".research-project:visible");
+  await expect(shownProjects).toHaveCount(projectsData.length);
   const doctorate = page.getByRole("button", { name: `Doctorate ${doctorateCount}`, exact: true });
   await expect(doctorate).toHaveCSS("cursor", "pointer");
   await doctorate.click();
   await expect(doctorate).toHaveCSS("background-color", "rgb(229, 218, 195)");
   await expect(doctorate).toHaveCSS("color", "rgb(26, 26, 26)");
-  await expect(page.locator(".research-project")).toHaveCount(doctorateCount);
+  await expect(shownProjects).toHaveCount(doctorateCount);
   await expect(page.getByRole("button", { name: "Clear filters" })).toHaveCSS("cursor", "pointer");
   await page.getByRole("button", { name: "Clear filters" }).click();
-  await expect(page.locator(".research-project")).toHaveCount(projectsData.length);
+  await expect(shownProjects).toHaveCount(projectsData.length);
   await page.locator('main a[href="/research/medomics-platform"]').click();
   await expect(page.locator(".project-markdown")).toContainText("In progress (2020-today)");
   await expect(
     page.locator(".project-metadata").getByRole("heading", { name: "Status", exact: true })
   ).toBeVisible();
   await expect(page.getByRole("heading", { name: "Researchers", exact: true })).toBeVisible();
+});
+
+test("research filters sit midway between two rules and the slash key searches project titles", async ({
+  page,
+}) => {
+  await page.goto("/research");
+  const filters = page.locator(".filter-chips");
+  await expect(filters).toHaveCSS("border-bottom-width", "0px");
+  const gaps = await filters.evaluate((block) => {
+    const ruleAbove =
+      block.getBoundingClientRect().top + parseFloat(getComputedStyle(block).borderTopWidth);
+    const ruleBelow = document.querySelector(".research-project").getBoundingClientRect().top;
+    return {
+      above: block.firstElementChild.getBoundingClientRect().top - ruleAbove,
+      below: ruleBelow - block.lastElementChild.getBoundingClientRect().bottom,
+    };
+  });
+  expect(Math.abs(gaps.above - gaps.below)).toBeLessThanOrEqual(1);
+
+  const search = page.getByRole("searchbox", { name: "Search research projects by title" });
+  const chips = page.getByRole("group", { name: "Filter research projects by tag" });
+  const [searchBox, chipsBox] = [await search.boundingBox(), await chips.boundingBox()];
+  expect(Math.abs(searchBox.y - chipsBox.y)).toBeLessThanOrEqual(1);
+  expect(searchBox.x).toBeGreaterThan(chipsBox.x + chipsBox.width);
+
+  await page.keyboard.press("/");
+  await expect(search).toBeFocused();
+  await page.keyboard.type("Radiomics");
+  const matching = projectsData.filter((project) => /radiomics/i.test(project.title));
+  const shownProjects = page.locator(".research-project:visible");
+  await expect(shownProjects).toHaveCount(matching.length);
+  await expect(filters.locator("[aria-live]")).toContainText(
+    `Showing ${matching.length} of ${projectsData.length} projects`
+  );
+  await expect(shownProjects.first().locator(".tabular-nums")).toHaveText("01");
+
+  await page.keyboard.type(" zzz");
+  await expect(shownProjects).toHaveCount(0);
+  await expect(page.locator(".research-empty")).toContainText("No project titles match");
+  await page.keyboard.press("Escape");
+  await expect(search).toHaveValue("");
+  await expect(search).toBeFocused();
+  await expect(shownProjects).toHaveCount(projectsData.length);
+  await page.keyboard.press("Escape");
+  await expect(search).not.toBeFocused();
+});
+
+test("profile Latest filters by type beside its heading and folds into one menu when narrow", async ({
+  page,
+}) => {
+  const projectCount = projectsData.filter((project) =>
+    project.researchers?.includes("martin-vallieres")
+  ).length;
+  const shownRows = page.locator(".member-detail .entry-row:visible");
+  const toggle = page.locator(".reveal-list-toggle");
+
+  await page.goto("/team/martin-vallieres");
+  const filters = page.getByRole("group", { name: "Filter latest by type" });
+  const heading = page.getByRole("heading", { name: "Latest", exact: true });
+  const [filtersBox, headingBox] = [await filters.boundingBox(), await heading.boundingBox()];
+  expect(
+    Math.abs(filtersBox.y + filtersBox.height / 2 - (headingBox.y + headingBox.height / 2))
+  ).toBeLessThanOrEqual(2);
+  await expect(filters.getByRole("button", { name: /^All/ })).toHaveAttribute(
+    "aria-pressed",
+    "true"
+  );
+  await filters.getByRole("button", { name: `Projects ${projectCount}`, exact: true }).click();
+  await expect(filters.getByRole("button", { name: /^All/ })).toHaveAttribute(
+    "aria-pressed",
+    "false"
+  );
+  await expect(shownRows).toHaveCount(3);
+  for (const row of await shownRows.all()) await expect(row).toContainText("Project");
+  await expect(toggle).toHaveText(`See more (+${projectCount - 3})`);
+
+  await page.setViewportSize({ width: 1024, height: 900 });
+  await page.goto("/team/martin-vallieres");
+  await expect
+    .poll(() => page.evaluate(() => document.documentElement.scrollWidth - innerWidth))
+    .toBeLessThanOrEqual(1);
+  const filterBox = await page.locator(".compact-filter").boundingBox();
+  expect(filterBox.x + filterBox.width).toBeLessThanOrEqual(1024);
+
+  await page.setViewportSize({ width: 375, height: 812 });
+  await page.goto("/team/martin-vallieres");
+  await expect(page.getByRole("group", { name: "Filter latest by type" })).toHaveCount(0);
+  const trigger = page.getByRole("button", { name: /Filter latest by type/ });
+  await expect(trigger).toContainText("All");
+  await trigger.click();
+  const menu = page.getByRole("group", { name: "Filter latest by type" });
+  const options = menu.getByRole("button");
+  await expect(options.first()).toHaveText(/^All/);
+  expect(
+    await options.evaluateAll((items) => items.map((item) => item.getAttribute("aria-pressed")))
+  ).toEqual(["true", ...Array(4).fill("false")]);
+  await menu.getByRole("button", { name: /^Projects/ }).click();
+  await expect(options.first()).toHaveAttribute("aria-pressed", "false");
+  await expect(trigger).toContainText("Projects");
+  await expect(toggle).toHaveText(`See more (+${projectCount - 3})`);
+  await expect(shownRows).toHaveCount(3);
+  for (const row of await shownRows.all()) await expect(row).toContainText("Project");
+  const bounds = await menu.boundingBox();
+  expect(bounds.x).toBeGreaterThanOrEqual(16);
+  expect(bounds.x + bounds.width).toBeLessThanOrEqual(375 - 16);
+  await page.keyboard.press("Escape");
+  await expect(menu).toHaveCount(0);
+  await expect(trigger).toBeFocused();
 });
 
 test("team keeps its cohort order and colour distinction with working profile links", async ({
