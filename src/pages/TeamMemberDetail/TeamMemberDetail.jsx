@@ -55,7 +55,7 @@ export default function TeamMemberDetail() {
       <div className="container mx-auto px-4 md:px-8">
         <BackLink to="/team">Back to Team</BackLink>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-24">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 xl:gap-24">
           <div className="lg:col-span-5 space-y-8">
             <div className="member-portrait group overflow-hidden bg-secondary/20 relative shrink-0">
               {member.image ? (
