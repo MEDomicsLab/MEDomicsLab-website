@@ -223,6 +223,7 @@ for (const route of sample) {
   test(`rendered metadata agrees with the initial HTML: ${route.path}`, async ({ page }) => {
     const errors = [];
     page.on("pageerror", (error) => errors.push(error.message));
+    await page.emulateMedia({ reducedMotion: "reduce" });
     await page.goto(route.path);
     await page.evaluate(() => document.fonts.ready);
     const meta = getPageMetadata(route.path);

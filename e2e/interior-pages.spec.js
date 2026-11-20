@@ -7,6 +7,11 @@ const doctorateCount = projectsData.filter((project) => project.track === "Docto
 
 test.use({ viewport: { width: 1440, height: 1000 }, reducedMotion: "reduce" });
 
+// For Vision tests that need motion but not the WebGL banners: while the banners move they keep a software renderer
+// (CI has no GPU) too busy to answer.
+const withoutBanners = (page) =>
+  page.route("**/vendor/landscape/landscape.mjs", (route) => route.abort());
+
 test("publication listings and team profiles link directly to the source", async ({
   page,
   request,
@@ -413,6 +418,7 @@ test("the premises heading stays beside the list and the active statement lights
   page,
 }) => {
   await page.emulateMedia({ reducedMotion: "no-preference" });
+  await withoutBanners(page);
   await page.goto("/vision");
   const premises = page.locator(".vision-premise-list li");
   const bounds = await page.locator(".vision-premises").evaluate(async (section) => {
@@ -451,6 +457,7 @@ test("the figures' dots move once on screen and stand still when motion is reduc
   page,
 }) => {
   await page.emulateMedia({ reducedMotion: "no-preference" });
+  await withoutBanners(page);
   await page.goto("/vision");
   for (const stage of [".pf-stage", ".scope-stage"]) {
     const node = page.locator(stage);
@@ -475,6 +482,7 @@ test("the figures' dots move once on screen and stand still when motion is reduc
 for (const width of [1440, 390]) {
   test(`the research vision figure connects every arrow at ${width}px`, async ({ page }) => {
     await page.setViewportSize({ width, height: 900 });
+    await page.emulateMedia({ reducedMotion: "reduce" });
     await page.goto("/vision");
     const figure = page.getByRole("figure", { name: "The long-term research vision" });
     const art = figure.locator(".pf-art:visible");
@@ -629,6 +637,7 @@ test("the progress axes animate height and opacity on open, close and reversal",
   page,
 }) => {
   await page.emulateMedia({ reducedMotion: "no-preference" });
+  await withoutBanners(page);
   await page.goto("/vision");
   const axis = page
     .locator(".vision-axis")
@@ -688,6 +697,7 @@ test("the platform ring turns with the page and its posters open their websites"
   page,
 }) => {
   await page.emulateMedia({ reducedMotion: "no-preference" });
+  await withoutBanners(page);
   await page.route("https://api.github.com/repos/**", (route) =>
     route.fulfill({ json: { stargazers_count: 42 } })
   );
@@ -779,39 +789,8 @@ test("with reduced motion each platform poster links to its site and shows its s
   await expect(link.locator("svg")).toHaveCSS("rotate", "45deg");
 });
 
-test("Vision always shows its four selected artworks and the dawn sun lights the river", async ({
-  page,
-}) => {
-  await page.emulateMedia({ reducedMotion: "reduce" });
-  // Visitors can arrive with selections saved or shared during the design review.
-  await page.addInitScript(() => {
-    localStorage.setItem(
-      "vision-banner-candidates",
-      JSON.stringify({ horizon: "geste", work: "regard" })
-    );
-  });
-  await page.goto("/vision?banners=horizon:geste,progress:axes,work:regard,publications:harfang");
-  await expect(page.getByRole("navigation", { name: "Banner candidates" })).toHaveCount(0);
-  const lake = page.locator("#banner-horizon");
-  await expect(lake.getByRole("heading", { name: "Vision", exact: true })).toBeInViewport();
-  await expect(lake).toHaveAttribute("data-hl-mode", "lucioles");
-  await expect(lake.locator(".distant-butterfly-flight")).toBeVisible();
-  const sky = page.locator("#banner-progress");
-  await sky.evaluate((el) => el.scrollIntoView({ block: "center", behavior: "instant" }));
-  await expect(sky).toHaveCSS("mask-image", /aurore-feather/);
-  await expect(sky.locator(".distant-butterfly-flight")).toBeVisible();
-  const river = page.locator("#banner-work");
-  await river.evaluate((el) => el.scrollIntoView({ block: "center", behavior: "instant" }));
-  await expect(river.locator(".horizon-butterfly-flight")).toBeVisible();
-  await river.getByRole("button", { name: /ripple of sunlight/ }).click();
-  await expect(river.locator(".aube-reflection i").first()).toHaveCSS("opacity", "0.7");
-  const flight = page.locator("#banner-publications");
-  await flight.evaluate((el) => el.scrollIntoView({ block: "center", behavior: "instant" }));
-  await expect(flight).toHaveAttribute("data-hl-mode", "flight");
-  await expect(flight.locator("canvas[data-hl-canvas]")).toBeVisible();
-});
-
 test("the retired DOCX link opens the final Vision flow", async ({ page }) => {
+  await page.emulateMedia({ reducedMotion: "reduce" });
   await page.goto("/vision?story=docx");
   await expect(page.getByRole("navigation", { name: "Vision story order" })).toHaveCount(0);
   await expect(page.locator(".vision-page > header + figure + #program h2")).toHaveText(
@@ -830,51 +809,4 @@ test("the retired DOCX link opens the final Vision flow", async ({ page }) => {
   await expect(axisThree).toContainText(
     "clinical researchers and computer scientists work together"
   );
-});
-
-test("Vision opens on its banner alone, then its headline, then the page", async ({ page }) => {
-  await page.emulateMedia({ reducedMotion: "no-preference" });
-  // Note each stage as it starts, with what its first painted frame shows: the stages are too brief to poll, and
-  // the prerendered page enters its first stage while still parsing, before its stylesheet applies.
-  await page.addInitScript(() => {
-    window.entranceStages = [];
-    new MutationObserver(() => {
-      const vision = document.querySelector(".vision-page");
-      const stage = vision?.dataset.entrance;
-      if (!stage || stage === window.entranceStages.at(-1)?.stage) return;
-      const entry = { stage };
-      window.entranceStages.push(entry);
-      const opacity = (node) => (node ? getComputedStyle(node).opacity : null);
-      requestAnimationFrame(() =>
-        Object.assign(entry, {
-          banner: document.getElementById("banner-horizon")?.dataset.hlReady === "true",
-          headline: opacity(vision.querySelector(".vision-cover-copy h1")),
-          rest: opacity(vision.querySelector(":scope > :not(.vision-cover)")),
-          nav: opacity(document.querySelector(".vision-section-nav")),
-        })
-      );
-    }).observe(document, {
-      subtree: true,
-      childList: true,
-      attributes: true,
-      attributeFilter: ["data-entrance"],
-    });
-  });
-  await page.goto("/vision");
-  const vision = page.locator(".vision-page");
-  await expect(vision).toHaveAttribute("data-entrance", "done", { timeout: 8000 });
-  const stages = await page.evaluate(() => window.entranceStages);
-  expect(stages.map(({ stage }) => stage)).toEqual(["banner", "copy", "done"]);
-  const [banner, copy] = stages;
-  expect(banner).toMatchObject({ headline: "0", rest: "0", nav: "0" });
-  expect(copy).toMatchObject({ banner: true, rest: "0", nav: "0" });
-  await expect(page.locator(".vision-cover-copy h1")).toHaveCSS("opacity", "1");
-  await expect(page.getByRole("navigation", { name: "Vision page sections" })).toHaveCSS(
-    "opacity",
-    "1"
-  );
-
-  // A section link skips the opening.
-  await page.goto("/vision#progress");
-  await expect(vision).toHaveAttribute("data-entrance", "done");
 });

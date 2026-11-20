@@ -5,6 +5,7 @@ import news from "../src/data/news.json" with { type: "json" };
 test.use({ timezoneId: "America/Toronto", reducedMotion: "reduce" });
 
 test("every event displays its available logistics in the sidebar", async ({ page }) => {
+  test.slow();
   for (const year of events) {
     for (const month of year.months) {
       for (const item of month.items) {

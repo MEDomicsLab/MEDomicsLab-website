@@ -5,6 +5,9 @@ import { useEffect, useState } from "react";
 const HEADLINE_AT_MS = 520;
 // If the landscape has not painted by then (no WebGL, a slow import), the page opens without it.
 const BANNER_GIVE_UP_MS = 2500;
+// Once it has painted, a renderer too slow to finish the sweep (software WebGL, a few frames a second) holds the
+// headline back no longer than this.
+const SWEEP_GIVE_UP_MS = 1200;
 // The rest of the page follows this long after the headline starts to rise.
 const PAGE_AFTER_MS = 300;
 
@@ -32,6 +35,7 @@ export default function useEntrance() {
       if (opened) return;
       opened = true;
       watcher.disconnect();
+      cancelAnimationFrame(frame);
       setStage("copy");
       timers.push(setTimeout(() => setStage("done"), PAGE_AFTER_MS));
     };
@@ -48,6 +52,7 @@ export default function useEntrance() {
         else frame = requestAnimationFrame(tick);
       };
       frame = requestAnimationFrame(tick);
+      timers.push(setTimeout(open, SWEEP_GIVE_UP_MS));
     };
     const watcher = new MutationObserver(() => {
       if (banner?.dataset.hlReady) {
