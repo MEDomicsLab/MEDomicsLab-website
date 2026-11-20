@@ -472,6 +472,21 @@
   font-size: 22px;
   letter-spacing: -0.02em;
 }
+.member-latest-head {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  min-height: 32px;
+}
+.member-latest-head > h3 {
+  flex-shrink: 0;
+}
+.neue-interior-layout :is(.compact-filter-chip, .compact-filter-trigger):focus-visible {
+  outline-offset: 2px;
+}
+.neue-interior-layout .compact-filter-option:focus-visible {
+  outline-offset: -2px;
+}
 .neue-interior-layout .community-detail h1 {
   font-size: clamp(38px, 4.2vw, 64px);
   line-height: 1.07;

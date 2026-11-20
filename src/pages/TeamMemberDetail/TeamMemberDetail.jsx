@@ -9,10 +9,18 @@ import { getMemberActivity } from "../../lib/memberActivity";
 import AvatarImage from "../../components/AvatarImage/AvatarImage";
 import EntryRow, { EntryRowBody, EntryRowTitle } from "../../components/EntryRow/EntryRow.jsx";
 import RevealList from "../../components/RevealList/RevealList.jsx";
+import CompactFilter from "../../components/CompactFilter/CompactFilter.jsx";
 import SocialIcons from "../../components/SocialIcons/SocialIcons.jsx";
 import PositionText from "../../components/PositionText/PositionText.jsx";
 
 const VISIBLE_ACTIVITY_COUNT = 3;
+
+const KIND_LABELS = {
+  Publication: "Publications",
+  News: "News",
+  Event: "Events",
+  Project: "Projects",
+};
 
 export default function TeamMemberDetail() {
   const { slug } = useParams();
@@ -210,38 +218,68 @@ export default function TeamMemberDetail() {
               </div>
             ) : null}
 
-            {activity.length > 0 && (
-              <div className="space-y-6 border-t border-border pt-12">
-                <h3 className="text-sm uppercase tracking-widest text-muted-foreground flex items-center">
-                  <Activity className="w-4 h-4 mr-2" />
-                  Latest
-                </h3>
-                <RevealList
-                  visibleCount={VISIBLE_ACTIVITY_COUNT}
-                  moreLabel="See more"
-                  lessLabel="See less"
-                >
-                  {activity.map((entry) => (
-                    <EntryRow key={entry.to ?? entry.href} to={entry.to} href={entry.href}>
-                      <EntryRowBody>
-                        <div className="flex items-center gap-3 text-xs uppercase tracking-widest text-muted-foreground">
-                          <span className="border border-white/10 rounded-full px-2 py-1 bg-white/5 text-white/70">
-                            {entry.kind}
-                          </span>
-                          {entry.dateLabel && <span>{entry.dateLabel}</span>}
-                        </div>
-                        <EntryRowTitle className="text-base normal-case tracking-normal">
-                          {entry.title}
-                        </EntryRowTitle>
-                      </EntryRowBody>
-                    </EntryRow>
-                  ))}
-                </RevealList>
-              </div>
-            )}
+            {activity.length > 0 && <MemberLatest key={member.slug} activity={activity} />}
           </div>
         </div>
       </div>
+    </div>
+  );
+}
+
+function MemberLatest({ activity }) {
+  const [kinds, setKinds] = useState([]);
+
+  const options = useMemo(
+    () =>
+      Object.entries(KIND_LABELS)
+        .map(([kind, label]) => ({
+          value: kind,
+          label,
+          count: activity.filter((entry) => entry.kind === kind).length,
+        }))
+        .filter((option) => option.count > 0),
+    [activity]
+  );
+
+  return (
+    <div className="space-y-6 border-t border-border pt-12">
+      <div className="member-latest-head">
+        <h3 className="text-sm uppercase tracking-widest text-muted-foreground flex items-center">
+          <Activity className="w-4 h-4 mr-2" />
+          Latest
+        </h3>
+        {options.length > 1 && (
+          <CompactFilter
+            label="Filter latest by type"
+            options={options}
+            selected={kinds}
+            onChange={setKinds}
+            total={activity.length}
+          />
+        )}
+      </div>
+      <RevealList
+        visibleCount={VISIBLE_ACTIVITY_COUNT}
+        matches={activity.map((entry) => !kinds.length || kinds.includes(entry.kind))}
+        moreLabel="See more"
+        lessLabel="See less"
+      >
+        {activity.map((entry) => (
+          <EntryRow key={entry.to ?? entry.href} to={entry.to} href={entry.href}>
+            <EntryRowBody>
+              <div className="flex items-center gap-3 text-xs uppercase tracking-widest text-muted-foreground">
+                <span className="border border-white/10 rounded-full px-2 py-1 bg-white/5 text-white/70">
+                  {entry.kind}
+                </span>
+                {entry.dateLabel && <span>{entry.dateLabel}</span>}
+              </div>
+              <EntryRowTitle className="text-base normal-case tracking-normal">
+                {entry.title}
+              </EntryRowTitle>
+            </EntryRowBody>
+          </EntryRow>
+        ))}
+      </RevealList>
     </div>
   );
 }
