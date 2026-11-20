@@ -1,6 +1,7 @@
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { Plus, X } from "lucide-react";
+import { toggleFilter } from "../../lib/filters";
 import { cn } from "../../lib/utils";
 
 const VISIBLE_OPTIONS = 3;
@@ -21,6 +22,7 @@ export default function FilterChips({
   noun = "items",
   className,
   visibleOptions = VISIBLE_OPTIONS,
+  children,
 }) {
   const isAll = selected.length === 0;
   let inline = options.filter(
@@ -32,32 +34,38 @@ export default function FilterChips({
     folded = [];
   }
 
-  const toggle = (value) => {
-    const next = selected.includes(value)
-      ? selected.filter((item) => item !== value)
-      : [...selected, value];
-    onChange(next.length === options.length ? [] : next);
-  };
+  const toggle = (value) => onChange(toggleFilter(selected, value, options.length));
+
+  const chips = (
+    <div role="group" aria-label={label} className="flex flex-wrap items-center gap-2 md:gap-3">
+      <Chip active={isAll} onClick={() => onChange([])} count={total}>
+        All
+      </Chip>
+      <span aria-hidden="true" className="mx-1 h-6 w-px bg-border" />
+      {inline.map((option) => (
+        <Chip
+          key={option.value}
+          active={selected.includes(option.value)}
+          onClick={() => toggle(option.value)}
+          count={option.count}
+        >
+          {option.label ?? option.value}
+        </Chip>
+      ))}
+      {folded.length > 0 && <MoreMenu options={folded} onPick={toggle} />}
+    </div>
+  );
 
   return (
     <div className={cn("filter-chips space-y-4", className)}>
-      <div role="group" aria-label={label} className="flex flex-wrap items-center gap-2 md:gap-3">
-        <Chip active={isAll} onClick={() => onChange([])} count={total}>
-          All
-        </Chip>
-        <span aria-hidden="true" className="mx-1 h-6 w-px bg-border" />
-        {inline.map((option) => (
-          <Chip
-            key={option.value}
-            active={selected.includes(option.value)}
-            onClick={() => toggle(option.value)}
-            count={option.count}
-          >
-            {option.label ?? option.value}
-          </Chip>
-        ))}
-        {folded.length > 0 && <MoreMenu options={folded} onPick={toggle} />}
-      </div>
+      {children ? (
+        <div className="filter-chips-row">
+          {chips}
+          {children}
+        </div>
+      ) : (
+        chips
+      )}
       <div className="flex items-center gap-4 text-sm text-muted-foreground" aria-live="polite">
         <span>
           Showing <span className="text-foreground font-semibold">{shown}</span> of {total} {noun}
